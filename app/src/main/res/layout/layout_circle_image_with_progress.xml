@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lvLoading"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical"
+    android:orientation="vertical"
+    app:layout_constraintTop_toBottomOf="@+id/lvRvCustomers"
+    tools:layout_editor_absoluteX="5dp">
+
+   <de.hdodenhof.circleimageview.CircleImageView
+       android:id="@+id/imgImage"
+       android:src="@drawable/ic_upload_circle_bg"
+       android:layout_width="match_parent"
+       app:civ_border_color="@color/color_primary"
+       app:civ_border_overlay="true"
+       app:civ_border_width="@dimen/size_2"
+       android:layout_height="match_parent"/>
+
+</RelativeLayout>

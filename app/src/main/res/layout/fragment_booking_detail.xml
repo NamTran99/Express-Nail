@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.customer.booking.BookingDetailVM" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/viewRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/top_bar_simple"
+                app:action="@{action}" />
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_bg"
+                    android:orientation="vertical">
+
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/size_20"
+                        android:background="@drawable/bg_white_radius"
+                        android:orientation="vertical"
+                        android:padding="@dimen/size_10">
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="@dimen/size_10"
+                            android:background="@color/white"
+                            android:orientation="horizontal">
+
+                            <com.example.nailexpress.views.widgets.LoadingCircleImage
+                                android:id="@+id/imgImage"
+                                android:layout_width="@dimen/size_70"
+                                android:layout_height="@dimen/size_70"
+                                app:setUrl = "@{action.cv.avatar}"
+                                android:layout_marginEnd="@dimen/size_10" />
+
+                            <androidx.appcompat.widget.LinearLayoutCompat
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tvId"
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content"
+                                        android:layout_weight="1"
+                                        android:text="@{action.booking.bookingIDDisplay}"
+                                        android:textColor="@color/color_primary"
+                                        tools:text="#ID: 123456" />
+
+                                    <androidx.appcompat.widget.AppCompatTextView
+                                        android:id="@+id/tvStatus"
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@{action.booking.status_booking_display}"
+                                        app:drawableTint="@{action.booking.colorStatus}"
+                                        android:drawableStart="@drawable/ic_dot"
+                                        android:layout_marginStart="@dimen/size_10"
+                                        android:gravity="end"
+                                        android:textColor="@color/color_primary"
+                                        tools:text="Đã chấp nhận" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/size_10"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tvName"
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:textSize="@dimen/text_size_14"
+                                        android:text="@{action.cv.name}"
+                                        tools:text="Kim Nguyen" />
+
+                                    <TextView
+                                        android:id="@+id/tvGender"
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/size_5"
+                                        android:textSize="@dimen/text_size_14"
+                                        android:text="@{action.cv.genderFormat2}"
+                                        tools:text="(Nam)" />
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/size_5"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/item_staff_des_1"
+                                        tools:text="Khu vuc lam viec" />
+
+                                    <TextView
+                                        android:id="@+id/tvWorkingType"
+                                        style="@style/AppTheme.TextViewResponsive"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/size_5"
+                                        android:background="@drawable/bg_border_radius_5"
+                                        android:padding="@dimen/size_5"
+                                        android:textColor="@color/color_primary"
+                                        android:textSize="@dimen/text_size_10"
+                                        tools:text="Xuyen bang" />
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="horizontal">
+
+                                    <TextView
+                                        android:id="@+id/tvState"
+                                        style="@style/AppTheme.TextViewResponsive.Hint"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/size_5"
+                                        android:padding="@dimen/size_5"
+                                        android:text="@{action.cv.state}"
+                                        app:drawableStartCompat="@drawable/ic_location"
+                                        tools:text="New Jersey" />
+
+                                    <TextView
+                                        android:id="@+id/tvDistance"
+                                        style="@style/AppTheme.TextViewResponsive.Hint"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/size_5"
+                                        android:padding="@dimen/size_5"
+                                        android:text="@{action.cv.distanceFormat}"
+                                        app:drawableStartCompat="@drawable/ic_dot"
+                                        tools:text="Cach vi tri cua ban 3 m" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                                <TextView
+                                    style="@style/AppTheme.TextViewResponsive.Hint"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="@dimen/size_5"
+                                    android:padding="@dimen/size_5"
+                                    android:text="$250.00/ngay"
+                                    android:textColor="@color/color_primary" />
+
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="@dimen/size_5"
+                                    android:gravity="center"
+                                    android:orientation="horizontal">
+
+                                    <com.google.android.material.button.MaterialButton
+                                        android:id="@+id/btBookStaff"
+                                        style="@style/AppTheme.Button"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="@dimen/size_40"
+                                        android:backgroundTint="#FFD8CA"
+                                        android:text="Xem thông tin thợ"
+                                        android:textColor="@color/color_primary"
+                                        android:textSize="@dimen/text_size_10"
+                                        app:cornerRadius="@dimen/size_50" />
+
+
+
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+                                <androidx.appcompat.widget.LinearLayoutCompat
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginTop="@dimen/size_10"
+                                    android:gravity="center">
+
+                                    <ImageButton
+                                        android:id="@+id/btMessage"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:background="@null"
+                                        android:src="@drawable/ic_message" />
+
+                                    <ImageButton
+                                        android:id="@+id/btCall"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="@dimen/size_10"
+                                        android:background="@null"
+                                        android:src="@drawable/ic_phone_round" />
+                                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                            </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View style="@style/AppTheme.Line.Horizontal"
+                            android:layout_marginVertical="@dimen/size_10"/>
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Thông tin việc làm" />
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:text="Thời gian làm" />
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:text="Danh sách dịch vụ" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{action.serviceAdapter}"
+                            tools:listitem="@layout/item_list_service"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            android:orientation="vertical" />
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:text="Thông tin liên hệ của người đặt" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/customer_name" />
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/size_10"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="@{action.booking.contact_name}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_5"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/phone" />
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/size_10"
+                                android:layout_weight="1"
+                                android:gravity="end"
+                                android:text="@{action.booking.contact_phone}" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View style="@style/AppTheme.Line.Horizontal"
+                            android:layout_marginTop="@dimen/size_20"/>
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:text="Thông tin tiệm" />
+
+                        <include
+                            layout="@layout/layout_salon_infor"
+                            app:action= "@{action}"/>
+
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+            </androidx.core.widget.NestedScrollView>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

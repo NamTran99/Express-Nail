@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.authentication.verifyPhone.VerifyPhoneVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_20"
+            tools:context=".views.ui.authentication.LoginFragment">
+
+            <!-- TODO: Update blank fragment layout -->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_60"
+                android:src="@drawable/ic_logo" />
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/nails_express"
+                android:textAllCaps="true"
+                android:textColor="@color/color_primary"
+                android:textSize="@dimen/size_20" />
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_80"
+                android:gravity="center"
+                android:text="@string/register_des_1" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingTop="@dimen/size_70">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spnCountry"
+                    style="@style/Widget.AppCompat.Spinner.Underlined"
+                    android:layout_width="@dimen/size_70"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/bg_border_button_purple_5"
+                    android:spinnerMode="dialog"
+                    android:textAlignment="center"
+                    android:selectedItemPosition="@={action.spinIndexSelected}"
+                    android:entries="@array/ar_phone_country"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"
+                    tools:text="US" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edtPhone"
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:inputType="phone"
+                    android:text="@={action.verifyForm.phone}"
+                    android:drawableStart="@drawable/ic_phone"
+                    android:hint="@string/hint_type_phone" />
+            </LinearLayout>
+
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_20"
+                android:gravity="center"
+                android:text="@string/register_des_2" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnVerify"
+                style="@style/AppTheme.Button.Responsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/size_40"
+                android:onClick="@{() -> action.verifyPhone()}"
+                android:paddingHorizontal="@dimen/size_60"
+                android:text="@string/btn_next"
+                app:cornerRadius="@dimen/size_60" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <TextView
+            style="@style/AppTheme.TextViewResponsive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/size_80"
+            android:gravity="center"
+            android:layout_alignParentBottom="true"
+            android:textAllCaps="true"
+            android:layout_centerHorizontal="true"
+            android:textColor="@color/color_primary"
+            android:drawableStart="@drawable/ic_home"
+            android:drawableTint="@color/color_primary"
+            android:drawablePadding="@dimen/size_20"
+            android:textStyle="bold"
+            android:onClick="@{() -> action.backScreen()}"
+            android:layout_marginBottom="@dimen/size_20"
+            android:text="@string/back_home" />
+
+    </RelativeLayout>
+</layout>

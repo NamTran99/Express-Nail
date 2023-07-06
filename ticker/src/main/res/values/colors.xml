@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF662E</color>
+    <color name="grey">#57FF662E</color>
+    <color name="time_unit_selected_color">#FF662E</color>
+    <color name="time_unit_unselected_color">#40FF662E</color>
+</resources>

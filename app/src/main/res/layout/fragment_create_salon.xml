@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.customer.salon.CreateSalonVM" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_bar_simple"
+            app:action="@{action}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_bg"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/size_10">
+
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/create_salon_infor" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/salon_name" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:hint="@string/hint_salon_name"
+                    android:text="@={action.form.name}" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/salon_phone" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:hint="@string/hint_salon_phone"
+                    android:text="@={action.form.phoneDisplay}"
+                    app:isPhoneUS="@{true}"/>
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/salon_address" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etAddress"
+                    style="@style/AppTheme.EditText.MultiLine"
+                    android:minLines="1"
+                    android:gravity="center_vertical"
+                    android:minHeight="@dimen/size_40"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:focusable="false"
+                    android:hint="@string/hint_address"
+                    android:text="@{action.form.address}" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/salon_residence" />
+
+                <com.example.nailexpress.views.widgets.CustomEditText
+                    android:id="@+id/etYearExist"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginBottom="@dimen/size_10"
+                    android:hint="@string/hint_salon_operation"
+                    app:custom_end_text="@string/year"
+                    app:input_type="number"
+                    app:max_number_input="1000"
+                    app:text="@={action.form.experience_years}" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/customer_color" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/size_15"
+                    android:background="@drawable/bg_view_stroke">
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:id="@+id/spSkinColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_40"
+                        android:minHeight="@dimen/size_50"
+                        android:paddingHorizontal="@dimen/size_10"
+                        app:items="@{@stringArray/arr_skin_color}"
+                        app:onItemSelected="@{action.onItemColorSelected}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/staff_home" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:value="@={action.form.have_car}" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/salon_car" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:value="@={action.form.have_place}" />
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:text="@string/salon_des" />
+
+                <EditText
+                    android:id="@+id/etDes"
+                    style="@style/AppTheme.EditText.MultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:maxLines="5"
+                    android:text="@={action.form.description}" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/salon_image" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btLoadImage"
+                        style="@style/AppTheme.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/size_40"
+                        android:backgroundTint="#31FF662E"
+                        android:text="@string/load_image"
+                        android:textAllCaps="false"
+                        android:textColor="@color/color_primary"
+                        app:cornerRadius="@dimen/size_60"
+                        app:icon="@drawable/ic_camera"
+                        app:iconTint="@color/color_primary" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:adapter="@{action.adapter}"
+                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                    app:spanCount="3"
+                    tools:listitem="@layout/item_image" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/AppTheme.Button"
+                    android:layout_width="@dimen/size_200"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:onClick="@{() -> action.createSalon()}"
+                    android:paddingHorizontal="@dimen/size_100"
+                    android:text="@string/create"
+                    app:cornerRadius="@dimen/size_50" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</layout>

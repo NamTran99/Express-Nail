@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="ar_phone_country">
+        <item>+1 (US)</item>
+        <item>+84 (VN)</item>
+    </string-array>
+
+    <string-array name="arr_skin_color">
+        <item>@string/skin_select</item>
+        <item>@string/skin_all</item>
+        <item>@string/skin_white</item>
+        <item>@string/skin_black</item>
+        <item>@string/skin_xi</item>
+    </string-array>
+
+    <string-array name="arr_time_type">
+        <item>Chọn thời gian</item>
+        <item>Giờ</item>
+        <item>Ngày</item>
+        <item>Tuần</item>
+        <item>Tháng</item>
+        <item>Năm</item>
+    </string-array>
+
+    <string-array name="arr_gender">
+        <item>Chọn giới tính</item>
+        <item>Nữ</item>
+        <item>Nam</item>
+    </string-array>
+
+
+</resources>

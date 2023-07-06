@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/size_20"
+    tools:context=".views.dialog.ConfirmNoticeDialog">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="Confirm your arrived"
+        style="@style/AppTheme.TextViewResponsive"
+        android:textSize="@dimen/text_size_16"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/AppTheme.TextViewResponsive"
+        android:layout_marginTop="@dimen/size_20"
+        android:lineSpacingExtra="2dp"
+        tools:text="You arrived 235 Old Cleveland Rd, Coorparoo QLD 4151 at 08:33"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_20"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/offset_horizontal"
+            android:background="?selectableItemBackground"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:layout_centerVertical="true"
+            style="@style/AppTheme.TextViewResponsive"
+            android:textColor="@color/gray05" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnDismiss"
+            style="@style/AppTheme.Button.Responsive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnCancel"
+            android:drawableEnd="@drawable/ic_button_check_filled"
+            android:drawablePadding="@dimen/size_10"
+            android:text="@string/btn_confirm" />
+    </RelativeLayout>
+
+</LinearLayout>

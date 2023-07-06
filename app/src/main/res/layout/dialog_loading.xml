@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.example.nailexpress.views.dialog.loading.RotateLoadingView
+        android:id="@+id/spin_loading"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center"
+        app:loading_color="@color/orange"
+        app:loading_width="5dp"
+        app:shadow_position="2" />
+</FrameLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.base.IActionTopBar" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_second"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/Widget.AppCompat.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_50"
+            android:text="@string/home_des_1"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14" />
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_marginHorizontal="@dimen/size_15"
+            android:layout_marginTop="@dimen/size_30"
+            android:layout_marginBottom="@dimen/size_20"
+            android:background="@drawable/bg_white_circle_50"
+            app:iconifiedByDefault="false"
+            app:query="@={action.search}"
+            app:setOnChangeTextListener="@{action.onSearchTextChange}"
+            app:queryHint="@string/hint_search_area" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

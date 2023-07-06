@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_white_radius"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="@dimen/size_20">
+
+    <TextView
+        android:id="@+id/startText"
+        style="@style/AppTheme.TextViewResponsive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:paddingEnd="@dimen/size_8"
+        tools:text="hint" />
+
+    <EditText
+        android:id="@+id/etContent"
+        style="@style/AppTheme.TextViewResponsive"
+        android:layout_width="0dp"
+        android:inputType="number"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:textColorHint="#BEBEBE"
+        android:hint="hint"
+        android:paddingStart="0dp"
+         />
+
+    <TextView
+        android:id="@+id/endText"
+        style="@style/AppTheme.TextViewResponsive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/size_10"
+        android:paddingVertical="@dimen/size_7"
+        tools:text="hint" />
+</LinearLayout>

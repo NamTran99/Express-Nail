@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.staff.DetailStaffVM" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_bg"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/top_bar_simple"
+                app:action="@{action}" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_150"
+                    android:background="@color/color_second" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_10"
+                    android:layout_marginBottom="@dimen/size_60"
+                    android:background="@drawable/bg_white_radius"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <com.example.nailexpress.views.widgets.LoadingCircleImage
+                        android:layout_width="@dimen/size_100"
+                        android:layout_height="@dimen/size_100"
+                        android:layout_marginTop="@dimen/size_20"
+                        app:setUrl="@{action.detailCV.avatar}" />
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tvName"
+                            style="@style/AppTheme.TextViewResponsive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{action.detailCV.name}"
+                            android:textStyle="bold"
+                            tools:text="Kim Nguyen" />
+
+                        <TextView
+                            android:id="@+id/tvGender"
+                            style="@style/AppTheme.TextViewResponsive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_5"
+                            android:text="@{action.detailCV.genderFormat2}"
+                            tools:text="(Nữ)" />
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+                    <TextView
+                        android:id="@+id/tvWorkingType"
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_5"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:background="@drawable/bg_border_radius_5"
+                        android:padding="@dimen/size_5"
+                        android:textColor="@color/color_primary"
+                        android:textSize="@dimen/text_size_10"
+                        tools:text="Xuyen bang" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="@dimen/size_10">
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_20"
+                            android:text="@string/staff_infor" />
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_salary"
+                                android:text="@string/staff_salary" />
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_salary"
+                                android:text="@string/phone" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvSalary"
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingStart="@dimen/size_20"
+                                android:text="@string/staff_salary"
+                                tools:text="$20.00 / giờ" />
+
+                            <TextView
+                                android:id="@+id/tvphone"
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingStart="@dimen/size_20"
+                                android:text="@{action.detailCV.phone}"
+                                tools:text="0918780192" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_salary"
+                                android:text="Kinh nghiệm" />
+
+                            <TextView
+                                style="@style/AppTheme.TextViewResponsive.Hint"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:drawableStart="@drawable/ic_location_2"
+                                android:text="Khu vực làm việc" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <androidx.appcompat.widget.LinearLayoutCompat
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/tvExperience"
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingStart="@dimen/size_20"
+                                android:text="@{action.detailCV.year_exper_display}"
+                                tools:text="2 năm" />
+
+                            <TextView
+                                android:id="@+id/tvWorkplace"
+                                style="@style/AppTheme.TextViewResponsive"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:paddingStart="@dimen/size_20"
+                                android:text="@{action.detailCV.workingPlace}"
+                                tools:text="Somerset, New Jersey" />
+                        </androidx.appcompat.widget.LinearLayoutCompat>
+
+                        <View
+                            style="@style/AppTheme.Line.Horizontal"
+                            android:layout_marginVertical="@dimen/size_20" />
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/list_service" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rvService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adapter="@{action.adapter}"
+                            android:orientation="vertical"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                            tools:listitem="@layout/item_list_service" />
+
+                        <TextView
+                            style="@style/AppTheme.TextViewResponsive.Title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_20"
+                            android:text="@string/describe_yourself" />
+
+                        <TextView
+                            android:id="@+id/tvDes"
+                            style="@style/AppTheme.TextViewResponsive.MultiLine"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/size_10"
+                            android:text="@{action.detailCV.description}" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_50"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btBookLater"
+                style="@style/AppTheme.Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:backgroundTint="@color/white"
+                android:text="@string/book_later"
+                app:iconTint="@color/color_primary"
+                android:textColor="@color/color_primary"
+                app:icon="@drawable/ic_clock" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btBookNow"
+                style="@style/AppTheme.Button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:onClick="@{() ->action.onClickBookNow()}"
+                android:text="@string/book_now" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </RelativeLayout>
+
+</layout>

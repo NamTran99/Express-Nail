@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.base.IActionTopBar" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_second"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/size_35"
+        android:paddingBottom="@dimen/size_20">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:padding="@dimen/size_10"
+            android:onClick="@{() ->action.onBackClick()}"
+            android:background="@drawable/bg_button_text"
+            app:visibility = "@{action.isShowBackButton()}"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/AppTheme.TextViewResponsive.AutoSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{action.title}"
+            android:maxLines="2"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_14"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline1"
+            app:layout_constraintStart_toStartOf="@+id/guideline2"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Thông tin chi tiết thợ" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.15" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.85" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

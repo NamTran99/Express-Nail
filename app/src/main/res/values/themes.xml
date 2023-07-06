@@ -1,0 +1,31 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">#F5FF662E</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/teal_200</item>
+        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:windowSplashScreenBackground">@color/white</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_logo</item>
+        <!-- Customize your theme here. -->
+    </style>
+
+    <style name="DialogTheme" parent="@android:style/Theme.Dialog">
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
+    <style name="AppDatePickerCalendarDialog" parent="@style/Theme.MaterialComponents.Light.Dialog">
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+</resources>

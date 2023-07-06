@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.profile.SelectAppRoleProfileVM" />
+
+        <import type="com.example.nailexpress.app.AppConfig.AppRole" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_bar_simple"
+            app:action="@{action}" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_15">
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/select_role_des_1_1" />
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:text="@string/select_role_des_1_2" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:itemCount="2"
+                tools:listitem="@layout/item_select_role" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/AppTheme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{() ->action.setRole()}"
+                android:layout_marginTop="@dimen/size_20"
+                android:text="@string/change_role"
+                app:cornerRadius="@dimen/size_50" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

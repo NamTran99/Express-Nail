@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_white_radius"
+        android:orientation="horizontal"
+        android:layout_marginBottom="@dimen/size_5"
+        android:paddingHorizontal="@dimen/size_20"
+        android:paddingVertical="@dimen/size_20">
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/AppTheme.TextViewResponsive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="Thợ nails" />
+
+        <ImageView
+            android:id="@+id/imgTick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_tick" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

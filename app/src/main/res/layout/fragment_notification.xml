@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.customer.NotificationVM " />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@id/viewRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_bg"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/toolbar"
+                layout="@layout/top_bar_simple"
+                app:action="@{action}" />
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginHorizontal="@dimen/size_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_20"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

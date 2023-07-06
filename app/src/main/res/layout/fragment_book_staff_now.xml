@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.staff.BookNowStaffVM" />
+
+        <import type="android.graphics.drawable.Drawable" />
+
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/top_bar_simple"
+            app:action="@{action}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_15"
+                android:layout_marginTop="@dimen/size_20"
+                android:orientation="vertical"
+                android:padding="@dimen/size_10">
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="@string/book_des_1"
+                    android:textSize="@dimen/text_size_14" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/book_des_2" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/AppTheme.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_weight="1"
+                        android:backgroundTint="@{action.form.bookingBySkill?@color/color_primary:@color/white}"
+                        android:drawableStart="@{action.form.bookingBySkill?@drawable/ic_tick_2:null}"
+                        android:onClick="@{() -> action.onClickBySKill()}"
+                        android:text="@string/book_type_1"
+                        android:textAllCaps="false"
+                        android:textColor="@{action.form.bookingBySkill?@color/white:@color/black}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/AppTheme.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_weight="1"
+                        android:backgroundTint="@{action.form.bookingBySkill?@color/white:@color/color_primary}"
+                        android:drawableStart="@{action.form.bookingBySkill?null:@drawable/ic_tick_2}"
+                        android:onClick="@{() -> action.onClickByTime()}"
+                        android:text="@string/book_type_2"
+                        android:textAllCaps="false"
+                        android:textColor="@{action.form.bookingBySkill?@color/black:@color/white}" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_50"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:backgroundTint="@color/white"
+                    android:drawableEnd="@drawable/ic_arrow_right"
+                    android:gravity="start|center_vertical"
+                    android:onClick="@{() -> action.onClickSelectService()}"
+                    android:text="@string/select_service"
+                    android:textAllCaps="false"
+                    android:textColor="@color/black" />
+
+                <EditText
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:hint="@string/hint_name"
+                    android:text="@={action.selectService.skill_name}" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10">
+
+                    <com.example.nailexpress.views.widgets.CustomEditText
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_weight="1"
+                        app:custom_start_text="$"
+                        app:input_type="decimal"
+                        app:text="@={action.selectService.price}" />
+
+                    <androidx.appcompat.widget.AppCompatSpinner
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_white_radius"
+                        app:items="@{@stringArray/arr_time_type}"
+                        android:selectedItemPosition="@{action.selectService.unitIndex}"
+                        app:onItemSelected="@{action.onSelectTimeType}"
+                        app:visibility="@{!action.form.bookingBySkill}" />
+
+                    <com.google.android.material.button.MaterialButton
+                        style="@style/AppTheme.Button"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:layout_weight="1"
+                        android:text="@string/add"
+                        android:onClick="@{() ->action.onClickAddService()}"
+                        android:textAllCaps="false"
+                        app:visibility="@{action.form.bookingBySkill}" />
+
+
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/AppTheme.Button"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_weight="1"
+                    android:text="@string/add"
+                    android:textAllCaps="false"
+                    android:onClick="@{() ->action.onClickAddService()}"
+                    app:visibility="@{!action.form.bookingBySkill}" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:visibility = "@{action.form.visibleRecycler}"
+                    android:text="@string/book_des_3" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:visibility = "@{action.form.visibleRecycler}"
+                    android:background="@drawable/bg_white_radius"
+                    android:paddingTop="@dimen/size_10"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/item_select_service"
+                    android:adapter="@{action.serviceAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/book_des_4" />
+
+                <EditText
+                    style="@style/AppTheme.EditText.MultiLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@={action.form.description}"
+                    android:hint="@string/hint_des_book"
+                    android:minLines="7" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/book_des_5"
+                    android:textSize="@dimen/text_size_14" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/booker_name" />
+
+                <EditText
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@={action.form.contact_name}"
+                    android:hint="@string/hint_name" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/phone" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@={action.form.contact_phone}"
+                    app:isPhoneUS="@{true}"
+                    android:hint="@string/hint_phone" />
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    app:visibility ="@{!action.isHaveSalon}"
+                    android:text="@string/book_des_6" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    style="@style/AppTheme.EditText.MultiLine"
+                    android:minLines="1"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:focusable="false"
+                    app:visibility ="@{!action.isHaveSalon}"
+                    android:hint="@string/hint_address" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/book_des_7"
+                        android:textSize="@dimen/text_size_14" />
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tạo thông tin salon"
+                        app:visibility ="@{!action.isHaveSalon}"
+                        android:onClick="@{() -> action.onClickCreateSalon()}"
+                        android:textColor="@color/color_primary"
+                        app:drawableStartCompat="@drawable/ic_plus" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive.Hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginBottom="@dimen/size_10"
+                    app:visibility ="@{!action.isHaveSalon}"
+                    android:text="Có thể bỏ qua nếu bạn không có salon"
+                    android:textSize="@dimen/text_size_12" />
+
+                <View
+                    android:background="@color/gray14"
+                    android:layout_marginTop="@dimen/size_10"
+                    style="@style/AppTheme.Line.Horizontal"/>
+
+                <include layout="@layout/layout_salon_infor"
+                    app:action="@{action}"
+                    app:visibility ="@{action.isHaveSalon}"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="@dimen/size_200"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    app:cornerRadius="@dimen/size_60"
+                    android:text="@string/book_now"
+                    android:onClick="@{() ->action.onClickSubmit()}"
+                    android:layout_marginTop="@dimen/size_30"
+                    style="@style/AppTheme.Button"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

@@ -1,0 +1,154 @@
+{
+  "project_info": {
+    "project_number": "660811193562",
+    "project_id": "the-best-booking",
+    "storage_bucket": "the-best-booking.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660811193562:android:2e12cb897e8fec488c19e3",
+        "android_client_info": {
+          "package_name": "com.app.booking.inails.admin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaw5Usj4gJ4Z9d2yhqRtd8hTfsRw76s3s"
+        },
+        {
+          "current_key": "AIzaSyCgKcmZZh9bwViZISkGzZOMTsYgsN03_4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660811193562-1ak052j9tlmv2g0djvf9r7ga62i016m6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.booking.solution.owner",
+                "app_store_id": "6444178458"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660811193562:android:9c3579da79d5280a8c19e3",
+        "android_client_info": {
+          "package_name": "com.app.inails.booking"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660811193562-jumg7slvp1mdq1gfbgo91ul403cua0uv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.inails.booking",
+            "certificate_hash": "7e3c82922475ab9bcdb307a5798a400f8fe0154b"
+          }
+        },
+        {
+          "client_id": "660811193562-k9im4hogaiadok82uj7q5msu6t1vq3go.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.inails.booking",
+            "certificate_hash": "507d6128ff9caac572c029c9747242a57db0dc51"
+          }
+        },
+        {
+          "client_id": "660811193562-nr8jbljc3pnji1lh7ljugc9afvns3gum.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.inails.booking",
+            "certificate_hash": "a1b3240e5e7cef0279dee413e083f67108c28f08"
+          }
+        },
+        {
+          "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaw5Usj4gJ4Z9d2yhqRtd8hTfsRw76s3s"
+        },
+        {
+          "current_key": "AIzaSyCgKcmZZh9bwViZISkGzZOMTsYgsN03_4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660811193562-1ak052j9tlmv2g0djvf9r7ga62i016m6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.booking.solution.owner",
+                "app_store_id": "6444178458"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:660811193562:android:dffb4619b45c0f038c19e3",
+        "android_client_info": {
+          "package_name": "com.example.nailexpress"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCaw5Usj4gJ4Z9d2yhqRtd8hTfsRw76s3s"
+        },
+        {
+          "current_key": "AIzaSyCgKcmZZh9bwViZISkGzZOMTsYgsN03_4I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "660811193562-p4ip57ppn70d8esamfm1hqqufivta8l0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "660811193562-1ak052j9tlmv2g0djvf9r7ga62i016m6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.booking.solution.owner",
+                "app_store_id": "6444178458"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

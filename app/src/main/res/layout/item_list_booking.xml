@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_10"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/size_10">
+
+        <com.example.nailexpress.views.widgets.LoadingCircleImage
+            android:id="@+id/imgImage"
+            android:layout_width="@dimen/size_70"
+            android:layout_height="@dimen/size_70"
+            android:layout_marginEnd="@dimen/size_10" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvId"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/color_primary"
+                    tools:text="#ID: 123456" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvStatus"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_10"
+                    android:drawableStart="@drawable/ic_dot"
+                    android:drawableTint="@color/color_primary"
+                    android:gravity="end"
+                    android:textColor="@color/color_primary"
+                    tools:text="Đã chấp nhận" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_14"
+                    tools:text="Kim Nguyen" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:textSize="@dimen/text_size_14"
+                    tools:text="(Nam)" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_staff_des_1"
+                    tools:text="Khu vuc lam viec" />
+
+                <TextView
+                    android:id="@+id/tvWorkingType"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:background="@drawable/bg_border_radius_5"
+                    android:padding="@dimen/size_5"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/text_size_10"
+                    tools:text="Xuyen bang" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvState"
+                    style="@style/AppTheme.TextViewResponsive.Hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:padding="@dimen/size_5"
+                    app:drawableStartCompat="@drawable/ic_location"
+                    tools:text="New Jersey" />
+
+                <TextView
+                    android:id="@+id/tvDistance"
+                    style="@style/AppTheme.TextViewResponsive.Hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:padding="@dimen/size_5"
+                    app:drawableStartCompat="@drawable/ic_dot"
+                    tools:text="Cach vi tri cua ban 3 m" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_5"
+                android:padding="@dimen/size_5"
+                android:text="$250.00/ngay"
+                android:textColor="@color/color_primary" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5"
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btBookStaff"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_40"
+                    android:backgroundTint="#FFD8CA"
+                    android:text="@string/view_detail"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/text_size_10"
+                    app:cornerRadius="@dimen/size_50" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="0dp"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/size_20"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@null"
+                        android:src="@drawable/ic_message" />
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:background="@null"
+                        android:src="@drawable/ic_phone_round" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

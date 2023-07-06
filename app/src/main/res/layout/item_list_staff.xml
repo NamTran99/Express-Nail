@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        android:layout_marginBottom="@dimen/size_10"
+        android:padding="@dimen/size_10">
+
+        <com.example.nailexpress.views.widgets.LoadingCircleImage
+            android:id="@+id/imgImage"
+            android:layout_width="@dimen/size_70"
+            android:layout_height="@dimen/size_70"
+            android:layout_marginEnd="@dimen/size_10" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_14"
+                    tools:text="Kim Nguyen" />
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_marginStart="@dimen/size_5"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_14"
+                    tools:text="(Nam)" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_marginTop="@dimen/size_5"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/item_staff_des_1"
+                    tools:text="Khu vuc lam viec" />
+
+                <TextView
+                    android:id="@+id/tvWorkingType"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:background="@drawable/bg_border_radius_5"
+                    android:padding="@dimen/size_5"
+                    android:textColor="@color/color_primary"
+                    tools:text="Xuyen bang" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvWorkplace"
+                    style="@style/AppTheme.TextViewResponsive.Hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:padding="@dimen/size_5"
+                    app:drawableStartCompat="@drawable/ic_location"
+                    tools:text="New Jersey" />
+
+                <TextView
+                    android:id="@+id/tvDistance"
+                    style="@style/AppTheme.TextViewResponsive.Hint"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:padding="@dimen/size_5"
+                    app:drawableStartCompat="@drawable/ic_dot"
+                    tools:text="Cach vi tri cua ban 3 m" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_5"
+                android:padding="@dimen/size_5"
+                android:textColor="@color/color_primary"
+                android:text="$250.00/ngay" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/size_5"
+                android:layout_height="wrap_content">
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btBookStaff"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.Button"
+                    android:backgroundTint="#FFD8CA"
+                    app:cornerRadius="@dimen/size_50"
+                    android:textSize="@dimen/text_size_10"
+                    android:textColor="@color/color_primary"
+                    android:text="@string/bt_book_staff"/>
+                <Button
+                    android:id="@+id/btViewDetail"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_size_10"
+                    style="@style/AppTheme.Button"
+                    android:background="@drawable/bg_button_text"
+                    android:textColor="@color/color_primary"
+                    android:text="@string/view_detail"/>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

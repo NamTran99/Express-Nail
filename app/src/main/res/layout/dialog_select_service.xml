@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Use DrawerLayout as root container for activity -->
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.staff.dialogs.ServiceVM" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#2A000000">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/drawerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_margin="@dimen/size_5"
+            android:background="@drawable/bg_white_radius"
+            android:paddingVertical="@dimen/size_5">
+
+            <ImageView
+                android:id="@+id/btBack"
+                android:layout_width="@dimen/size_30"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_5"
+                android:layout_marginTop="@dimen/size_10"
+                android:padding="@dimen/size_10"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/gray15" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/etSearch"
+                style="@style/AppTheme.EditText"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/size_50"
+                android:background="@null"
+                app:onSearchChange="@{action.onSearchChange}"
+                app:layout_constraintBottom_toBottomOf="@+id/btBack"
+                app:layout_constraintEnd_toStartOf="@id/btClose"
+                app:layout_constraintStart_toEndOf="@+id/btBack"
+                app:layout_constraintTop_toTopOf="@+id/btBack" />
+
+            <ImageView
+                android:id="@+id/btClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/size_20"
+                android:src="@drawable/ic_clear"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@+id/etSearch"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/etSearch"
+                tools:visibility="visible" />
+
+            <View
+                android:id="@+id/view2"
+                style="@style/AppTheme.Line.Horizontal"
+                android:layout_marginHorizontal="@dimen/size_5"
+                android:background="#34B1B1B1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSearch" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lvRvCustomers"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_5"
+                android:gravity="center"
+                android:maxHeight="@dimen/size_250"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCustomers"
+                    android:adapter="@{action.adapter}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    tools:listitem="@layout/item_select_service"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="3" />
+
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <TextView
+                android:id="@+id/tvEmptyData"
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                app:visibility = "@{action.isEmptyData()}"
+                android:layout_marginVertical="@dimen/size_20"
+                android:gravity="center"
+                android:textColor="@color/gray13"
+                android:text="@string/no_result_order_found"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_30"
+                android:src="@drawable/ic_not_found"
+                app:visibility = "@{action.isEmptyData()}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lvRvCustomers"
+                app:tint="@color/gray13" />
+
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/lvLoading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@+id/lvRvCustomers"
+                tools:layout_editor_absoluteX="5dp">
+
+                <ProgressBar
+                    android:id="@+id/progressBar"
+                    android:layout_width="@dimen/size_20"
+                    android:layout_height="@dimen/size_20"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="20dp"
+                    android:indeterminate="true"
+                    android:visibility="invisible" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="start">
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_20"
+                        android:text="@string/developed_by"
+                        android:textColor="@color/gray15" />
+
+                    <TextView
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_5"
+                        android:minWidth="@dimen/size_100"
+                        android:text="NailExpress"
+                        android:textColor="@color/color_primary"
+                        android:textStyle="bold|italic" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+</layout>

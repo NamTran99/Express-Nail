@@ -1,0 +1,117 @@
+package com.example.nailexpress.base
+
+import android.app.Application
+import android.os.Bundle
+import android.support.core.event.LoadingEvent
+import android.support.core.livedata.LoadingLiveData
+import androidx.lifecycle.*
+import androidx.navigation.NavDirections
+import com.example.nailexpress.datasource.AppEvent2
+import com.example.nailexpress.datasource.local.SharePrefs
+import com.example.nailexpress.models.ui.base.DialogData
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.receiveAsFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+interface IVMRefreshStatus{
+    val refreshLoading:LoadingEvent get() =  LoadingLiveData()
+}
+
+
+interface IActionTopBar{
+    val title: MutableLiveData<String> get() = MutableLiveData("")
+    val search: MutableLiveData<String> get() = MutableLiveData("")
+    val isShowBackButton: MutableLiveData<Boolean> get() = MutableLiveData(true)
+
+    val onSearchTextChange: ((String) -> Unit) get() = {}
+    val self: BaseViewModel
+        get() = this as BaseViewModel
+
+    fun onBackClick(){
+        self.backScreen()
+    }
+}
+
+abstract class  BaseViewModel(application: Application) : AndroidViewModel(application) {
+    protected val TAG by lazy { this::class.java.name }
+    protected val evenSender = Channel<AppEvent>()
+
+    val eventReceiver = evenSender.receiveAsFlow().conflate()
+    @Inject
+    lateinit var appLocal: SharePrefs
+
+    @Inject
+    lateinit var appEvent: AppEvent2
+
+    open fun reloadData(){
+
+    }
+
+    open fun onClickClose() {
+        viewModelScope.launch {
+            evenSender.send(AppEvent.OnCloseApp)
+        }
+    }
+
+
+    open fun showDialogConfirm(
+       data: DialogData
+    ) {
+        viewModelScope.launch {
+            evenSender.send(AppEvent.OnOpenAlertDialog(data))
+        }
+    }
+
+    open fun getString(idString: Int) = getApplication<Application>().getString(idString)
+
+    open fun getString(idString: Int,str : String) = getApplication<Application>().getString(idString,str)
+
+    open fun navigateToDestination(action: Int, bundle: Bundle? = null) = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnNavigation(action, bundle)
+        )
+    }
+
+    open fun navigateToDestination(nav: NavDirections) = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnNavigationNav(nav)
+        )
+    }
+
+    open fun backScreen() = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnBackScreen
+        )
+    }
+
+    open fun closeApp() = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnCloseApp
+        )
+    }
+
+    open fun showToast(content: String) = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnShowToast(content)
+        )
+    }
+
+    open fun showToast(contentID: Int) = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.OnShowToast(getString(contentID))
+        )
+    }
+}
+
+sealed class AppEvent {
+    class OnNavigation(val destination: Int, val bundle: Bundle? = null) : AppEvent()
+    class OnNavigationNav(val nav: NavDirections) : AppEvent()
+    object OnCloseApp : AppEvent()
+    object OnBackScreen : AppEvent()
+    class OnShowToast(val content: String, val type: Long = 2000) : AppEvent()
+    class OnOpenAlertDialog(
+        val data: DialogData
+    ) : AppEvent()
+}

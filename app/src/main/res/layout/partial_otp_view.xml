@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/txt1"
+            style="@style/OTPView"
+            app:layout_constraintEnd_toStartOf="@+id/txt2"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txt2"
+            style="@style/OTPView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt1"
+            app:layout_constraintEnd_toStartOf="@+id/txt3"
+            app:layout_constraintStart_toEndOf="@+id/txt1" />
+
+        <TextView
+            android:id="@+id/txt3"
+            style="@style/OTPView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt1"
+            app:layout_constraintEnd_toStartOf="@+id/txt4"
+            app:layout_constraintStart_toEndOf="@+id/txt2" />
+
+        <TextView
+            android:id="@+id/txt4"
+            style="@style/OTPView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt1"
+            app:layout_constraintEnd_toStartOf="@+id/txt5"
+            app:layout_constraintStart_toEndOf="@+id/txt3" />
+
+        <TextView
+            android:id="@+id/txt5"
+            style="@style/OTPView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt1"
+            app:layout_constraintEnd_toStartOf="@+id/txt6"
+            app:layout_constraintStart_toEndOf="@+id/txt4" />
+
+        <TextView
+            android:id="@+id/txt6"
+            style="@style/OTPView"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txt1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txt5" />
+
+        <TextView
+            android:id="@+id/tv_error"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:drawablePadding="10dp"
+            android:textColor="@color/red_240"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/ic_information_red"
+            app:layout_constraintTop_toBottomOf="@+id/txt1"
+            tools:text="Wrong OTP code, please try again."
+            tools:visibility="visible" />
+
+        <ProgressBar
+            android:id="@+id/pgpLoading"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:indeterminateTint="@color/color_primary"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt1" />
+
+        <TextView
+            android:id="@+id/txtLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/size_4"
+            android:text="@string/auth_otp_loading"
+            android:textColor="@color/white_700"
+            app:layout_constraintBottom_toBottomOf="@+id/pgpLoading"
+            app:layout_constraintStart_toEndOf="@+id/pgpLoading"
+            app:layout_constraintTop_toTopOf="@+id/pgpLoading" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupLoading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="txtLoading,pgpLoading"
+            tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.example.nailexpress.views.widgets.OTPEditText
+        android:id="@+id/edtOtp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:imeOptions="actionDone" />
+</FrameLayout>

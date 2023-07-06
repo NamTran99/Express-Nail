@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.profile.AccountInforVM" />
+
+        <import type="com.example.nailexpress.app.AppConfig.Status" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_bar_simple"
+            app:action="@{action}" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_20"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_15">
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/avatar" />
+
+            <com.example.nailexpress.views.widgets.LoadingCircleImage
+                android:id="@+id/imgAvatar"
+                android:layout_width="@dimen/size_100"
+                android:layout_height="@dimen/size_100"
+                android:layout_gravity="center"
+                app:setUrl = "@{action.profile.avatar_url}"
+                app:setStatus = "@{action.status}"
+                android:layout_marginTop="@dimen/size_10" />
+
+            <com.example.nailexpress.views.widgets.CustomEditTextProfile
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_40"
+                android:hint="@string/phone"
+                app:image_custom="@drawable/ic_phone"
+                app:isPhoneType="true"
+                app:status="@{action.status}"
+                app:text="@={action.profile.phoneDisplay}" />
+
+            <com.example.nailexpress.views.widgets.CustomEditTextProfile
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:hint="@string/name"
+                app:image_custom="@drawable/ic_person_circle"
+                app:isPhoneType="false"
+                app:status="@{action.status}"
+                app:text="@={action.profile.fullname}" />
+
+            <com.example.nailexpress.views.widgets.CustomEditTextProfile
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:hint="@string/email"
+                app:image_custom="@drawable/ic_email"
+                app:isPhoneType="false"
+                app:status="@{action.status}"
+                app:text="@={action.profile.email}" />
+
+            <com.example.nailexpress.views.widgets.CustomEditTextProfile
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_weight="1"
+                android:hint="@string/address"
+                app:image_custom="@drawable/ic_location_black"
+                app:isPhoneType="false"
+                app:is_focusable="false"
+                app:status="@{action.status}"
+                app:text="@{action.profile.address}" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/AppTheme.Button"
+                android:layout_width="@dimen/size_150"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/size_20"
+                android:onClick="@{() -> action.onClickUpdate()}"
+                android:paddingHorizontal="@dimen/size_20"
+                android:text="@string/update"
+                app:cornerRadius="@dimen/size_50"
+                app:visibility="@{action.status == Status.READ}" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/AppTheme.Button"
+                android:layout_width="@dimen/size_150"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/size_10"
+                android:onClick="@{() -> action.onClickSave()}"
+                android:paddingHorizontal="@dimen/size_20"
+                android:text="@string/save"
+                app:cornerRadius="@dimen/size_50"
+                app:visibility="@{action.status == Status.UPDATE}" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/AppTheme.Button"
+                android:layout_width="@dimen/size_150"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/size_20"
+                android:backgroundTint="@color/transparency"
+                android:onClick="@{() -> action.onClickSkip()}"
+                android:paddingHorizontal="@dimen/size_20"
+                android:text="@string/skip"
+                android:textColor="@color/color_primary"
+                app:cornerRadius="@dimen/size_50"
+                app:visibility="@{action.status == Status.UPDATE}" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

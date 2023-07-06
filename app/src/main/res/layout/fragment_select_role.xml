@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.authentication.SelectAppRoleVM" />
+
+        <import type="com.example.nailexpress.app.AppConfig.AppRole" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_20"
+            tools:context=".views.ui.authentication.LoginFragment">
+
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_80"
+                android:gravity="center"
+                android:text="@string/select_role_des_1" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btCustomer"
+                style="@style/AppTheme.Button.OutLine"
+                android:layout_width="@dimen/size_250"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginVertical="@dimen/size_40"
+                android:onClick="@{() -> action.setRole(AppRole.Customer)}"
+                android:text="@string/role_customer"
+                app:cornerRadius="@dimen/size_60"
+                app:strokeColor="@color/color_primary" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSignUp"
+                style="@style/AppTheme.Button.Responsive"
+                android:layout_width="@dimen/size_250"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:onClick="@{() -> action.setRole(AppRole.Staff)}"
+                android:text="@string/role_staff"
+                app:cornerRadius="@dimen/size_60" />
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_40"
+                android:gravity="center"
+                android:text="@string/select_role_des_2"
+                android:textAlignment="center" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </RelativeLayout>
+</layout>

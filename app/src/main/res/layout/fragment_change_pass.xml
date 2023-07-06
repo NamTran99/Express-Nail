@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.profile.ChangePassVM" />
+
+        <import type="com.example.nailexpress.app.AppConfig.Status" />
+    </data>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/top_bar_simple"
+            app:action="@{action}" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/size_20"
+            android:orientation="vertical"
+            android:paddingHorizontal="@dimen/size_15">
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/old_pass" />
+
+            <com.example.nailexpress.views.widgets.PasswordLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginTop="@dimen/size_10"
+                app:text = "@={action.passForm.current_password}"
+                android:background="@drawable/bg_white_radius"/>
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+                android:text="@string/new_pass" />
+
+            <com.example.nailexpress.views.widgets.PasswordLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginTop="@dimen/size_10"
+                app:text = "@={action.passForm.retype_pass}"
+                android:background="@drawable/bg_white_radius"/>
+
+            <TextView
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_10"
+
+                android:text="@string/retype_pass" />
+
+            <com.example.nailexpress.views.widgets.PasswordLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_50"
+                android:layout_marginTop="@dimen/size_10"
+                app:text = "@={action.passForm.new_password}"
+                android:background="@drawable/bg_white_radius"/>
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/AppTheme.Button"
+                android:layout_width="@dimen/size_200"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_20"
+                android:layout_marginBottom="@dimen/size_10"
+                android:onClick="@{() -> action.onClickChangePass()}"
+                android:paddingHorizontal="@dimen/size_20"
+                android:text="@string/change_pass"
+                app:cornerRadius="@dimen/size_50"
+     />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</layout>

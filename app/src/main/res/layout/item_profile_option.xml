@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_text"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/size_20">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/AppTheme.TextViewResponsive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:drawableEnd="@drawable/ic_arrow_right"
+            tools:text="Thông tin tài khoản" />
+
+        <View style="@style/AppTheme.Line.Horizontal"
+            android:layout_marginTop="@dimen/size_20"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</layout>

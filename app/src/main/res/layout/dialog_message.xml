@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="@dimen/size_20"
+    tools:context=".views.dialog.CommonDialog">
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_size_16"
+        style="@style/AppTheme.TextViewResponsive"
+        tools:text="Title" />
+
+    <TextView
+        android:id="@+id/txtBody"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:textSize="@dimen/text_size_14"
+        style="@style/AppTheme.TextViewResponsive"
+        tools:text="Body" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center|end"
+        android:layout_marginTop="@dimen/size_10"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/offset_horizontal"
+            android:background="?selectableItemBackground"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:layout_centerVertical="true"
+            style="@style/AppTheme.TextViewResponsive"
+            android:textColor="@color/gray05" />
+        <Button
+            android:id="@+id/btYes"
+            style="@style/AppTheme.Button.Responsive"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/btn_ok" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btConfirm"
+            style="@style/AppTheme.Button.Responsive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/btnCancel"
+            android:drawableEnd="@drawable/ic_button_check_filled"
+            android:drawablePadding="@dimen/size_10"
+            android:text="@string/btn_confirm" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</LinearLayout>
