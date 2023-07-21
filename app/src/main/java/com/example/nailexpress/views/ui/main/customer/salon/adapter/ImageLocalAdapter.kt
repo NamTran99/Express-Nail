@@ -1,8 +1,14 @@
 package com.example.nailexpress.views.ui.main.customer.salon.adapter
 
 import android.os.Build.VERSION_CODES.P
+import android.support.core.view.BaseViewHolder
 import android.support.core.view.bindingOf
+import android.support.core.view.dataBindingInflateOf
+import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.SimpleRecyclerAdapter
 import com.example.nailexpress.databinding.ItemImageBinding
@@ -15,11 +21,6 @@ interface IImageLocalAdapterAction{
 class ImageLocalAdapter(val action: IImageLocalAdapterAction?= null,val status:AppConfig.Status = AppConfig.Status.UPDATE) :
     SimpleRecyclerAdapter<AppImage, ItemImageBinding>() {
 
-
-    override fun onCreateBinding(parent: ViewGroup): ItemImageBinding {
-        return parent.bindingOf(ItemImageBinding::inflate)
-    }
-
     override fun onBindHolder(item: AppImage, binding: ItemImageBinding, adapterPosition: Int) {
         binding.apply {
             image.enableRemoveImage = status ==AppConfig.Status.UPDATE
@@ -29,4 +30,8 @@ class ImageLocalAdapter(val action: IImageLocalAdapterAction?= null,val status:A
             }
         }
     }
+
+    override val layoutId: Int
+        get() = R.layout.item_image
+
 }

@@ -81,8 +81,8 @@ class RepositoryModule {
         application: Application,
         cvFactory: BookingCvFactory,
         bookingApi: RecruitmentBookingStaffApi
-    ): BookingStaffRepository =
-        BookingStaffRepository(userDataSource, application, bookingApi, cvFactory)
+    ): RecruitmentBookingStaffRepository =
+        RecruitmentBookingStaffRepository(userDataSource, application, bookingApi, cvFactory)
 
     @Singleton
     @Provides

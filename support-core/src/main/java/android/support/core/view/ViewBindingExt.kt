@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
@@ -69,6 +71,10 @@ fun <T : ViewBinding> ViewGroup.viewBinding(function: (context: LayoutInflater) 
 
 fun <T : ViewBinding> ViewGroup.bindingOf(function: (LayoutInflater, ViewGroup, Boolean) -> T): T {
     return function(LayoutInflater.from(context), this, false)
+}
+
+fun <T : ViewBinding> ViewGroup.dataBindingInflateOf(layoutID: Int): T {
+    return DataBindingUtil.inflate(LayoutInflater.from(this.context), layoutID, this,false)
 }
 
 operator fun <T : ViewBinding> ViewGroup.get(

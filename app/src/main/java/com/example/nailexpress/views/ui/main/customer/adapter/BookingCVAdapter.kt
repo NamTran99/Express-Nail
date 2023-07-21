@@ -8,6 +8,7 @@ import android.support.core.view.ILoadMoreAction
 import android.support.core.view.bindingOf
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.ItemListBookingBinding
 import com.example.nailexpress.extension.onClick
@@ -19,9 +20,6 @@ interface IBookingCVAction: ILoadMoreAction {
 class BookingCVAdapter(val action: IBookingCVAction) :
     PageRecyclerAdapter<Booking, ItemListBookingBinding>(action) {
 
-    override fun onCreateBinding(parent: ViewGroup): ItemListBookingBinding {
-        return parent.bindingOf(ItemListBookingBinding::inflate)
-    }
 
     @SuppressLint("ResourceAsColor")
     override fun onBindHolder(item: Booking, binding: ItemListBookingBinding, adapterPosition: Int) {
@@ -41,4 +39,7 @@ class BookingCVAdapter(val action: IBookingCVAction) :
             }
         }
     }
+
+    override val layoutId: Int
+        get() = R.layout.item_list_booking
 }

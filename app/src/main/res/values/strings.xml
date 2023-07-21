@@ -104,11 +104,13 @@
     <string name="hint_search_area">Tìm kiếm theo khu vực</string>
     <string name="staff_infor">Thông tin thợ</string>
     <string name="staff_salary">Mức lương</string>
-    <string name="list_service">Danh sách dịch vụ</string>
+    <string name="list_service">Danh sách theo dịch vụ</string>
+    <string name="list_service_by_time">Danh sách theo thời gian (%s)</string>
     <string name="describe_yourself">Mô tả về bản thân</string>
     <string name="title_detail_staff">Thông tin chi tiết thợ</string>
     <string name="title_create_recruitment">Đăng tìm thợ</string>
-    <string name="title_booking_staff">Đặt thợ ngay</string>
+    <string name="title_booking_staff_now">Đặt thợ ngay</string>
+    <string name="title_booking_staff_later">Đặt thợ sau</string>
     <string name="title_create_salon">Tạo thông tin Salon</string>
     <string name="title_booking_detail">Chi tiết booking</string>
     <string name="title_select_role">Đổi vai trò</string>
@@ -130,6 +132,7 @@
     <string name="year">năm</string>
     <string name="book_later">Đặt sau</string>
     <string name="book_now">Đặt thợ ngay</string>
+    <string name="send_request">Gửi yêu cầu</string>
     <string name="create">Tạo</string>
     <string name="title_confirm_call">Xác nhận gọi</string>
     <string name="msg_sure_call_phone">Bạn có muốn gọi cho số %s ?</string>
@@ -139,7 +142,9 @@
     <string name="skin_all">Tổng hợp</string>
     <string name="skin_select">Chọn sắc dân</string>
     <string name="success_create_salon">Bạn đã tạo thông tin salon thành công !</string>
+    <string name="success_create_recruitment">Bạn đã tạo bài tuyển dụng thành công !</string>
     <string name="success_update_account">Bạn đã cập nhật thông tin thành công !</string>
+    <string name="success_booking_staff">Bạn đã đặt nhân viên này thành công !</string>
     <string name="success_change_pass">Bạn đã cập nhật mật khẩu thành công !</string>
     <string name="create_salon_des_1">Vai trò hiện tại</string>
     <string name="change_role">Đổi vai trò</string>
@@ -179,7 +184,7 @@
     <string name="book_des_7">Thông tin salon của bạn</string>
     <string name="salon_car">Xe đưa đón thợ đi làm</string>
     <string name="developed_by">Phát triển bởi</string>
-    <string name="no_result_order_found">Không có kết quả nào phù hợp với trường tìm kiếm.</string>
+    <string name="no_result_order_found">Không có dịch vụ có sẵn phù hợp với trường tìm kiếm. Bạn có muốn thêm dịch vụ này ?</string>
     <string name="select_service">Chọn dịch vụ</string>
     <string name="add">Thêm</string>
     <string name="delete">Xóa</string>
@@ -194,6 +199,10 @@
     <string name="status_booking_1">Đã chấp nhận</string>
     <string name="status_booking_2">Bạn đã hủy đặt</string>
     <string name="set_up">Thiết lập</string>
+    <string name="hint_price">Nhập giá</string>
+    <string name="btn_post">Đăng bài tuyển dụng</string>
+    <string name="select_staff_service">Chọn dịch vụ thợ biết làm</string>
+    <string name="hint_select_service">Nhập/Chọn dịch vụ</string>
 
 
 </resources>

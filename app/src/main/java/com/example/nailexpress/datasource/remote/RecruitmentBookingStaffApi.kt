@@ -4,6 +4,8 @@ import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.helper.network.ApiAsync
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.ui.main.BookingStaffForm
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface RecruitmentBookingStaffApi {
@@ -29,5 +31,12 @@ interface RecruitmentBookingStaffApi {
     @POST("booking/create")
     fun bookStaff(
         @Body form: BookingStaffForm
+    ): ApiAsync<BookingDTO>
+
+    @Multipart
+    @POST("recruitment/create")
+    fun createRecruitment(
+        @PartMap buildMultipart: Map<String, @JvmSuppressWildcards RequestBody>,
+        @Part images: MultipartBody.Part?,
     ): ApiAsync<Any>
 }

@@ -11,7 +11,7 @@ import com.example.nailexpress.extension.launch
 import com.example.nailexpress.models.ui.main.Booking
 import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.models.ui.main.Salon
-import com.example.nailexpress.repository.BookingStaffRepository
+import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.SalonRepository
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
 import com.example.nailexpress.views.ui.main.staff.ISalonLayout
@@ -53,10 +53,10 @@ class BookingDetailFragment :
 @HiltViewModel
 class BookingDetailVM @Inject constructor(
     app: Application,
-    private val bookingStaffRepository: BookingStaffRepository,
+    private val bookingStaffRepository: RecruitmentBookingStaffRepository,
     private val salonRepository: SalonRepository
 ) :
-    BaseViewModel(app), IVMRefreshStatus, IActionTopBar, ISalonLayout {
+    BaseViewModel(app), IVMRefreshStatus, IActionTopBar by ActionTopBarImpl(),ISalonLayout {
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.title_booking_detail))

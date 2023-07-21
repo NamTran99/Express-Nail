@@ -3,7 +3,14 @@ package com.example.nailexpress.factory
 import android.content.Context
 import com.example.nailexpress.R
 import com.example.nailexpress.app.Gender
+import com.example.nailexpress.app.PriceUnit.DAY
+import com.example.nailexpress.app.PriceUnit.HOUR
+import com.example.nailexpress.app.PriceUnit.MONTH
+import com.example.nailexpress.app.PriceUnit.WEEK
+import com.example.nailexpress.app.PriceUnit.YEAR
 import com.example.nailexpress.app.WorkType
+import com.example.nailexpress.extension.formatAmount
+import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.or1
 
 class TextFormatter(private val cxt: Context) {
@@ -12,7 +19,7 @@ class TextFormatter(private val cxt: Context) {
     }
 
     fun displayDistance(distance: Double): String {
-        return getString(R.string.display_distance, formatPrice(distance))
+        return getString(R.string.display_distance, distance.formatAmount())
     }
 
     fun displayWorkType(workType: Int): String {
@@ -21,6 +28,23 @@ class TextFormatter(private val cxt: Context) {
 
     fun displayYearExper(year: Int): String {
         return getString(R.string.year_exper, year)
+    }
+
+    fun displaySalary(price: Double, unit: Int): String{
+        return if (unit in 1..5) {
+            val temp = when (unit) {
+                HOUR -> R.string.time_type_1
+                DAY -> R.string.time_type_2
+               WEEK -> R.string.time_type_3
+               MONTH -> R.string.time_type_4
+                YEAR -> R.string.time_type_5
+                else -> R.string.time_type_1
+            }
+            val suffix = getString(temp)
+            "$${price}${suffix}"
+        } else {
+            "$${price}"
+        }
     }
 
 
@@ -32,15 +56,6 @@ class TextFormatter(private val cxt: Context) {
                 else -> R.string.no
             }
         )
-    }
-
-
-    fun formatPrice(price: Float?): String {
-        return String.format("$%.2f", price).replace(",", ".")
-    }
-
-    fun formatPrice(price: Double?): String {
-        return String.format("$%.2f", price).replace(",", ".")
     }
 
     fun customerSkinColorFormat(indx: Int): String {

@@ -18,6 +18,8 @@ data class CvDTO(
     val salary_type: Int,
     val state: String,
     val state_code: Any,
+    val price: Double?,
+    val unit: Int?,
     val status: Int,
     val user: UserCV,
     val user_id: Int,

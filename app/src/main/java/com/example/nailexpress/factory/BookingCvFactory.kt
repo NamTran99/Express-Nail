@@ -1,34 +1,29 @@
 package com.example.nailexpress.factory
 
-import com.example.nailexpress.extension.convertPhoneToNormalFormat
-import com.example.nailexpress.extension.formatPhoneUS
 import com.example.nailexpress.extension.formatPhoneUSCustom
+import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.response.CvDTO
 import com.example.nailexpress.models.response.SkillDTO
 import com.example.nailexpress.models.ui.main.Booking
 import com.example.nailexpress.models.ui.main.Cv
-import com.example.nailexpress.models.ui.main.ISkill
+import com.example.nailexpress.models.ui.main.Skill
 
 
 class BookingCvFactory(val textFormatter: TextFormatter) {
 
-
-    fun createASkill(skillDTO: SkillDTO): ISkill {
-        return object : ISkill {
-            override val name: String
-                get() = skillDTO.name.let { if(it.isNotEmpty()) it else skillDTO.custom_skill}
-            override val id: Int
-                get() = skillDTO.id
-            override val price: Double
-                get() = skillDTO.price.safe()
-            override val priceDisplay: String
-                get() = textFormatter.formatPrice(price)
-        }
+    fun createASkill(skillDTO: SkillDTO): Skill {
+        return Skill(
+            name = skillDTO.name.let { it.ifEmpty { skillDTO.custom_skill } },
+            id = skillDTO.id,
+            price = skillDTO.price.safe(),
+            price_display = skillDTO.price.formatPrice()
+        )
     }
 
-    fun createListSkill(listItem: List<SkillDTO>): List<ISkill> {
+
+    fun createListSkill(listItem: List<SkillDTO>): List<Skill> {
         return listItem.map(this::createASkill)
     }
 
@@ -48,7 +43,9 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             description = cvDTO.description,
             phone = cvDTO.phone.formatPhoneUSCustom(),
             listSkill = createListSkill(cvDTO.skills ?: listOf()),
-            state = cvDTO.state
+            state = cvDTO.state,
+            priceFormat = textFormatter.displaySalary(cvDTO.price.safe(), cvDTO.unit.safe()),
+            isSkillEmpty = cvDTO.skills.safe().isEmpty()
         )
     }
 

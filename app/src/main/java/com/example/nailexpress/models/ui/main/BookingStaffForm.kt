@@ -1,8 +1,7 @@
 package com.example.nailexpress.models.ui.main
 
-import android.content.Context
-import com.example.nailexpress.R
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.toDateUTC
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 
@@ -13,90 +12,114 @@ data class BookingStaffForm(
     var description: String = "",
     var address: String = "",
     var state: String = "",
+    var longitude: String = "",
+    var salon_id: Int = 0,
+    var booking_by_skill: String? = null,
     var city: String = "",
     var zipcode: Int? = null,
     var latitude: String = "",
-    var longitude: String = "",
-    var booking_by_skill: String = "",
-    var booking_by_time: String = "",
-    var salon_id: Int  = 0,
+    var booking_by_time: String? = null,
+    var booking_time_values: String? = null,
+    var booking_time: String? = null,
     // custom
+    @Transient var isBookNow: Boolean = true,
+    @Transient var listBookSkill: MutableList<BookServiceForm> = mutableListOf(),
+    @Transient var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
+    @Transient var isVisibleRecycler: Boolean = false,
+    @Transient var isSelectBookingService: Boolean = true,
+    @Transient var isSkillEmpty: Boolean = false,
+    @Transient var isSkillByTimeEmpty: Boolean = false,
     @Transient
-    var listBookSkill: MutableList<BookServiceForm> = mutableListOf(),
+    var bookTime: BookingTime = BookingTime(),
     @Transient
-    var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
+    var time: String = "",
     @Transient
-    var isVisibleRecycler : Boolean = false,
-    @Transient
-    var listCustom :  MutableList<BookServiceForm> = mutableListOf(),
-    @Transient
-    var isBookingBySkill: Boolean = true,
+    var date: String = "",
 ) : Form {
     override fun validate() {
         handleData()
     }
 
-    fun clearListSkill(){
-        listCustom.clear()
+    fun clearListSkill() {
         listBookTime.clear()
         listBookSkill.clear()
         booking_by_skill = ""
         booking_by_time = ""
     }
 
-    override fun handleData() {
-        if(isBookingBySkill){
-            listBookSkill.addAll(listCustom)
-            booking_by_skill = Gson().toJson(listBookSkill)
-
-        }else{
-            listBookTime.addAll(listCustom)
-            booking_by_time = Gson().toJson(listBookTime)
+    fun saveItem(item: BookServiceForm) {
+        if (isSelectBookingService) {
+            listBookSkill.add(item)
+        } else {
+            listBookTime.add(item)
         }
+    }
+
+    fun removeItem(item: BookServiceForm) {
+        if (isSelectBookingService) {
+            listBookSkill.remove(item)
+        } else {
+            listBookTime.remove(item)
+        }
+    }
+
+    override fun handleData() {
+        booking_time = if (time.isNotEmpty() && date.isNotEmpty()) {
+            "$date $time".toDateUTC()
+        } else {
+            null
+        }
+
+        booking_time_values = if(!isSkillByTimeEmpty){
+            bookTime.handleData()
+            bookTime.toString()
+        }else{
+            null
+        }
+
+        booking_by_skill = if (listBookSkill.isNotEmpty()) listBookSkill.toString() else null
+        booking_by_time = if (listBookTime.isNotEmpty()) listBookTime.toString() else null
         contact_phone = contact_phone.convertPhoneToNormalFormat()
     }
 }
+
+data class BookingTime(
+    var unit: String = "",
+    var price: String = "",
+    @Transient var unitIndex: Int = 0,
+) {
+    fun handleData() {
+        unit = unitIndex.toString()
+    }
+
+    override fun toString(): String {
+        return Gson().toJson(this)
+    }
+}
+
 
 data class BookServiceForm(
     var skill_id: String = "",
     var price: String = "",
     @SerializedName("custom_skill")
     var skill_name: String = "",
-    var unit: String = "",
-    //Display
+    var unit: String? = null,
     @Transient
-    var unit_display: String = "",
+    var price_display: String = "",
     @Transient
-    var unitIndex: Int = 0,
-    ) {
-    constructor(service: Service) : this() {
+    var isTypeTime: Boolean = false
+) {
+    constructor(service: Skill) : this() {
         skill_name = service.name
     }
 
-    fun handleToDisplayUI(context: Context):  BookServiceForm{
-        unit = unitIndex.toString()
-        unit_display = if(unitIndex in 1..5){
-            val temp = when (unitIndex) {
-                HOUR -> R.string.time_type_1
-                DAY -> R.string.time_type_2
-                WEEK -> R.string.time_type_3
-                MONTH -> R.string.time_type_4
-                YEAR -> R.string.time_type_5
-                else -> R.string.time_type_1
-            }
-            val suffix = context.getString(temp)
-            "$${price}${suffix}"
-        }else{
-            "$${price}"
-        }
+    fun handleAddItem(isTimeType: Boolean): BookServiceForm {
+        isTypeTime = isTimeType
+        price_display = "$${price}"
         return this
     }
 
-    companion object {
-        const val HOUR = 1
-        const val DAY = 2
-        const val WEEK = 3
-        const val MONTH = 4
-        const val YEAR = 5
+    override fun toString(): String {
+        return Gson().toJson(this)
     }
 }

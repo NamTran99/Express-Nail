@@ -3,9 +3,9 @@ package com.example.nailexpress.views.ui.main.staff
 import android.app.Application
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
@@ -17,7 +17,6 @@ import com.example.nailexpress.views.ui.main.staff.adapter.DetailServiceAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -36,27 +35,33 @@ class DetailStaffFragment() : BaseFragment<FragmentStaffDetailBinding, DetailSta
 }
 
 @HiltViewModel
-class DetailStaffVM @Inject constructor(app: Application, val cvRepository: CvRepository): BaseViewModel(app), IActionTopBar{
+class DetailStaffVM @Inject constructor(app: Application, val cvRepository: CvRepository): BaseViewModel(app), IActionTopBar by ActionTopBarImpl(){
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.title_detail_staff))
     val detailCV = MutableLiveData<Cv>()
+    var cvId: Int = 0
+
+    init {
+        initTopBarAction(this)
+    }
 
     val adapter = DetailServiceAdapter()
 
     fun getDetailStaff(id: Int) = launch{
         cvRepository.getCvDetail(id).onEach {
+            cvId = it.id
             detailCV.value = it
             adapter.submit(it.listSkill)
         }.collect()
     }
 
     fun onClickBookNow(){
-        navigateToDestination(R.id.createSalonFragment)
-
+        navigateToDestination(DetailStaffFragmentDirections.actionDetailStaffFragmentToBookNowStaffFragment(cvId, isBookNow = true))
     }
 
     fun onClickBookLater(){
+        navigateToDestination(DetailStaffFragmentDirections.actionDetailStaffFragmentToBookNowStaffFragment(cvId, isBookNow = false))
     }
 }
 

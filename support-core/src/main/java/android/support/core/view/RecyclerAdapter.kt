@@ -1,22 +1,20 @@
 package android.support.core.view
 
 import android.annotation.SuppressLint
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.annotation.CallSuper
-import androidx.annotation.LayoutRes
+import android.util.Log
+import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewbinding.ViewBinding
 
-abstract class RecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+abstract class RecyclerAdapter<T : Any, VB : ViewDataBinding> :
+    RecyclerView.Adapter<BaseViewHolder<VB>>() {
 
     private var mRecyclerView: RecyclerView? = null
-    private var mItems: ArrayList<T> = arrayListOf()
 
-    val items get() = mItems
+    protected var asynList = AsyncListDiffer(this, DiffCallback<T>())
+    val mitems get() = asynList.currentList.toMutableList()
 
     override fun onAttachedToRecyclerView(recyclerView: RecyclerView) {
         super.onAttachedToRecyclerView(recyclerView)
@@ -31,31 +29,35 @@ abstract class RecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @SuppressLint("NotifyDataSetChanged")
     @Suppress("unchecked_cast")
-    open fun submit(newItems: List<T>?) {
-        mItems?.clear()
-        mItems = arrayListOf()
-        mItems!!.addAll(newItems?: listOf())
-        notifyDataSetChanged()
+    open fun submit(newItems: List<T>) {
+        asynList.submitList(
+            newItems.toList()
+        )
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    open fun add(item: T){
-        mItems?.add(item)
-        mItems = ArrayList(mItems ?: listOf())
-        notifyDataSetChanged()
+    fun getItem(pos: Int): T? = asynList.currentList.getOrNull(pos)
+
+    open fun addData(item: T) {
+        Log.d("TAG", "addData: oldList size - 1 ${mitems.size}")
+        val oldList = mitems
+        oldList.add(item)
+        asynList.submitList(oldList)
+        Log.d("TAG", "addData: oldList size - 2 ${oldList.size}")
     }
 
-    open fun addData(item: T){
-        mItems.add(item)
-        notifyItemInserted((mItems?.size?:1) - 1)
+    open fun removeData(item: T) {
+        val oldList = mitems
+        oldList.remove(item)
+        asynList.submitList(oldList)
     }
 
-    open fun removeData(item: T){
-        val pos = mItems?.indexOf(item)
-        mItems?.remove(item)
-        notifyItemRemoved(pos?:-1)
+    open fun clear() {
+        asynList.submitList(listOf())
     }
 
+    open fun refreshData() {
+        asynList.submitList(mitems)
+    }
 
     private fun findLastVisibleItem(): Int {
         return when (val layoutManager = mRecyclerView!!.layoutManager) {
@@ -65,7 +67,7 @@ abstract class RecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-     fun findFirstVisibleItem(): Int {
+    fun findFirstVisibleItem(): Int {
         return when (val layoutManager = mRecyclerView!!.layoutManager) {
             is LinearLayoutManager -> layoutManager.findFirstVisibleItemPosition()
             is GridLayoutManager -> layoutManager.findFirstVisibleItemPosition()
@@ -73,97 +75,7 @@ abstract class RecyclerAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    fun setData(items: ArrayList<T>) {
-        mItems = items
-    }
-
-    override fun getItemCount(): Int = mItems?.size ?: 0
-
-    @Suppress("unchecked_cast")
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val holderBindAble = (holder as? IHolder<T>) ?: return
-        val newItem = mItems!![position]
-        holderBindAble.bindIfNeeded(newItem)
-    }
-
-    @Suppress("unchecked_cast")
-    override fun onBindViewHolder(
-        holder: RecyclerView.ViewHolder,
-        position: Int,
-        payloads: MutableList<Any>
-    ) {
-        if (payloads.isNotEmpty()) (holder as? IHolder<T>)?.onChangedWith(payloads)
-        else super.onBindViewHolder(holder, position, payloads)
-    }
-
-    override fun onViewRecycled(holder: RecyclerView.ViewHolder) {
-        super.onViewRecycled(holder)
-        (holder as? IHolder<*>)?.onRecycled()
-    }
-
-    open fun clear(){
-        mItems?.clear()
-    }
+    override fun getItemCount(): Int = asynList.currentList.count()
 }
 
-interface DiffComparable<T> {
-    fun isSameWith(item: T): Boolean = this == item
-}
-
-interface PairDiffComparable<T> {
-    fun areItemsSame(old: T, new: T): Boolean = old == new
-}
-
-interface IHolder<T> {
-    val item: T?
-
-    @CallSuper
-    @Suppress("unchecked_cast")
-    fun bindIfNeeded(newItem: T) {
-        val oldItem = this.item ?: return bind(newItem)
-
-        val shouldNotUpdate = when {
-            this is PairDiffComparable<*> -> {
-                (this as PairDiffComparable<T>).areItemsSame(oldItem, newItem)
-            }
-            oldItem is DiffComparable<*> -> {
-                (oldItem as DiffComparable<T>).isSameWith(newItem)
-            }
-            else -> false
-        }
-        if (shouldNotUpdate) return
-        bind(newItem)
-    }
-
-    fun bind(item: T)
-    fun onRecycled() {}
-    fun onChangedWith(payload: Any? = null) {}
-}
-
-abstract class RecyclerHolder<T>(itemView: View) : RecyclerView.ViewHolder(itemView),
-    IHolder<T> {
-
-    constructor(parent: ViewGroup, @LayoutRes layoutId: Int) : this(
-        LayoutInflater.from(parent.context)
-            .inflate(layoutId, parent, false)
-    )
-
-    constructor(binding: ViewBinding) : this(binding.root)
-
-    final override var item: T? = null
-        private set
-
-    override fun bind(item: T) {
-        this.item = item
-    }
-
-    open fun bind(item: T, payload: MutableList<Any>?) {
-        this.item = item
-    }
-
-
-    override fun onRecycled() {
-
-    }
-
-}
+class BaseViewHolder<T : ViewDataBinding>(val binding: T) : RecyclerView.ViewHolder(binding.root)

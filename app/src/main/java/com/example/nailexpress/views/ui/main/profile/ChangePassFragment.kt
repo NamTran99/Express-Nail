@@ -1,44 +1,18 @@
 package com.example.nailexpress.views.ui.main.profile
 
 import android.app.Application
-import android.graphics.Color
-import android.location.Geocoder
-import android.net.Uri
-import android.support.core.livedata.changeValue
-import android.support.core.livedata.map
-import android.support.core.livedata.refresh
-import android.util.Log
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.net.toUri
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
-import com.example.nailexpress.databinding.FragmentAccountInforBinding
-import com.example.nailexpress.extension.convertToRequest
-import com.example.nailexpress.extension.convertToResult
 import com.example.nailexpress.extension.launch
-import com.example.nailexpress.extension.safe
-import com.example.nailexpress.models.ui.main.User
-import com.example.nailexpress.repository.AuthRepository
 import com.example.nailexpress.repository.ProfileRepository
-import com.example.nailexpress.views.ui.main.customer.salon.CreateSalonFragment
-import com.example.nailexpress.views.widgets.CustomEditTextProfile
-import com.google.android.libraries.places.api.model.Place
-import com.sangcomz.fishbun.FishBun
-import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.onEach
-import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.example.nailexpress.app.AppConfig.Status
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.databinding.FragmentChangePassBinding
 import com.example.nailexpress.models.ui.main.PasswordForm
 
@@ -59,9 +33,12 @@ class ChangePassFragment :
 
 @HiltViewModel
 class ChangePassVM @Inject constructor(
-    app: Application, private val profileRepository: ProfileRepository,
-) :
-    BaseViewModel(app), IActionTopBar {
+   val app: Application, private val profileRepository: ProfileRepository,
+) :    BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
+
+    init {
+        initTopBarAction(this)
+    }
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.change_pass))
 

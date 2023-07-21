@@ -3,13 +3,9 @@ package com.example.nailexpress.views.ui.main.customer
 import android.app.Application
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
-import com.example.nailexpress.base.BaseFragment
-import com.example.nailexpress.base.BaseViewModel
-import com.example.nailexpress.base.IActionTopBar
-import com.example.nailexpress.base.IVMRefreshStatus
-import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
+import com.example.nailexpress.base.*
 import com.example.nailexpress.databinding.FragmentNotificationBinding
-import com.example.nailexpress.repository.BookingStaffRepository
+import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.CvRepository
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -34,9 +30,9 @@ class NotificationFragment :
 class NotificationVM @Inject constructor(
     app: Application,
     private val cvRepository: CvRepository,
-    private val bookingStaffRepository: BookingStaffRepository
+    private val bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
-    BaseViewModel(app), IVMRefreshStatus, IActionTopBar {
+    BaseViewModel(app), IVMRefreshStatus, IActionTopBar by ActionTopBarImpl() {
 
 
 }

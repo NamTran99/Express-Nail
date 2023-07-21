@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
@@ -34,7 +35,7 @@ class SelectRoleProfileFragment :
 class SelectAppRoleProfileVM @Inject constructor(
     app: Application,
     private val profileRepository: ProfileRepository
-) : BaseViewModel(app), IActionTopBar {
+) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
 
     val adapter: SelectRoleAdapter by lazy { SelectRoleAdapter() }
     override val title: MutableLiveData<String>
@@ -61,7 +62,7 @@ class SelectAppRoleProfileVM @Inject constructor(
     }
 
     fun setRole() = launch {
-        adapter.items.find { it.isCheck }?.appRole?.let {
+        adapter.mitems.find { it.isCheck }?.appRole?.let {
             profileRepository.selectRole(it)
         }
     }

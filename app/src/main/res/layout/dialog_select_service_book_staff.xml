@@ -5,10 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="action"
-            type="com.example.nailexpress.views.ui.main.staff.dialogs.ServiceVM" />
+            type="com.example.nailexpress.views.ui.main.staff.BookNowStaffVM" />
     </data>
 
     <FrameLayout
@@ -22,9 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="top"
             android:layout_margin="@dimen/size_5"
-
             android:background="@drawable/bg_white_radius"
-            android:paddingVertical="@dimen/size_10">
+            android:paddingVertical="@dimen/size_5">
 
             <ImageView
                 android:id="@+id/btBack"
@@ -33,7 +31,6 @@
                 android:layout_marginStart="@dimen/size_5"
                 android:layout_marginTop="@dimen/size_10"
                 android:padding="@dimen/size_10"
-                android:onClick="@{() -> action.onClickClose()}"
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -44,8 +41,8 @@
                 style="@style/AppTheme.EditText"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/size_50"
-                android:text="@={action.textSearch}"
                 android:background="@null"
+                app:onSearchChange="@{action.onSearchChange}"
                 app:layout_constraintBottom_toBottomOf="@+id/btBack"
                 app:layout_constraintEnd_toStartOf="@id/btClearText"
                 app:layout_constraintStart_toEndOf="@+id/btBack"
@@ -57,11 +54,11 @@
                 android:layout_height="wrap_content"
                 android:padding="@dimen/size_20"
                 android:src="@drawable/ic_clear"
-                app:visibility = "@{action.isShowClear}"
-                android:onClick="@{() -> action.onClickClearText()}"
+                android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="@+id/etSearch"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/etSearch" />
+                app:layout_constraintTop_toTopOf="@+id/etSearch"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/view2"
@@ -86,13 +83,13 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvCustomers"
+                    android:adapter="@{action.adapter}"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:adapter="@{action.adapter}"
                     android:orientation="vertical"
+                    tools:listitem="@layout/item_select_service"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/item_select_service" />
+                    tools:itemCount="3" />
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -102,44 +99,16 @@
                 style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="@dimen/size_10"
+                android:layout_marginHorizontal="@dimen/size_20"
+                app:visibility = "@{action.isEmptyData()}"
+                android:layout_marginVertical="@dimen/size_20"
                 android:gravity="center"
-                android:text="@string/no_result_order_found"
                 android:textColor="@color/gray13"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView3"
-                app:visibility="@{action.isEmptyData()}" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/materialButton"
-                style="@style/AppTheme.Button"
-                android:layout_width="wrap_content"
-                android:backgroundTint="@color/white"
-                android:text="Quay lại"
-                android:onClick="@{() -> action.onClickClose()}"
-                android:textColor="@color/colorPrimary"
-                app:layout_constraintEnd_toStartOf="@+id/btClose2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/btClose2"
-                app:strokeColor="@color/colorPrimary"
-                app:strokeWidth="@dimen/size_1"
-                app:visibility="@{action.isEmptyData()}" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btClose2"
-                style="@style/AppTheme.Button"
-                android:layout_width="wrap_content"
-                android:layout_marginTop="@dimen/size_10"
-                android:text="Áp dụng"
-                android:onClick="@{() -> action.onClickSubmit()}"
+                android:text="@string/no_result_order_found"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/materialButton"
-                app:layout_constraintTop_toBottomOf="@+id/tvEmptyData"
-                app:visibility="@{action.isEmptyData()}" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -147,11 +116,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_30"
                 android:src="@drawable/ic_not_found"
+                app:visibility = "@{action.isEmptyData()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/lvRvCustomers"
-                app:tint="@color/gray13"
-                app:visibility="@{action.isEmptyData()}" />
+                app:tint="@color/gray13" />
 
 
             <androidx.appcompat.widget.LinearLayoutCompat

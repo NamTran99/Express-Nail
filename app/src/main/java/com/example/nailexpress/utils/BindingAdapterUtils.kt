@@ -6,23 +6,21 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.View
-import android.widget.Spinner
 import androidx.appcompat.widget.*
 import androidx.core.content.ContextCompat
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.BindingAdapter
 import androidx.databinding.InverseBindingAdapter
 import androidx.databinding.InverseBindingListener
-import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.extension.*
-import com.example.nailexpress.views.widgets.InputType
 import com.example.nailexpress.views.widgets.PasswordLayout
+import com.google.android.material.button.MaterialButton
 import com.google.android.material.tabs.TabLayout
 import java.util.*
-import kotlin.math.log
 
 typealias TabChangeCallBack = ((Int) -> Unit)
+
 object BindingAdapterUtils {
 
 
@@ -112,28 +110,28 @@ object BindingAdapterUtils {
     }
 
     // SwitchCompat
-    @InverseBindingAdapter(attribute =  "value", event = "valueAttrChanged")
+    @InverseBindingAdapter(attribute = "value", event = "valueAttrChanged")
     @JvmStatic
-    fun getValue(view: SwitchCompat) =  view.isChecked or1 1 or2 0
+    fun getValue(view: SwitchCompat) = view.isChecked or1 1 or2 0
 
-    @BindingAdapter(value =  ["valueAttrChanged"])
+    @BindingAdapter(value = ["valueAttrChanged"])
     @JvmStatic
-    fun setValueChanged(view: SwitchCompat, listener: InverseBindingListener){
+    fun setValueChanged(view: SwitchCompat, listener: InverseBindingListener) {
         view.setOnCheckedChangeListener { buttonView, isChecked -> listener.onChange() }
     }
 
-    @BindingAdapter(value =  ["value"])
+    @BindingAdapter(value = ["value"])
     @JvmStatic
-    fun setValue(view: SwitchCompat, value: Int){
-        view.isChecked = value== 1
+    fun setValue(view: SwitchCompat, value: Int) {
+        view.isChecked = value == 1
     }
 
     // spinner
     @BindingAdapter(value = ["items", "onItemSelected"], requireAll = true)
     @JvmStatic
-    fun setItems(view: AppCompatSpinner, value: Array<String>?,onItemSelected: ((Int) -> Unit)?){
+    fun setItems(view: AppCompatSpinner, value: Array<String>?, onItemSelected: ((Int) -> Unit)?) {
         value?.let {
-            view.configSpinner(true, content = value){
+            view.configSpinner(true, content = value) {
                 onItemSelected?.invoke(it)
             }
         }
@@ -143,8 +141,8 @@ object BindingAdapterUtils {
 
     @BindingAdapter(value = ["isPhoneUS"])
     @JvmStatic
-    fun setTypePhoneUS(view: AppCompatEditText, isPhoneUS: Boolean){
-        if(isPhoneUS){
+    fun setTypePhoneUS(view: AppCompatEditText, isPhoneUS: Boolean) {
+        if (isPhoneUS) {
             view.inputTypePhoneUS()
             view.inputType = android.text.InputType.TYPE_CLASS_PHONE
         }
@@ -152,7 +150,7 @@ object BindingAdapterUtils {
 
     @BindingAdapter(value = ["onSearchChange"])
     @JvmStatic
-    fun setOnSearchChange(view: AppCompatEditText, onSearch: (text:String) -> Unit){
+    fun setOnSearchChange(view: AppCompatEditText, onSearch: (text: String) -> Unit) {
         var timer: Timer? = null
         val handler = Handler(Looper.getMainLooper())
         view.doOnTextChanged { text, start, before, count ->
@@ -161,30 +159,48 @@ object BindingAdapterUtils {
             timer?.schedule(object : TimerTask() {
                 override fun run() {
                     handler.post {
-                        Log.d("TAG", "run: NamTd8 -aa")
-                        onSearch(text.toString()) }
+                        onSearch(text.toString())
+                    }
                 }
             }, AppConfig.timeSearch)
 
         }
     }
 
-     // View
+    // View
     @BindingAdapter(value = ["visibility"])
     @JvmStatic
-    fun setVisibility(view: View, isVisible: Boolean){
-       view.show(isVisible)
+    fun setVisibility(view: View, isVisible: Boolean) {
+        view.show(isVisible)
     }
 
     // Textview
     @BindingAdapter(value = ["drawableTint"])
     @JvmStatic
-    fun setDrawableTint(view: AppCompatTextView, color: Int){
-        if(color == 0) return
+    fun setDrawableTint(view: AppCompatTextView, color: Int) {
+        if (color == 0) return
 
         view.compoundDrawablesRelative.forEach {
-            if(it != null)
-            it.colorFilter = PorterDuffColorFilter(ContextCompat.getColor(view.context, color), PorterDuff.Mode.SRC_IN)
+            if (it != null)
+                it.colorFilter = PorterDuffColorFilter(
+                    ContextCompat.getColor(view.context, color),
+                    PorterDuff.Mode.SRC_IN
+                )
+        }
+    }
+
+    // Material Button
+    @BindingAdapter(value = ["android:drawableTint"])
+    @JvmStatic
+    fun setDrawableTint(view: MaterialButton, color: Int) {
+        if (color == 0) return
+
+        view.compoundDrawablesRelative.forEach {
+            if (it != null)
+                it.colorFilter = PorterDuffColorFilter(
+                    color,
+                    PorterDuff.Mode.SRC_IN
+                )
         }
     }
 }

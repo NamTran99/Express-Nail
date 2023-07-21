@@ -8,7 +8,7 @@ class Booking(
     val cv: Cv,
     val contact_name: String,
     val contact_phone: String,
-    var listSkill: List<ISkill> = listOf(),
+    var listSkill: List<Skill> = listOf(),
     //custom
     val status_booking_display : String= "",
     val bookingIDDisplay: String = "",

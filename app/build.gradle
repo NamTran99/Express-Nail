@@ -102,4 +102,6 @@ dependencies {
 
     /// gg auto place
     implementation "com.google.android.libraries.places:places:$place"
+
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 }

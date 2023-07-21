@@ -1,17 +1,15 @@
 package com.example.nailexpress.models.ui.main
 
-import com.example.nailexpress.R
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
-import com.google.gson.Gson
+import com.example.nailexpress.extension.toDateUTC
 
 class RecruitmentForm(
     var avatar: String = "",
     var title: String = "",
-    var booking_time: String = "",
     var gender: Int = 0, //0: fe
     var experience_years: String = "",
-    var description: String  = "",
-    var address: String  = "",
+    var description: String = "",
+    var address: String = "",
     var state: String = "",
     var city: String = "",
     var zipcode: String = "",
@@ -19,40 +17,71 @@ class RecruitmentForm(
     var longitude: String = "",
     var contact_name: String = "",
     var contact_phone: String = "",
-    var salon_id: Int = 0,
-    var salary_by_skill: String = "",
-    var salary_by_time: String = "",
-
+    var salon_id: Int? = null,
+    var salary_by_skill: String? = null,
+    var salary_by_time: String? = null,
+    var booking_time: String? = null,
+    var salary_time_values: String? = null,
     //custom
-    var isBookingBySkill: Boolean = true,
+    @Transient
     var date: String = "",
-    var listCustom :  MutableList<BookServiceForm> = mutableListOf(),
+    @Transient
     var time: String = "",
+    @Transient
     var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
+    @Transient
     var listBookSkill: MutableList<BookServiceForm> = mutableListOf(),
-    var isVisibleRecycler: Boolean=  false
-):Form{
+    @Transient var isSelectBookingService: Boolean = true,
+    var isVisibleRecycler: Boolean = false,
+    @Transient
+    var bookTime: BookingTime = BookingTime(),
+    @Transient
+    var isSkillEmpty: Boolean = true,
+    @Transient
+    var isTimeSkillEmpty: Boolean = true,
+) : Form {
     override fun validate() {
         handleData()
     }
 
-    fun clearListSkill(){
-        listCustom.clear()
-        listBookTime.clear()
-        listBookSkill.clear()
-        salary_by_skill = ""
-        salary_by_time = ""
+    fun saveItem(item: BookServiceForm) {
+        if (isSelectBookingService) {
+            item.unit = null
+            listBookSkill.add(item)
+            isSkillEmpty = listBookSkill.isEmpty()
+        } else {
+            listBookTime.add(item)
+            isTimeSkillEmpty = listBookTime.isEmpty()
+        }
     }
 
-    override fun handleData() {
-        if(isBookingBySkill){
-            listBookSkill.addAll(listCustom)
-            salary_by_skill = Gson().toJson(listBookSkill)
-
-        }else{
-            listBookTime.addAll(listCustom)
-            salary_by_time = Gson().toJson(listBookTime)
+    fun removeItem(item: BookServiceForm) {
+        if (isSelectBookingService) {
+            listBookSkill.remove(item)
+            isSkillEmpty = listBookSkill.isEmpty()
+        } else {
+            listBookTime.remove(item)
+            isTimeSkillEmpty = listBookTime.isEmpty()
         }
+    }
+
+
+    override fun handleData() {
+        booking_time = if(time.isNotEmpty() && date.isNotEmpty()){
+            "$date $time".toDateUTC()
+        }else{
+            null
+        }
+
+        salary_time_values = if(!isTimeSkillEmpty){
+            bookTime.handleData()
+            bookTime.toString()
+        }else{
+            null
+        }
+
+        salary_by_skill = if (listBookSkill.isNotEmpty()) listBookSkill.toString() else null
+        salary_by_time = if (listBookTime.isNotEmpty()) listBookTime.toString() else null
         contact_phone = contact_phone.convertPhoneToNormalFormat()
     }
 }

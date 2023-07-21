@@ -10,16 +10,11 @@
             type="com.example.nailexpress.views.ui.main.customer.recruitment.CreateRecruitmentVM" />
     </data>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@id/viewRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_bg"
+            android:paddingBottom="@dimen/size_10"
             android:orientation="vertical">
 
             <include
@@ -209,12 +204,13 @@
                             android:layout_width="0dp"
                             android:layout_height="@dimen/size_40"
                             android:layout_weight="1"
-                            android:backgroundTint="@{action.recruitmentForm.bookingBySkill?@color/color_primary:@color/white}"
-                            android:drawableStart="@{action.recruitmentForm.bookingBySkill?@drawable/ic_tick_2:null}"
+                            android:backgroundTint="@{action.recruitmentForm.selectBookingService?@color/color_primary:@color/white}"
+                            android:drawableStart="@{action.recruitmentForm.skillEmpty?null:@drawable/ic_tick_2}"
+                            android:drawableTint="@{action.recruitmentForm.selectBookingService?@color/white:@color/black}"
                             android:onClick="@{() -> action.onClickBySKill()}"
                             android:text="@string/book_type_1"
                             android:textAllCaps="false"
-                            android:textColor="@{action.recruitmentForm.bookingBySkill?@color/white:@color/black}" />
+                            android:textColor="@{action.recruitmentForm.selectBookingService?@color/white:@color/black}" />
 
                         <com.google.android.material.button.MaterialButton
                             style="@style/AppTheme.Button"
@@ -222,33 +218,35 @@
                             android:layout_height="@dimen/size_40"
                             android:layout_marginStart="@dimen/size_10"
                             android:layout_weight="1"
-                            android:backgroundTint="@{action.recruitmentForm.bookingBySkill?@color/white:@color/color_primary}"
-                            android:drawableStart="@{action.recruitmentForm.bookingBySkill?null:@drawable/ic_tick_2}"
+                            android:backgroundTint="@{action.recruitmentForm.selectBookingService?@color/white:@color/color_primary}"
+                            android:drawableStart="@{action.recruitmentForm.timeSkillEmpty?null:@drawable/ic_tick_2}"
+                            android:drawableTint="@{action.recruitmentForm.selectBookingService?@color/black:@color/white}"
                             android:onClick="@{() -> action.onClickByTime()}"
                             android:text="@string/book_type_2"
                             android:textAllCaps="false"
-                            android:textColor="@{action.recruitmentForm.bookingBySkill?@color/black:@color/white}" />
+                            android:textColor="@{action.recruitmentForm.selectBookingService?@color/black:@color/white}" />
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/AppTheme.Button"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_50"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:onClick="@{() -> action.onClickSelectService()}"
-                        android:backgroundTint="@color/white"
-                        android:drawableEnd="@drawable/ic_arrow_right"
-                        android:gravity="start|center_vertical"
-                        android:text="@string/select_service"
-                        android:textAllCaps="false"
-                        android:textColor="@color/black" />
+<!--                    <com.google.android.material.button.MaterialButton-->
+<!--                        style="@style/AppTheme.Button"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/size_50"-->
+<!--                        android:layout_marginTop="@dimen/size_10"-->
+<!--                        android:backgroundTint="@color/white"-->
+<!--                        android:drawableEnd="@drawable/ic_arrow_right"-->
+<!--                        android:gravity="start|center_vertical"-->
+<!--                        android:text="@string/select_service"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textColor="@color/black" />-->
 
                     <EditText
                         style="@style/AppTheme.EditText"
                         android:layout_width="match_parent"
-                        android:text="@={action.selectService.skill_name}"
                         android:layout_marginTop="@dimen/size_10"
-                        android:hint="@string/hint_name" />
+                        android:hint="@string/hint_select_service"
+                        android:onClick="@{() -> action.onClickSelectService()}"
+                        android:focusable="false"
+                        android:text="@={action.selectService.skill_name}" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="match_parent"
@@ -259,20 +257,20 @@
                             android:layout_width="0dp"
                             android:layout_height="@dimen/size_40"
                             android:layout_weight="1"
-                            app:text="@={action.selectService.price}"
+                            android:hint="@string/hint_price"
                             app:custom_start_text="$"
-                            app:input_type="decimal" />
+                            app:input_type="decimal"
+                            app:text="@={action.selectService.price}" />
 
                         <androidx.appcompat.widget.AppCompatSpinner
                             android:layout_width="0dp"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/size_10"
                             android:layout_weight="1"
-                            android:selectedItemPosition="@{action.selectService.unitIndex}"
                             android:background="@drawable/bg_white_radius"
                             app:items="@{@stringArray/arr_time_type}"
                             app:onItemSelected="@{action.onSelectTimeType}"
-                            app:visibility="@{!action.recruitmentForm.bookingBySkill}" />
+                            app:visibility="@{!action.recruitmentForm.selectBookingService}" />
 
                         <com.google.android.material.button.MaterialButton
                             style="@style/AppTheme.Button"
@@ -282,8 +280,8 @@
                             android:layout_weight="1"
                             android:onClick="@{() -> action.onClickAddService()}"
                             android:text="@string/add"
-                            app:visibility="@{action.recruitmentForm.bookingBySkill}"
-                            android:textAllCaps="false" />
+                            android:textAllCaps="false"
+                            app:visibility="@{action.recruitmentForm.selectBookingService}" />
 
                     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -293,10 +291,10 @@
                         android:layout_height="@dimen/size_40"
                         android:layout_marginTop="@dimen/size_10"
                         android:layout_weight="1"
-                        app:visibility="@{!action.recruitmentForm.bookingBySkill}"
                         android:onClick="@{() -> action.onClickAddService()}"
                         android:text="@string/add"
-                        android:textAllCaps="false" />
+                        android:textAllCaps="false"
+                        app:visibility="@{!action.recruitmentForm.selectBookingService}" />
 
                     <TextView
                         style="@style/AppTheme.TextViewResponsive"
@@ -420,13 +418,18 @@
                         app:action="@{action}"
                         app:visibility="@{action.isShowSalon}" />
 
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        style="@style/AppTheme.Button"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@string/btn_post"
+                        android:onClick="@{() -> action.onClickPost()}"
+                        app:cornerRadius="@dimen/size_60"
+                        android:layout_gravity="center"/>
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
 
             </androidx.core.widget.NestedScrollView>
         </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>

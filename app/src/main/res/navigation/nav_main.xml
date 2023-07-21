@@ -126,12 +126,15 @@
         <fragment
             android:id="@+id/detailStaffFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.DetailStaffFragment"
-            android:label="DetailStaffFragment"
+            android:label="Deta ilStaffFragment"
             tools:layout="@layout/fragment_staff_detail">
             <argument
                 android:name="staffId"
                 android:defaultValue="0"
                 app:argType="integer" />
+            <action
+                android:id="@+id/action_detailStaffFragment_to_bookNowStaffFragment"
+                app:destination="@id/bookNowStaffFragment" />
         </fragment>
 
         <fragment
@@ -154,7 +157,7 @@
 
         <fragment
             android:id="@+id/bookNowStaffFragment"
-            android:name="com.example.nailexpress.views.ui.main.staff.BookNowStaffFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.BookStaffFragment"
             android:label="BookNowStaffFragment"
             tools:layout="@layout/fragment_book_staff_now">
 
@@ -162,6 +165,15 @@
                 android:name="cvID"
                 android:defaultValue="0"
                 app:argType="integer" />
+            <action
+                android:id="@+id/action_bookNowStaffFragment_to_bookingDetailFragment"
+                app:destination="@id/bookingDetailFragment"
+                app:popUpTo="@id/bookNowStaffFragment"
+                app:popUpToInclusive="true" />
+            <argument
+                android:name="isBookNow"
+                android:defaultValue="true"
+                app:argType="boolean" />
             <action
                 android:id="@+id/action_bookNowStaffFragment_to_createSalonFragment"
                 app:destination="@id/createSalonFragment" />
@@ -183,7 +195,7 @@
             android:id="@+id/createRecruitmentFragment"
             android:name="com.example.nailexpress.views.ui.main.customer.recruitment.CreateRecruitmentFragment"
             android:label="CreateRecruitmentFragment"
-            tools:layout="@layout/fragment_create_recruitment"/>
+            tools:layout="@layout/fragment_create_recruitment" />
 
         <action
             android:id="@+id/action_global_authGraph"

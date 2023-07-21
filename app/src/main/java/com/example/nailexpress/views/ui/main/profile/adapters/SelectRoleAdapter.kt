@@ -1,24 +1,15 @@
 package com.example.nailexpress.views.ui.main.profile.adapters
 
-import android.support.core.view.ILoadMoreAction
-import android.support.core.view.bindingOf
-import android.view.ViewGroup
 import androidx.annotation.StringRes
-import androidx.recyclerview.widget.RecyclerView
+import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
-import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.base.SimpleRecyclerAdapter
-import com.example.nailexpress.databinding.ItemListStaffBinding
 import com.example.nailexpress.databinding.ItemProfileOptionBinding
 import com.example.nailexpress.extension.onClick
-import com.example.nailexpress.models.ui.main.Cv
 
 class SelectRoleAdapter() :
     SimpleRecyclerAdapter<RoleOption, ItemProfileOptionBinding>() {
 
-    override fun onCreateBinding(parent: ViewGroup): ItemProfileOptionBinding {
-        return parent.bindingOf(ItemProfileOptionBinding::inflate)
-    }
 
     override fun onBindHolder(item: RoleOption, binding: ItemProfileOptionBinding, adapterPosition: Int) {
         binding.apply {
@@ -33,11 +24,14 @@ class SelectRoleAdapter() :
     }
 
     fun unselectAll(){
-        items.forEach {
+        mitems.forEach {
             it.isCheck = false
         }
-        notifyDataSetChanged()
+        refreshData()
     }
+
+    override val layoutId: Int
+        get() = R.layout.item_profile_option
 }
 
 data class RoleOption(@StringRes val title: Int, var isCheck: Boolean = false, val appRole: AppConfig.AppRole)

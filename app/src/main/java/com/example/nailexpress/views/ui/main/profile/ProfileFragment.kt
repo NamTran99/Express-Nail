@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
@@ -40,7 +41,7 @@ class ProfileVM @Inject constructor(
     app: Application, private val profileRepository: ProfileRepository,
     private val authRepository: AuthRepository
 ) :
-    BaseViewModel(app), IActionTopBar {
+    BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.account))

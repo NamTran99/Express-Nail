@@ -485,7 +485,7 @@ fun View.showKeyboard(value: Boolean = true) {
         Runnable {
             val imm = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
             if (value) {
-                requestFocus()
+                requestFocusFromTouch()
                 (this as? EditText)?.setSelection(text.length)
                 imm.showSoftInput(this, 0)
             } else imm.hideSoftInputFromWindow(windowToken, 0)

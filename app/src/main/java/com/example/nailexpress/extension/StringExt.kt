@@ -24,6 +24,10 @@ fun Double.formatPrice(): String {
     return String.format("$%.2f", this).replace(",", ".")
 }
 
+fun Float.formatPrice(): String {
+    return String.format("$%.2f", this).replace(",", ".")
+}
+
 fun Double.formatAmount(): String {
     return String.format("%.2f", this).replace(",", ".")
 }

@@ -9,18 +9,36 @@
         android:background="@drawable/custom_bg_service_check"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tvName"
-            android:layout_marginTop="@dimen/size_10"
-            style="@style/AppTheme.TextViewResponsive"
-            android:layout_width="wrap_content"
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_10"
-            tools:text="Full Set" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_10"
+                tools:text="Full Set" />
+
+            <TextView
+                android:id="@+id/tvPrice"
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_10"
+                android:layout_marginEnd="@dimen/size_10"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="Full Set" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
-            android:layout_marginTop="@dimen/size_10"
-            style="@style/AppTheme.Line.Horizontal"/>
+            style="@style/AppTheme.Line.Horizontal"
+            android:layout_marginTop="@dimen/size_10" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

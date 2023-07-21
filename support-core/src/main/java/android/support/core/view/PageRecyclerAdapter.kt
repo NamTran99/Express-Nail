@@ -2,6 +2,7 @@ package android.support.core.view
 import android.annotation.SuppressLint
 import android.support.core.funtional.OnLoadMoreListener
 import androidx.annotation.MainThread
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
 
 interface ILoadMoreAction{
@@ -9,12 +10,12 @@ interface ILoadMoreAction{
 }
 
 @Suppress("UNCHECKED_CAST")
-abstract class PageRecyclerAdapter<T>(
+abstract class PageRecyclerAdapter<T, VB: ViewDataBinding>(
     private val pageSize: Int,
     private val threshold: Int = 0,
     private val mRevert: Boolean = false,
     val actionLoadMore: ILoadMoreAction
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+) : RecyclerView.Adapter<BaseViewHolder<VB>>() {
     companion object {
         private const val STATE_INITIAL = -1
         private const val STATE_LOADING = 1
@@ -51,6 +52,7 @@ abstract class PageRecyclerAdapter<T>(
 
     @MainThread
     open fun submit(items: List<T>?) {
+        clear()
         if (items != null) mItems.addAll(items)
     }
 
@@ -81,14 +83,21 @@ abstract class PageRecyclerAdapter<T>(
     }
 
     @Suppress("unchecked_cast")
-    override fun onBindViewHolder(p0: RecyclerView.ViewHolder, p1: Int) {
-        (p0 as? RecyclerHolder<T>)?.bind(mItems[p1])
+    override fun onBindViewHolder(holder: BaseViewHolder<VB>, p1: Int) {
+        onBindHolder(mItems[p1], holder.binding, p1)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int, payloads: MutableList<Any>) {
-        if (payloads.isEmpty()) super.onBindViewHolder(holder, position, payloads)
-        else (holder as? RecyclerHolder<T>)?.bind(getData()[position], payloads)
-    }
+    protected abstract fun onBindHolder(item: T, binding: VB, adapterPosition: Int)
+
+//    override fun onBindViewHolder(
+//        holder: BaseViewHolder<VB>,
+//        position: Int,
+//        payloads: MutableList<Any>
+//    ) {
+//        super.onBindViewHolder(holder, position, payloads)
+////        if (payloads.isEmpty()) super.onBindViewHolder(holder, position, payloads)
+////        else (holder as? BaseViewHolder<T>)?.bind(getData()[position], payloads)
+//    }
 
     @SuppressLint("NotifyDataSetChanged")
     fun clear() {

@@ -7,6 +7,7 @@ import android.net.Uri
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -14,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.nailexpress.R
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
@@ -25,7 +27,7 @@ import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.main.BookServiceForm
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 import com.example.nailexpress.models.ui.main.Salon
-import com.example.nailexpress.repository.BookingStaffRepository
+import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.SalonRepository
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
@@ -130,11 +132,12 @@ interface ICreateRecruitmentVM {
 class CreateRecruitmentVM @Inject constructor(
     val app: Application,
     private val cvRepository: CvRepository,
-    private val bookingStaffRepository: BookingStaffRepository,
+    private val recruitmentRepo: RecruitmentBookingStaffRepository,
     private val salonRepository: SalonRepository,
     val appEvent2: AppEvent2
 ) :
-    BaseViewModel(app), IActionTopBar, ICreateSalonVM, ICreateRecruitmentVM, IBookServiceAdapter {
+    BaseViewModel(app), IActionTopBar by ActionTopBarImpl(),ICreateSalonVM, ICreateRecruitmentVM, IBookServiceAdapter {
+
 
     override val title = MutableLiveData(getString(R.string.title_create_recruitment))
     override val salonForm = MutableLiveData(Salon())
@@ -142,9 +145,19 @@ class CreateRecruitmentVM @Inject constructor(
     val serviceAdapter = BookServiceAdapter(this)
     var selectService = MutableLiveData(BookServiceForm())
 
+
+    val recruitmentForm = MutableLiveData(RecruitmentForm())
+    val isShowSalon = MutableLiveData(false)
+    var isLoadSalonData = false
+
+    init {
+        collectSelectedService()
+        initTopBarAction(this)
+    }
+
     val onSelectTimeType: ((Int) -> Unit) = {
-        selectService.changeValue {
-            unitIndex = it
+        recruitmentForm.changeValue {
+//            unitIndex = it
         }
     }
 
@@ -160,13 +173,6 @@ class CreateRecruitmentVM @Inject constructor(
         }
     }
 
-    init {
-        collectSelectedService()
-    }
-
-    val recruitmentForm = MutableLiveData(RecruitmentForm())
-    val isShowSalon = MutableLiveData(false)
-    var isLoadSalonData = false
 
     private fun collectSelectedService() {
         appEvent2.selectedService.drop(1).onEach {
@@ -176,32 +182,37 @@ class CreateRecruitmentVM @Inject constructor(
 
     fun onClickBySKill(){
         recruitmentForm.refresh {
-            if (!isBookingBySkill) {
-                clearListSkill()
-                serviceAdapter.clear()
-                isBookingBySkill = true
+            if (!isSelectBookingService) {
+                serviceAdapter.submit(listBookSkill)
+                isSelectBookingService = true
             }
         }
     }
 
     fun onClickByTime() {
         recruitmentForm.refresh {
-            if (isBookingBySkill) {
-                clearListSkill()
-                serviceAdapter.clear()
-                isBookingBySkill = false
+            if (isSelectBookingService) {
+                serviceAdapter.submit(listBookTime)
+                isSelectBookingService = false
             }
         }
     }
 
     fun onClickAddService() {
-        recruitmentForm.changeValue {
+        recruitmentForm.refresh {
             selectService.refresh {
-                this.handleToDisplayUI(app)
-                listCustom.add(this)
+                this.handleAddItem(!isSelectBookingService)
+                saveItem(this)
                 serviceAdapter.addData(this)
+                if(isSelectBookingService){
+                    selectService.value = BookServiceForm()
+                }else{
+                    bookTime.price = price
+                    selectService.value = BookServiceForm(price = price)
+                }
             }
         }
+
         selectService.value = BookServiceForm()
     }
 
@@ -246,7 +257,13 @@ class CreateRecruitmentVM @Inject constructor(
         isShowSalon.value = false
     }
 
-
+    fun onClickPost() = launch{
+        recruitmentForm.value?.let {
+            recruitmentRepo.createRecruitment(it)
+            showToast(R.string.success_create_recruitment)
+            onBackClick()
+        }
+    }
 
     private fun getMySalon() = launch {
         salonRepository.getSalonDetail().onEach {
@@ -262,11 +279,11 @@ class CreateRecruitmentVM @Inject constructor(
     }
 
     override val onClickRemoveService: (BookServiceForm) -> Unit= {
-        recruitmentForm.changeValue {
-            listCustom.remove(it)
+        recruitmentForm.refresh {
+            removeItem(it)
         }
     }
-    override val onVisibleItem: (Boolean) -> Unit= {
+    override val onVisibleRecycler: (Boolean) -> Unit= {
         recruitmentForm.refresh {
             isVisibleRecycler = it
         }

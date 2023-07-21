@@ -4,7 +4,9 @@ import android.app.Application
 import android.os.Bundle
 import android.support.core.event.LoadingEvent
 import android.support.core.livedata.LoadingLiveData
-import androidx.lifecycle.*
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavDirections
 import com.example.nailexpress.datasource.AppEvent2
 import com.example.nailexpress.datasource.local.SharePrefs
@@ -15,37 +17,58 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-interface IVMRefreshStatus{
-    val refreshLoading:LoadingEvent get() =  LoadingLiveData()
+interface IVMRefreshStatus {
+    val refreshLoading: LoadingEvent get() = LoadingLiveData()
 }
 
 
-interface IActionTopBar{
-    val title: MutableLiveData<String> get() = MutableLiveData("")
-    val search: MutableLiveData<String> get() = MutableLiveData("")
-    val isShowBackButton: MutableLiveData<Boolean> get() = MutableLiveData(true)
+interface IActionTopBar {
+    val title: MutableLiveData<String>
+    val search: MutableLiveData<String>
+    val isShowBackButton: MutableLiveData<Boolean>
+    val onSearchTextChange: ((String) -> Unit)
+    val context: Application
+    var self: BaseViewModel?
 
-    val onSearchTextChange: ((String) -> Unit) get() = {}
-    val self: BaseViewModel
-        get() = this as BaseViewModel
-
-    fun onBackClick(){
-        self.backScreen()
+    fun onBackClick() {
+        self?.backScreen()
     }
+
+    fun changeTitle(id: Int) {
+        title.value = context.getString(id)
+    }
+
+    fun initTopBarAction(vm: BaseViewModel)
+
 }
 
-abstract class  BaseViewModel(application: Application) : AndroidViewModel(application) {
+class ActionTopBarImpl() : IActionTopBar {
+    override val title = MutableLiveData("")
+    override val search = MutableLiveData("")
+    override val isShowBackButton = MutableLiveData(true)
+    override val onSearchTextChange: ((String) -> Unit) get() = {}
+    override val context: Application = MainApplication.application
+    override var self: BaseViewModel? = null
+
+    override fun initTopBarAction(vm: BaseViewModel) {
+        self = vm
+    }
+
+}
+
+abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {
     protected val TAG by lazy { this::class.java.name }
     protected val evenSender = Channel<AppEvent>()
 
     val eventReceiver = evenSender.receiveAsFlow().conflate()
+
     @Inject
     lateinit var appLocal: SharePrefs
 
     @Inject
     lateinit var appEvent: AppEvent2
 
-    open fun reloadData(){
+    open fun reloadData() {
 
     }
 
@@ -55,9 +78,8 @@ abstract class  BaseViewModel(application: Application) : AndroidViewModel(appli
         }
     }
 
-
     open fun showDialogConfirm(
-       data: DialogData
+        data: DialogData
     ) {
         viewModelScope.launch {
             evenSender.send(AppEvent.OnOpenAlertDialog(data))
@@ -66,7 +88,8 @@ abstract class  BaseViewModel(application: Application) : AndroidViewModel(appli
 
     open fun getString(idString: Int) = getApplication<Application>().getString(idString)
 
-    open fun getString(idString: Int,str : String) = getApplication<Application>().getString(idString,str)
+    open fun getString(idString: Int, str: String) =
+        getApplication<Application>().getString(idString, str)
 
     open fun navigateToDestination(action: Int, bundle: Bundle? = null) = viewModelScope.launch {
         evenSender.send(

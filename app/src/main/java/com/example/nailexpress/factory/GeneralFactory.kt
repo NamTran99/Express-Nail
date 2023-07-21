@@ -1,28 +1,25 @@
 package com.example.nailexpress.factory
 
-import com.example.nailexpress.extension.formatPhoneUS
+import com.example.nailexpress.app.SKillType
+import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.safe
-import com.example.nailexpress.models.response.CvDTO
-import com.example.nailexpress.models.response.ServiceDTO
 import com.example.nailexpress.models.response.SkillDTO
-import com.example.nailexpress.models.ui.main.Cv
-import com.example.nailexpress.models.ui.main.ISkill
-import com.example.nailexpress.models.ui.main.Service
+import com.example.nailexpress.models.ui.main.Skill
 
 
 class GeneralFactory(val textFormatter: TextFormatter) {
 
 
-    fun createAService(serviceDTO: ServiceDTO): Service {
-       return Service(
-           id = serviceDTO.id,
-           name = serviceDTO.name
-       )
+    private fun createAService(serviceDTO: SkillDTO): Skill {
+        return Skill(
+            id = serviceDTO.id,
+            name = serviceDTO.name,
+            isSKill = serviceDTO.type.safe() == SKillType.SKill, //NOTE 1
+            price_display = serviceDTO.price.formatPrice()
+        )
     }
 
-    fun createListService(listItem: List<ServiceDTO>): List<Service>{
+    fun createListService(listItem: List<SkillDTO>): List<Skill> {
         return listItem.map(this::createAService)
     }
-
-
 }

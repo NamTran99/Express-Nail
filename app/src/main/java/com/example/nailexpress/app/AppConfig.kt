@@ -37,3 +37,22 @@ object WorkType {
     const val NoXuyenBang = 1
 }
 
+object PriceUnit{
+    const val HOUR = 1
+    const val DAY = 2
+    const val WEEK = 3
+    const val MONTH = 4
+    const val YEAR = 5
+}
+
+object SKillType{
+    const val SKill = 1
+    const val Time = 2
+}
+
+object SalaryType{
+    const val Service = 1
+    const val Time = 2
+    const val Both = 3
+}
+

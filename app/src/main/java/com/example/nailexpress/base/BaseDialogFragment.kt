@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -50,7 +51,10 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
     abstract fun initView()
 
     fun setDialogOnTop(){
-
+        dialog?.window?.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.TOP)
+        val param  = dialog?.window?.attributes
+        param?.width = ViewGroup.LayoutParams.MATCH_PARENT
+        dialog?.window?.attributes = param
     }
 
 

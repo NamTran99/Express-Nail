@@ -14,7 +14,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
-import com.example.nailexpress.exception.toDateWithFormat
+import com.example.nailexpress.extension.toDateWithFormat
 import java.text.SimpleDateFormat
 import java.util.*
 

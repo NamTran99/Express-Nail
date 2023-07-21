@@ -14,6 +14,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.nailexpress.R
+import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
@@ -91,7 +92,7 @@ class CreateSalonVM @Inject constructor(
     app: Application, private val cvRepository: CvRepository,
     private val salonRepository: SalonRepository,
 ) :
-    BaseViewModel(app), IActionTopBar, IImageLocalAdapterAction {
+    BaseViewModel(app), IActionTopBar by ActionTopBarImpl(),IImageLocalAdapterAction {
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.title_create_salon))

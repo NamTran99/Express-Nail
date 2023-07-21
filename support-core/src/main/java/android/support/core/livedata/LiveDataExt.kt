@@ -11,6 +11,7 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 
 
 fun <T, V> LiveData<T>.map(function: (T?) -> V?): LiveData<V> {
@@ -92,6 +93,12 @@ fun <T> MutableLiveData<T>.refresh(function: T.() -> Unit) {
 }
 
 fun <T> MutableLiveData<T>.changeValue(function: T.() -> Unit):T? {
+    return this.value?.also {
+        function.invoke(it)
+    }
+}
+
+fun <T> MutableStateFlow<T>.changeValue(function: T.() -> Unit):T? {
     return this.value?.also {
         function.invoke(it)
     }
