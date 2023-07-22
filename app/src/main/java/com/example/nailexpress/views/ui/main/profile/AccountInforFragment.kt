@@ -89,10 +89,8 @@ class AccountInforVM @Inject constructor(
     init {
         getProfile()
         initTopBarAction(this)
+        setTitle(R.string.title_account_profile)
     }
-
-    override val title: MutableLiveData<String>
-        get() = MutableLiveData(getString(R.string.title_account_profile))
 
     private fun getProfile()= launch{
         profileRepository.getProfile().onEach {

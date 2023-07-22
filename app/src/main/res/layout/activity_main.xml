@@ -23,15 +23,14 @@
             android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@+id/topBar"
             android:layout_above="@id/lvBottom"
-            app:navGraph="@navigation/nav_main"
-            />
+            android:layout_below="@+id/topBar"
+            app:navGraph="@navigation/nav_main" />
 
         <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:id="@+id/lvBottom"
             android:layout_width="match_parent"
-            android:layout_height="85dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:background="@color/transparency"
             android:orientation="vertical">
@@ -45,8 +44,6 @@
                 android:background="@color/white"
                 app:contentInsetEnd="0dp"
                 app:contentInsetStart="0dp"
-                app:fabCradleMargin="10dp"
-                app:fabCradleRoundedCornerRadius="10dp"
                 app:fabCradleVerticalOffset="0dp">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -64,24 +61,24 @@
 
             </com.google.android.material.bottomappbar.BottomAppBar>
 
-            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/fabClientCheckIn"
+                style="@style/AppTheme.Button"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/size_56"
+                android:layout_gravity="center"
                 android:backgroundTint="@color/color_primary"
-                android:fontFamily="@font/montserrat_medium"
-                android:gravity="center"
-                android:maxLines="2"
-                android:textSize="@dimen/text_size_12"
-                android:text="@string/title_create_recruitment"
                 android:drawableTop="@drawable/ic_pen_circle"
                 android:drawableTint="@color/white"
-                android:drawablePadding="@dimen/size_0"
+                android:fontFamily="@font/montserrat_medium"
+                android:paddingVertical="@dimen/size_10"
+                android:text="@string/title_create_recruitment"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
+                android:textSize="@dimen/text_size_8"
+                android:textStyle="bold"
                 android:theme="@style/AppTheme"
-                app:layout_anchor="@id/bottomAppBar"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:cornerRadius="@dimen/size_40" />
 
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

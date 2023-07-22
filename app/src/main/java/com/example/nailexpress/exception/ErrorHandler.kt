@@ -42,7 +42,6 @@ class ErrorHandlerImpl : ErrorHandler {
             }
             is UnauthorizedException -> {
                 activity.commonDialog.show(DialogData().buildError(error.message.toString()))
-
             }
             is UnknownHostException -> {
                 activity.commonDialog.show(

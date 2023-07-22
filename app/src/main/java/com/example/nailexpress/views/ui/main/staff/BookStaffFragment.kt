@@ -149,7 +149,7 @@ class BookNowStaffVM @Inject constructor(
         form.refresh {
             this.isBookNow = isBookNow
         }
-        changeTitle(if (isBookNow) R.string.title_booking_staff_now else R.string.title_booking_staff_later)
+        setTitle(if (isBookNow) R.string.title_booking_staff_now else R.string.title_booking_staff_later)
     }
 
     fun onPlaceSelected(place: Place) {

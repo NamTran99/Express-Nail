@@ -2,7 +2,6 @@ package com.example.nailexpress.models.ui.main
 
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import com.example.nailexpress.extension.toDateUTC
-
 class RecruitmentForm(
     var avatar: String = "",
     var title: String = "",

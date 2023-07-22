@@ -16,8 +16,7 @@
         android:background="@color/color_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingTop="@dimen/size_35"
-        android:paddingBottom="@dimen/size_20">
+       >
 
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="wrap_content"

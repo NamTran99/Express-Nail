@@ -2,8 +2,6 @@ package com.example.nailexpress.base
 
 import android.app.Application
 import android.os.Bundle
-import android.support.core.event.LoadingEvent
-import android.support.core.livedata.LoadingLiveData
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -34,7 +32,7 @@ interface IActionTopBar {
         self?.backScreen()
     }
 
-    fun changeTitle(id: Int) {
+    fun setTitle(id: Int) {
         title.value = context.getString(id)
     }
 

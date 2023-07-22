@@ -32,7 +32,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:background="@drawable/bg_white_radius"
                 android:orientation="vertical"
-                android:padding="@dimen/size_10">
+                android:padding="@dimen/size_15">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
@@ -54,6 +54,7 @@
                         <TextView
                             style="@style/AppTheme.TextViewResponsive"
                             android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_14"
                             android:layout_height="wrap_content"
                             android:text="@{action.user.fullname}"
                             tools:text="Thanh Tran" />
@@ -92,6 +93,7 @@
                         <TextView
                             style="@style/AppTheme.TextViewResponsive"
                             android:layout_width="wrap_content"
+                            android:textSize="@dimen/text_size_14"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/size_5"
                             android:text="@{action.role}"
@@ -101,7 +103,8 @@
                     <com.google.android.material.button.MaterialButton
                         style="@style/AppTheme.Button"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/size_40"
+                        android:paddingHorizontal="@dimen/size_30"
                         android:backgroundTint="@color/color_ffd8ca"
                         android:onClick="@{() ->action.onChangeRole()}"
                         android:text="@string/change_role"
@@ -132,22 +135,33 @@
                     android:layout_height="wrap_content"
                     android:layout_marginVertical="@dimen/size_10"
                     android:background="@drawable/bg_button_text"
-                    android:onClick="@{() -> action.onLogOut()}">
+                    android:onClick="@{() -> action.onClickDeleteAccount()}">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:drawablePadding="@dimen/size_19"
+                        android:drawablePadding="@dimen/size_10"
                         android:gravity="center"
                         android:text="@string/delete_account"
                         android:textColor="@color/color_primary"
                         app:drawableStartCompat="@drawable/ic_garbage" />
                 </FrameLayout>
+                
 
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/AppTheme.Button"
+                android:layout_gravity="center_horizontal"
+                app:cornerRadius="@dimen/size_40"
+                android:onClick="@{() -> action.onClickLogOut()}"
+                android:layout_marginTop="@dimen/size_20"
+                android:paddingHorizontal="@dimen/size_50"
+                android:text="@string/btn_log_out"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 

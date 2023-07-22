@@ -42,7 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         }
         NavigationUI.setupWithNavController(binding.bottomNavigation, navController!!)
         if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
-            navigateToDestination(R.id.customerGraph)
+            navigateToDestination(R.id.action_global_customerGraph)
         }
     }
 

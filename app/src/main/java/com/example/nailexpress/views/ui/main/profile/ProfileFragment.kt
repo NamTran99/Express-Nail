@@ -12,7 +12,6 @@ import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentProfileBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.extension.or1
-import com.example.nailexpress.models.response.UserDTO
 import com.example.nailexpress.models.ui.main.User
 import com.example.nailexpress.repository.AuthRepository
 import com.example.nailexpress.repository.ProfileRepository
@@ -42,6 +41,10 @@ class ProfileVM @Inject constructor(
     private val authRepository: AuthRepository
 ) :
     BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
+
+    init {
+        initTopBarAction(this)
+    }
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.account))
@@ -80,7 +83,7 @@ class ProfileVM @Inject constructor(
         // TO DO
     }
 
-    fun onLogOut() = launch {
+    fun onClickLogOut() = launch {
         authRepository.logOut()
         navigateToDestination(R.id.action_global_authGraph)
     }
