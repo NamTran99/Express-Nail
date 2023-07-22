@@ -14,6 +14,10 @@ object AppConfig {
         Customer(1), Staff(0)
     }
 
+    /*
+    * READ: dành cho load ảnh
+    * UPDATE: Dành cho upload ảnh
+    * */
     enum class Status(val inx: Int){
         READ(0), UPDATE(1);
         companion object{

@@ -73,6 +73,7 @@ class LoadingImageView @JvmOverloads constructor(
             field = value
             if (!url.isNullOrBlank()) {
                 binding.apply {
+                    imgCamera.hide()
                     lvImage.setBackgroundResource(R.color.transparency)
                     image.setImageURICustom(value)
                 }

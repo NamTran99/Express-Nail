@@ -37,7 +37,7 @@
     </style>
 
     <style name="AppTheme.TextViewResponsive.Hint">
-        <item name="android:textColor">@color/color_7e7e7e</item>
+        <item name="android:textColor">@color/     </item>
     </style>
 
     <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
