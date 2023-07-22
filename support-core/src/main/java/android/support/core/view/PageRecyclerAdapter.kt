@@ -1,6 +1,7 @@
 package android.support.core.view
 import android.annotation.SuppressLint
 import android.support.core.funtional.OnLoadMoreListener
+import android.util.Log
 import androidx.annotation.MainThread
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.RecyclerView
@@ -52,12 +53,14 @@ abstract class PageRecyclerAdapter<T, VB: ViewDataBinding>(
 
     @MainThread
     open fun submit(items: List<T>?) {
-        clear()
+//        clear()
         if (items != null) mItems.addAll(items)
     }
 
     @MainThread
-    open fun submit(items: List<T>?, orderMin: Int) {
+    open fun submit(items: List<T>?, pageNumber: Int = 1) {
+        Log.d("TAG", "submit: $pageNumber")
+        if(pageNumber ==1) clear()
         if (items != null) mItems.addAll(items)
     }
 

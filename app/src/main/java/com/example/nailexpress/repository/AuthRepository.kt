@@ -5,7 +5,7 @@ import com.example.nailexpress.datasource.local.SharePrefKey
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.datasource.remote.AuthApi
 import com.example.nailexpress.factory.ProfileFactory
-import com.example.nailexpress.models.ui.LoginForm
+import com.example.nailexpress.models.ui.auth.LoginForm
 import com.example.nailexpress.models.ui.auth.VerifyForm
 
 class AuthRepository(val userDataSource: SharePrefs, context: Context, val authApi: AuthApi, val profileFactory: ProfileFactory) {

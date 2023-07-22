@@ -2,10 +2,8 @@ package com.example.nailexpress.datasource.remote
 
 import com.example.nailexpress.helper.network.ApiAsync
 import com.example.nailexpress.models.response.UserDTO
-import com.example.nailexpress.models.ui.LoginForm
+import com.example.nailexpress.models.ui.auth.LoginForm
 import com.example.nailexpress.models.ui.auth.VerifyForm
-import okhttp3.MultipartBody
-import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface AuthApi {

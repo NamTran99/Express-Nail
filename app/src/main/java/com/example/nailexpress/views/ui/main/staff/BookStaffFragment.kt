@@ -125,7 +125,7 @@ class BookNowStaffVM @Inject constructor(
         initTopBarAction(this)
     }
 
-    override fun reloadData() {
+    override fun loadDataWhenResumse() {
         getMySalon()
         collectSelectedService()
         getCVByID()

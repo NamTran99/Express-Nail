@@ -22,8 +22,6 @@ object Validator {
     fun checkLength(text: String, length: Int,@StringRes id: Int){
         if(text.trim().length < length) resourceError(id)
     }
-
-
 }
 
 

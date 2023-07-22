@@ -8,7 +8,6 @@ import androidx.lifecycle.MutableLiveData
 
 class LoadingLiveData : MutableLiveData<Boolean>(), LoadingEvent {
     private var mNumOfLoading = 0
-
     override fun postValue(value: Boolean?) {
         synchronized(this) {
             if (value!!) {

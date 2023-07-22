@@ -17,9 +17,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-interface IVMRefreshStatus {
-    val refreshLoading: LoadingEvent get() = LoadingLiveData()
-}
+//interface IVMRefreshStatus {
+//    val refreshLoading: LoadingEvent get() = LoadingLiveData()
+//}
 
 
 interface IActionTopBar {
@@ -68,7 +68,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     @Inject
     lateinit var appEvent: AppEvent2
 
-    open fun reloadData() {
+    open fun loadDataWhenResumse() {
 
     }
 

@@ -32,7 +32,7 @@ class NotificationVM @Inject constructor(
     private val cvRepository: CvRepository,
     private val bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
-    BaseViewModel(app), IVMRefreshStatus, IActionTopBar by ActionTopBarImpl() {
+    BaseViewModel(app),   IActionTopBar by ActionTopBarImpl() {
 
 
 }

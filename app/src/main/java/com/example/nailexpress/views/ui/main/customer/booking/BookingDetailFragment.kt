@@ -56,7 +56,7 @@ class BookingDetailVM @Inject constructor(
     private val bookingStaffRepository: RecruitmentBookingStaffRepository,
     private val salonRepository: SalonRepository
 ) :
-    BaseViewModel(app), IVMRefreshStatus, IActionTopBar by ActionTopBarImpl(),ISalonLayout {
+    BaseViewModel(app),   IActionTopBar by ActionTopBarImpl(),ISalonLayout {
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.title_booking_detail))

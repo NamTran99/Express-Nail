@@ -1,10 +1,8 @@
 package com.example.nailexpress.base
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.core.extensions.LifecycleSubscriberExt
 import android.support.core.route.ActivityResultRegister
-import android.support.core.route.RouteDispatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -61,7 +59,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
 
     override fun onResume() {
         super.onResume()
-        viewModel.reloadData()
+        viewModel.loadDataWhenResumse()
     }
 
 

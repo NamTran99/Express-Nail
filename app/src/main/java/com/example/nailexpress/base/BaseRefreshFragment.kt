@@ -2,6 +2,7 @@ package com.example.nailexpress.base
 
 import android.os.Bundle
 import android.support.core.event.WindowStatusOwner
+import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
@@ -19,13 +20,10 @@ abstract class BaseRefreshFragment<T : ViewDataBinding, VM : BaseViewModel>(layo
         mLoadingRefreshView = view.findViewById(R.id.viewRefresh)
         mLoadingRefreshView?.colorSchemeDefault()
         mLoadingRefreshView?.setOnRefreshListener { onRefreshListener() }
-    }
-
-    override fun initView() {
         registerRefreshLoading()
     }
 
-    abstract fun registerRefreshLoading()
+    open fun registerRefreshLoading() {}
 
     fun showLoadingRefresh(it: Boolean?) {
         mLoadingRefreshView?.isRefreshing = it!!

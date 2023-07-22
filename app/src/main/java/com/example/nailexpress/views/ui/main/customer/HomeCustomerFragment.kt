@@ -1,15 +1,20 @@
 package com.example.nailexpress.views.ui.main.customer
 
 import android.app.Application
-import android.support.core.event.LoadingEvent
+import android.support.core.livedata.LoadingLiveData
+import android.util.Log
+import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
-import com.example.nailexpress.base.*
+import com.example.nailexpress.base.ActionTopBarImpl
+import com.example.nailexpress.base.BaseRefreshFragment
+import com.example.nailexpress.base.BaseViewModel
+import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
 import com.example.nailexpress.extension.launch
-import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.CvRepository
+import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.TabChangeCallBack
 import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
@@ -24,8 +29,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeCustomerFragment :
-    BaseFragment<FragmentHomeCustomerBinding, HomeCustomerVM>(layoutId = R.layout.fragment_home_customer) {
-
+    BaseRefreshFragment<FragmentHomeCustomerBinding, HomeCustomerVM>(layoutId = R.layout.fragment_home_customer) {
 
     override val viewModel: HomeCustomerVM by viewModels()
     override fun initView() {
@@ -41,6 +45,16 @@ class HomeCustomerFragment :
             tabLayout.addTab(tab2)
         }
     }
+
+    override fun onRefreshListener() {
+        viewModel.loadDataWhenResumse()
+    }
+
+    override fun registerRefreshLoading() {
+        ViewModelHandleUtils.isLoading.observe(viewLifecycleOwner){
+            showLoadingRefresh(it)
+        }
+    }
 }
 
 @HiltViewModel
@@ -48,22 +62,14 @@ class HomeCustomerVM @Inject constructor(
     app: Application, private val cvRepository: CvRepository, private val
     bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
-    BaseViewModel(app), IVMRefreshStatus, INailStaffAction, IActionTopBar by ActionTopBarImpl(),IBookingCVAction {
+    BaseViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(), IBookingCVAction {
 
     companion object {
         const val TAB_STAFF = 0
         const val TAB_STAFF_UNBOOKED = 1
     }
 
-
-    val adapter = NailStaffAdapter(this).apply {
-        onLoadMoreListener = { nextPage, _ ->
-            loadData(nextPage)
-        }
-    }
-
     val bookingAdapter = BookingCVAdapter(this)
-
     var searchText = ""
     var tabSelect = MutableLiveData(TAB_STAFF)
 
@@ -78,7 +84,7 @@ class HomeCustomerVM @Inject constructor(
             )
         )
     }
-    override val onClickViewDetailBooking: (id: Int) -> Unit=  {
+    override val onClickViewDetailBooking: (id: Int) -> Unit = {
         navigateToDestination(
             HomeCustomerFragmentDirections.actionHomeCustomerFragmentToBookingDetailFragment(
                 it
@@ -99,6 +105,12 @@ class HomeCustomerVM @Inject constructor(
             getListStaffNail(nextPage)
         }
 
+    val adapter = NailStaffAdapter(this).apply {
+        onLoadMoreListener = { nextPage, _ ->
+            loadData(nextPage)
+        }
+    }
+
     override val onSearchTextChange: (String) -> Unit
         get() = {
             searchText = it
@@ -111,7 +123,7 @@ class HomeCustomerVM @Inject constructor(
             loadData(1)
         }
 
-    fun loadData(page: Int) {
+    private fun loadData(page: Int) {
         if (tabSelect.value == TAB_STAFF) {
             getListStaffNail(page, searchText)
         } else {
@@ -120,29 +132,21 @@ class HomeCustomerVM @Inject constructor(
     }
 
     //  Load new
-    override fun reloadData() {
+    override fun loadDataWhenResumse() {
         loadData(1)
     }
 
-    override val refreshLoading: LoadingEvent
-        get() = ViewModelHandleUtils.isLoading
+    private fun getListStaffNail(page: Int = 1, search: String = "") =
+        launch() {
+            cvRepository.getListCv(page = page).onEach {
+                adapter.submit(it, page)
+            }.collect()
+        }
 
-
-    private fun getListStaffNail(page: Int = 1, search: String = "") = launch {
-        cvRepository.getListCv(page = page).onEach {
-            if (page == 1) {
-                adapter.clear()
-            }
-            adapter.submit(it)
-        }.collect()
-    }
-
-    private fun getListCVBooking(page: Int = 1, search: String = "") = launch {
-        bookingStaffRepository.getListBookingStaff(page = page).onEach {
-            if (page == 1) {
-                bookingAdapter.clear()
-            }
-            bookingAdapter.submit(it)
-        }.collect()
-    }
+    private fun getListCVBooking(page: Int = 1, search: String = "") =
+        launch() {
+            bookingStaffRepository.getListBookingStaff(page = page).onEach {
+                bookingAdapter.submit(it, page)
+            }.collect()
+        }
 }

@@ -1,9 +1,6 @@
 package com.example.nailexpress.views.ui.authentication
 
 import android.app.Application
-import android.os.Bundle
-import android.util.Log
-import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,10 +9,9 @@ import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.FragmentLoginBinding
 import com.example.nailexpress.extension.configSpinner
-import com.example.nailexpress.extension.getStringArray
 import com.example.nailexpress.extension.inputTypePhoneUS
 import com.example.nailexpress.extension.launch
-import com.example.nailexpress.models.ui.LoginForm
+import com.example.nailexpress.models.ui.auth.LoginForm
 import com.example.nailexpress.repository.AuthRepository
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel

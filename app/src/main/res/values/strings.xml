@@ -35,7 +35,7 @@
     <string name="error_blank_phone">Hãy điền số điện thoại</string>
     <string name="error_blank_name">Hãy điền tên của bạn</string>
     <string name="error_blank_password">Mật khẩu không được để trống</string>
-    <string name="error_type_pass_not_enough">Mật khẩu phải nhập đủ 10 số</string>
+    <string name="error_type_pass_not_enough">Mật khẩu phải nhập đủ 6 số</string>
     <string name="error_type_phone_not_enough">Số điện thoại phải nhập đủ 10 số</string>
     <string name="register_des_5">Nhập mã gồm 6 chữ số để xác minh</string>
     <string name="auth_otp_loading">Đang xác minh mã OTP của bạn…</string>
