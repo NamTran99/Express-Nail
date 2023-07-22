@@ -60,4 +60,9 @@
     <color name="color_second">#FF662E</color>
     <color name="color_ffd8ca">#FFD8CA</color>
     <color name="hffd9ca">#ffd9ca</color>
+    <color name="gray_d5d5d5">#d5d5d5</color>
+
+    <color name="blue_2c7eed">#2C7EED</color>
+    <color name="gray_f7f7f7">#f7f7f7</color>
+    <color name="gray_818181">#818181</color>
 </resources>

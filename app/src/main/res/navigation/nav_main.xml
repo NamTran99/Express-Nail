@@ -212,6 +212,11 @@
             android:id="@+id/action_global_authGraph2"
             app:destination="@id/authGraph" />
 
+        <fragment
+            android:id="@+id/detailPostCustomerFragment"
+            android:name="com.example.nailexpress.views.ui.main.customer.detailpost.DetailPostCustomerFragment"
+            android:label="DetailPostCustomerFragment" />
+
     </navigation>
 
 

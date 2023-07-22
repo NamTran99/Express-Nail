@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_5">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgUser"
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_100"
+        android:background="@color/gray_d5d5d5"
+        android:scaleType="centerCrop"
+        android:src="@drawable/placeholder_user_post_detail"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/corner_5_top_left_bottom_right"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_15"
+        android:layout_marginTop="@dimen/size_5"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_12"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@id/imgUser"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="#ID :123456"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/size_14"
+        android:drawablePadding="@dimen/size_5"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_12"
+        android:visibility="gone"
+        app:drawableStartCompat="@drawable/ic_dot_5_orange"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintStart_toEndOf="@id/tvId"
+        app:layout_constraintTop_toTopOf="@id/tvId"
+        tools:text="Mới"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/contentHiring"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_5"
+        android:layout_marginEnd="@dimen/size_14"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_14"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvId"
+        app:layout_constraintTop_toBottomOf="@id/tvId"
+        tools:text="Cần tìm thợ tay chân nước làm việc tại Trung tâm"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/nameSalon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_5"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_14"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="@id/contentHiring"
+        app:layout_constraintTop_toBottomOf="@+id/contentHiring"
+        tools:text="Beauty Nails Salon"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_5"
+        android:drawablePadding="@dimen/size_6"
+        android:textColor="@color/color_7e7e7e"
+        android:textSize="@dimen/text_size_12"
+        android:visibility="gone"
+        app:drawableLeftCompat="@drawable/ic_location_pin"
+        app:layout_constraintStart_toStartOf="@id/nameSalon"
+        app:layout_constraintTop_toBottomOf="@id/nameSalon"
+        tools:text="Cách vị trí của bạn 3 mi"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>

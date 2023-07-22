@@ -3,6 +3,7 @@ package com.example.nailexpress.datasource.remote
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.helper.network.ApiAsync
 import com.example.nailexpress.models.response.BookingDTO
+import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.BookingStaffForm
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 import okhttp3.MultipartBody
@@ -45,4 +46,9 @@ interface RecruitmentBookingStaffApi {
     fun getAllMyRecruitment(
         @Query("page") page: Int, @Query("per_page") perPage: Int = AppConfig.perPage
     ) : ApiAsync<List<RecruitmentForm>>
+
+    @GET("recruitment/{id}")
+    fun getDetailRecruitmentById(
+        @Path("id") id: Int
+    ): ApiAsync<RecruitmentDataDTO>
 }

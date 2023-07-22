@@ -30,13 +30,17 @@ class TextFormatter(private val cxt: Context) {
         return getString(R.string.year_exper, year)
     }
 
-    fun displaySalary(price: Double, unit: Int): String{
+    fun displayWorkersNumber(number: Int): String {
+        return getString(R.string.num_of_workers, number)
+    }
+
+    fun displaySalary(price: Double, unit: Int): String {
         return if (unit in 1..5) {
             val temp = when (unit) {
                 HOUR -> R.string.time_type_1
                 DAY -> R.string.time_type_2
-               WEEK -> R.string.time_type_3
-               MONTH -> R.string.time_type_4
+                WEEK -> R.string.time_type_3
+                MONTH -> R.string.time_type_4
                 YEAR -> R.string.time_type_5
                 else -> R.string.time_type_1
             }

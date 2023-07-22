@@ -13,29 +13,45 @@
 
     <declare-styleable name="LoadingImageView">
         <attr name="custom_enable_remove_image" format="boolean" />
-        <attr name="status" format="enum" >
-            <enum name = "read" value="0"/>
-            <enum name = "upload" value="1"/>
+        <attr name="status" format="enum">
+            <enum name="read" value="0" />
+            <enum name="upload" value="1" />
         </attr>
         <attr name="background" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="CustomEditText">
-        <attr name="android:hint" format="string"/>
-        <attr name="custom_end_text" format="string"/>
-        <attr name="custom_start_text" format="string"/>
-        <attr name="max_number_input" format="float"/>
+        <attr name="android:hint" format="string" />
+        <attr name="custom_end_text" format="string" />
+        <attr name="custom_start_text" format="string" />
+        <attr name="max_number_input" format="float" />
         <attr name="input_type" format="enum">
-            <enum name="number" value="0"/>
-            <enum name="decimal" value="1"/>
+            <enum name="number" value="0" />
+            <enum name="decimal" value="1" />
         </attr>
     </declare-styleable>
 
     <declare-styleable name="CustomEditTextProfile">
-        <attr name="android:hint"/>
-        <attr name="isPhoneType" format="boolean"/>
-        <attr name="image_custom" format="reference"/>
-        <attr name="is_focusable" format="boolean"/>
+        <attr name="android:hint" />
+        <attr name="isPhoneType" format="boolean" />
+        <attr name="image_custom" format="reference" />
+        <attr name="is_focusable" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="TopBarMenu">
+        <attr name="tbm_title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="UserInfoDetailPostView"></declare-styleable>
+
+    <declare-styleable name="StatusOfWorkersView"></declare-styleable>
+
+    <declare-styleable name="JobInfoView"></declare-styleable>
+
+    <declare-styleable name="ItemInfo2LineView">
+        <attr name="iil_icon" format="reference" />
+        <attr name="iil_title" format="string" />
+        <attr name="iil_value" format="string" />
     </declare-styleable>
 
 </resources>

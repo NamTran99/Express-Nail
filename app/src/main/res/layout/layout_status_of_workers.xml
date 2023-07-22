@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvTitleStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/message_status"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvMessageStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitleStatus"
+        tools:text="Còn thời hạn" />
+
+    <TextView
+        android:id="@+id/tvTitleWorkersApplied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:text="@string/list_of_worker_applied"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleStatus" />
+
+    <TextView
+        android:id="@+id/tvWorkersApplied"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvTitleWorkersApplied"
+        tools:text="10 thợ" />
+
+    <TextView
+        android:id="@+id/btnViewAllWorkerApplied"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginHorizontal="@dimen/size_5"
+        android:layout_marginTop="@dimen/size_24"
+        android:background="@drawable/orange_ffd8ca_corner_180"
+        android:gravity="center"
+        android:text="@string/view_all_workers_applied"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitleWorkersApplied" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

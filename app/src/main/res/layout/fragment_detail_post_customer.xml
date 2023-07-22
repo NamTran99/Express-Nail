@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F8F3F0"
+            android:orientation="vertical">
+
+            <com.example.nailexpress.views.widgets.TopBarMenu
+                android:id="@+id/topBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tbm_title="@string/detail_post" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:background="@drawable/bg_white_5">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.example.nailexpress.views.widgets.UserInfoDetailPostView
+                        android:id="@+id/userInfoDetailPostView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_1"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:background="@color/gray" />
+
+                    <com.example.nailexpress.views.widgets.StatusOfWorkersView
+                        android:id="@+id/statusOfWorkerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_18"
+                        android:layout_marginTop="@dimen/size_10" />
+
+                    <com.example.nailexpress.views.widgets.JobInfoView
+                        android:id="@+id/jobInfoView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_18"
+                        android:layout_marginTop="@dimen/size_16" />
+
+                </LinearLayout>
+            </ScrollView>
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

@@ -32,8 +32,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     ActivityResultRegister,
     ConfirmDialogOwner,
     IActionBaseIPLM,
-    AppSettingsOwner
-{
+    AppSettingsOwner {
     val loadingDialog by lazy { LoadingDialog(requireContext(), this) }
     val mWindowManager: WindowManager by lazy { requireActivity().windowManager }
     protected var jobEventReceiver: Job? = null
@@ -61,6 +60,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     override fun onResume() {
         super.onResume()
         viewModel.loadDataWhenResumse()
+        loadData()
     }
 
 
@@ -78,6 +78,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
                     is AppEvent.OnOpenAlertDialog -> showAlertDialog(
                         it.data
                     )
+
                     else -> {}
                 }
             }
@@ -85,6 +86,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     }
 
     abstract fun initView()
+    open fun loadData() {}
 
     open fun navigateToDestination(destination: Int, bundle: Bundle? = null) {
         Log.d(TAG, "navigateToDestination: ")
@@ -121,7 +123,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     private fun onBackPress() {
         findNavController().popBackStack()
     }
-
 
 
     override fun onDestroyView() {

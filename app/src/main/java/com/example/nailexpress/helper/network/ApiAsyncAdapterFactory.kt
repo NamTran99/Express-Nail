@@ -1,6 +1,5 @@
 package com.example.nailexpress.helper.network
 
-import android.util.Log
 import com.example.nailexpress.exception.ApiRequestException
 import com.example.nailexpress.models.api.ApiResponse
 import retrofit2.Call

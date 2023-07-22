@@ -187,4 +187,10 @@
         <item name="android:textSize">@dimen/text_size_12</item>
         <item name="android:popupElevation">0dp</item>
     </style>
+
+    <style name="corner_5_top_left_bottom_right">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopLeft">5dp</item>
+        <item name="cornerSizeBottomRight">5dp</item>
+    </style>
 </resources>
