@@ -22,9 +22,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         NavController.OnDestinationChangedListener { controller, destination, arguments ->
             binding.apply {
                 when (destination.parent?.id) {
-                    R.id.authGraph -> {
-                        lvBottom.hide()
-                    }
                     else -> {
                         when(destination.id){
                             R.id.homeCustomerFragment, R.id.profileFragment -> lvBottom.show()
