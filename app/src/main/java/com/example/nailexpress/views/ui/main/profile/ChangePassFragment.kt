@@ -14,12 +14,13 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.databinding.FragmentChangePassBinding
+import com.example.nailexpress.databinding.FragmentChangePassBindingImpl
 import com.example.nailexpress.models.ui.main.PasswordForm
 
 
 @AndroidEntryPoint
 class ChangePassFragment :
-    BaseFragment<FragmentChangePassBinding, ChangePassVM>(layoutId = R.layout.fragment_change_pass) {
+    BaseFragment<FragmentChangePassBindingImpl, ChangePassVM>(layoutId = R.layout.fragment_change_pass) {
 
     override val viewModel: ChangePassVM by viewModels()
 
@@ -43,7 +44,6 @@ class ChangePassVM @Inject constructor(
         get() = MutableLiveData(getString(R.string.change_pass))
 
     val passForm = MutableLiveData(PasswordForm())
-
 
     fun onClickChangePass() = launch{
         passForm.value?.apply {

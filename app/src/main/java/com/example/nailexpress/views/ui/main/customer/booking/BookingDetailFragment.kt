@@ -31,22 +31,9 @@ class BookingDetailFragment :
     override fun initView() {
         binding.apply {
             action = viewModel
+            viewModel.bookingID= args.bookingID
         }
     }
-
-    override fun onResume() {
-        viewModel.getBookingByID(args.bookingID)
-        super.onResume()
-    }
-
-    override fun onRefreshListener() {
-
-    }
-
-    override fun registerRefreshLoading() {
-    }
-
-
 }
 
 
@@ -56,20 +43,21 @@ class BookingDetailVM @Inject constructor(
     private val bookingStaffRepository: RecruitmentBookingStaffRepository,
     private val salonRepository: SalonRepository
 ) :
-    BaseViewModel(app),   IActionTopBar by ActionTopBarImpl(),ISalonLayout {
+    BaseRefreshViewModel(app), IActionTopBar by ActionTopBarImpl(),ISalonLayout {
 
     override val title: MutableLiveData<String>
         get() = MutableLiveData(getString(R.string.title_booking_detail))
     override val salon = MutableLiveData<Salon>()
     val cv = MutableLiveData<Cv>()
     val booking = MutableLiveData<Booking>()
+    var bookingID = 0
 
     override val imageAdapter: ImageLocalAdapter
         get() = ImageLocalAdapter()
 
     val serviceAdapter = DetailServiceAdapter()
 
-    fun getBookingByID(id: Int)= launch{
+    private fun getBookingByID(id: Int)= launch(loading = refreshLoading){
         bookingStaffRepository.getBookingById(id).onEach {
             getSalonID(it.salon_id)
             serviceAdapter.submit(it.listSkill)
@@ -78,11 +66,15 @@ class BookingDetailVM @Inject constructor(
         }.collect()
     }
 
-    private fun getSalonID(id: Int) = launch {
+    private fun getSalonID(id: Int) = launch(loading = refreshLoading) {
         salonRepository.getSalonByID(id).onEach {
             salon.value = it
             imageAdapter.submit(it.listImage)
         }.collect()
+    }
+
+    override fun onSwipeRefreshData() {
+        getBookingByID(bookingID)
     }
 
 }

@@ -38,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_50"
                 android:layout_marginTop="@dimen/size_10"
+                app:hint="@string/hint_old_pass"
                 app:text = "@={action.passForm.current_password}"
                 android:background="@drawable/bg_white_radius"/>
 
@@ -52,6 +53,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_50"
                 android:layout_marginTop="@dimen/size_10"
+                app:hint="@string/hint_new_pass"
                 app:text = "@={action.passForm.retype_pass}"
                 android:background="@drawable/bg_white_radius"/>
 
@@ -60,13 +62,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_10"
-
                 android:text="@string/retype_pass" />
 
             <com.example.nailexpress.views.widgets.PasswordLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_50"
                 android:layout_marginTop="@dimen/size_10"
+                app:hint="@string/hint_new_pass"
                 app:text = "@={action.passForm.new_password}"
                 android:background="@drawable/bg_white_radius"/>
 

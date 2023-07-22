@@ -1,31 +1,30 @@
 package com.example.nailexpress.base
 
 import android.os.Bundle
-import android.support.core.event.WindowStatusOwner
-import android.util.Log
 import android.view.View
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.ViewModel
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.nailexpress.R
 import com.example.nailexpress.extension.colorSchemeDefault
 
-abstract class BaseRefreshFragment<T : ViewDataBinding, VM : BaseViewModel>(layoutId: Int) : BaseFragment<T,VM>(layoutId) {
-    protected abstract fun onRefreshListener()
+abstract class BaseRefreshFragment<T : ViewDataBinding, VM : BaseRefreshViewModel>(layoutId: Int) : BaseFragment<T,VM>(layoutId) {
     private var mLoadingRefreshView: SwipeRefreshLayout? = null
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         mLoadingRefreshView = view.findViewById(R.id.viewRefresh)
         mLoadingRefreshView?.colorSchemeDefault()
-        mLoadingRefreshView?.setOnRefreshListener { onRefreshListener() }
+        mLoadingRefreshView?.setOnRefreshListener { viewModel.onSwipeRefreshData()}
         registerRefreshLoading()
     }
 
-    open fun registerRefreshLoading() {}
+    open fun registerRefreshLoading() {
+        viewModel.refreshLoading.observe(viewLifecycleOwner){
+            showLoadingRefresh(it)
+        }
+    }
 
-    fun showLoadingRefresh(it: Boolean?) {
+    private fun showLoadingRefresh(it: Boolean?) {
         mLoadingRefreshView?.isRefreshing = it!!
     }
 }

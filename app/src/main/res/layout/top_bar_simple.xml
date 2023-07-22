@@ -12,7 +12,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/size_56"
         android:background="@color/color_second"
         android:gravity="center_vertical"
         android:orientation="horizontal"

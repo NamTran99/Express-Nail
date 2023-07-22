@@ -22,7 +22,6 @@ data class User(
     var state: String = "",
     val state_code: String = "",
     var zipcode: String = "",
-
     @Transient
     val birthday: String = "",
     @Transient

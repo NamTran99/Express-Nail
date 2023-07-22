@@ -7,10 +7,7 @@ import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
-import com.example.nailexpress.base.ActionTopBarImpl
-import com.example.nailexpress.base.BaseRefreshFragment
-import com.example.nailexpress.base.BaseViewModel
-import com.example.nailexpress.base.IActionTopBar
+import com.example.nailexpress.base.*
 import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
@@ -46,15 +43,6 @@ class HomeCustomerFragment :
         }
     }
 
-    override fun onRefreshListener() {
-        viewModel.loadDataWhenResumse()
-    }
-
-    override fun registerRefreshLoading() {
-        ViewModelHandleUtils.isLoading.observe(viewLifecycleOwner){
-            showLoadingRefresh(it)
-        }
-    }
 }
 
 @HiltViewModel
@@ -62,7 +50,7 @@ class HomeCustomerVM @Inject constructor(
     app: Application, private val cvRepository: CvRepository, private val
     bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
-    BaseViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(), IBookingCVAction {
+    BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(), IBookingCVAction {
 
     companion object {
         const val TAB_STAFF = 0
@@ -75,6 +63,8 @@ class HomeCustomerVM @Inject constructor(
 
     init {
         title.value = getString(R.string.home_des_1)
+
+        loadData(1)
     }
 
     override val onClickBookStaff: (Int) -> Unit = { cvID ->
@@ -131,20 +121,19 @@ class HomeCustomerVM @Inject constructor(
         }
     }
 
-    //  Load new
-    override fun loadDataWhenResumse() {
+    override fun onSwipeRefreshData() {
         loadData(1)
     }
 
     private fun getListStaffNail(page: Int = 1, search: String = "") =
-        launch() {
+        launch(loading = refreshLoading) {
             cvRepository.getListCv(page = page).onEach {
                 adapter.submit(it, page)
             }.collect()
         }
 
     private fun getListCVBooking(page: Int = 1, search: String = "") =
-        launch() {
+        launch(loading = refreshLoading) {
             bookingStaffRepository.getListBookingStaff(page = page).onEach {
                 bookingAdapter.submit(it, page)
             }.collect()

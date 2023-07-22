@@ -24,6 +24,8 @@
     <string name="click_here_to_signup"><u>Nhấn vào đây để đăng ký</u></string>
     <string name="forgot_pass">Bạn đã quên mật khẩu ?</string>
     <string name="hint_pass">Nhập vào mật khẩu</string>
+    <string name="hint_old_pass">Nhập vào mật khẩu cũ</string>
+    <string name="hint_new_pass">Nhập vào mật khẩu mới</string>
     <string name="register_des_1">Ban hãy nhập số điện thoại để tiến hành\nđăng ký tài khoản</string>
     <string name="hint_type_phone">Nhập Số Điện Thoại để xác thực</string>
     <string name="register_des_2">Chúng tôi sẽ gửi một mã OTP gồm 6 chữ số đến số điện thoại trên để xác nhận số điện thoại này là của bạn.</string>

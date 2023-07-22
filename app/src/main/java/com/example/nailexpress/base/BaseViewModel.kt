@@ -39,7 +39,6 @@ interface IActionTopBar {
     }
 
     fun initTopBarAction(vm: BaseViewModel)
-
 }
 
 class ActionTopBarImpl() : IActionTopBar {
