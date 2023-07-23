@@ -652,7 +652,7 @@ fun TabLayout.setDivider() {
 
 fun Context.getDimension(@DimenRes id: Int) = resources.getDimension(id).toInt()
 
-fun AppCompatImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) {
+fun ImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) {
     if (link.isNullOrEmpty()) return
     if (link.contains("http")) {
         Picasso.get().load(link)

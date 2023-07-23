@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.customer.HomeCustomerVM" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_60"
+        android:layout_marginHorizontal="@dimen/size_10"
+        android:layout_marginTop="@dimen/size_20"
+        android:background="@drawable/bg_tab_home"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/AppTheme.Large"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@{action.tabSelect == action.TAB_STAFF? @drawable/bg_tab_selected : @drawable/bg_tab_home, default = @drawable/bg_tab_selected}"
+            android:textColor="@{action.tabSelect == action.TAB_STAFF? @color/white : @color/black}"
+            android:onClick="@{()->action.onTabChangeListener(action.TAB_STAFF)}"
+            android:text="@string/home_customer_tab_1" />
+
+        <TextView
+            style="@style/AppTheme.Large"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="@{action.tabSelect == action.TAB_STAFF_UNBOOKED? @drawable/bg_tab_selected : @drawable/bg_tab_home}"
+            android:textColor="@{action.tabSelect == action.TAB_STAFF_UNBOOKED? @color/white : @color/black}"
+            android:onClick="@{()->action.onTabChangeListener(action.TAB_STAFF_UNBOOKED)}"
+            android:text="@string/home_customer_tab_2" />
+
+    </LinearLayout>
+</layout>

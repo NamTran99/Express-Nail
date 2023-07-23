@@ -205,7 +205,13 @@
     <string name="btn_post">Đăng bài tuyển dụng</string>
     <string name="select_staff_service">Chọn dịch vụ thợ biết làm</string>
     <string name="hint_select_service">Nhập/Chọn dịch vụ</string>
+    <string name="lbl_my_post">Bài Đăng Của Tôi</string>
+    <string name="lbl_see_detail">Xem chi tiết</string>
+    <string name="lbl_new">Mới</string>
     <string name="btn_log_out">Đăng xuất</string>
-
-
+    <string name="lbl_distance_from_your_location">Cách vị trí của bạn %s</string>
+    <string name="lbl_there_are_applicants">Đã có người ứng tuyển</string>
+    <string name="lbl_expired">Đã hết thời gian ứng tuyển</string>
+    <string name="lbl_flow_service">Theo dịch vụ</string>
+    <string name="lbl_flow_service_or">Theo dịch vụ hoặc %s</string>
 </resources>

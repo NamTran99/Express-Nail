@@ -8,6 +8,7 @@
         <variable
             name="action"
             type="com.example.nailexpress.views.ui.main.customer.HomeCustomerVM" />
+
     </data>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -15,6 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -24,47 +26,36 @@
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/top_bar_home_search"
-                app:action="@{action}"/>
+                app:action="@{action}" />
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:dividerPadding="12dp"
-                android:layout_marginTop="@dimen/size_20"
-                android:layout_marginHorizontal="@dimen/size_10"
-                app:tabGravity="fill"
-                app:tabIndicator="@drawable/line_indicator"
-                app:tabIndicatorAnimationMode="elastic"
-                app:tabIndicatorHeight="@dimen/size_3"
-                app:tabMode="fixed"
-                app:tabPos="@={action.tabSelect}"
-                app:onTabChangeListener="@{action.onTabChangeListener}"
-                app:tabTextColor="@color/color_primary" />
+            <include
+                android:id="@+id/tabHome"
+                layout="@layout/layout_tab_home"
+                app:action="@{action}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCV"
-                tools:listitem="@layout/item_list_staff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/size_10"
                 android:layout_marginTop="@dimen/size_20"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                app:visibility = "@{action.tabSelect == 0}"
                 android:adapter="@{action.adapter}"
-                android:layout_height="match_parent"/>
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:visibility="@{action.tabSelect == 0}"
+                tools:listitem="@layout/item_list_staff" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvBooking"
-                tools:listitem="@layout/item_list_staff"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginHorizontal="@dimen/size_10"
                 android:layout_marginTop="@dimen/size_20"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                app:visibility = "@{action.tabSelect == 1}"
                 android:adapter="@{action.bookingAdapter}"
-                android:layout_height="match_parent"/>
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:visibility="@{action.tabSelect == 1}"
+                tools:listitem="@layout/item_list_staff" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
