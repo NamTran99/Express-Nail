@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
-import androidx.viewbinding.ViewBinding
 import com.example.nailexpress.app.AppSettingsOwner
 import com.example.nailexpress.datasource.AppEvent2
 import com.example.nailexpress.views.dialog.ConfirmDialogOwner
@@ -45,6 +44,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     @Inject
     lateinit var appEvent: AppEvent2
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -59,7 +59,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
 
     override fun onResume() {
         super.onResume()
-        viewModel.loadDataWhenResumse()
         loadData()
     }
 
@@ -67,6 +66,10 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        appActivity.reloadData = {
+            viewModel.loadDataScreen()
+        }
+        viewModel.loadDataScreen()
         jobEventReceiver = lifecycleScope.launch {
             viewModel.eventReceiver.collectLatest {
                 when (it) {

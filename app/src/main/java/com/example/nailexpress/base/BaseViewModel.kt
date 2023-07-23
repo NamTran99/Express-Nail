@@ -65,7 +65,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     @Inject
     lateinit var appEvent: AppEvent2
 
-    open fun loadDataWhenResumse() {
+    open fun loadDataScreen() {
 
     }
 

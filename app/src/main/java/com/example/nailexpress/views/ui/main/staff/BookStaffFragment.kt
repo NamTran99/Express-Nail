@@ -125,12 +125,11 @@ class BookNowStaffVM @Inject constructor(
         initTopBarAction(this)
     }
 
-    override fun loadDataWhenResumse() {
+    override fun loadDataScreen() {
         getMySalon()
         collectSelectedService()
         getCVByID()
     }
-
     override val salon = MutableLiveData(Salon())
     override val imageAdapter = ImageLocalAdapter(status = AppConfig.Status.READ)
 

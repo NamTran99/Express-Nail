@@ -1,16 +1,13 @@
 package com.example.nailexpress.views.ui.main.staff.dialogs
 
 import android.app.Application
-import android.support.core.event.LoadingEvent
 import android.support.core.livedata.*
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
-import com.bumptech.glide.Glide.init
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseDialogFragment
 import com.example.nailexpress.base.BaseViewModel
@@ -20,7 +17,6 @@ import com.example.nailexpress.extension.showKeyboard
 import com.example.nailexpress.extension.visible
 import com.example.nailexpress.models.ui.main.Skill
 import com.example.nailexpress.repository.GeneralRepository
-import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.staff.adapter.ISelectServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.SelectServiceAdapter
 import dagger.hilt.android.AndroidEntryPoint

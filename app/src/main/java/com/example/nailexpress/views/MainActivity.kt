@@ -17,7 +17,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
 
     override val fragmentContainerView = R.id.fragmentContainerView
 
-
     private val listener =
         NavController.OnDestinationChangedListener { controller, destination, arguments ->
             binding.apply {

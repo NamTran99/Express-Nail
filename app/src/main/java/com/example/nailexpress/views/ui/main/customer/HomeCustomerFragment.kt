@@ -29,7 +29,6 @@ class HomeCustomerFragment :
             action = viewModel
         }
     }
-
 }
 
 @HiltViewModel
@@ -51,6 +50,9 @@ class HomeCustomerVM @Inject constructor(
     init {
         title.value = getString(R.string.home_des_1)
 
+    }
+
+    override fun loadDataScreen() {
         loadData(1)
     }
 

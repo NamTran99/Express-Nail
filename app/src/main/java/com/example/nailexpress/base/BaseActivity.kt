@@ -55,7 +55,7 @@ abstract class BaseActivity<VB : ViewDataBinding>(@LayoutRes val layoutId: Int) 
     lateinit var sharePrefs: SharePrefs
 //    val userLocalSource by inject<UserLocalSource>()
 
-    val reloadData: (() -> Unit) = {}
+    var reloadData: (() -> Unit) = {}
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
