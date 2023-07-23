@@ -32,6 +32,7 @@ class RecruitmentForm(
     var salary_type: Int? = null,
     var price: Double? = null,
     var unit: Int? = null,
+    var id: Int? = null,
 
     //custom
     @Transient

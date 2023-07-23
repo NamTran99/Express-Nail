@@ -36,7 +36,8 @@ class HomeCustomerVM @Inject constructor(
     app: Application, private val cvRepository: CvRepository, private val
     bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
-    BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(), IBookingCVAction {
+    BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
+    IBookingCVAction {
 
     companion object {
         const val TAB_STAFF = 0
@@ -96,7 +97,7 @@ class HomeCustomerVM @Inject constructor(
             loadData(1)
         }
 
-    fun onTabChangeListener(index: Int){
+    fun onTabChangeListener(index: Int) {
         tabSelect.value = index
         loadData(1)
     }

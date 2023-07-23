@@ -145,6 +145,7 @@
                     tools:text="Theo dịch vụ" />
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnDetail"
                     style="@style/AppTheme.Button"
                     android:layout_width="@dimen/size_150"
                     android:layout_height="@dimen/radius_40"

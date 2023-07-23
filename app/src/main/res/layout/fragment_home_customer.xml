@@ -33,6 +33,26 @@
                 layout="@layout/layout_tab_home"
                 app:action="@{action}" />
 
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
+                app:boxBackgroundColor="@color/white"
+                android:background="@drawable/bg_dropdown"
+                app:boxStrokeWidth="@dimen/size_0"
+                android:layout_marginHorizontal="@dimen/size_20"
+                app:boxStrokeColor="@color/white"
+                app:endIconTint="@color/text_content_default"
+                android:layout_width="match_parent"
+                app:endIconDrawable="@drawable/ic_drop_down"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="none"
+                    android:background="@drawable/bg_dropdown"
+                    android:text="English" />
+            </com.google.android.material.textfield.TextInputLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCV"
                 android:layout_width="match_parent"

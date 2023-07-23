@@ -22,6 +22,10 @@ class MyPostAdapter(val action: IMyPostAction): PageRecyclerAdapter<RecruitmentF
             item.image_url?.let {
                 ivLogo.setImageURICustom(it)
             }
+
+            btnDetail.setOnClickListener {
+                item.id?.let { it1 -> action.onClickDetail(it1) }
+            }
         }
     }
 
