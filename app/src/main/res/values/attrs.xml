@@ -63,4 +63,8 @@
         <attr name="iubw_title" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="ShopInfoView">
+        <attr name="si_title" format="string" />
+    </declare-styleable>
+
 </resources>

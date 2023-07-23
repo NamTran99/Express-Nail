@@ -229,6 +229,7 @@
     <string name="job_description">Mô tả về Công việc</string>
     <string name="info_user_book_worker">Thông tin người đặt thợ</string>
     <string name="phone_number">Số điện thoại</string>
+    <string name="shop_info">Thông tin tiệm</string>
 
 
 </resources>

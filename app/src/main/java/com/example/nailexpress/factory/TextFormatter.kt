@@ -103,4 +103,12 @@ class TextFormatter(private val cxt: Context) {
         return cxt.getString(value, *data)
     }
 
+    fun getStatusRecruitment(status: Int): String {
+        return when (status) {
+            1 -> cxt.getString(R.string.lbl_new)
+            2 -> cxt.getString(R.string.lbl_there_are_applicants)
+            else -> cxt.getString(R.string.lbl_expired)
+        }
+    }
+
 }

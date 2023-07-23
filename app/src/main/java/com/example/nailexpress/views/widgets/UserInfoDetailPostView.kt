@@ -49,10 +49,12 @@ class UserInfoDetailPostView @JvmOverloads constructor(
         }
     }
 
-    fun setStatus(status: String?) {
+    fun setStatus(status: Int?) {
         binding.tvStatus.apply {
             isVisible = status != null
-            text = status
+            status?.let {
+                text = TextFormatter(context).getStatusRecruitment(status)
+            }
         }
     }
 

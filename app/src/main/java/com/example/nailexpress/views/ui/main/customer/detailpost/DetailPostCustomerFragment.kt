@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.customer.detailpost
 
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
@@ -39,7 +40,7 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
                 setUserImg(recruitmentDataDTO.image_url)
                 setUserId(recruitmentDataDTO.id)
                 setContent(recruitmentDataDTO.title)
-                setStatus(recruitmentDataDTO.status.toString())
+                setStatus(recruitmentDataDTO.status)
                 setSalonName(recruitmentDataDTO.contact_name)
                 setDistance(recruitmentDataDTO.distance)
             }
@@ -78,6 +79,12 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
             infoUserBookWorkerView.apply {
                 customerName = recruitmentDataDTO.contact_name
                 phoneNumber = recruitmentDataDTO.contact_phone
+            }
+            shopInfoView.apply {
+                isVisible = false
+                shopName
+                phoneNumber
+                location
             }
         }
     }
