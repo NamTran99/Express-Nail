@@ -61,6 +61,7 @@
     <string name="gender_female">Nữ</string>
     <string name="display_distance">Cách vị trí của bạn %s mi</string>
     <string name="year_exper">%d năm</string>
+    <string name="num_of_workers">%d thợ</string>
     <string name="no_xuyen_bang">Không xuyên bang</string>
     <string name="xuyen_bang">Xuyên bang</string>
     <string name="item_staff_des_1">Khu vực làm việc</string>
@@ -214,4 +215,17 @@
     <string name="lbl_expired">Đã hết thời gian ứng tuyển</string>
     <string name="lbl_flow_service">Theo dịch vụ</string>
     <string name="lbl_flow_service_or">Theo dịch vụ hoặc %s</string>
+    <string name="detail_post">Chi tiết bài đăng</string>
+    <string name="message_status">Trạng thái tin</string>
+    <string name="list_of_worker_applied">Danh sách thợ đã ứng tuyển</string>
+    <string name="view_all_workers_applied">Xem tất cả thợ đã ứng tuyển</string>
+    <string name="job_information">Thông tin Việc làm</string>
+    <string name="map">Map</string>
+    <string name="experience">Kinh nghiệm</string>
+    <string name="gender">Giới tính</string>
+    <string name="salary">Mức lương</string>
+    <string name="time">Thời gian</string>
+    <string name="detail_services">Chi tiết dịch vụ</string>
+
+
 </resources>

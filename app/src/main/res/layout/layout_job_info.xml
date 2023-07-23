@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleJobInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/job_information"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutLocation"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_3"
+        android:layout_marginTop="@dimen/size_12"
+        android:background="@drawable/bg_gray_f7f7f7_corner_5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleJobInfo">
+
+        <TextView
+            android:id="@+id/tvLocation"
+            android:layout_width="@dimen/size_0"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/size_9"
+            android:layout_marginStart="@dimen/size_10"
+            android:layout_marginEnd="@dimen/size_8"
+            android:drawablePadding="@dimen/size_7"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_12"
+            app:drawableStartCompat="@drawable/ic_location_pin"
+            app:drawableTint="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvMap"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Địa chỉ : 100 Plainfield Ave Edison NJ 08817" />
+
+        <TextView
+            android:id="@+id/tvMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_12"
+            android:drawablePadding="@dimen/size_4"
+            android:text="@string/map"
+            android:textColor="@color/blue_2c7eed"
+            android:textSize="@dimen/text_size_12"
+            app:drawableEndCompat="@drawable/ic_map"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tvLocation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemExp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_14"
+        app:iil_icon="@drawable/ic_bag_exp"
+        app:iil_title="@string/experience"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutLocation" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemGender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iil_icon="@drawable/ic_user_gender"
+        app:iil_title="@string/gender"
+        app:layout_constraintStart_toStartOf="@id/guidelineMid"
+        app:layout_constraintTop_toTopOf="@+id/itemExp" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemSalary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_18"
+        app:iil_icon="@drawable/ic_salary_dollar"
+        app:iil_title="@string/salary"
+        app:layout_constraintStart_toStartOf="@id/itemExp"
+        app:layout_constraintTop_toBottomOf="@id/itemExp" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iil_icon="@drawable/ic_clock"
+        app:iil_title="@string/time"
+        app:layout_constraintStart_toStartOf="@id/guidelineMid"
+        app:layout_constraintTop_toBottomOf="@id/itemGender"
+        app:layout_constraintTop_toTopOf="@+id/itemSalary" />
+
+    <TextView
+        android:id="@+id/btnDetailServices"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_6"
+        android:layout_marginTop="@dimen/size_9"
+        android:drawablePadding="@dimen/size_5"
+        android:text="@string/detail_services"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_12"
+        app:drawableEndCompat="@drawable/ic_arrow_down"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/itemSalary" />
+</androidx.constraintlayout.widget.ConstraintLayout>
