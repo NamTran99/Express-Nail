@@ -70,6 +70,14 @@
                         android:layout_marginTop="@dimen/size_12"
                         app:jd_title="@string/job_description" />
 
+                    <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
+                        android:id="@+id/infoUserBookWorkerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        app:iubw_title="@string/info_user_book_worker" />
+
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

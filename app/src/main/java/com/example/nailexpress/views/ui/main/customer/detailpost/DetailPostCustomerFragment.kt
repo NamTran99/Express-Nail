@@ -75,6 +75,10 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
             jobDescriptionView.apply {
                 description = recruitmentDataDTO.description
             }
+            infoUserBookWorkerView.apply {
+                customerName = recruitmentDataDTO.contact_name
+                phoneNumber = recruitmentDataDTO.contact_phone
+            }
         }
     }
 
