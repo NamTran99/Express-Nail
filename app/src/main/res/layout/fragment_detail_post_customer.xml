@@ -55,6 +55,43 @@
                         android:layout_marginHorizontal="@dimen/size_18"
                         android:layout_marginTop="@dimen/size_16" />
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_1"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:background="@color/gray" />
+
+                    <com.example.nailexpress.views.widgets.JobDescriptionView
+                        android:id="@+id/jobDescriptionView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_12"
+                        app:jd_title="@string/job_description" />
+
+                    <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
+                        android:id="@+id/infoUserBookWorkerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        app:iubw_title="@string/info_user_book_worker" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_1"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        android:background="@color/gray" />
+
+                    <com.example.nailexpress.views.widgets.ShopInfoView
+                        android:id="@+id/shopInfoView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_12"
+                        android:layout_marginTop="@dimen/size_16"
+                        app:si_title="@string/shop_info" />
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>
