@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.viewbinding.ViewBinding
 import com.example.nailexpress.app.AppSettingsOwner
 import com.example.nailexpress.datasource.AppEvent2
 import com.example.nailexpress.views.dialog.ConfirmDialogOwner

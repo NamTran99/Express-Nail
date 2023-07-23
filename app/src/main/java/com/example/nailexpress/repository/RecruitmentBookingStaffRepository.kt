@@ -33,7 +33,7 @@ class RecruitmentBookingStaffRepository(
         )
     }
 
-    suspend fun bookingStaff(form: BookingStaffForm)= flow {
+    suspend fun bookingStaff(form: BookingStaffForm) = flow {
         emit(
             api.bookStaff(form).await().id
         )
@@ -62,8 +62,12 @@ class RecruitmentBookingStaffRepository(
                 .put("contact_name", form.contact_name)
                 .put("contact_phone", form.contact_phone)
                 .put("salon_id", form.salon_id)
-                .putIf(form.zipcode.isNotEmpty(),"zipcode", form.zipcode)
+                .putIf(form.zipcode.isNotEmpty(), "zipcode", form.zipcode)
                 .buildMultipart(), imageParts
         ).await()
+    }
+
+    suspend fun getAllMyRecruitment(page: Int = 1) = flow {
+        emit(api.getAllMyRecruitment(page).await())
     }
 }

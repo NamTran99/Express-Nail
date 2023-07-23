@@ -100,6 +100,11 @@
                 app:destination="@id/changePassFragment" />
         </fragment>
 
+        <fragment
+            android:id="@+id/navPost"
+            android:name="com.example.nailexpress.views.ui.main.customer.MyPostFragment"
+            android:label="MyPostFragment"
+            tools:layout="@layout/fragment_my_post" />
 
         <fragment
             android:id="@+id/homeCustomerFragment"
@@ -208,7 +213,6 @@
             app:destination="@id/authGraph" />
 
     </navigation>
-
 
 
 </navigation>

@@ -1,9 +1,6 @@
 package com.example.nailexpress.views.ui.main.customer
 
 import android.app.Application
-import android.support.core.livedata.LoadingLiveData
-import android.util.Log
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
@@ -12,8 +9,6 @@ import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
-import com.example.nailexpress.utils.TabChangeCallBack
-import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
 import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
@@ -32,14 +27,6 @@ class HomeCustomerFragment :
     override fun initView() {
         binding.apply {
             action = viewModel
-            val tab1 = tabLayout.newTab().apply {
-                setText(R.string.home_customer_tab_1)
-            }
-            val tab2 = tabLayout.newTab().apply {
-                setText(R.string.home_customer_tab_2)
-            }
-            tabLayout.addTab(tab1)
-            tabLayout.addTab(tab2)
         }
     }
 
@@ -107,11 +94,10 @@ class HomeCustomerVM @Inject constructor(
             loadData(1)
         }
 
-    val onTabChangeListener: TabChangeCallBack
-        get() = {
-            tabSelect.value = it
-            loadData(1)
-        }
+    fun onTabChangeListener(index: Int){
+        tabSelect.value = index
+        loadData(1)
+    }
 
     private fun loadData(page: Int) {
         if (tabSelect.value == TAB_STAFF) {
@@ -139,3 +125,5 @@ class HomeCustomerVM @Inject constructor(
             }.collect()
         }
 }
+
+

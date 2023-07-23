@@ -4,6 +4,7 @@ import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.helper.network.ApiAsync
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.ui.main.BookingStaffForm
+import com.example.nailexpress.models.ui.main.RecruitmentForm
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
@@ -39,4 +40,9 @@ interface RecruitmentBookingStaffApi {
         @PartMap buildMultipart: Map<String, @JvmSuppressWildcards RequestBody>,
         @Part images: MultipartBody.Part?,
     ): ApiAsync<Any>
+
+    @GET("recruitment/my-recruitment")
+    fun getAllMyRecruitment(
+        @Query("page") page: Int, @Query("per_page") perPage: Int = AppConfig.perPage
+    ) : ApiAsync<List<RecruitmentForm>>
 }

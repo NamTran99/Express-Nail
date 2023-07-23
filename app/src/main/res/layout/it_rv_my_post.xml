@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.nailexpress.models.ui.main.RecruitmentForm" />
+
+        <import type="com.example.nailexpress.R"/>
+        <import type="androidx.core.content.ContextCompat"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_15"
+        android:background="@color/white"
+        android:elevation="@dimen/size_0"
+        app:cardCornerRadius="@dimen/size_8"
+        app:cardElevation="@dimen/size_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivLogo"
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_60"
+                android:adjustViewBounds="true"
+                android:scaleType="centerCrop"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius_bottom_right="@dimen/size_8"
+                app:riv_mutate_background="true" />
+
+            <TextView
+                android:id="@+id/tvId"
+                style="@style/AppTheme.Content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_10"
+                android:text='@{"#ID :"+data.salon_id}'
+                android:textColor="@color/color_second"
+                app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                app:layout_constraintTop_toTopOf="@id/ivLogo"
+                tools:text="#ID :123456" />
+
+            <TextView
+                android:id="@+id/tvNew"
+                style="@style/AppTheme.Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_10"
+                android:text="@{data.getRecruitmentStatus()}"
+                android:textColor="@{ContextCompat.getColor(context,data.getColorRecruitmentStatus())}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvId"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:text="Mới" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="@dimen/size_5"
+                android:layout_height="@dimen/size_5"
+                android:layout_marginEnd="@dimen/size_7"
+                android:background="@color/color_second"
+                app:layout_constraintBottom_toBottomOf="@+id/tvNew"
+                app:layout_constraintEnd_toStartOf="@+id/tvNew"
+                app:layout_constraintTop_toTopOf="@+id/tvNew"
+                app:riv_corner_radius="@dimen/size_4"
+                app:riv_mutate_background="true" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_30"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvId"
+                app:layout_constraintTop_toBottomOf="@+id/tvId">
+
+                <TextView
+                    style="@style/AppTheme.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/size_20"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{data.title}"
+                    tools:text="Cần tìm thợ tay chân nước làm việc tại trung tâm..." />
+
+                <TextView
+                    style="@style/AppTheme.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{data.description}"
+                    tools:text="Beauty Nails Salon" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        style="@style/AppTheme.Content"
+                        android:drawablePadding="@dimen/size_7"
+                        android:text="@{data.address}"
+                        app:drawableStartCompat="@drawable/ic_location"
+                        app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                        app:layout_constraintTop_toTopOf="@id/ivLogo"
+                        tools:text="New Jersey" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/size_3"
+                        android:layout_height="@dimen/size_3"
+                        android:background="@color/text_content_default"
+                        app:riv_corner_radius="@dimen/size_4"
+                        android:layout_marginHorizontal="@dimen/size_5"
+                        app:riv_mutate_background="true"/>
+
+                    <TextView
+                        style="@style/AppTheme.Content"
+                        android:drawablePadding="@dimen/size_7"
+                        android:text="@{context.getString(R.string.lbl_distance_from_your_location, data.distanceSafe())}"
+                        app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                        app:layout_constraintTop_toTopOf="@id/ivLogo"
+                        tools:text="Cách vị trí của bạn" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/AppTheme.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="@{data.getSalaryType(context)}"
+                    android:textColor="@color/color_primary"
+                    tools:text="Theo dịch vụ" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/AppTheme.Button"
+                    android:layout_width="@dimen/size_150"
+                    android:layout_height="@dimen/radius_40"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_marginBottom="@dimen/size_20"
+                    android:paddingHorizontal="@dimen/size_20"
+                    android:text="@string/lbl_see_detail"
+                    android:textAllCaps="false"
+                    android:textAppearance="@style/AppTheme.Content"
+                    android:textColor="@color/color_primary"
+                    app:backgroundTint="@color/hffd9ca"
+                    app:cornerRadius="@dimen/size_50" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
