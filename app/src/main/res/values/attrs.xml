@@ -54,4 +54,9 @@
         <attr name="iil_value" format="string" />
     </declare-styleable>
 
+    <declare-styleable name="JobDescriptionView">
+        <attr name="jd_title" format="string" />
+        <attr name="jd_content" format="string" />
+    </declare-styleable>
+
 </resources>

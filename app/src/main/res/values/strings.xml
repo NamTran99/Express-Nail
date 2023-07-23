@@ -226,6 +226,7 @@
     <string name="salary">Mức lương</string>
     <string name="time">Thời gian</string>
     <string name="detail_services">Chi tiết dịch vụ</string>
+    <string name="job_description">Mô tả về Công việc</string>
 
 
 </resources>

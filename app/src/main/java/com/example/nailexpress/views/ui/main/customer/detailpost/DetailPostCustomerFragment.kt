@@ -1,14 +1,8 @@
 package com.example.nailexpress.views.ui.main.customer.detailpost
 
-import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
@@ -21,10 +15,11 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
     R.layout.fragment_detail_post_customer
 ) {
     override val viewModel: DetailPostCustomerVM by viewModels()
+    private val detailPostCustomerFragmentArgs by navArgs<DetailPostCustomerFragmentArgs>()
 
     override fun loadData() {
         super.loadData()
-        viewModel.getRecruitmentById(1)
+        viewModel.getRecruitmentById(detailPostCustomerFragmentArgs.recruimentId)
     }
 
     override fun initView() {
@@ -76,6 +71,9 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
                     title = context.getString(R.string.time),
                     value = recruitmentDataDTO.booking_time
                 )
+            }
+            jobDescriptionView.apply {
+                description = recruitmentDataDTO.description
             }
         }
     }
