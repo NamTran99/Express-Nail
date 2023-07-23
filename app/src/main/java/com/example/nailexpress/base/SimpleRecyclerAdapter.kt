@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
 import com.example.nailexpress.R
+import com.example.nailexpress.views.ui.main.profile.adapters.ISelector
 
 abstract class SimpleRecyclerAdapter<T: Any, VB : ViewDataBinding>() :
     RecyclerAdapter<T,VB>() {
@@ -29,6 +30,10 @@ abstract class SimpleRecyclerAdapter<T: Any, VB : ViewDataBinding>() :
     }
 
     protected abstract fun onBindHolder(item: T, binding: VB, adapterPosition: Int)
+}
+
+abstract class SimpleSelectorRecyclerAdapter<T: ISelector, VB : ViewDataBinding>() :
+    SimpleRecyclerAdapter<T,VB>() {
 }
 
 //abstract class SimpleViewPagerAdapter<T: Any, V : ViewBinding>(protected val view: ViewPager2) :

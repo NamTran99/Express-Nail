@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 abstract class RecyclerAdapter<T : Any, VB : ViewDataBinding> :
     RecyclerView.Adapter<BaseViewHolder<VB>>() {
 
+    val TAG: String = this::class.java.simpleName
+
     private var mRecyclerView: RecyclerView? = null
 
     protected var asynList = AsyncListDiffer(this, DiffCallback<T>())

@@ -54,9 +54,16 @@ object SKillType{
     const val Time = 2
 }
 
+// Recruitment
 object SalaryType{
+    const val Both = 0
     const val Service = 1
     const val Time = 2
-    const val Both = 3
+}
+
+object RecruitmentStatus{
+    const val New = 1
+    const val Have_One = 2 // có người ứng tuyển
+    const val Destroy = 3 // Hủy
 }
 

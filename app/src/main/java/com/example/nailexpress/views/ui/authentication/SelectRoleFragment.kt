@@ -35,7 +35,7 @@ class SelectAppRoleVM @Inject constructor(
 ) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
     init {
         initTopBarAction(this)
-        setTitle(R.string.title_account_profile)
+        setTitle(R.string.change_role)
     }
 
     fun setRole(appRole: AppConfig.AppRole) = launch {

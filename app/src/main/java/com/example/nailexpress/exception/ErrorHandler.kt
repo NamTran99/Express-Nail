@@ -49,7 +49,8 @@ class ErrorHandlerImpl : ErrorHandler {
                         R.string.error_not_connect_network,
                         R.string.retry
                     ).setCallBack {
-                        activity.recreate()
+                        activity.reloadData.invoke()
+//                        activity.recreate()
                     }
                 )
             }

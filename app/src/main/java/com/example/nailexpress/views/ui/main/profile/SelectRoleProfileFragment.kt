@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.profile
 
 import android.app.Application
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
@@ -38,9 +39,9 @@ class SelectAppRoleProfileVM @Inject constructor(
 ) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
 
     val adapter: SelectRoleAdapter by lazy { SelectRoleAdapter() }
-    override val title: MutableLiveData<String>
-        get() = MutableLiveData(getString(R.string.title_create_salon))
     init {
+        initTopBarAction(this)
+        setTitle(R.string.title_create_salon)
         getRole()
     }
 
@@ -58,6 +59,7 @@ class SelectAppRoleProfileVM @Inject constructor(
     )
 
     private fun getRole() = launch {
+        Log.d(TAG, "getRole: ${profileRepository.getRole()}")
         adapter.submit(getListData(profileRepository.getRole()))
     }
 

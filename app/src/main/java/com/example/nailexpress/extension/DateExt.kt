@@ -30,7 +30,7 @@ fun String.toDateWithFormat(
     }
 }
 
-// from local date
+// convert local time to utc
 fun String.toDateUTC(
     formatInput: String = FORMAT_DATE_TIME_API,
     formatOutput: String = FORMAT_DATE_TIME_API
@@ -39,6 +39,19 @@ fun String.toDateUTC(
     val inputFormat = SimpleDateFormat(formatInput, Locale.getDefault())
     val outputFormat = SimpleDateFormat(formatOutput, Locale.getDefault())
     outputFormat.timeZone = TimeZone.getTimeZone("UTC")
+    val dateInput = inputFormat.parse(this)
+    return outputFormat.format(dateInput ?: getDateCurrent(formatOutput))
+}
+
+// convert Utc to local time
+fun String.convertUTCToLocal(
+    formatInput: String = FORMAT_DATE_TIME_API,
+    formatOutput: String = FORMAT_DATE_TIME_API
+): String {
+    if(this.isEmpty()) return ""
+    val inputFormat = SimpleDateFormat(formatInput, Locale.getDefault())
+    val outputFormat = SimpleDateFormat(formatOutput, Locale.getDefault())
+    inputFormat.timeZone = TimeZone.getTimeZone("UTC")
     val dateInput = inputFormat.parse(this)
     return outputFormat.format(dateInput ?: getDateCurrent(formatOutput))
 }

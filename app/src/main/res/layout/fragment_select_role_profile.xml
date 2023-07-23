@@ -50,6 +50,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_20"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                android:orientation="vertical"
+                android:adapter="@{action.adapter}"
                 tools:itemCount="2"
                 tools:listitem="@layout/item_select_role" />
 
