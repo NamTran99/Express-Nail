@@ -50,7 +50,7 @@ class MyPostViewModel @Inject constructor(
     }
 
     override val onClickDetail: (cvID: Int) -> Unit = {
-
+        navigateToDestination(MyPostFragmentDirections.actionNavPostToDetailPostCustomerFragment(it))
     }
 
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->

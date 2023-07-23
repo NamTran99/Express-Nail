@@ -104,7 +104,11 @@
             android:id="@+id/navPost"
             android:name="com.example.nailexpress.views.ui.main.customer.MyPostFragment"
             android:label="MyPostFragment"
-            tools:layout="@layout/fragment_my_post" />
+            tools:layout="@layout/fragment_my_post">
+            <action
+                android:id="@+id/action_navPost_to_detailPostCustomerFragment"
+                app:destination="@id/detailPostCustomerFragment" />
+        </fragment>
 
         <fragment
             android:id="@+id/homeCustomerFragment"
@@ -215,7 +219,13 @@
         <fragment
             android:id="@+id/detailPostCustomerFragment"
             android:name="com.example.nailexpress.views.ui.main.customer.detailpost.DetailPostCustomerFragment"
-            android:label="DetailPostCustomerFragment" />
+            android:label="DetailPostCustomerFragment"
+            tools:layout="@layout/fragment_detail_post_customer">
+            <argument
+                android:name="recruimentId"
+                app:argType="integer"
+                app:nullable="false" />
+        </fragment>
 
     </navigation>
 
