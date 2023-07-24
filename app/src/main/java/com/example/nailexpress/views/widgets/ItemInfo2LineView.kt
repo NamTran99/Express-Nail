@@ -6,8 +6,10 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutItemInfo2LineBinding
+import com.example.nailexpress.extension.setMargins
 
 class ItemInfo2LineView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -45,6 +47,13 @@ class ItemInfo2LineView @JvmOverloads constructor(
             return binding.tvValue.text?.toString()
         }
 
+    var isShowIcon: Boolean = true
+        set(value) {
+            binding.imgIcon.isVisible = value
+            field = value
+        }
+        get() = binding.imgIcon.isVisible
+
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.ItemInfo2LineView, 0, 0).run {
@@ -52,9 +61,13 @@ class ItemInfo2LineView @JvmOverloads constructor(
                 val icon = getDrawable(R.styleable.ItemInfo2LineView_iil_icon)
                 val title = getString(R.styleable.ItemInfo2LineView_iil_title)
                 val value = getString(R.styleable.ItemInfo2LineView_iil_value)
+                val isShowIcon = getBoolean(R.styleable.ItemInfo2LineView_iil_showIcon, true)
                 with(binding) {
+                    imgIcon.isVisible = isShowIcon
                     icon?.let {
-                        imgIcon.setImageDrawable(it)
+                        imgIcon.apply {
+                            setImageDrawable(it)
+                        }
                     }
                     tvTitle.text = title
                     tvValue.text = value
