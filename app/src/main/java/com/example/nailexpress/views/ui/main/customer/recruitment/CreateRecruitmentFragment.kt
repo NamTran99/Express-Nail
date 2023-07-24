@@ -49,7 +49,8 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class CreateRecruitmentFragment :
-    BaseFragment<FragmentCreateRecruitmentBinding, CreateRecruitmentVM>(layoutId = R.layout.fragment_create_recruitment), TimePickerCustomDialogOwner {
+    BaseFragment<FragmentCreateRecruitmentBinding, CreateRecruitmentVM>(layoutId = R.layout.fragment_create_recruitment),
+    TimePickerCustomDialogOwner {
 
     private val selectDateDialog by lazy { DatePickerDialog(appActivity) }
     private val selectServiceDialog: SelectServiceDialog by lazy { SelectServiceDialog() }
@@ -63,7 +64,7 @@ class CreateRecruitmentFragment :
                     it.data?.getParcelableArrayListExtra(FishBun.INTENT_PATH) ?: arrayListOf<Uri>()
 
                 form.refresh {
-                    avatar = (pathImage.getOrNull(0)?: "").toString()
+                    avatar = (pathImage.getOrNull(0) ?: "").toString()
                     binding.imgImage.setImageUrl(avatar)
                 }
             }
@@ -102,12 +103,12 @@ class CreateRecruitmentFragment :
                     }
                 }
             }
-            lvSelectDate.onClick{
+            lvSelectDate.onClick {
                 tvDate.callOnClick()
             }
 
-            lvSelectTime.onClick{
-                timePickerDialog.show(){display, api ->
+            lvSelectTime.onClick {
+                timePickerDialog.show() { display, api ->
                     form.changeValue {
                         time = api
                         tvTime.text = display
@@ -136,7 +137,8 @@ class CreateRecruitmentVM @Inject constructor(
     private val salonRepository: SalonRepository,
     val appEvent2: AppEvent2
 ) :
-    BaseViewModel(app), IActionTopBar by ActionTopBarImpl(),ICreateSalonVM, ICreateRecruitmentVM, IBookServiceAdapter {
+    BaseViewModel(app), IActionTopBar by ActionTopBarImpl(), ICreateSalonVM, ICreateRecruitmentVM,
+    IBookServiceAdapter {
 
 
     override val title = MutableLiveData(getString(R.string.title_create_recruitment))
@@ -180,7 +182,7 @@ class CreateRecruitmentVM @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun onClickBySKill(){
+    fun onClickBySKill() {
         recruitmentForm.refresh {
             if (!isSelectBookingService) {
                 serviceAdapter.submit(listBookSkill)
@@ -204,9 +206,9 @@ class CreateRecruitmentVM @Inject constructor(
                 this.handleAddItem(!isSelectBookingService)
                 saveItem(this)
                 serviceAdapter.addData(this)
-                if(isSelectBookingService){
+                if (isSelectBookingService) {
                     selectService.value = BookServiceForm()
-                }else{
+                } else {
                     bookTime.price = price
                     selectService.value = BookServiceForm(price = price)
                 }
@@ -222,7 +224,7 @@ class CreateRecruitmentVM @Inject constructor(
         showDialogSelectService.refresh()
     }
 
-    fun onPlaceSelected(place: Place) = launch{
+    fun onPlaceSelected(place: Place) = launch {
         val geocoder = Geocoder(getApplication())
         val listAddress = geocoder.getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)
         recruitmentForm.refresh {
@@ -257,13 +259,31 @@ class CreateRecruitmentVM @Inject constructor(
         isShowSalon.value = false
     }
 
-    fun onClickPost() = launch{
+    fun onClickPost() = launch {
         recruitmentForm.value?.let {
             recruitmentRepo.createRecruitment(it)
             showToast(R.string.success_create_recruitment)
             onBackClick()
         }
     }
+
+    fun getBgBtnSelectBooking(isSelect: Boolean, isBooking: Boolean) = ContextCompat.getDrawable(
+        getApplication(), when {
+            isSelect && !isBooking -> R.drawable.bg_btn_stroke_state_1
+            isSelect && isBooking -> R.drawable.bg_btn_stroke_state_2
+            !isSelect && isBooking -> R.drawable.bg_btn_stroke_state_4
+            else -> R.drawable.bg_btn_stroke_state_3
+        }
+    )
+
+    fun getTextBtnSelectBooking(isSelect: Boolean, isBooking: Boolean) = ContextCompat.getColor(
+        getApplication(), when {
+            isSelect && !isBooking -> R.color.white
+            isSelect && isBooking -> R.color.black
+            !isSelect && isBooking -> R.color.black
+            else -> R.color.white
+        }
+    )
 
     private fun getMySalon() = launch {
         salonRepository.getSalonDetail().onEach {
@@ -278,12 +298,12 @@ class CreateRecruitmentVM @Inject constructor(
         }.collect()
     }
 
-    override val onClickRemoveService: (BookServiceForm) -> Unit= {
+    override val onClickRemoveService: (BookServiceForm) -> Unit = {
         recruitmentForm.refresh {
             removeItem(it)
         }
     }
-    override val onVisibleRecycler: (Boolean) -> Unit= {
+    override val onVisibleRecycler: (Boolean) -> Unit = {
         recruitmentForm.refresh {
             isVisibleRecycler = it
         }
