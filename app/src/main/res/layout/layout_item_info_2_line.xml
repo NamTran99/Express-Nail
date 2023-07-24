@@ -24,6 +24,7 @@
         android:textSize="@dimen/text_size_12"
         app:layout_constraintStart_toEndOf="@id/imgIcon"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_goneMarginLeft="@dimen/size_0"
         tools:text="Kinh nghiệm" />
 
     <TextView

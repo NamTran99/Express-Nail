@@ -3,11 +3,13 @@ package com.example.nailexpress.views.ui.main.customer.detailpost
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
 import com.example.nailexpress.models.response.RecruitmentDataDTO
+import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.views.ui.main.customer.detailpost.viewmodel.DetailPostCustomerVM
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,12 +26,21 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
     }
 
     override fun initView() {
-        viewModel.data.observe(viewLifecycleOwner) {
+        viewModel.dataRecruitment.observe(viewLifecycleOwner) {
+            it.salon_id?.let {
+                viewModel.getSalonById(it)
+            }
             setUiData(it)
+        }
+
+        viewModel.dataSalon.observe(viewLifecycleOwner) {
+            setSalonUi(it)
         }
         with(binding) {
             topBar.apply {
-                setOnBackPress { }
+                setOnBackPress {
+                    findNavController().popBackStack()
+                }
             }
         }
     }
@@ -85,6 +96,34 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
                 shopName
                 phoneNumber
                 location
+            }
+        }
+    }
+
+    private fun setSalonUi(salon: Salon) {
+        with(binding) {
+            itemInfoSalonActive.apply {
+                iilValue = salon.experience_years_display
+            }
+
+            majorityCustomerView.apply {
+                iilValue = salon.skinColorDisplay
+            }
+
+            workerAccommodation.apply {
+                iilValue = salon.display_have_place
+            }
+
+            shuttleBusWorker.apply {
+                iilValue = salon.display_have_car
+            }
+
+            salonDescriptionView.apply {
+                description = salon.description
+            }
+
+            salonPictureView.apply {
+                setListPicture(salon.listImage)
             }
         }
     }

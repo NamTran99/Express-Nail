@@ -50,6 +50,7 @@
 
     <declare-styleable name="ItemInfo2LineView">
         <attr name="iil_icon" format="reference" />
+        <attr name="iil_showIcon" format="boolean" />
         <attr name="iil_title" format="string" />
         <attr name="iil_value" format="string" />
     </declare-styleable>
@@ -65,6 +66,15 @@
 
     <declare-styleable name="ShopInfoView">
         <attr name="si_title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="SalonDescriptionView">
+        <attr name="sd_title" format="string" />
+        <attr name="sd_description" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="SalonPictureView">
+        <attr name="sp_title" format="string" />
     </declare-styleable>
 
 </resources>

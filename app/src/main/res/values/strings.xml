@@ -230,6 +230,11 @@
     <string name="info_user_book_worker">Thông tin người đặt thợ</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="shop_info">Thông tin tiệm</string>
+    <string name="salon_was_active_in">Salon đã hoạt động trong</string>
+    <string name="the_majority_of_customers_are_ethnic_minorities">Khách tiệm đa số thuộc sắc dân</string>
+    <string name="worker_accommodation">Chỗ ở cho thợ</string>
+    <string name="shuttle_bus_to_work">Xe đưa đón thợ đi làm</string>
+    <string name="salon_description">Mô tả về salon</string>
 
 
 </resources>
