@@ -2,171 +2,166 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#F8F3F0"
+        android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.example.nailexpress.views.widgets.TopBarMenu
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#F8F3F0"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tbm_title="@string/detail_post" />
 
-            <com.example.nailexpress.views.widgets.TopBarMenu
-                android:id="@+id/topBar"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_150"
+            android:background="@color/color_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_24"
+            android:background="@drawable/bg_white_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:tbm_title="@string/detail_post" />
+                android:orientation="vertical">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_150"
-                android:background="@color/color_second"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topBar" />
+                <com.example.nailexpress.views.widgets.UserInfoDetailPostView
+                    android:id="@+id/userInfoDetailPostView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
 
-            <androidx.core.widget.NestedScrollView
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/size_0"
-                android:layout_marginHorizontal="@dimen/size_20"
-                android:layout_marginBottom="@dimen/size_24"
-                android:background="@drawable/bg_white_5"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topBar">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:background="@color/gray" />
 
-                <LinearLayout
+                <com.example.nailexpress.views.widgets.StatusOfWorkersView
+                    android:id="@+id/statusOfWorkerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:layout_marginHorizontal="@dimen/size_18"
+                    android:layout_marginTop="@dimen/size_10" />
 
-                    <com.example.nailexpress.views.widgets.UserInfoDetailPostView
-                        android:id="@+id/userInfoDetailPostView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                <com.example.nailexpress.views.widgets.JobInfoView
+                    android:id="@+id/jobInfoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_18"
+                    android:layout_marginTop="@dimen/size_16" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_1"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_5"
-                        android:background="@color/gray" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:background="@color/gray" />
 
-                    <com.example.nailexpress.views.widgets.StatusOfWorkersView
-                        android:id="@+id/statusOfWorkerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_18"
-                        android:layout_marginTop="@dimen/size_10" />
+                <com.example.nailexpress.views.widgets.JobDescriptionView
+                    android:id="@+id/jobDescriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_12"
+                    app:jd_title="@string/job_description" />
 
-                    <com.example.nailexpress.views.widgets.JobInfoView
-                        android:id="@+id/jobInfoView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_18"
-                        android:layout_marginTop="@dimen/size_16" />
+                <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
+                    android:id="@+id/infoUserBookWorkerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iubw_title="@string/info_user_book_worker" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_1"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_5"
-                        android:background="@color/gray" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:background="@color/gray" />
 
-                    <com.example.nailexpress.views.widgets.JobDescriptionView
-                        android:id="@+id/jobDescriptionView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_12"
-                        app:jd_title="@string/job_description" />
+                <com.example.nailexpress.views.widgets.ShopInfoView
+                    android:id="@+id/shopInfoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:si_title="@string/shop_info" />
 
-                    <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
-                        android:id="@+id/infoUserBookWorkerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:iubw_title="@string/info_user_book_worker" />
+                <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                    android:id="@+id/itemInfoSalonActive"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_14"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iil_showIcon="false"
+                    app:iil_title="@string/salon_was_active_in" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/size_1"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_16"
-                        android:background="@color/gray" />
+                <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                    android:id="@+id/majorityCustomerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_14"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iil_showIcon="false"
+                    app:iil_title="@string/the_majority_of_customers_are_ethnic_minorities" />
 
-                    <com.example.nailexpress.views.widgets.ShopInfoView
-                        android:id="@+id/shopInfoView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_12"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:si_title="@string/shop_info" />
+                <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                    android:id="@+id/workerAccommodation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_14"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iil_showIcon="false"
+                    app:iil_title="@string/worker_accommodation" />
 
-                    <com.example.nailexpress.views.widgets.ItemInfo2LineView
-                        android:id="@+id/itemInfoSalonActive"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_14"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:iil_showIcon="false"
-                        app:iil_title="@string/salon_was_active_in" />
+                <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                    android:id="@+id/shuttleBusWorker"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_14"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iil_showIcon="false"
+                    app:iil_title="@string/shuttle_bus_to_work" />
 
-                    <com.example.nailexpress.views.widgets.ItemInfo2LineView
-                        android:id="@+id/majorityCustomerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_14"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:iil_showIcon="false"
-                        app:iil_title="@string/the_majority_of_customers_are_ethnic_minorities" />
+                <com.example.nailexpress.views.widgets.SalonDescriptionView
+                    android:id="@+id/salonDescriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_14"
+                    android:layout_marginTop="@dimen/size_20"
+                    app:sd_title="@string/salon_description" />
 
-                    <com.example.nailexpress.views.widgets.ItemInfo2LineView
-                        android:id="@+id/workerAccommodation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_14"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:iil_showIcon="false"
-                        app:iil_title="@string/worker_accommodation" />
+                <com.example.nailexpress.views.widgets.SalonPictureView
+                    android:id="@+id/salonPictureView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_15"
+                    android:layout_marginTop="@dimen/size_6"
+                    app:sp_title="@string/salon_image" />
 
-                    <com.example.nailexpress.views.widgets.ItemInfo2LineView
-                        android:id="@+id/shuttleBusWorker"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_14"
-                        android:layout_marginTop="@dimen/size_16"
-                        app:iil_showIcon="false"
-                        app:iil_title="@string/shuttle_bus_to_work" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_24" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <com.example.nailexpress.views.widgets.SalonDescriptionView
-                        android:id="@+id/salonDescriptionView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="@dimen/size_14"
-                        android:layout_marginTop="@dimen/size_20"
-                        app:sd_title="@string/salon_description" />
-
-                    <com.example.nailexpress.views.widgets.SalonPictureView
-                        android:id="@+id/salonPictureView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_15"
-                        android:layout_marginTop="@dimen/size_6"
-                        app:sp_title="@string/salon_image" />
-
-                    <View
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/size_24" />
-                </LinearLayout>
-            </androidx.core.widget.NestedScrollView>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 </layout>
