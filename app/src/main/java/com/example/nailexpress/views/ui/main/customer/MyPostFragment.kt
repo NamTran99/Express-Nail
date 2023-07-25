@@ -13,6 +13,7 @@ import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.IMyPostAction
 import com.example.nailexpress.views.ui.main.customer.adapter.MyPostAdapter
+import com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoardDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -50,7 +51,7 @@ class MyPostViewModel @Inject constructor(
     }
 
     override val onClickDetail: (cvID: Int) -> Unit = {
-        navigateToDestination(MyPostFragmentDirections.actionNavPostToDetailPostCustomerFragment(it))
+        navigateToDestination(NavDashBoardDirections.actionNavPostToDetailPostCustomerFragment(it))
     }
 
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->

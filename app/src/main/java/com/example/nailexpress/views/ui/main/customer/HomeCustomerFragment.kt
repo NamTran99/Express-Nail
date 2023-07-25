@@ -13,6 +13,7 @@ import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
 import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
 import com.example.nailexpress.views.ui.main.customer.adapter.NailStaffAdapter
+import com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoardDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -59,14 +60,14 @@ class HomeCustomerVM @Inject constructor(
 
     override val onClickBookStaff: (Int) -> Unit = { cvID ->
         navigateToDestination(
-            HomeCustomerFragmentDirections.actionHomeCustomerFragmentToBookNowStaffFragment(
+            NavDashBoardDirections.actionHomeCustomerFragmentToBookNowStaffFragment(
                 cvID
             )
         )
     }
     override val onClickViewDetailBooking: (id: Int) -> Unit = {
         navigateToDestination(
-            HomeCustomerFragmentDirections.actionHomeCustomerFragmentToBookingDetailFragment(
+            NavDashBoardDirections.actionHomeCustomerFragmentToBookingDetailFragment(
                 it
             )
         )
@@ -74,7 +75,7 @@ class HomeCustomerVM @Inject constructor(
 
     override val onClickViewDetail: (Int) -> Unit = {
         navigateToDestination(
-            HomeCustomerFragmentDirections.actionHomeCustomerFragmentToDetailStaffFragment(
+            NavDashBoardDirections.actionHomeCustomerFragmentToDetailStaffFragment(
                 it
             )
         )
