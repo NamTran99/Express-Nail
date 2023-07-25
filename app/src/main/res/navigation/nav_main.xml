@@ -77,44 +77,13 @@
 
     <navigation
         android:id="@+id/customerGraph"
-        app:startDestination="@id/homeCustomerFragment">
+        app:startDestination="@id/navDashBoard">
 
         <fragment
-            android:id="@+id/selectRoleProfileFragment"
-            android:name="com.example.nailexpress.views.ui.main.profile.SelectRoleProfileFragment"
-            android:label="SelectRoleProfileFragment"
-            tools:layout="@layout/fragment_select_role_profile" />
-        <fragment
-            android:id="@+id/profileFragment"
-            android:name="com.example.nailexpress.views.ui.main.profile.ProfileFragment"
-            android:label="ProfileFragment"
-            tools:layout="@layout/fragment_profile">
-            <action
-                android:id="@+id/action_profileFragment_to_selectRoleProfileFragment"
-                app:destination="@id/selectRoleProfileFragment" />
-            <action
-                android:id="@+id/action_profileFragment_to_accountInforFragment"
-                app:destination="@id/accountInforFragment" />
-            <action
-                android:id="@+id/action_profileFragment_to_changePassFragment"
-                app:destination="@id/changePassFragment" />
-        </fragment>
-
-        <fragment
-            android:id="@+id/navPost"
-            android:name="com.example.nailexpress.views.ui.main.customer.MyPostFragment"
-            android:label="MyPostFragment"
-            tools:layout="@layout/fragment_my_post">
-            <action
-                android:id="@+id/action_navPost_to_detailPostCustomerFragment"
-                app:destination="@id/detailPostCustomerFragment" />
-        </fragment>
-
-        <fragment
-            android:id="@+id/homeCustomerFragment"
-            android:name="com.example.nailexpress.views.ui.main.customer.HomeCustomerFragment"
-            android:label="HomeCustomerFragment"
-            tools:layout="@layout/fragment_home_customer">
+            android:id="@+id/navDashBoard"
+            android:name="com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoard"
+            android:label="NavDashBoard"
+            tools:layout="@layout/nav_dash_board">
             <action
                 android:id="@+id/action_homeCustomerFragment_to_detailStaffFragment"
                 app:destination="@id/detailStaffFragment">
@@ -130,7 +99,26 @@
                 android:id="@+id/action_homeCustomerFragment_to_bookingDetailFragment"
                 app:destination="@id/bookingDetailFragment" />
 
+            <action
+                android:id="@+id/action_navPost_to_detailPostCustomerFragment"
+                app:destination="@id/detailPostCustomerFragment" />
+
+            <action
+                android:id="@+id/action_profileFragment_to_selectRoleProfileFragment"
+                app:destination="@id/selectRoleProfileFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_accountInforFragment"
+                app:destination="@id/accountInforFragment" />
+            <action
+                android:id="@+id/action_profileFragment_to_changePassFragment"
+                app:destination="@id/changePassFragment" />
         </fragment>
+
+        <fragment
+            android:id="@+id/selectRoleProfileFragment"
+            android:name="com.example.nailexpress.views.ui.main.profile.SelectRoleProfileFragment"
+            android:label="SelectRoleProfileFragment"
+            tools:layout="@layout/fragment_select_role_profile" />
 
         <fragment
             android:id="@+id/detailStaffFragment"

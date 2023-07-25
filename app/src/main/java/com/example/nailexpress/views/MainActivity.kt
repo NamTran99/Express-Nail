@@ -17,29 +17,29 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
 
     override val fragmentContainerView = R.id.fragmentContainerView
 
-    private val listener =
-        NavController.OnDestinationChangedListener { controller, destination, arguments ->
-            binding.apply {
-                when (destination.parent?.id) {
-                    R.id.authGraph -> {
-                        lvBottom.hide()
-                    }
-                    else -> {
-                        when (destination.id) {
-                            R.id.homeCustomerFragment, R.id.profileFragment, R.id.navPost -> lvBottom.show()
-                            else -> lvBottom.hide()
-                        }
-                    }
-                }
-            }
-        }
+//    private val listener =
+//        NavController.OnDestinationChangedListener { controller, destination, arguments ->
+//            binding.apply {
+//                when (destination.parent?.id) {
+//                    R.id.authGraph -> {
+//                        lvBottom.hide()
+//                    }
+//                    else -> {
+//                        when (destination.id) {
+//                            R.id.homeCustomerFragment, R.id.profileFragment, R.id.navPost -> lvBottom.show()
+//                            else -> lvBottom.hide()
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding.fabClientCheckIn.onClick {
-            navigateToDestination(R.id.createRecruitmentFragment)
-        }
-        NavigationUI.setupWithNavController(binding.bottomNavigation, navController!!)
+//        binding.fabClientCheckIn.onClick {
+//            navigateToDestination(R.id.createRecruitmentFragment)
+//        }
+//        NavigationUI.setupWithNavController(binding.bottomNavigation, navController!!)
         if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
             navigateToDestination(R.id.action_global_customerGraph)
         }
@@ -47,11 +47,11 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
 
     override fun onResume() {
         super.onResume()
-        navController?.addOnDestinationChangedListener(listener)
+//        navController?.addOnDestinationChangedListener(listener)
     }
 
     override fun onPause() {
         super.onPause()
-        navController?.removeOnDestinationChangedListener(listener)
+//        navController?.removeOnDestinationChangedListener(listener)
     }
 }
