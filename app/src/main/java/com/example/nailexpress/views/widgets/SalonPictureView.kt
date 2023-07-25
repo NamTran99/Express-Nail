@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutSalonPictureViewBinding
@@ -44,7 +45,14 @@ class SalonPictureView @JvmOverloads constructor(
     }
 
     fun setListPicture(list: List<AppImage>?) {
-        salonPictureAdapter.setData(list)
+        if (list.isNullOrEmpty()) {
+            binding.apply {
+                tvTitle.isVisible = false
+                recyclerView.isVisible = false
+            }
+        } else {
+            salonPictureAdapter.setData(list)
+        }
     }
 
     private fun setUpRecyclerView() {

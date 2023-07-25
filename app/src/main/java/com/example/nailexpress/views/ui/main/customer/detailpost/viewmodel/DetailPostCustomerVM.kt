@@ -2,7 +2,7 @@ package com.example.nailexpress.views.ui.main.customer.detailpost.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
-import com.example.nailexpress.base.BaseRefreshViewModel
+import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.Salon
@@ -18,7 +18,7 @@ class DetailPostCustomerVM @Inject constructor(
     application: Application,
     private val recruitmentBookingStaffRepository: RecruitmentBookingStaffRepository,
     private val salonRepository: SalonRepository
-) : BaseRefreshViewModel(application) {
+) : BaseViewModel(application) {
 
     val dataRecruitment = MutableLiveData<RecruitmentDataDTO>()
     val dataSalon = MutableLiveData<Salon>()
@@ -33,8 +33,5 @@ class DetailPostCustomerVM @Inject constructor(
         salonRepository.getSalonByID(id).onEach {
             dataSalon.value = it
         }.collect()
-    }
-
-    override fun onSwipeRefreshData() {
     }
 }

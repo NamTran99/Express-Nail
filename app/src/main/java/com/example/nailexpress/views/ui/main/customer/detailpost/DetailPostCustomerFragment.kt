@@ -6,7 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
-import com.example.nailexpress.base.BaseRefreshFragment
+import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
 import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.Salon
@@ -14,7 +14,7 @@ import com.example.nailexpress.views.ui.main.customer.detailpost.viewmodel.Detai
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustomerBinding, DetailPostCustomerVM>(
+class DetailPostCustomerFragment : BaseFragment<FragmentDetailPostCustomerBinding, DetailPostCustomerVM>(
     R.layout.fragment_detail_post_customer
 ) {
     override val viewModel: DetailPostCustomerVM by viewModels()
@@ -29,6 +29,8 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
         viewModel.dataRecruitment.observe(viewLifecycleOwner) {
             it.salon_id?.let {
                 viewModel.getSalonById(it)
+            } ?: kotlin.run {
+                setSalonUi(null)
             }
             setUiData(it)
         }
@@ -91,39 +93,50 @@ class DetailPostCustomerFragment : BaseRefreshFragment<FragmentDetailPostCustome
                 customerName = recruitmentDataDTO.contact_name
                 phoneNumber = recruitmentDataDTO.contact_phone
             }
-            shopInfoView.apply {
-                isVisible = false
-                shopName
-                phoneNumber
-                location
-            }
         }
     }
 
-    private fun setSalonUi(salon: Salon) {
+    private fun setSalonUi(salon: Salon?) {
         with(binding) {
-            itemInfoSalonActive.apply {
-                iilValue = salon.experience_years_display
-            }
+            if (salon != null) {
+                shopInfoView.apply {
+                    isVisible = salon.name.isNotBlank() && salon.phoneDisplay.isNotBlank() && salon.address.isNotBlank()
+                    shopName = salon.name
+                    phoneNumber = salon.phoneDisplay
+                    location = salon.address
+                }
 
-            majorityCustomerView.apply {
-                iilValue = salon.skinColorDisplay
-            }
+                itemInfoSalonActive.apply {
+                    iilValue = salon.experience_years_display
+                }
 
-            workerAccommodation.apply {
-                iilValue = salon.display_have_place
-            }
+                majorityCustomerView.apply {
+                    iilValue = salon.skinColorDisplay
+                }
 
-            shuttleBusWorker.apply {
-                iilValue = salon.display_have_car
-            }
+                workerAccommodation.apply {
+                    iilValue = salon.display_have_place
+                }
 
-            salonDescriptionView.apply {
-                description = salon.description
-            }
+                shuttleBusWorker.apply {
+                    iilValue = salon.display_have_car
+                }
 
-            salonPictureView.apply {
-                setListPicture(salon.listImage)
+                salonDescriptionView.apply {
+                    description = salon.description
+                }
+
+                salonPictureView.apply {
+                    setListPicture(salon.listImage)
+                }
+            } else {
+                shopInfoView.isVisible = false
+                itemInfoSalonActive.isVisible = false
+                majorityCustomerView.isVisible = false
+                workerAccommodation.isVisible = false
+                shuttleBusWorker.isVisible = false
+                salonDescriptionView.isVisible = false
+                salonPictureView.isVisible = false
             }
         }
     }

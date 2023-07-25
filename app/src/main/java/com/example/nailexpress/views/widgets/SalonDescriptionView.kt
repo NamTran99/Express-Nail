@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutSalonDescriptionViewBinding
 
@@ -25,6 +26,7 @@ class SalonDescriptionView @JvmOverloads constructor(
 
     var description: String? = null
         set(value) {
+            isVisible = value.isNullOrBlank().not()
             value?.let {
                 binding.tvDescription.text = it
             }
