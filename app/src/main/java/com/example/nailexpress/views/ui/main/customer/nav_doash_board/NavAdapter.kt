@@ -1,4 +1,4 @@
-package com.example.nailexpress.views.ui.main.nav_doash_board
+package com.example.nailexpress.views.ui.main.customer.nav_doash_board
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -7,16 +7,10 @@ import com.example.nailexpress.views.ui.main.customer.MyPostFragment
 import com.example.nailexpress.views.ui.main.customer.NotificationFragment
 import com.example.nailexpress.views.ui.main.profile.ProfileFragment
 
-class NavAdapter(fragment : Fragment) : FragmentStateAdapter(fragment) {
+class NavAdapter(fragment : Fragment,val list: List<Fragment>) : FragmentStateAdapter(fragment) {
     override fun getItemCount() = BOTTOM_NAV_COUNT
 
-    override fun createFragment(position: Int) = when(position){
-        INDEX_O -> HomeCustomerFragment()
-        INDEX_1 -> MyPostFragment()
-        INDEX_2 -> NotificationFragment()
-        INDEX_3 -> ProfileFragment()
-        else -> HomeCustomerFragment()
-    }
+    override fun createFragment(position: Int) = list[position]
 
     override fun getItemId(position: Int): Long {
         return super.getItemId(position)

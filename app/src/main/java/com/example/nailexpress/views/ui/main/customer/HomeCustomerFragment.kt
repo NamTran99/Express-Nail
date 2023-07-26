@@ -13,7 +13,7 @@ import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
 import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
 import com.example.nailexpress.views.ui.main.customer.adapter.NailStaffAdapter
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoardDirections
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoardDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
