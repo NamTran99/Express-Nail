@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_gray_f7f7f7_corner_5"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/size_12">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Text12BlackNormal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_10"
+        tools:text="Danh sách dịch vụ" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_12"
+        android:layout_marginTop="@dimen/size_14" />
+</LinearLayout>

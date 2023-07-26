@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutJobInfoBinding
 import com.example.nailexpress.factory.TextFormatter
+import com.example.nailexpress.models.response.SkillDTO
 
 class JobInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -87,6 +88,12 @@ class JobInfoView @JvmOverloads constructor(
     fun setTimeValue(value: String?) {
         if (value != null) {
             binding.itemTime.iilValue = value
+        }
+    }
+
+    fun setListService(list: List<SkillDTO>?) {
+        binding.servicePriceView.apply {
+            setListService(list)
         }
     }
 }

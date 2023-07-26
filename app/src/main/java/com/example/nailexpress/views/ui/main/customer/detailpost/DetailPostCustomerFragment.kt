@@ -85,6 +85,8 @@ class DetailPostCustomerFragment : BaseFragment<FragmentDetailPostCustomerBindin
                     title = context.getString(R.string.time),
                     value = recruitmentDataDTO.booking_time
                 )
+
+                setListService(recruitmentDataDTO.skills)
             }
             jobDescriptionView.apply {
                 description = recruitmentDataDTO.description

@@ -121,4 +121,14 @@
         app:drawableEndCompat="@drawable/ic_arrow_down"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/itemSalary" />
+
+    <com.example.nailexpress.views.widgets.ServicePriceView
+        android:id="@+id/servicePriceView"
+        android:layout_width="@dimen/size_0"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_5"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDetailServices" />
 </androidx.constraintlayout.widget.ConstraintLayout>
