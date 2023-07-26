@@ -15,10 +15,10 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
 
     fun createASkill(skillDTO: SkillDTO): Skill {
         return Skill(
-            name = skillDTO.name.let { it.ifEmpty { skillDTO.custom_skill } },
-            id = skillDTO.id,
+            name = skillDTO.name?.let { it.ifEmpty { skillDTO.custom_skill } }.safe(),
+            id = skillDTO.id.safe(),
             price = skillDTO.price.safe(),
-            price_display = skillDTO.price.formatPrice()
+            price_display = skillDTO.price.safe().formatPrice()
         )
     }
 

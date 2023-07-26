@@ -12,10 +12,10 @@ class GeneralFactory(val textFormatter: TextFormatter) {
 
     private fun createAService(serviceDTO: SkillDTO): Skill {
         return Skill(
-            id = serviceDTO.id,
-            name = serviceDTO.name,
+            id = serviceDTO.id.safe(),
+            name = serviceDTO.name.safe(),
             isSKill = serviceDTO.type.safe() == SKillType.SKill, //NOTE 1
-            price_display = serviceDTO.price.formatPrice()
+            price_display = serviceDTO.price.safe().formatPrice()
         )
     }
 

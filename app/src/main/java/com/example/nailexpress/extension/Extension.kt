@@ -8,14 +8,17 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Build
 import android.util.DisplayMetrics
+import android.util.TypedValue
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.nailexpress.app.AppConfig.REQUEST_CODE_SHARE_APP
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.models.ui.AppImage
+import com.example.nailexpress.views.ui.main.customer.detailpost.adapter.ViewTypeService
 import com.google.gson.Gson
 import java.io.File
+import kotlin.math.roundToInt
 
 
 fun AppCompatActivity.hideStatusBarAndNavigationBar() {
@@ -135,5 +138,20 @@ fun Any.asFragmentActivity() =
 
 
 typealias Callback = (() -> Unit)?
+
+val Number.toPx
+    get() = TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this.toFloat(),
+        Resources.getSystem().displayMetrics
+    ).roundToInt()
+
+fun Double?.toViewTypeService(): ViewTypeService {
+    return when (this) {
+        ViewTypeService.Name.type.toDouble() -> ViewTypeService.Name
+        ViewTypeService.NameAndPrice.type.toDouble() -> ViewTypeService.NameAndPrice
+        else -> ViewTypeService.Name
+    }
+}
 
 
