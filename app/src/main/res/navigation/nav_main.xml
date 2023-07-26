@@ -73,6 +73,12 @@
             app:destination="@id/customerGraph"
             app:popUpTo="@id/authGraph"
             app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_global_staff_graph"
+            app:destination="@id/staffGraph"
+            app:popUpTo="@id/authGraph"
+            app:popUpToInclusive="true" />
     </navigation>
 
     <navigation
@@ -81,7 +87,7 @@
 
         <fragment
             android:id="@+id/navDashBoard"
-            android:name="com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoard"
+            android:name="com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoard"
             android:label="NavDashBoard"
             tools:layout="@layout/nav_dash_board">
             <action
@@ -217,5 +223,15 @@
 
     </navigation>
 
+    <navigation
+        android:id="@+id/staffGraph"
+        app:startDestination="@id/navDashBoardStaff">
+
+        <fragment
+            android:id="@+id/navDashBoardStaff"
+            android:name="com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff"
+            android:label="NavDashBoardStaff"
+            tools:layout="@layout/nav_dash_board" />
+    </navigation>
 
 </navigation>

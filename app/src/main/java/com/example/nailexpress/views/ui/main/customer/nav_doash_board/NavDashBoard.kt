@@ -1,4 +1,4 @@
-package com.example.nailexpress.views.ui.main.nav_doash_board
+package com.example.nailexpress.views.ui.main.customer.nav_doash_board
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -9,13 +9,23 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.NavDashBoardBinding
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavAdapter.Companion.INDEX_1
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavAdapter.Companion.INDEX_2
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavAdapter.Companion.INDEX_3
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavAdapter.Companion.INDEX_O
+import com.example.nailexpress.views.ui.main.customer.HomeCustomerFragment
+import com.example.nailexpress.views.ui.main.customer.MyPostFragment
+import com.example.nailexpress.views.ui.main.customer.NotificationFragment
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_1
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_2
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_3
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_O
+import com.example.nailexpress.views.ui.main.profile.ProfileFragment
 
-class NavDashBoard : Fragment() {
-    private lateinit var binding: NavDashBoardBinding
+open class NavDashBoard : Fragment() {
+    protected lateinit var binding: NavDashBoardBinding
+    open val listItemId = listOf( R.id.homeCustomerFragment,R.id.navPost,R.id.navNoti,R.id.profileFragment)
+
+    open val listItem: List<Fragment> = listOf(
+        HomeCustomerFragment(), MyPostFragment(), NotificationFragment(),
+        ProfileFragment()
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,12 +48,7 @@ class NavDashBoard : Fragment() {
             }
 
             bottomNavigation.setOnItemSelectedListener {
-                vpMain.currentItem = when (it.itemId) {
-                    R.id.homeCustomerFragment -> INDEX_O
-                    R.id.navPost -> INDEX_1
-                    R.id.navNoti -> INDEX_2
-                    else -> INDEX_3
-                }
+                vpMain.currentItem = listItemId.indexOf(it.itemId)
                 true
             }
         }
@@ -55,7 +60,7 @@ class NavDashBoard : Fragment() {
             offscreenPageLimit = NavAdapter.BOTTOM_NAV_COUNT
             isSaveEnabled = true
             if (adapter == null) {
-                adapter = NavAdapter(this@NavDashBoard)
+                adapter = NavAdapter(this@NavDashBoard, listItem)
             }
             isUserInputEnabled = false
         }

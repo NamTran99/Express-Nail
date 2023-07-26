@@ -13,7 +13,7 @@ import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.IMyPostAction
 import com.example.nailexpress.views.ui.main.customer.adapter.MyPostAdapter
-import com.example.nailexpress.views.ui.main.nav_doash_board.NavDashBoardDirections
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoardDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
