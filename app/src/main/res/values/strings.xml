@@ -237,6 +237,7 @@
     <string name="salon_description">Mô tả về salon</string>
     <string name="service_can_do">Dịch vụ biết làm :</string>
     <string name="list_services">Danh sách dịch vụ</string>
+    <string name="salon_information">Thông tin salon</string>
 
 
 </resources>
