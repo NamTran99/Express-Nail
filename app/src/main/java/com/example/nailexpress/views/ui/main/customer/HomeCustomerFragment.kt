@@ -38,7 +38,7 @@ class HomeCustomerVM @Inject constructor(
     bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
     BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
-    IBookingCVAction {
+    IBookingCVAction, IActionTabChange {
 
     companion object {
         const val TAB_STAFF = 0
@@ -98,7 +98,7 @@ class HomeCustomerVM @Inject constructor(
             loadData(1)
         }
 
-    fun onTabChangeListener(index: Int) {
+    override fun onTabChangeListener(index: Int) {
         tabSelect.value = index
         loadData(1)
     }
@@ -128,6 +128,10 @@ class HomeCustomerVM @Inject constructor(
                 bookingAdapter.submit(it, page)
             }.collect()
         }
+}
+
+interface IActionTabChange {
+    fun onTabChangeListener(index: Int)
 }
 
 

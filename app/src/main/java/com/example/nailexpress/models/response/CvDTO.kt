@@ -1,5 +1,7 @@
 package com.example.nailexpress.models.response
 
+import com.example.nailexpress.models.ui.main.RecruitmentForm
+
 data class CvDTO(
     val address: String,
     val avatar_url: String,
@@ -27,4 +29,16 @@ data class CvDTO(
     val work_type: Int,
     val zipcode: String,
     val skills: List<SkillDTO>? = listOf()
-)
+) {
+    fun convertToRecruitmentForm() = RecruitmentForm(
+        id = id,
+        image_url = avatar_url,
+        salon_id = id,
+        recruitment_status = status,
+        title = fullname,
+        description = description,
+        address = address,
+        distance = distance?.toFloat(),
+        salary_type = salary_type
+    )
+}

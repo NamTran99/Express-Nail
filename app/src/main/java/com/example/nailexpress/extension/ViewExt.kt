@@ -823,3 +823,27 @@ fun EditText.seekCursorToLast(): EditText {
     post { setSelection(length()) }
     return this
 }
+
+
+@SuppressLint("ClickableViewAccessibility")
+fun EditText.drawableClickRight(action: () -> Unit) {
+    this.setOnTouchListener { v, event ->
+        this.compoundDrawables.getOrNull(2)?.bounds?.let {
+            if (event.action == MotionEvent.ACTION_UP) {
+                if (event.rawX >= this.right - it.width()
+                ) {
+
+                    action.invoke()
+                    return@setOnTouchListener true
+                }
+            }
+        }
+        false
+    }
+}
+
+fun View.hideKeyboard(v: View) {
+    val inputMethodManager =
+        context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
+}

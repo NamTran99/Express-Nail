@@ -31,7 +31,10 @@
             <include
                 android:id="@+id/tabHome"
                 layout="@layout/layout_tab_home"
-                app:action="@{action}" />
+                app:action="@{action}"
+                app:isTab1="@{action.tabSelect == action.TAB_STAFF}"
+                app:text1="@{@string/home_customer_tab_1}"
+                app:text2="@{@string/home_customer_tab_2}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCV"

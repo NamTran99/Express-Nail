@@ -50,29 +50,22 @@
                 tools:text="#ID :123456" />
 
             <TextView
-                android:id="@+id/tvNew"
                 style="@style/AppTheme.Content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/size_10"
-                android:text="@{data.getRecruitmentStatus()}"
-                android:textColor="@{ContextCompat.getColor(context,data.getColorRecruitmentStatus())}"
+                android:layout_marginStart="@dimen/size_10"
+                android:background="@drawable/bg_tab_selected"
+                android:paddingHorizontal="@dimen/size_5"
+                android:paddingVertical="@dimen/size_2"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_8"
                 app:layout_constraintBottom_toBottomOf="@+id/tvId"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Mới" />
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:layout_width="@dimen/size_5"
-                android:layout_height="@dimen/size_5"
-                android:layout_marginEnd="@dimen/size_7"
-                android:background="@color/color_second"
-                app:layout_constraintBottom_toBottomOf="@+id/tvNew"
-                app:layout_constraintEnd_toStartOf="@+id/tvNew"
-                app:layout_constraintTop_toTopOf="@+id/tvNew"
-                app:riv_corner_radius="@dimen/size_4"
-                app:riv_mutate_background="true" />
+                app:layout_constraintLeft_toRightOf="@+id/tvId"
+                android:text="@string/lbl_my_post"
+                tools:text="bài đăng của tôi" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llGroup"
                 android:layout_width="@dimen/size_0"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/size_30"
@@ -87,6 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/size_20"
                     android:ellipsize="end"
+                    android:layout_marginTop="@dimen/size_5"
                     android:maxLines="2"
                     android:text="@{data.title}"
                     tools:text="Cần tìm thợ tay chân nước làm việc tại trung tâm..." />
@@ -111,9 +105,6 @@
                     <TextView
                         style="@style/AppTheme.Content"
                         android:drawablePadding="@dimen/size_7"
-                        android:ellipsize="end"
-                        android:maxWidth="@dimen/size_300"
-                        android:maxLines="2"
                         android:text="@{data.address}"
                         app:drawableStartCompat="@drawable/ic_location"
                         app:layout_constraintStart_toEndOf="@+id/ivLogo"
@@ -131,8 +122,6 @@
                     <TextView
                         style="@style/AppTheme.Content"
                         android:drawablePadding="@dimen/size_7"
-                        android:ellipsize="end"
-                        android:maxLines="2"
                         android:text="@{context.getString(R.string.lbl_distance_from_your_location, data.distanceSafe())}"
                         app:layout_constraintStart_toEndOf="@+id/ivLogo"
                         app:layout_constraintTop_toTopOf="@id/ivLogo"
@@ -144,26 +133,45 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_5"
+                    android:ellipsize="end"
+                    android:maxLines="2"
                     android:text="@{data.getSalaryType(context)}"
                     android:textColor="@color/color_primary"
                     tools:text="Theo dịch vụ" />
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDetail"
-                    style="@style/AppTheme.Button"
-                    android:layout_width="@dimen/size_150"
-                    android:layout_height="@dimen/radius_40"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:layout_marginBottom="@dimen/size_20"
-                    android:paddingHorizontal="@dimen/size_20"
-                    android:text="@string/lbl_see_detail"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/AppTheme.Content"
-                    android:textColor="@color/color_primary"
-                    app:backgroundTint="@color/hffd9ca"
-                    app:cornerRadius="@dimen/size_50" />
             </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnDetail"
+                style="@style/AppTheme.Button"
+                android:layout_width="@dimen/size_150"
+                android:layout_height="@dimen/radius_40"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/size_20"
+                android:layout_marginBottom="@dimen/size_20"
+                android:paddingHorizontal="@dimen/size_20"
+                android:text="@string/lbl_apply"
+                android:textAllCaps="false"
+                android:textAppearance="@style/AppTheme.Content"
+                android:textColor="@color/color_primary"
+                app:backgroundTint="@color/hffd9ca"
+                app:cornerRadius="@dimen/size_50"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/llGroup"
+                app:layout_constraintTop_toBottomOf="@+id/llGroup" />
+
+            <TextView
+                style="@style/AppTheme.Button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_see_detail"
+                android:textAllCaps="false"
+                android:textColor="@color/color_primary"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/btnDetail"
+                app:layout_constraintLeft_toRightOf="@+id/btnDetail"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btnDetail" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>

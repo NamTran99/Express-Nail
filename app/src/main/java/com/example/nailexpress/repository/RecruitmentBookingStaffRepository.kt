@@ -74,4 +74,8 @@ class RecruitmentBookingStaffRepository(
     suspend fun getRecruitmentById(id: Int) = flow {
         emit(api.getDetailRecruitmentById(id = id).await())
     }
+
+    suspend fun getAllRecruitment(page: Int = 1) = flow {
+        emit(api.getAllRecruitment(page).await())
+    }
 }

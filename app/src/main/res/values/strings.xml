@@ -237,6 +237,8 @@
     <string name="salon_description">Mô tả về salon</string>
     <string name="service_can_do">Dịch vụ biết làm :</string>
     <string name="list_services">Danh sách dịch vụ</string>
-
+    <string name="lbl_list_post">Danh sách bài đăng</string>
+    <string name="lbl_cv_apply">Công việc ứng tuyển</string>
+    <string name="lbl_apply">Ứng tuyển</string>
 
 </resources>
