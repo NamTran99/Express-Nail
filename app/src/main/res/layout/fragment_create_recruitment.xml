@@ -64,12 +64,13 @@
                     android:layout_marginTop="@dimen/size_20"
                     android:text="Tiêu đề thợ" />
 
-                <EditText
-                    style="@style/AppTheme.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="10dp"
-                    android:hint="Nhập yêu cầu tìm kiếm thợ"
-                    android:text="@={action.recruitmentForm.title}" />
+                    <EditText
+                        android:id="@+id/etTitle"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="10dp"
+                        android:hint="Nhập yêu cầu tìm kiếm thợ"
+                        android:text="@={action.recruitmentForm.title}" />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
@@ -349,19 +350,21 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:text="@string/booker_name" />
 
-                <EditText
-                    style="@style/AppTheme.EditText"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:hint="@string/hint_name"
-                    android:text="@={action.recruitmentForm.contact_name}" />
+                    <EditText
+                        android:id="@+id/etCustomerName"
+                        style="@style/AppTheme.EditText"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:hint="@string/hint_name"
+                        android:text="@={action.recruitmentForm.contact_name}" />
 
-                <TextView
-                    style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:text="@string/phone" />
+                    <TextView
+                        android:id="@+id/etCustomerPhone"
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_10"
+                        android:text="@string/phone" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     style="@style/AppTheme.EditText"

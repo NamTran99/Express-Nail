@@ -1,16 +1,15 @@
 package com.example.nailexpress.base
 
-import android.support.core.view.RecyclerAdapter
 import android.support.core.view.BaseViewHolder
+import android.support.core.view.RecyclerAdapter
 import android.support.core.view.dataBindingInflateOf
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
-import com.example.nailexpress.R
 import com.example.nailexpress.views.ui.main.profile.adapters.ISelector
 
-abstract class SimpleRecyclerAdapter<T: Any, VB : ViewDataBinding>() :
-    RecyclerAdapter<T,VB>() {
+abstract class SimpleRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
+    RecyclerAdapter<T, VB>() {
 
     @get:LayoutRes
     protected abstract val layoutId: Int
@@ -32,8 +31,23 @@ abstract class SimpleRecyclerAdapter<T: Any, VB : ViewDataBinding>() :
     protected abstract fun onBindHolder(item: T, binding: VB, adapterPosition: Int)
 }
 
-abstract class SimpleSelectorRecyclerAdapter<T: ISelector, VB : ViewDataBinding>() :
-    SimpleRecyclerAdapter<T,VB>() {
+abstract class SimpleSelectorRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
+    SimpleRecyclerAdapter<T, VB>() {
+
+    fun selectOne(item: T) {
+        mitems.forEachIndexed { index, roleOption ->
+            roleOption as ISelector<*>
+            if (roleOption == item) {
+                roleOption.isCheck = true
+                notifyItemChanged(index)
+            } else {
+                if (roleOption.isCheck) {
+                    roleOption.isCheck = false
+                    notifyItemChanged(index)
+                }
+            }
+        }
+    }
 }
 
 //abstract class SimpleViewPagerAdapter<T: Any, V : ViewBinding>(protected val view: ViewPager2) :

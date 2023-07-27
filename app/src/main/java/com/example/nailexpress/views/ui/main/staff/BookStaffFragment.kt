@@ -242,7 +242,7 @@ class BookNowStaffVM @Inject constructor(
                 showToast(R.string.success_booking_staff)
                 navigateToDestination(
                     BookStaffFragmentDirections.actionBookNowStaffFragmentToBookingDetailFragment(
-                        bookingID = id
+                         bookingID = id
                     )
                 )
             }.collect()

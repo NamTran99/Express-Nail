@@ -33,9 +33,11 @@ class ProfileRepository(
         profileApi.changePassword(passwordForm).await()
     }
 
-    suspend fun selectRole(appRole: AppConfig.AppRole) {
+    // đổi role thành công trả về true
+    suspend fun selectRole(appRole: AppConfig.AppRole) : Boolean{
         profileApi.selectRole(appRole.id).await()
         userDataSource.put(SharePrefKey.APP_ROLE, appRole)
+        return true
     }
 
     suspend fun getProfile()= flow{

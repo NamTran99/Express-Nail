@@ -62,7 +62,7 @@ object SalaryType{
 }
 
 object RecruitmentStatus {
-    const val New = 1
+    const val New = 1 // Mới
     const val Have_One = 2 // có người ứng tuyển
     const val Destroy = 3 // Hủy
 }

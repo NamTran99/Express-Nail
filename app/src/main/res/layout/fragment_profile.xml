@@ -160,7 +160,7 @@
                 app:cornerRadius="@dimen/size_40"
                 android:onClick="@{() -> action.onClickLogOut()}"
                 android:layout_marginTop="@dimen/size_20"
-                android:paddingHorizontal="@dimen/size_50"
+                android:paddingHorizontal="@dimen/size_100"
                 android:text="@string/btn_log_out"/>
         </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -23,7 +23,7 @@
             android:layout_marginTop="@dimen/size_50"
             android:text="@string/home_des_1"
             android:textColor="@color/white"
-            android:textSize="@dimen/text_size_14" />
+            android:textSize="@dimen/text_size_18" />
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/search"

@@ -1,6 +1,10 @@
 package com.example.nailexpress.models.ui.main
 
+import com.example.nailexpress.R
 import com.example.nailexpress.models.ui.AppImage
+import com.example.nailexpress.utils.Validator
+import com.example.nailexpress.utils.Validator.checkEmpty
+import com.example.nailexpress.utils.Validator.checkPhone
 
 data class Salon(
     var name: String = "",
@@ -28,7 +32,10 @@ data class Salon(
     var listImage : List<AppImage> = listOf() // for read
     ) {
     fun validate(){
-
+        checkEmpty(name, R.string.error_blank_salon_name, R.id.etSalonName)
+        checkPhone(phoneDisplay, R.id.etSalonPhone)
+        checkEmpty(address, R.string.error_empty_address, R.id.etAddress)
+        checkEmpty(experience_years_display,R.string.error_blank_salon_year, R.id.etYearExist)
     }
 }
 

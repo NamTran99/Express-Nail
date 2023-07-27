@@ -4,9 +4,8 @@ import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import com.google.gson.annotations.SerializedName
 
 interface Form{
-    fun validate(){
-    }
-    fun handleData(){}
+    fun validate()
+    fun handleData()
 }
 
 data class User(

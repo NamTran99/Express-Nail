@@ -9,6 +9,7 @@ import com.example.nailexpress.factory.BookingCvFactory
 import com.example.nailexpress.helper.RequestBodyBuilder
 import com.example.nailexpress.models.ui.main.BookingStaffForm
 import com.example.nailexpress.models.ui.main.RecruitmentForm
+import com.example.nailexpress.models.ui.main.Salon
 import kotlinx.coroutines.flow.flow
 
 class RecruitmentBookingStaffRepository(
@@ -40,8 +41,9 @@ class RecruitmentBookingStaffRepository(
     }
 
 
-    suspend fun createRecruitment(form: RecruitmentForm) {
+    suspend fun createRecruitment(form: RecruitmentForm, salon: Salon, isShowSalon: Boolean) {
         form.validate()
+        salon.validate()
         val imageParts =
             form.avatar.toScaleImagePart("image")
         api.createRecruitment(

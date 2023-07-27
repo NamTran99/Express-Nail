@@ -22,6 +22,7 @@ import android.text.style.CharacterStyle
 import android.text.style.ClickableSpan
 import android.util.AttributeSet
 import android.util.DisplayMetrics
+import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -621,6 +622,7 @@ fun Spinner.configSpinner(
 }
 
 fun Context.getLoadingCircleDrawable(): CircularProgressDrawable {
+    Log.d("TAG", "getLoadingCircleDrawable: NamTD8")
     val circularProgressDrawable = CircularProgressDrawable(this)
     circularProgressDrawable.strokeWidth = 10f
     circularProgressDrawable.centerRadius = 50f
@@ -678,6 +680,7 @@ fun ImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) 
                     getRotateDegree(context, link)
                 )
             )
+            .placeholder(context.getLoadingCircleDrawable())
             .error(R.drawable.ic_logo)
             .into(this, object : Callback {
                 override fun onSuccess() {
@@ -823,3 +826,4 @@ fun EditText.seekCursorToLast(): EditText {
     post { setSelection(length()) }
     return this
 }
+

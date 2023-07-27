@@ -2,7 +2,7 @@ package com.example.nailexpress.models.ui.auth
 
 import android.os.Parcelable
 import com.example.nailexpress.R
-import com.example.nailexpress.exception.resourceError
+import com.example.nailexpress.exception.showError
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import com.example.nailexpress.utils.Validator
 import kotlinx.parcelize.Parcelize
@@ -23,11 +23,11 @@ class VerifyForm(
 
     fun validateRegister(){
         if(fullname.trim().isEmpty()){
-            resourceError(R.string.error_blank_name)
+            showError(errorID = R.string.error_blank_name)
         }
 
         if(password.trim().isEmpty()){
-            resourceError(R.string.error_blank_password)
+            showError(errorID = R.string.error_blank_password)
         }
 
         Validator.checkLength(password,6, R.string.error_type_pass_not_enough)
@@ -35,10 +35,10 @@ class VerifyForm(
 
     fun validatePhone(){
         if(phone.trim().isEmpty()){
-            resourceError(R.string.error_blank_phone)
+            showError(errorID = R.string.error_blank_phone)
         }
         if(phone.trim().convertPhoneToNormalFormat().length < 10){
-            resourceError(R.string.error_type_phone_not_enough)
+            showError(errorID = R.string.error_type_phone_not_enough)
         }
     }
 }

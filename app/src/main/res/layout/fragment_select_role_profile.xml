@@ -61,6 +61,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{() ->action.setRole()}"
                 android:layout_marginTop="@dimen/size_20"
+                app:visibility = "@{action.isChangeRole}"
                 android:text="@string/change_role"
                 app:cornerRadius="@dimen/size_50" />
         </androidx.appcompat.widget.LinearLayoutCompat>

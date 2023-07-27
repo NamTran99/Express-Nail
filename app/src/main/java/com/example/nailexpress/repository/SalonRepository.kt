@@ -40,6 +40,7 @@ class SalonRepository(
                         .put("city", form.city)
                         .put("state", form.state)
                         .put("zipcode", form.zipcode)
+                        .put("create_type", 1)//create salon 1,
                         .buildMultipart(), imageParts
                 ).await()
             )

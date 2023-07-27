@@ -1,5 +1,6 @@
 package com.example.nailexpress.exception
 
+import android.graphics.Rect
 import android.support.core.extensions.block
 import android.view.View
 import android.widget.EditText
@@ -20,26 +21,43 @@ class ErrorHandlerImpl : ErrorHandler {
 
     override fun handle(activity: BaseActivity<*>, error: Throwable) = block(activity) {
         when (error) {
-            is ViewErrorCustom -> {
+//            is ViewErrorCustom -> {
+//                val view =
+//                    activity.findViewById<View>(error.viewId)
+//                if (view is IViewCustomerErrorHandler) {
+//                }
+//                return
+//            }
+            is ViewError -> {
+                if (error.viewId == null) {
+                    activity.toast(error.res)
+                    return@block
+                }
                 val view =
                     activity.findViewById<View>(error.viewId)
-                if (view is IViewCustomerErrorHandler) {
-                    view.handleError(error.res)
+
+                when (view) {
+                    is EditText -> {
+                        view.run {
+                            if (!view.isFocusable) {
+                                val rect = Rect(0, -100, view.width, view.height + 100)
+                                view.requestRectangleOnScreen(rect)
+                                activity.toast(error.res)
+                            }else{
+                                this.error = activity.getString(error.res)
+                                showKeyboard()
+                            }
+                        }
+                    }
+                    is IViewCustomerErrorHandler -> {
+                        view.handleError(error.res)
+                    }
+                    else -> activity.toast(error.res)
                 }
-                return
             }
-            is ViewError -> {
-                val view =
-                    activity.findViewById<EditText>(error.viewId)
-                view.run {
-                    this.error = activity.getString(error.res)
-                    showKeyboard()
-                }
-                return
-            }
-            is ResourceException -> {
-                activity.toast(error.resource)
-            }
+//            is ResourceException -> {
+//                activity.toast(error.resource)
+//            }
             is UnauthorizedException -> {
                 activity.commonDialog.show(DialogData().buildError(error.message.toString()))
             }

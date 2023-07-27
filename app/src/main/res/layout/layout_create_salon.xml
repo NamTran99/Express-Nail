@@ -23,6 +23,7 @@
             android:text="@string/salon_name" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etSalonName"
             style="@style/AppTheme.EditText"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/size_10"
@@ -37,6 +38,7 @@
             android:text="@string/salon_phone" />
 
         <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etSalonPhone"
             style="@style/AppTheme.EditText"
             android:layout_width="match_parent"
             android:layout_marginTop="@dimen/size_10"
@@ -52,7 +54,7 @@
             android:text="@string/salon_address" />
 
         <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/etAddress"
+            android:id="@+id/etSalonAddress"
             style="@style/AppTheme.EditText.MultiLine"
             android:minLines="1"
             android:layout_width="match_parent"
@@ -120,6 +122,8 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:thumb="@drawable/ic_thumb"
+                app:track="@drawable/track_selector_switch"
                 app:value="@={action.salonForm.have_car}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
@@ -139,6 +143,8 @@
             <androidx.appcompat.widget.SwitchCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:thumb="@drawable/ic_thumb"
+                app:track="@drawable/track_selector_switch"
                 app:value="@={action.salonForm.have_place}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>

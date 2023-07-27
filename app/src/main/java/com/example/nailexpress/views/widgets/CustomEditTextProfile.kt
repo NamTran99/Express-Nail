@@ -78,7 +78,6 @@ class CustomEditTextProfile(context: Context, attributeSet: AttributeSet) :
     var text: String = ""
         get() = binding.etContent.text.toString()
         set(value) {
-            Log.d("TAG", "namtd8 day: ${value}")
             field = value
             binding.etContent.setText(value)
         }

@@ -31,7 +31,6 @@ class BookServiceAdapter(val action: IBookServiceAdapter) :
     }
 
     override fun addData(item: BookServiceForm) {
-        Log.d("TAG", "namtd8 size: ${mitems.size} ")
         action.onVisibleRecycler.invoke(true)
         super.addData(item)
     }

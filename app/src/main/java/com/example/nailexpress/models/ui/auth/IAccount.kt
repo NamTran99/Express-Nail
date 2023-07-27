@@ -2,8 +2,7 @@ package com.example.nailexpress.models.ui.auth
 
 import android.os.Parcelable
 import com.example.nailexpress.R
-import com.example.nailexpress.exception.resourceError
-import com.example.nailexpress.exception.viewErrorCustom
+import com.example.nailexpress.exception.showError
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import kotlinx.parcelize.Parcelize
 
@@ -24,11 +23,11 @@ class LoginForm(
 
     fun validate() {
         if (phone.trim().isEmpty()) {
-            resourceError(R.string.error_blank_phone)
+            showError(errorID = R.string.error_blank_phone)
         }
         if (phone.trim().convertPhoneToNormalFormat().length < 10) {
-            resourceError(R.string.error_type_phone_not_enough)
+            showError(errorID = R.string.error_type_phone_not_enough)
         }
-        if (password.isBlank()) viewErrorCustom(R.id.edtPassword, R.string.error_blank_password)
+        if (password.isBlank()) showError(R.id.edtPassword, R.string.error_blank_password)
     }
 }

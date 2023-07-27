@@ -7,7 +7,6 @@ import android.net.Uri
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -27,8 +26,8 @@ import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.main.BookServiceForm
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 import com.example.nailexpress.models.ui.main.Salon
-import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.CvRepository
+import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.SalonRepository
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
@@ -170,8 +169,8 @@ class CreateRecruitmentVM @Inject constructor(
     }
 
     override val onItemGenderSelected: (pos: Int) -> Unit = {
-        salonForm.changeValue {
-            customer_skin_color = it - 1
+        recruitmentForm.changeValue {
+            gender = it - 1
         }
     }
 
@@ -261,9 +260,13 @@ class CreateRecruitmentVM @Inject constructor(
 
     fun onClickPost() = launch {
         recruitmentForm.value?.let {
-            recruitmentRepo.createRecruitment(it)
-            showToast(R.string.success_create_recruitment)
-            onBackClick()
+            salonForm.value?.let { salon ->
+                isShowSalon.value?.let { isShow ->
+                    recruitmentRepo.createRecruitment(it, salon, isShow)
+                    showToast(R.string.success_create_recruitment)
+                    onBackClick()
+                }
+            }
         }
     }
 

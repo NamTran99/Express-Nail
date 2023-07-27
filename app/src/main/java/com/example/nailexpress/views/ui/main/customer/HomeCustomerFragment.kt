@@ -4,7 +4,10 @@ import android.app.Application
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
-import com.example.nailexpress.base.*
+import com.example.nailexpress.base.ActionTopBarImpl
+import com.example.nailexpress.base.BaseRefreshFragment
+import com.example.nailexpress.base.BaseRefreshViewModel
+import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
@@ -34,8 +37,9 @@ class HomeCustomerFragment :
 
 @HiltViewModel
 class HomeCustomerVM @Inject constructor(
-    app: Application, private val cvRepository: CvRepository, private val
-    bookingStaffRepository: RecruitmentBookingStaffRepository
+    app: Application,
+    private val cvRepository: CvRepository,
+    private val bookingStaffRepository: RecruitmentBookingStaffRepository
 ) :
     BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
     IBookingCVAction {
@@ -51,7 +55,6 @@ class HomeCustomerVM @Inject constructor(
 
     init {
         title.value = getString(R.string.home_des_1)
-
     }
 
     override fun loadDataScreen() {

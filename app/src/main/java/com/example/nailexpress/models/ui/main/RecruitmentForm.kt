@@ -6,11 +6,16 @@ import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.toDateUTC
 import com.example.nailexpress.factory.TextFormatter
+import com.example.nailexpress.utils.Validator
+import com.example.nailexpress.utils.Validator.GenderDefault
+import com.example.nailexpress.utils.Validator.checkEmpty
+import com.example.nailexpress.utils.Validator.checkEqual
+import com.example.nailexpress.utils.Validator.checkLength
 
 class RecruitmentForm(
     var avatar: String = "",
     var title: String = "",
-    var gender: Int = 0, //0: fe
+    var gender: Int = GenderDefault, //0: fe
     var experience_years: String = "",
     var description: String = "",
     var address: String = "",
@@ -51,9 +56,19 @@ class RecruitmentForm(
     var isSkillEmpty: Boolean = true,
     @Transient
     var isTimeSkillEmpty: Boolean = true,
+    @Transient
+    var isShowSalon: Boolean = false,
 ) : Form {
     override fun validate() {
         handleData()
+        checkEmpty(title, R.string.error_empty_title, R.id.etTitle)
+        checkEmpty(address, R.string.error_empty_address, R.id.etAddress)
+        checkEqual(gender, GenderDefault, R.string.error_select_gender)
+        checkEmpty(experience_years, R.string.error_empty_experience, R.id.etYearExist)
+        checkEqual(listBookSkill.size +listBookTime.size, 0, R.string.error_skill_empty)
+        checkEmpty(contact_name, R.string.error_empty_customer_name, R.id.etCustomerName)
+        checkEmpty(contact_phone, R.string.error_empty_customer_phone, R.id.etCustomerPhone)
+
     }
 
     fun distanceSafe() = distance?.toString() ?: ""

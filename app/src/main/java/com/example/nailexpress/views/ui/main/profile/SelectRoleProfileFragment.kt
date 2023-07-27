@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide.init
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.ActionTopBarImpl
@@ -13,6 +14,7 @@ import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentSelectRoleProfileBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.ProfileRepository
+import com.example.nailexpress.views.ui.main.profile.adapters.ISelectRoleAdapterCallBack
 import com.example.nailexpress.views.ui.main.profile.adapters.RoleOption
 import com.example.nailexpress.views.ui.main.profile.adapters.SelectRoleAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,31 +38,38 @@ class SelectRoleProfileFragment :
 class SelectAppRoleProfileVM @Inject constructor(
     app: Application,
     private val profileRepository: ProfileRepository
-) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
+) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl(), ISelectRoleAdapterCallBack {
 
-    val adapter: SelectRoleAdapter by lazy { SelectRoleAdapter() }
+    val adapter: SelectRoleAdapter by lazy { SelectRoleAdapter(this) }
+    val isChangeRole = MutableLiveData(false)
+    var currentRole = AppConfig.AppRole.Customer
+
     init {
         initTopBarAction(this)
         setTitle(R.string.title_create_salon)
         getRole()
     }
 
-    private fun getListData(role: AppConfig.AppRole?) = listOf<RoleOption>(
+    override val onItemSelect: (appRole: AppConfig.AppRole) -> Unit = { appRole ->
+        isChangeRole.value = appRole != currentRole
+    }
+
+    private fun getListData(role: AppConfig.AppRole) = listOf<RoleOption>(
         RoleOption(
             R.string.role_staff,
             appRole = AppConfig.AppRole.Staff,
-            isCheck = role == AppConfig.AppRole.Staff
-        ),
+        ).setIsCheck(role),
         RoleOption(
             R.string.role_customer,
             appRole = AppConfig.AppRole.Customer,
-            isCheck = role == AppConfig.AppRole.Customer
-        )
+        ).setIsCheck(role)
     )
 
     private fun getRole() = launch {
-        Log.d(TAG, "getRole: ${profileRepository.getRole()}")
-        adapter.submit(getListData(profileRepository.getRole()))
+        (profileRepository.getRole()?:AppConfig.AppRole.Customer).let {
+            currentRole = it
+            adapter.submit(getListData(it))
+        }
     }
 
     fun setRole() = launch {
