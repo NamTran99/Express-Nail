@@ -828,8 +828,6 @@ fun EditText.seekCursorToLast(): EditText {
 }
 
 
-
-
 @SuppressLint("ClickableViewAccessibility")
 fun EditText.drawableClickRight(action: () -> Unit) {
     this.setOnTouchListener { v, event ->
