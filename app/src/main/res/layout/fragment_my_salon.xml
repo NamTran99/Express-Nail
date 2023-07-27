@@ -11,6 +11,7 @@
         tools:context=".views.ui.main.mysalon.MySalonFragment">
 
         <com.example.nailexpress.views.widgets.TopBarMenu
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tbm_isShowOptionMenu="false"
@@ -25,6 +26,7 @@
             android:background="@drawable/bg_white_5">
 
             <LinearLayout
+                android:id="@+id/layoutContent"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -92,7 +94,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/size_16"
-                    android:layout_marginTop="@dimen/size_4" />
+                    android:layout_marginTop="@dimen/size_4"
+                    app:sp_title="@string/salon_image" />
             </LinearLayout>
 
         </androidx.core.widget.NestedScrollView>
