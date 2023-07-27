@@ -45,10 +45,18 @@ interface RecruitmentBookingStaffApi {
     @GET("recruitment/my-recruitment")
     fun getAllMyRecruitment(
         @Query("page") page: Int, @Query("per_page") perPage: Int = AppConfig.perPage
-    ) : ApiAsync<List<RecruitmentForm>>
+    ): ApiAsync<List<RecruitmentForm>>
 
     @GET("recruitment/{id}")
     fun getDetailRecruitmentById(
         @Path("id") id: Int
     ): ApiAsync<RecruitmentDataDTO>
+
+    @GET("recruitment/list")
+    fun getAllRecruitment(
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = AppConfig.perPage,
+        @Query("latitude") latitude: String = "32.69161982273687",
+        @Query("longitude") longitude: String = "-97.10703660948698"
+    ): ApiAsync<List<RecruitmentForm>>
 }

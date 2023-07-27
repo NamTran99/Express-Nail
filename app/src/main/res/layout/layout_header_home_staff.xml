@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/color_second"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        style="@style/AppTheme.Content"
+        android:layout_width="@dimen/size_17"
+        android:layout_height="@dimen/size_17"
+        android:layout_marginEnd="@dimen/size_27"
+        android:layout_marginBottom="-5dp"
+        android:text="3"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:background="@drawable/bg_yellow_circle_50"
+        app:layout_constraintBottom_toTopOf="@+id/tvTitle"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Widget.AppCompat.TextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_50"
+        android:gravity="center"
+        android:paddingHorizontal="@dimen/size_40"
+        android:text="@string/home_des_1"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_size_14"
+        app:drawableEndCompat="@drawable/ic_noti"
+        app:drawableTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlSymmetry" />
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/edtSearch"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_50"
+        android:layout_marginHorizontal="@dimen/size_15"
+        android:layout_marginTop="@dimen/size_30"
+        android:layout_marginBottom="@dimen/size_20"
+        android:background="@drawable/bg_white_circle_50"
+        android:drawableStart="@drawable/ic_search"
+        android:drawableEnd="@drawable/ic_filter"
+        android:drawablePadding="@dimen/size_10"
+        android:ellipsize="end"
+        android:hint="@string/hint_search_area"
+        android:maxLines="1"
+        android:textSize="@dimen/size_12"
+        android:paddingHorizontal="@dimen/size_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+</androidx.constraintlayout.widget.ConstraintLayout>

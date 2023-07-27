@@ -5,8 +5,19 @@
 
         <variable
             name="action"
-            type="com.example.nailexpress.views.ui.main.customer.HomeCustomerVM" />
+            type="com.example.nailexpress.views.ui.main.customer.IActionTabChange" />
 
+        <variable
+            name="isTab1"
+            type="Boolean" />
+
+        <variable
+            name="text1"
+            type="String" />
+
+        <variable
+            name="text2"
+            type="String" />
     </data>
 
     <LinearLayout
@@ -23,10 +34,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@{action.tabSelect == action.TAB_STAFF? @drawable/bg_tab_selected : @drawable/bg_tab_home, default = @drawable/bg_tab_selected}"
-            android:textColor="@{action.tabSelect == action.TAB_STAFF? @color/white : @color/black}"
-            android:onClick="@{()->action.onTabChangeListener(action.TAB_STAFF)}"
-            android:text="@string/home_customer_tab_1" />
+            android:background="@{isTab1? @drawable/bg_tab_selected : @drawable/bg_tab_home, default = @drawable/bg_tab_selected}"
+            android:textColor="@{isTab1? @color/white : @color/black}"
+            android:onClick="@{()->action.onTabChangeListener(0)}"
+            android:text="@{text1}" />
 
         <TextView
             style="@style/AppTheme.Large"
@@ -34,10 +45,10 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center"
-            android:background="@{action.tabSelect == action.TAB_STAFF_UNBOOKED? @drawable/bg_tab_selected : @drawable/bg_tab_home}"
-            android:textColor="@{action.tabSelect == action.TAB_STAFF_UNBOOKED? @color/white : @color/black}"
-            android:onClick="@{()->action.onTabChangeListener(action.TAB_STAFF_UNBOOKED)}"
-            android:text="@string/home_customer_tab_2" />
+            android:background="@{!isTab1? @drawable/bg_tab_selected : @drawable/bg_tab_home}"
+            android:textColor="@{!isTab1? @color/white : @color/black}"
+            android:onClick="@{()->action.onTabChangeListener(1)}"
+            android:text="@{text2}" />
 
     </LinearLayout>
 </layout>
