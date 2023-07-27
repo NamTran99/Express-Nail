@@ -8,7 +8,7 @@ import com.example.nailexpress.views.ui.main.customer.NotificationFragment
 import com.example.nailexpress.views.ui.main.profile.ProfileFragment
 
 class NavAdapter(fragment : Fragment,val list: List<Fragment>) : FragmentStateAdapter(fragment) {
-    override fun getItemCount() = BOTTOM_NAV_COUNT
+    override fun getItemCount() = list.size
 
     override fun createFragment(position: Int) = list[position]
 

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.nailexpress.views.ui.main.staff.HomeStaffViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/viewRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_bg"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/tbHeader"
+                layout="@layout/layout_header_home_staff" />
+
+            <include
+                android:id="@+id/tabHome"
+                layout="@layout/layout_tab_home"
+                app:action="@{vm}"
+                app:isTab1="@{vm.isTabPost}"
+                app:text1="@{@string/lbl_list_post}"
+                app:text2="@{@string/lbl_cv_apply}" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

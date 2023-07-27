@@ -10,16 +10,19 @@ import com.example.nailexpress.views.ui.main.customer.MyPostFragment
 import com.example.nailexpress.views.ui.main.customer.NotificationFragment
 import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoard
 import com.example.nailexpress.views.ui.main.profile.ProfileFragment
+import com.example.nailexpress.views.ui.main.staff.HomeStaff
 
 class NavDashboardStaff : NavDashBoard() {
     override val listItem: List<Fragment> = listOf(
-        HomeCustomerFragment(), MyPostFragment(), NotificationFragment(),
+        HomeStaff(), MyPostFragment(), NotificationFragment(),
         ProfileFragment()
     )
     override val listItemId: List<Int> = listOf(R.id.homeStaffFragment,R.id.bookingOfMe,R.id.notification,R.id.profile)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.bottomNavigation.menu.clear()
-        binding.bottomNavigation.inflateMenu(R.menu.menu_bottom_staff)
+        with(binding.bottomNavigation){
+            menu.clear()
+            inflateMenu(R.menu.menu_bottom_staff)
+        }
     }
 }

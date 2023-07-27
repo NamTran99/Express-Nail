@@ -22,4 +22,12 @@ interface CvApi {
     fun getCvById(
         @Path("id") cvId: Int,
     ): ApiAsync<CvDTO>
+
+    @GET("cv/list")
+    fun getListCvStaff(
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = AppConfig.perPage,
+        @Query("latitude") latitude: String = "32.69161982273687",
+        @Query("longitude") longitude: String = "-97.10703660948698"
+    ): ApiAsync<List<CvDTO>>
 }

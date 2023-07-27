@@ -31,27 +31,10 @@
             <include
                 android:id="@+id/tabHome"
                 layout="@layout/layout_tab_home"
-                app:action="@{action}" />
-
-<!--            <com.google.android.material.textfield.TextInputLayout-->
-<!--                style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginHorizontal="@dimen/size_20"-->
-<!--                android:background="@drawable/bg_dropdown"-->
-<!--                app:boxBackgroundColor="@color/white"-->
-<!--                app:boxStrokeColor="@color/white"-->
-<!--                app:boxStrokeWidth="@dimen/size_0"-->
-<!--                app:endIconDrawable="@drawable/ic_drop_down"-->
-<!--                app:endIconTint="@color/text_content_default">-->
-
-<!--                <AutoCompleteTextView-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="match_parent"-->
-<!--                    android:background="@drawable/bg_dropdown"-->
-<!--                    android:inputType="none"-->
-<!--                    android:text="English" />-->
-<!--            </com.google.android.material.textfield.TextInputLayout>-->
+                app:action="@{action}"
+                app:isTab1="@{action.tabSelect == action.TAB_STAFF}"
+                app:text1="@{@string/home_customer_tab_1}"
+                app:text2="@{@string/home_customer_tab_2}" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCV"
