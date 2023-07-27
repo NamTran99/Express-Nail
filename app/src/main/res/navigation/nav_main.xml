@@ -118,7 +118,16 @@
             <action
                 android:id="@+id/action_profileFragment_to_changePassFragment"
                 app:destination="@id/changePassFragment" />
+            <action
+                android:id="@+id/action_navDashBoard_to_mySalonFragment"
+                app:destination="@id/mySalonFragment" />
         </fragment>
+
+        <fragment
+            android:id="@+id/mySalonFragment"
+            android:name="com.example.nailexpress.views.ui.main.mysalon.MySalonFragment"
+            android:label="MySalonFragment" />
+
 
         <fragment
             android:id="@+id/selectRoleProfileFragment"

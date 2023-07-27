@@ -60,7 +60,7 @@ class ProfileVM @Inject constructor(
             navigateToDestination(R.id.action_profileFragment_to_accountInforFragment)
         },
         AccountOption(R.string.my_salon) {
-
+            navigateToDestination(R.id.action_navDashBoard_to_mySalonFragment)
         },
         AccountOption(R.string.change_pass) {
             navigateToDestination(R.id.action_profileFragment_to_changePassFragment)
