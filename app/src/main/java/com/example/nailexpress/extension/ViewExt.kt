@@ -833,7 +833,7 @@ fun EditText.drawableClickRight(action: () -> Unit) {
     this.setOnTouchListener { v, event ->
         this.compoundDrawables.getOrNull(2)?.bounds?.let {
             if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= this.right - it.width()
+                if (event.rawX >= this.right - (it.width() + 100)
                 ) {
 
                     action.invoke()

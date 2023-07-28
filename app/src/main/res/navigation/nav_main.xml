@@ -230,6 +230,12 @@
                 app:nullable="false" />
         </fragment>
 
+        <fragment
+            android:id="@+id/fragmentFilterCustomer"
+            android:name="com.example.nailexpress.views.ui.main.customer.filter.FragmentFilterCustomer"
+            android:label="FragmentFilter"
+            tools:layout="@layout/fragment_filter_customer" />
+
     </navigation>
 
     <navigation
@@ -241,6 +247,12 @@
             android:name="com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff"
             android:label="NavDashBoardStaff"
             tools:layout="@layout/nav_dash_board" />
+
+        <fragment
+            android:id="@+id/filterFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.filter.FragmentFilter"
+            android:label="FragmentFilter"
+            tools:layout="@layout/fragment_filter" />
     </navigation>
 
 </navigation>

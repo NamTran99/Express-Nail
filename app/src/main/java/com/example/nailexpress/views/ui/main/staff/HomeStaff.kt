@@ -8,6 +8,7 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
 import com.example.nailexpress.databinding.FragmentHomeStaffBinding
+import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
@@ -35,10 +36,19 @@ class HomeStaff :
     override fun initView() {
         binding.apply {
             vm = viewModel
-            vpMain.adapter = adapter
+            with(vpMain){
+                if(vpMain.adapter == null){
+                    vpMain.adapter = adapter
+                }
+                isSaveEnabled = true
+                isUserInputEnabled = false
 
-            viewModel.isTabPost.observe(viewLifecycleOwner){
-                vpMain.currentItem = if(it) 0 else 1
+                viewModel.isTabPost.observe(viewLifecycleOwner){
+                    vpMain.currentItem = if(it) 0 else 1
+                }
+            }
+            tbHeader.edtSearch.drawableClickRight {
+                navigateToDestination(R.id.filterFragment)
             }
         }
     }

@@ -257,5 +257,14 @@
     <string name="lbl_list_post">Danh sách bài đăng</string>
     <string name="lbl_cv_apply">Công việc ứng tuyển</string>
     <string name="lbl_apply">Ứng tuyển</string>
+    <string name="lbl_filter">Lọc</string>
+    <string name="lbl_choose_gender">Chọn giới tính</string>
+    <string name="lbl_gender">Giới tính</string>
+    <string name="lbl_choose_expresstion">Chọn kinh nghiệm</string>
+    <string name="lbl_expresstion">Kinh nghiệm</string>
+    <string name="lbl_choose_city">Chọn thành phố</string>
+    <string name="lbl_area_work">Khu vực làm việc</string>
+    <string name="lbl_choose_state">Chọn tiểu bang</string>
+    <string name="lbl_close">Lọc</string>
 
 </resources>
