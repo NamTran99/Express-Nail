@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/color_bg"
+    android:paddingHorizontal="@dimen/size_20"
+    android:paddingTop="@dimen/size_30"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/tvClose"
+        style="@style/AppTheme.Large"
+        android:text="@string/lbl_close"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/size_10"
+        app:drawableStartCompat="@drawable/baseline_close_24" />
+
+    <TextView
+        style="@style/AppTheme.Large"
+        android:text="@string/lbl_area_work"
+        android:layout_marginTop="@dimen/size_25"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/size_10" />
+
+    <TextView
+        android:id="@+id/tvState"
+        style="@style/ItemFilter"
+        android:text="@string/lbl_choose_state" />
+
+    <TextView
+        android:id="@+id/tvCity"
+        style="@style/ItemFilter"
+        android:text="@string/lbl_choose_city" />
+
+    <TextView
+        android:id="@+id/tvExpression"
+        style="@style/AppTheme.Large"
+        android:text="@string/lbl_expresstion"
+        android:layout_marginTop="@dimen/size_25"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/size_10" />
+
+    <TextView
+        android:id="@+id/tvExpressionValue"
+        style="@style/ItemFilter"
+        android:text="@string/lbl_choose_expresstion" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        style="@style/AppTheme.Large"
+        android:text="@string/lbl_gender"
+        android:layout_marginTop="@dimen/size_25"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/size_10" />
+
+    <TextView
+        android:id="@+id/tvGenderValue"
+        style="@style/ItemFilter"
+        android:text="@string/lbl_choose_gender" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogin"
+        style="@style/AppTheme.Button.Responsive"
+        android:layout_width="wrap_content"
+        android:minWidth="@dimen/size_150"
+        android:layout_height="@dimen/size_40"
+        android:layout_gravity="center"
+        android:layout_marginVertical="@dimen/size_40"
+        android:paddingHorizontal="@dimen/size_60"
+        android:text="@string/lbl_filter"
+        app:cornerRadius="@dimen/size_60" />
+</LinearLayout>

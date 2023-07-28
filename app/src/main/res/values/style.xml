@@ -206,4 +206,18 @@
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView" >
         <item name="android:textSize">12sp</item>
     </style>
+
+    <style name="ItemFilter" parent="@style/AppTheme.Content">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/size_40</item>
+        <item name="android:background">@drawable/bg_it_fillter</item>
+        <item name="android:layout_marginTop">@dimen/size_15</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingHorizontal">@dimen/size_15</item>
+        <item name="android:drawableRight">@drawable/ic_next</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:focusable">true</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:layout_marginLeft">@dimen/size_7</item>
+    </style>
 </resources>
