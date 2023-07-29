@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/titleJobInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/job_information"
+        android:textColor="@color/color_second"
+        android:textSize="@dimen/text_size_14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineMid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemTopLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_14"
+        app:iil_icon="@drawable/ic_bag_exp"
+        app:iil_title="@string/experience"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleJobInfo" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemTopRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iil_icon="@drawable/ic_user_gender"
+        app:iil_title="@string/gender"
+        app:layout_constraintStart_toStartOf="@id/guidelineMid"
+        app:layout_constraintTop_toTopOf="@+id/itemTopLeft" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemBotLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_18"
+        app:iil_icon="@drawable/ic_salary_dollar"
+        app:iil_title="@string/salary"
+        app:layout_constraintStart_toStartOf="@id/itemTopLeft"
+        app:layout_constraintTop_toBottomOf="@id/itemTopLeft" />
+
+    <com.example.nailexpress.views.widgets.ItemInfo2LineView
+        android:id="@+id/itemBotRight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:iil_icon="@drawable/ic_clock"
+        app:iil_title="@string/time"
+        app:layout_constraintStart_toStartOf="@id/guidelineMid"
+        app:layout_constraintTop_toBottomOf="@id/itemTopRight"
+        app:layout_constraintTop_toTopOf="@+id/itemBotLeft" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

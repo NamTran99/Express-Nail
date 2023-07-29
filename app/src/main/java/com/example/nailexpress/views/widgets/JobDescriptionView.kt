@@ -35,6 +35,10 @@ class JobDescriptionView @JvmOverloads constructor(
             try {
                 val title = getString(R.styleable.JobDescriptionView_jd_title)
                 val content = getString(R.styleable.JobDescriptionView_jd_content)
+                val titleTextColor =
+                    getColor(R.styleable.JobDescriptionView_jd_titleTextColor, context.getColor(R.color.color_second))
+                val contextTextColor =
+                    getColor(R.styleable.JobDescriptionView_jd_contentTextColor, context.getColor(R.color.black_656565))
                 with(binding) {
                     title?.let {
                         tvTitle.text = it
@@ -42,10 +46,20 @@ class JobDescriptionView @JvmOverloads constructor(
                     content?.let {
                         tvContent.text = it
                     }
+                    setTitleTextColor(titleTextColor)
+                    setDescriptionTextColor(contextTextColor)
                 }
             } finally {
                 recycle()
             }
         }
+    }
+
+    fun setTitleTextColor(color: Int) {
+        binding.tvTitle.setTextColor(color)
+    }
+
+    fun setDescriptionTextColor(color: Int) {
+        binding.tvContent.setTextColor(color)
     }
 }

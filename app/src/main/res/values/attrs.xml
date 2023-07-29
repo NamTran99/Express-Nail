@@ -58,7 +58,9 @@
 
     <declare-styleable name="JobDescriptionView">
         <attr name="jd_title" format="string" />
+        <attr name="jd_titleTextColor" format="color" />
         <attr name="jd_content" format="string" />
+        <attr name="jd_contentTextColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="InfoUserBookWorkerView">
@@ -80,6 +82,25 @@
 
     <declare-styleable name="ServicePriceView">
         <attr name="spv_title" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="CvPictureProfile"></declare-styleable>
+
+    <declare-styleable name="WorkerInfoView">
+        <attr name="wiv_title" format="string" />
+        <attr name="wiv_iconTopLeft" format="reference" />
+        <attr name="wiv_iconTopRight" format="reference" />
+        <attr name="wiv_iconBotLeft" format="reference" />
+        <attr name="wiv_iconBotRight" format="reference" />
+        <attr name="wiv_titleTopLeft" format="string" />
+        <attr name="wiv_titleTopRight" format="string" />
+        <attr name="wiv_titleBotLeft" format="string" />
+        <attr name="wiv_titleBotRight" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="ServicesWorkerView">
+        <attr name="sw_title" format="string" />
+        <attr name="sw_itemSpace" format="float" />
     </declare-styleable>
 
     <declare-styleable name="CustomFilterView">
