@@ -6,7 +6,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
+import androidx.fragment.app.FragmentActivity
 import com.example.nailexpress.R
+import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.databinding.LayoutCustomFilterViewBinding
 import com.example.nailexpress.extension.loadAttrs
 
@@ -50,7 +52,10 @@ class CustomFilterView(context: Context, attrs: AttributeSet) : LinearLayout(con
             }
 
             tvClose.setOnClickListener {
-                iAction?.onClickClose()
+                if(context is FragmentActivity){
+                    val activity = context as? BaseActivity<*>
+                    activity?.navController?.popBackStack()
+                }
             }
         }
     }

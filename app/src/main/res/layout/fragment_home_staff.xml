@@ -21,9 +21,11 @@
             android:background="@color/color_bg"
             android:orientation="vertical">
 
-            <include
-                android:id="@+id/tbHeader"
-                layout="@layout/layout_header_home_staff" />
+            <com.example.nailexpress.views.widgets.CustomHeaderHome
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint_search="@string/hint_search_area"/>
 
             <include
                 android:id="@+id/tabHome"

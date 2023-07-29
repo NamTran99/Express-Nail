@@ -8,6 +8,7 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
 import com.example.nailexpress.databinding.FragmentHomeStaffBinding
+import com.example.nailexpress.extension.bind
 import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
@@ -20,6 +21,8 @@ import com.example.nailexpress.views.ui.main.staff.adapter.IPostAction
 import com.example.nailexpress.views.ui.main.staff.adapter.PostAdapter
 import com.example.nailexpress.views.ui.main.staff.home.CvFragment
 import com.example.nailexpress.views.ui.main.staff.home.PostFragment
+import com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff
+import com.example.nailexpress.views.widgets.CustomHeaderHome
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -28,29 +31,50 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeStaff :
-    BaseRefreshFragment<FragmentHomeStaffBinding, HomeStaffViewModel>(R.layout.fragment_home_staff) {
+    BaseRefreshFragment<FragmentHomeStaffBinding, HomeStaffViewModel>(R.layout.fragment_home_staff),
+    CustomHeaderHome.IActionHeader {
     private val listFragment : List<Fragment> = listOf(PostFragment(), CvFragment())
-    private val adapter by lazy { NavAdapter(this, listFragment) }
 
     override val viewModel: HomeStaffViewModel by viewModels()
+
     override fun initView() {
         binding.apply {
             vm = viewModel
             with(vpMain){
                 if(vpMain.adapter == null){
-                    vpMain.adapter = adapter
+                    vpMain.adapter = NavAdapter(this@HomeStaff, listFragment)
                 }
                 isSaveEnabled = true
                 isUserInputEnabled = false
 
                 viewModel.isTabPost.observe(viewLifecycleOwner){
-                    vpMain.currentItem = if(it) 0 else 1
+                    currentItem = if(it) TAB_POST else TAB_CV
                 }
             }
-            tbHeader.edtSearch.drawableClickRight {
-                navigateToDestination(R.id.filterFragment)
+
+            with(header){
+                updateAction(this@HomeStaff)
+                updateTextNotification("3")
             }
         }
+    }
+
+    override fun onTextChange(string: String) {
+
+    }
+
+    override fun onClickNotification() {
+        (parentFragment as? NavDashboardStaff)?.tabNotificationClick()
+    }
+
+    override fun onClickFilter() {
+        navigateToDestination(R.id.filterFragment)
+    }
+
+    companion object{
+        private const val TAB_POST = 0
+        private const val TAB_CV = 1
+        private const val TAB_NOTIFI = 2
     }
 }
 

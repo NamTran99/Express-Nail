@@ -86,4 +86,8 @@
         <attr name="isVisibleExpression" format="boolean"/>
         <attr name="isVisibleGender" format="boolean"/>
     </declare-styleable>
+
+    <declare-styleable name="CustomHeaderHome">
+        <attr name="hint_search" format="string"/>
+    </declare-styleable>
 </resources>

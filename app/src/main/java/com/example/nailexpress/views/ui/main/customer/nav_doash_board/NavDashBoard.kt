@@ -65,4 +65,8 @@ open class NavDashBoard : Fragment() {
             isUserInputEnabled = false
         }
     }
+
+    fun tabNotificationClick(){
+        binding.bottomNavigation.selectedItemId = R.id.navNoti
+    }
 }
