@@ -6,6 +6,7 @@ import android.support.core.flow.stateFlowOf
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
+import android.util.Log
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -196,6 +197,7 @@ class BookNowStaffVM @Inject constructor(
             isHaveSalon.value = it.isNotEmpty()
             if (it.isNotEmpty()) {
                 salon.value = it[0]
+                Log.d(TAG, "getMySalon: ${it[0].isImageEmpty}")
                 form.changeValue {
                     salon_id = it[0].salonID
                 }
@@ -301,8 +303,3 @@ class BookNowStaffVM @Inject constructor(
         filterTextSearch()
     }
 }
-
-data class ABC(val a: String = ""){
-    val b: Int  = 2
-}
-

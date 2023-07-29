@@ -15,8 +15,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-
-
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,20 +22,20 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/salon_name"/>
+                android:text="@string/salon_name" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.name}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -47,21 +45,22 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/salon_address"/>
+                android:text="@string/salon_address" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.address}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -69,21 +68,22 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/salon_phone"/>
+                android:text="@string/salon_phone" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.phoneDisplay}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,21 +91,22 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/salon_residence"/>
+                android:text="@string/salon_residence" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.experience_years}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,21 +114,22 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/customer_color"/>
+                android:text="@string/customer_color" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.skinColorDisplay}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -135,21 +137,22 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/staff_home"/>
+                android:text="@string/staff_home" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.display_have_place}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
+
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -157,60 +160,60 @@
             android:orientation="horizontal">
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/AppTheme.TextViewResponsive.Hint"
-                android:text="@string/salon_car"/>
+                android:text="@string/salon_car" />
 
             <TextView
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_weight="1"
                 android:gravity="end"
                 android:text="@{action.salon.display_have_car}"
-                android:layout_marginStart="@dimen/size_10"
-                style="@style/AppTheme.TextViewResponsive"
-                tools:text="@string/salon_name"/>
+                tools:text="@string/salon_name" />
         </androidx.appcompat.widget.LinearLayoutCompat>
 
         <View
             style="@style/AppTheme.Line.Horizontal"
-            android:layout_marginTop="@dimen/size_10"/>
+            android:layout_marginTop="@dimen/size_10" />
 
         <TextView
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/AppTheme.TextViewResponsive"
-            android:textSize="@dimen/text_size_14"
             android:layout_marginTop="@dimen/size_10"
-            android:text="@string/salon_des"/>
+            android:text="@string/salon_des"
+            app:visibility="@{!action.salon.description.isBlank()}"
+            android:textSize="@dimen/text_size_14" />
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/size_10"
-            android:layout_height="wrap_content"
             style="@style/AppTheme.TextViewResponsive.MultiLine"
-            android:textColor="@color/color_7e7e7e"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
             android:text="@{action.salon.description}"
-            tools:text="@string/salon_des"/>
+            android:textColor="@color/color_7e7e7e"
+            tools:text="@string/salon_des" />
 
         <TextView
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="@style/AppTheme.TextViewResponsive"
+            android:text="@string/salon_image"
             android:textSize="@dimen/text_size_14"
-            app:visibility = "@{!action.salon.imageEmpty}"
-            android:text="@string/salon_image"/>
+            app:visibility="@{!action.salon.imageEmpty}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:adapter="@{action.imageAdapter}"
-            tools:listitem="@layout/item_image"
             android:layout_marginTop="@dimen/size_10"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
-
+            android:adapter="@{action.imageAdapter}"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_image" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

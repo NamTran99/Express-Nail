@@ -7,6 +7,7 @@ import android.widget.EditText
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.extension.safe
+import com.example.nailexpress.extension.scrollToViewABitTop
 import com.example.nailexpress.extension.showKeyboard
 import com.example.nailexpress.models.ui.base.DialogData
 import java.net.UnknownHostException
@@ -40,12 +41,13 @@ class ErrorHandlerImpl : ErrorHandler {
                     is EditText -> {
                         view.run {
                             if (!view.isFocusable) {
-                                val rect = Rect(0, -100, view.width, view.height + 100)
-                                view.requestRectangleOnScreen(rect)
+                                this.error = activity.getString(error.res)
+                                view.scrollToViewABitTop()
                                 activity.toast(error.res)
                             }else{
                                 this.error = activity.getString(error.res)
                                 showKeyboard()
+                                view.scrollToViewABitTop()
                             }
                         }
                     }

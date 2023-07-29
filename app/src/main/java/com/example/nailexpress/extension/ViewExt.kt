@@ -850,3 +850,8 @@ fun View.hideKeyboard(v: View) {
         context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
 }
+
+fun View.scrollToViewABitTop(){
+    val rect = Rect(0, -100, width, height + 100)
+    requestRectangleOnScreen(rect)
+}

@@ -17,6 +17,7 @@ class Cv(
     val listSkill: List<Skill> = listOf(),
     val state: String = "",
     val priceFormat: String = "",
-    val isSkillEmpty: Boolean = false
+    val isSkillEmpty: Boolean = false,
+    val salaryType: Int = 0,
     // custom
 )

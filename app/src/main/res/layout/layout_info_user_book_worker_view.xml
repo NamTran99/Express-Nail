@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/color_second"
         android:textSize="@dimen/text_size_14"
+        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="@string/info_user_book_worker" />
@@ -23,6 +24,7 @@
         android:text="@string/customer_name"
         android:textColor="@color/gray_818181"
         android:textSize="@dimen/text_size_14"
+        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -32,6 +34,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_14"
+        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/tvTitleCustomerName"
@@ -46,6 +49,7 @@
         android:layout_marginTop="@dimen/size_5"
         android:text="@string/phone_number"
         android:textColor="@color/gray_818181"
+        style="@style/AppTheme.TextViewResponsive"
         android:textSize="@dimen/text_size_14"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@id/tvTitleCustomerName" />
@@ -55,7 +59,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_14"
+        android:textSize="@dimen/text_size_14"   style="@style/AppTheme.TextViewResponsive"
+
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toEndOf="@id/tvTitlePhoneNumber"

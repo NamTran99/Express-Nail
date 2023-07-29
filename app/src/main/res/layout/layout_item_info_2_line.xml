@@ -22,6 +22,7 @@
         android:layout_marginStart="@dimen/size_8"
         android:textColor="@color/gray_818181"
         android:textSize="@dimen/text_size_12"
+        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintStart_toEndOf="@id/imgIcon"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginLeft="@dimen/size_0"
@@ -34,6 +35,7 @@
         android:layout_marginTop="@dimen/size_8"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_12"
+        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintStart_toStartOf="@id/tvTitle"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"
         tools:text="2 năm" />

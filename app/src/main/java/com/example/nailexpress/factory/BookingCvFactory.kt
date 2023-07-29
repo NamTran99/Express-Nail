@@ -45,7 +45,8 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             listSkill = createListSkill(cvDTO.skills ?: listOf()),
             state = cvDTO.state,
             priceFormat = textFormatter.displaySalary(cvDTO.price.safe(), cvDTO.unit.safe()),
-            isSkillEmpty = cvDTO.skills.safe().isEmpty()
+            isSkillEmpty = cvDTO.skills.safe().isEmpty(),
+            salaryType = cvDTO.salary_type.safe()
         )
     }
 

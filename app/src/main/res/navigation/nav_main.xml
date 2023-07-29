@@ -98,6 +98,7 @@
                     android:defaultValue="0"
                     app:argType="integer" />
             </action>
+
             <action
                 android:id="@+id/action_homeCustomerFragment_to_bookNowStaffFragment"
                 app:destination="@id/bookNowStaffFragment" />
