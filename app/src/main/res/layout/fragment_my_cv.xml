@@ -47,7 +47,8 @@
                 <com.example.nailexpress.views.widgets.staff.CvPictureProfile
                     android:id="@+id/cvPictureProfile"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="36dp" />
 
                 <com.example.nailexpress.views.widgets.staff.WorkerInfoView
                     android:id="@+id/workerInfoView"
