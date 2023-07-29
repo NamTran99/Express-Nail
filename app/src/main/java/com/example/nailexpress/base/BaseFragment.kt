@@ -15,7 +15,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import com.example.nailexpress.R
 import com.example.nailexpress.app.AppSettingsOwner
 import com.example.nailexpress.datasource.AppEvent2
 import com.example.nailexpress.views.dialog.ConfirmDialogOwner
@@ -73,8 +75,16 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         jobEventReceiver = lifecycleScope.launch {
             viewModel.eventReceiver.collectLatest {
                 when (it) {
-                    is AppEvent.OnNavigation -> navigateToDestination(it.destination, it.bundle)
-                    is AppEvent.OnNavigationNav -> navigateToDestination(it.nav)
+                    is AppEvent.OnNavigation -> navigateToDestination(
+                        it.destination,
+                        popUpToDes = it.popUpTo,
+                        inclusive = it.isInclusive
+                    )
+                    is AppEvent.OnNavigationNav -> navigateToDestination(
+                        it.nav,
+                        popUpToDes = it.popUpTo,
+                        inclusive = it.isInclusive
+                    )
                     AppEvent.OnCloseApp -> closeApp()
                     AppEvent.OnBackScreen -> onBackPress()
                     is AppEvent.OnShowToast -> toast(it.content)
@@ -91,18 +101,43 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     abstract fun initView()
     open fun loadData() {}
 
-    open fun navigateToDestination(destination: Int, bundle: Bundle? = null) {
-        Log.d(TAG, "navigateToDestination: ")
+    open fun navigateToDestination(
+        destination: Int,
+        inclusive: Boolean = false,
+        popUpToDes: Int? = null
+    ) {
+        val navOptionBuilder =NavOptions.Builder()
+            .setEnterAnim(R.anim.enter_anim)
+            .setExitAnim(R.anim.exit_anim)
+            .setPopEnterAnim(R.anim.pop_enter_anim)
+            .setPopExitAnim(R.anim.pop_exit_anim)
+
+        popUpToDes?.let {
+            navOptionBuilder
+                .setPopUpTo(destinationId = it, inclusive = inclusive)
+        }
+
         findNavController().apply {
-            bundle?.let {
-                navigate(destination, it)
-            } ?: navigate(destination)
+            navigate(destination, null, navOptions = navOptionBuilder.build())
         }
     }
 
-    open fun navigateToDestination(nav: NavDirections) {
+    open fun navigateToDestination(
+        nav: NavDirections, inclusive: Boolean = false,
+        popUpToDes: Int? = null
+    ) {
         Log.d(TAG, "navigateToDestination: ")
-        findNavController().navigate(nav)
+        val navOptionBuilder =NavOptions.Builder()
+            .setEnterAnim(R.anim.enter_anim)
+            .setExitAnim(R.anim.exit_anim)
+            .setPopEnterAnim(R.anim.pop_enter_anim)
+            .setPopExitAnim(R.anim.pop_exit_anim)
+
+        popUpToDes?.let {
+            navOptionBuilder
+                .setPopUpTo(destinationId = it, inclusive = inclusive)
+        }
+        findNavController().navigate(nav, navOptions = navOptionBuilder.build())
     }
 
 

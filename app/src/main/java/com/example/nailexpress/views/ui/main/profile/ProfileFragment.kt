@@ -89,7 +89,7 @@ class ProfileVM @Inject constructor(
     }
 
     fun onChangeRole() {
-        navigateToDestination(R.id.action_profileFragment_to_selectRoleProfileFragment)
+        navigateToDestination(R.id.action_global_selectRoleProfileFragment)
     }
 
     private fun getRole() {

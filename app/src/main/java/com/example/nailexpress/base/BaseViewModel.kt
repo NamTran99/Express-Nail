@@ -1,7 +1,6 @@
 package com.example.nailexpress.base
 
 import android.app.Application
-import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -88,13 +87,19 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
     open fun getString(idString: Int, str: String) =
         getApplication<Application>().getString(idString, str)
 
-    open fun navigateToDestination(action: Int, bundle: Bundle? = null) = viewModelScope.launch {
+    open fun navigateToDestination(
+        action: Int, inclusive: Boolean = false,
+        popUpToDes: Int? = null
+    ) = viewModelScope.launch {
         evenSender.send(
-            AppEvent.OnNavigation(action, bundle)
+            AppEvent.OnNavigation(action)
         )
     }
 
-    open fun navigateToDestination(nav: NavDirections) = viewModelScope.launch {
+    open fun navigateToDestination(
+        nav: NavDirections, inclusive: Boolean = false,
+        popUpToDes: Int? = null
+    ) = viewModelScope.launch {
         evenSender.send(
             AppEvent.OnNavigationNav(nav)
         )
@@ -132,8 +137,18 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 }
 
 sealed class AppEvent {
-    class OnNavigation(val destination: Int, val bundle: Bundle? = null) : AppEvent()
-    class OnNavigationNav(val nav: NavDirections) : AppEvent()
+    class OnNavigation(
+        val destination: Int, val popUpTo: Int? = null,
+        val isInclusive: Boolean = false
+    ) :
+        AppEvent()
+
+    class OnNavigationNav(
+        val nav: NavDirections,
+        val popUpTo: Int? = null,
+        val isInclusive: Boolean = false
+    ) : AppEvent()
+
     object OnCloseApp : AppEvent()
     object OnBackScreen : AppEvent()
     class OnShowToast(val content: String, val type: Long = 2000) : AppEvent()
