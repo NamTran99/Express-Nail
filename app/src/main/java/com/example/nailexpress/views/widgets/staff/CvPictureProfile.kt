@@ -8,6 +8,7 @@ import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutCvPictureProfileBinding
 import com.example.nailexpress.extension.setImageURICustom
+import com.example.nailexpress.factory.TextFormatter
 
 class CvPictureProfile @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -19,6 +20,10 @@ class CvPictureProfile @JvmOverloads constructor(
         true,
     )
 
+    private val textFormatter by lazy {
+        TextFormatter(context)
+    }
+
     var name: String? = null
         set(value) {
             binding.tvName.apply {
@@ -27,11 +32,13 @@ class CvPictureProfile @JvmOverloads constructor(
             field = value
         }
 
-    var gender: String? = null
+    var gender: Int? = null
         set(value) {
             binding.tvGender.apply {
-                isVisible = value.isNullOrBlank().not()
-                text = context.getString(R.string.gender_format, value)
+                isVisible = value != null
+                if (value != null) {
+                    text = context.getString(R.string.gender_format, textFormatter.displayGender(value))
+                }
             }
             field = value
         }

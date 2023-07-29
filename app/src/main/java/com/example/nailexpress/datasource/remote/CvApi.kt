@@ -30,4 +30,7 @@ interface CvApi {
         @Query("latitude") latitude: String = "32.69161982273687",
         @Query("longitude") longitude: String = "-97.10703660948698"
     ): ApiAsync<List<CvDTO>>
+
+    @GET("cv/my-cv")
+    fun getAllMyCv(): ApiAsync<List<CvDTO>>
 }

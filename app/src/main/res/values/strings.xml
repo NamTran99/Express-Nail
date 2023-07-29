@@ -270,5 +270,6 @@
     <string name="lbl_area_work">Khu vực làm việc</string>
     <string name="lbl_choose_state">Chọn tiểu bang</string>
     <string name="lbl_close">Lọc</string>
+    <string name="update_cv">Cập nhật CV</string>
 
 </resources>

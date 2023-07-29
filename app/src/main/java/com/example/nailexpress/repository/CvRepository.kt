@@ -33,4 +33,8 @@ class CvRepository(
     suspend fun getListCvStaff(page: Int) = flow {
         emit(cvApi.getListCvStaff(page).await())
     }
+
+    suspend fun getAllMyCv() = flow {
+        emit(cvApi.getAllMyCv().await())
+    }
 }

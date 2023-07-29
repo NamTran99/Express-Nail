@@ -7,6 +7,7 @@ import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutServicesWorkerBinding
+import com.example.nailexpress.models.response.SkillDTO
 import com.example.nailexpress.models.ui.main.Skill
 import com.example.nailexpress.views.ui.main.staff.adapter.ServicesWorkerAdapter
 import com.example.nailexpress.views.widgets.divider.VerticalDivider
@@ -56,7 +57,7 @@ class ServicesWorkerView @JvmOverloads constructor(
         }
     }
 
-    fun setDataListService(list: List<Skill>?) {
+    fun setDataListService(list: List<SkillDTO>?) {
         servicesWorkerAdapter.setData(list)
     }
 

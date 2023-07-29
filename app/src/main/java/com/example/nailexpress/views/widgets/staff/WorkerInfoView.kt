@@ -8,6 +8,8 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutWorkerInfoBinding
+import com.example.nailexpress.extension.safe
+import com.example.nailexpress.factory.TextFormatter
 
 class WorkerInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -16,6 +18,10 @@ class WorkerInfoView @JvmOverloads constructor(
         LayoutInflater.from(context),
         this, true
     )
+
+    private val textFormatter by lazy {
+        TextFormatter(context)
+    }
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.WorkerInfoView, 0, 0).run {
@@ -98,4 +104,24 @@ class WorkerInfoView @JvmOverloads constructor(
     fun setValueBotRight(value: String?) {
         binding.itemBotRight.iilValue = value
     }
+
+    fun setValueTopLeft(price: Double?, unit: Int?) {
+        if (price != null && unit != null) {
+            binding.itemTopLeft.iilValue = textFormatter.displaySalary(price, unit)
+        }
+    }
+
+    fun setValueBotRight(city: String?, state: String?) {
+        if (city != null && state != null) {
+            binding.itemBotRight.iilValue = "$city,$state"
+        }
+    }
+
+    fun setValueBotLeft(yearExp: Int?) {
+        if (yearExp != null) {
+            binding.itemBotLeft.iilValue = textFormatter.displayYearExper(yearExp)
+        }
+    }
+
+
 }

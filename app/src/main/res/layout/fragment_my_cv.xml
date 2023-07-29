@@ -6,6 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/color_bg"
         android:orientation="vertical">
 
         <com.example.nailexpress.views.widgets.TopBarMenu
@@ -27,12 +28,13 @@
             app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/layoutContent"
             android:layout_width="match_parent"
             android:layout_height="@dimen/size_0"
             android:layout_marginHorizontal="@dimen/size_20"
             android:layout_marginBottom="@dimen/size_16"
             android:background="@drawable/bg_white_5"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btnUpdateCv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/topBar">
@@ -89,6 +91,20 @@
                     app:jd_titleTextColor="@color/colorPrimary" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnUpdateCv"
+            style="@style/AppTheme.Button.Responsive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="@dimen/size_16"
+            android:paddingHorizontal="@dimen/size_60"
+            android:text="@string/update_cv"
+            app:cornerRadius="@dimen/size_60"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

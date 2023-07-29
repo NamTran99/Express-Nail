@@ -82,6 +82,6 @@ class ServicePriceView @JvmOverloads constructor(
     }
 
     companion object {
-        private val NUM_OF_ROW = 2
+        private const val NUM_OF_ROW = 2
     }
 }

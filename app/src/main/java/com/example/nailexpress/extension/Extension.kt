@@ -154,4 +154,10 @@ fun Double?.toViewTypeService(): ViewTypeService {
     }
 }
 
+fun Double?.addPrefixDollar(): String {
+    return if (this != null) {
+        return "$$this"
+    } else ""
+}
+
 
