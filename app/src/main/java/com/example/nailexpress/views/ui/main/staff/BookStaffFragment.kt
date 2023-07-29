@@ -245,7 +245,7 @@ class BookNowStaffVM @Inject constructor(
                 navigateToDestination(
                     BookStaffFragmentDirections.actionBookNowStaffFragmentToBookingDetailFragment(
                          bookingID = id
-                    )
+                    ), popUpToDes = R.id.bookNowStaffFragment, inclusive = true
                 )
             }.collect()
         }

@@ -74,8 +74,8 @@ class SelectAppRoleProfileVM @Inject constructor(
         adapter.mitems.find { it.isCheck }?.appRole?.let {
             if (profileRepository.selectRole(it)) {
                 if (it == AppConfig.AppRole.Customer) {
-                    navigateToDestination(R.id.action_staffGraph_to_customerGraph)
-                } else navigateToDestination(R.id.action_customerStaff_to_staffGraph)
+                    navigateToDestination(R.id.action_selectRoleProfileFragment_to_customerGraph, popUpToDes = R.id.staffGraph, inclusive = true )
+                } else navigateToDestination(R.id.action_selectRoleProfileFragment_to_staffGraph, popUpToDes = R.id.customerGraph, inclusive = true)
             }
         }
     }

@@ -92,7 +92,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         popUpToDes: Int? = null
     ) = viewModelScope.launch {
         evenSender.send(
-            AppEvent.OnNavigation(action)
+            AppEvent.OnNavigation(action, popUpToDes, inclusive)
         )
     }
 
@@ -101,7 +101,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         popUpToDes: Int? = null
     ) = viewModelScope.launch {
         evenSender.send(
-            AppEvent.OnNavigationNav(nav)
+            AppEvent.OnNavigationNav(nav, popUpToDes, inclusive)
         )
     }
 

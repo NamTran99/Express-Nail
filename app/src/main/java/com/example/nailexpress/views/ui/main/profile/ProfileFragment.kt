@@ -57,13 +57,13 @@ class ProfileVM @Inject constructor(
 
     val listOption = listOf(
         AccountOption(R.string.title_account_profile) {
-            navigateToDestination(R.id.action_profileFragment_to_accountInforFragment)
+            navigateToDestination(R.id.action_global_accountInforFragment)
         },
         AccountOption(R.string.my_salon) {
             navigateToDestination(R.id.action_navDashBoard_to_mySalonFragment)
         },
         AccountOption(R.string.change_pass) {
-            navigateToDestination(R.id.action_profileFragment_to_changePassFragment)
+            navigateToDestination(R.id.action_global_changePassFragment)
         },
         AccountOption(R.string.message) {
 
@@ -85,7 +85,7 @@ class ProfileVM @Inject constructor(
 
     fun onClickLogOut() = launch {
         authRepository.logOut()
-        navigateToDestination(R.id.action_global_authGraph)
+        navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.customerGraph, inclusive = true)
     }
 
     fun onChangeRole() {

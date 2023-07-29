@@ -45,6 +45,7 @@
                 android:layout_marginTop="@dimen/size_20"
                 android:adapter="@{action.adapter}"
                 android:orientation="vertical"
+                tools:itemCount="4"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:visibility="@{action.tabSelect == 0}"
                 tools:listitem="@layout/item_list_staff" />

@@ -23,8 +23,10 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import com.example.nailexpress.R
 import com.example.nailexpress.app.ResultsLifecycleOwner
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.exception.ErrorHandler
@@ -121,11 +123,24 @@ abstract class BaseActivity<VB : ViewDataBinding>(@LayoutRes val layoutId: Int) 
         return super.dispatchTouchEvent(event)
     }
 
-    open fun navigateToDestination(destination: Int, bundle: Bundle? = null) {
+    open fun navigateToDestination(
+        destination: Int,
+        inclusive: Boolean = false,
+        popUpToDes: Int? = null
+    ) {
+        val navOptionBuilder = NavOptions.Builder()
+            .setEnterAnim(R.anim.enter_anim)
+            .setExitAnim(R.anim.exit_anim)
+            .setPopEnterAnim(R.anim.pop_enter_anim)
+            .setPopExitAnim(R.anim.pop_exit_anim)
+
+        popUpToDes?.let {
+            navOptionBuilder
+                .setPopUpTo(destinationId = it, inclusive = inclusive)
+        }
+
         navController?.apply {
-            bundle?.let {
-                navigate(destination, it)
-            } ?: navigate(destination)
+            navigate(destination, null, navOptions = navOptionBuilder.build())
         }
     }
 
