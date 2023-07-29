@@ -81,7 +81,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
                     is AppEvent.OnOpenAlertDialog -> showAlertDialog(
                         it.data
                     )
-
+                    AppEvent.RestartActivity -> requireActivity().recreate()
                     else -> {}
                 }
             }

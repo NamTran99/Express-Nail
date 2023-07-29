@@ -1,10 +1,8 @@
 package com.example.nailexpress.views.ui.main.profile
 
 import android.app.Application
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import com.bumptech.glide.Glide.init
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.ActionTopBarImpl
@@ -46,7 +44,7 @@ class SelectAppRoleProfileVM @Inject constructor(
 
     init {
         initTopBarAction(this)
-        setTitle(R.string.title_create_salon)
+        setTitle(R.string.title_select_role)
         getRole()
     }
 
@@ -66,7 +64,7 @@ class SelectAppRoleProfileVM @Inject constructor(
     )
 
     private fun getRole() = launch {
-        (profileRepository.getRole()?:AppConfig.AppRole.Customer).let {
+        (profileRepository.getRole() ?: AppConfig.AppRole.Customer).let {
             currentRole = it
             adapter.submit(getListData(it))
         }
@@ -74,7 +72,11 @@ class SelectAppRoleProfileVM @Inject constructor(
 
     fun setRole() = launch {
         adapter.mitems.find { it.isCheck }?.appRole?.let {
-            profileRepository.selectRole(it)
+            if (profileRepository.selectRole(it)) {
+                if (it == AppConfig.AppRole.Customer) {
+                    navigateToDestination(R.id.action_staffGraph_to_customerGraph)
+                } else navigateToDestination(R.id.action_customerStaff_to_staffGraph)
+            }
         }
     }
 }

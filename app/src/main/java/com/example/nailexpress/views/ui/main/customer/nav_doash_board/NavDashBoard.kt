@@ -57,7 +57,7 @@ open class NavDashBoard : Fragment() {
     @SuppressLint("WrongConstant")
     private fun initView() {
         binding.vpMain.apply {
-            offscreenPageLimit = NavAdapter.BOTTOM_NAV_COUNT
+            offscreenPageLimit = listItem.size
             isSaveEnabled = true
             if (adapter == null) {
                 adapter = NavAdapter(this@NavDashBoard, listItem)

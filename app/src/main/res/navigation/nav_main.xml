@@ -236,6 +236,11 @@
             android:name="com.example.nailexpress.views.ui.main.customer.filter.FragmentFilterCustomer"
             android:label="FragmentFilter"
             tools:layout="@layout/fragment_filter_customer" />
+        <action
+            android:id="@+id/action_customerStaff_to_staffGraph"
+            app:popUpTo="@id/customerGraph"
+            app:popUpToInclusive="true"
+            app:destination="@id/staffGraph" />
 
     </navigation>
 
@@ -254,6 +259,11 @@
             android:name="com.example.nailexpress.views.ui.main.staff.filter.FragmentFilter"
             android:label="FragmentFilter"
             tools:layout="@layout/fragment_filter" />
+        <action
+            android:id="@+id/action_staffGraph_to_customerGraph"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/staffGraph"
+            app:destination="@id/customerGraph" />
     </navigation>
 
 </navigation>

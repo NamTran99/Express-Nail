@@ -112,6 +112,12 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         )
     }
 
+    open fun restartActivity() = viewModelScope.launch {
+        evenSender.send(
+            AppEvent.RestartActivity
+        )
+    }
+
     open fun showToast(content: String) = viewModelScope.launch {
         evenSender.send(
             AppEvent.OnShowToast(content)
@@ -134,4 +140,6 @@ sealed class AppEvent {
     class OnOpenAlertDialog(
         val data: DialogData
     ) : AppEvent()
+
+    object RestartActivity : AppEvent()
 }
