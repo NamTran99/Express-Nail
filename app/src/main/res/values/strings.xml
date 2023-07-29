@@ -253,6 +253,10 @@
     <string name="service_can_do">Dịch vụ biết làm :</string>
     <string name="list_services">Danh sách dịch vụ</string>
     <string name="salon_information">Thông tin salon</string>
+    <string name="my_cv">CV của tôi</string>
+    <string name="gender_format">(%s)</string>
+    <string name="worker_info">Thông tin thợ</string>
+    <string name="work_area">Khu vực làm việc</string>
 
     <string name="lbl_list_post">Danh sách bài đăng</string>
     <string name="lbl_cv_apply">Công việc ứng tuyển</string>
@@ -266,5 +270,6 @@
     <string name="lbl_area_work">Khu vực làm việc</string>
     <string name="lbl_choose_state">Chọn tiểu bang</string>
     <string name="lbl_close">Lọc</string>
+    <string name="update_cv">Cập nhật CV</string>
 
 </resources>

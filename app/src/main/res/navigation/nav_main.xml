@@ -288,7 +288,10 @@
             app:popUpTo="@id/staffGraph"
             app:popUpToInclusive="true" />
 
-
+        <fragment
+            android:id="@+id/myCvFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.cv_profile.MyCvFragment"
+            android:label="MyCvFragment" />
     </navigation>
 
     <fragment

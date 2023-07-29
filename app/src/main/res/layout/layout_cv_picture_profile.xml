@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgAvatar"
+        android:layout_width="@dimen/size_80"
+        android:layout_height="@dimen/size_80"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circleImage" />
+
+    <TextView
+        android:id="@+id/tvName"
+        style="@style/Text14BlackAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imgAvatar"
+        tools:text="DVD" />
+
+    <TextView
+        android:id="@+id/tvGender"
+        style="@style/Text12BlackAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_4"
+        app:layout_constraintBottom_toBottomOf="@id/tvName"
+        app:layout_constraintStart_toEndOf="@id/tvName"
+        app:layout_constraintTop_toTopOf="@id/tvName"
+        tools:text="(Nam)" />
+
+    <TextView
+        android:id="@+id/tvNickName"
+        style="@style/Text10PrimaryAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_4"
+        android:background="@drawable/bg_white_stroke_orange_corner_3"
+        android:paddingHorizontal="@dimen/size_4"
+        android:paddingTop="@dimen/size_3"
+        android:paddingBottom="@dimen/size_2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="Oke" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

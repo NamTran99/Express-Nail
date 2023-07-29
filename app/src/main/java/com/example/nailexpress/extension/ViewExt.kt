@@ -700,6 +700,45 @@ fun ImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) 
     }
 }
 
+fun ShapeableImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) {
+    if (link.isNullOrEmpty()) return
+    if (link.contains("http")) {
+        Picasso.get().load(link)
+            .resize(1024, 1024)
+            .centerInside()
+            .placeholder(context.getLoadingCircleDrawable())
+            .error(R.drawable.ic_logo)
+            .into(this, object : Callback {
+                override fun onSuccess() {
+                    onLoadFinish.invoke()
+                }
+
+                override fun onError(e: Exception) {
+                    onLoadFinish.invoke()
+                }
+            })
+    } else {
+        Picasso.get().load(link)
+            .resize(1024, 1024)
+            .centerInside()
+            .transform(
+                RotateTransformation(
+                    getRotateDegree(context, link)
+                )
+            )
+            .error(R.drawable.ic_logo)
+            .into(this, object : Callback {
+                override fun onSuccess() {
+                    onLoadFinish.invoke()
+                }
+
+                override fun onError(e: Exception) {
+                    onLoadFinish.invoke()
+                }
+            })
+    }
+}
+
 fun CircleImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) {
     if (link.isNullOrEmpty()) {
         this.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.ic_logo))
