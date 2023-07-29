@@ -9,6 +9,8 @@ import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
+import com.example.nailexpress.extension.bind
+import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
@@ -16,7 +18,9 @@ import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
 import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
 import com.example.nailexpress.views.ui.main.customer.adapter.NailStaffAdapter
+import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoard
 import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoardDirections
+import com.example.nailexpress.views.widgets.CustomHeaderHome
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -25,13 +29,31 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class HomeCustomerFragment :
-    BaseRefreshFragment<FragmentHomeCustomerBinding, HomeCustomerVM>(layoutId = R.layout.fragment_home_customer) {
+    BaseRefreshFragment<FragmentHomeCustomerBinding, HomeCustomerVM>(layoutId = R.layout.fragment_home_customer),
+    CustomHeaderHome.IActionHeader {
 
     override val viewModel: HomeCustomerVM by viewModels()
+
     override fun initView() {
         binding.apply {
             action = viewModel
+
+            with(header) {
+                updateAction(this@HomeCustomerFragment)
+                updateTextNotification("3")
+            }
         }
+    }
+
+    override fun onTextChange(string: String) {
+    }
+
+    override fun onClickNotification() {
+        (parentFragment as? NavDashBoard)?.tabNotificationClick()
+    }
+
+    override fun onClickFilter() {
+        navigateToDestination(R.id.fragmentFilterCustomer)
     }
 }
 

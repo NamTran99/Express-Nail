@@ -123,7 +123,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         Log.d("Fragment Tracer", "Go into ${this.javaClass.name}")
     }
 
-    private fun onBackPress() {
+    fun onBackPress() {
         findNavController().popBackStack()
     }
 

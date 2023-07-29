@@ -17,7 +17,7 @@
 
 
     <item
-        android:id="@+id/notification"
+        android:id="@+id/navNoti"
         android:icon="@drawable/ic_noti"
         android:title="Thông báo" />
 

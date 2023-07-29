@@ -8,6 +8,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
+        android:id="@+id/tvNotification"
         style="@style/AppTheme.Content"
         android:layout_width="@dimen/size_17"
         android:layout_height="@dimen/size_17"
@@ -51,7 +52,6 @@
         android:drawableEnd="@drawable/ic_filter"
         android:drawablePadding="@dimen/size_10"
         android:ellipsize="end"
-        android:hint="@string/hint_search_area"
         android:maxLines="1"
         android:textSize="@dimen/size_12"
         android:paddingHorizontal="@dimen/size_20"

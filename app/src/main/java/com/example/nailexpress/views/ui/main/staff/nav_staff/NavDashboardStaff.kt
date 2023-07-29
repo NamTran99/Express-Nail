@@ -17,7 +17,8 @@ class NavDashboardStaff : NavDashBoard() {
         HomeStaff(), MyPostFragment(), NotificationFragment(),
         ProfileFragment()
     )
-    override val listItemId: List<Int> = listOf(R.id.homeStaffFragment,R.id.bookingOfMe,R.id.notification,R.id.profile)
+    override val listItemId: List<Int> = listOf(R.id.homeStaffFragment,R.id.bookingOfMe,R.id.navNoti
+        ,R.id.profile)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         with(binding.bottomNavigation){

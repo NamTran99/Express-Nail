@@ -414,7 +414,13 @@ fun LinearLayout.weightSum(weightSum: Float) {
 }
 
 fun EditText.bind(any: (String) -> Unit) {
-    doOnTextChanged { text, _, _, _ -> any(text?.toString().orEmpty()) }
+    doOnTextChanged { text, _, _, _ ->
+        if(text.isNullOrBlank()){
+            hideKeyboard(this)
+        }else{
+            any(text?.toString().orEmpty())
+        }
+    }
 }
 
 fun CheckBox.bind(any: (Boolean) -> Unit) {
@@ -829,13 +835,12 @@ fun EditText.seekCursorToLast(): EditText {
 
 
 @SuppressLint("ClickableViewAccessibility")
-fun EditText.drawableClickRight(action: () -> Unit) {
+fun TextView.drawableClickRight(action: () -> Unit) {
     this.setOnTouchListener { v, event ->
         this.compoundDrawables.getOrNull(2)?.bounds?.let {
-            if (event.action == MotionEvent.ACTION_UP) {
+            if (event.action == MotionEvent.ACTION_DOWN || event.action == MotionEvent.ACTION_UP) {
                 if (event.rawX >= this.right - (it.width() + 100)
                 ) {
-
                     action.invoke()
                     return@setOnTouchListener true
                 }

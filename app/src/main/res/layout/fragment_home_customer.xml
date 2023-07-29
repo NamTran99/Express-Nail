@@ -22,11 +22,12 @@
             android:layout_height="match_parent"
             android:background="@color/color_bg"
             android:orientation="vertical">
-            <!--            tat theme trong search view cua top bar nay het crash-->
-            <include
-                android:id="@+id/toolbar"
-                layout="@layout/top_bar_home_search"
-                app:action="@{action}" />
+
+            <com.example.nailexpress.views.widgets.CustomHeaderHome
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint_search="@string/hint_search_area"/>
 
             <include
                 android:id="@+id/tabHome"
