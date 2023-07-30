@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.base.*
-import com.example.nailexpress.databinding.FragmentBookingDetailBinding
+import com.example.nailexpress.databinding.FragmentDetailStaffAppliesBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.models.ui.main.Booking
 import com.example.nailexpress.models.ui.main.Cv
@@ -24,8 +24,8 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class BookingDetailFragment :
-    BaseRefreshFragment<FragmentBookingDetailBinding, BookingDetailVM>(layoutId = R.layout.fragment_booking_detail) {
+class BookingCustomerDetailFragment :
+    BaseRefreshFragment<FragmentDetailStaffAppliesBinding, BookingDetailVM>(layoutId = R.layout.fragment_detail_staff_applies) {
 
     override val viewModel: BookingDetailVM by viewModels()
     val args: BookingDetailFragmentArgs by navArgs()
