@@ -2,6 +2,7 @@ package com.example.nailexpress.factory
 
 import android.content.Context
 import com.example.nailexpress.R
+import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.app.Gender
 import com.example.nailexpress.app.PriceUnit.DAY
 import com.example.nailexpress.app.PriceUnit.HOUR
@@ -9,9 +10,8 @@ import com.example.nailexpress.app.PriceUnit.MONTH
 import com.example.nailexpress.app.PriceUnit.WEEK
 import com.example.nailexpress.app.PriceUnit.YEAR
 import com.example.nailexpress.app.WorkType
-import com.example.nailexpress.extension.formatAmount
-import com.example.nailexpress.extension.formatPrice
-import com.example.nailexpress.extension.or1
+import com.example.nailexpress.extension.*
+import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
 
 class TextFormatter(private val cxt: Context) {
     fun displayGender(gender: Int): String {
@@ -32,6 +32,12 @@ class TextFormatter(private val cxt: Context) {
 
     fun displayWorkersNumber(number: Int): String {
         return getString(R.string.num_of_workers, number)
+    }
+
+    fun displayBookingTime(bookingTime: String?, appRole: AppConfig.AppRole): String{
+        return bookingTime?.let{
+            bookingTime.convertUTCToLocal(formatOutput = FORMAT_DATE_DISPLAY)
+        }?: getString((appRole == AppConfig.AppRole.Customer) or1 R.string.booking_now_customer or2  R.string.booking_now_staff)
     }
 
     fun displaySalary(price: Double, unit: Int): String {

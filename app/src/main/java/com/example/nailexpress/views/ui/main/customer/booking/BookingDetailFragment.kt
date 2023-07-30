@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.customer.booking
 
 import android.app.Application
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
@@ -33,7 +34,60 @@ class BookingDetailFragment :
             action = viewModel
             viewModel.bookingID= args.bookingID
         }
+
+        setListener()
     }
+    private fun setListener(){
+        viewModel.salon.bind{
+            setSalonUi(it)
+        }
+    }
+
+    private fun setSalonUi(salon: Salon?) {
+        with(binding) {
+            if (salon != null) {
+                shopInfoView.apply {
+                    isVisible = salon.name.isNotBlank() && salon.phoneDisplay.isNotBlank() && salon.address.isNotBlank()
+                    shopName = salon.name
+                    phoneNumber = salon.phoneDisplay
+                    location = salon.address
+                }
+
+                itemInfoSalonActive.apply {
+                    iilValue = salon.experience_years_display
+                }
+
+                majorityCustomerView.apply {
+                    iilValue = salon.skinColorDisplay
+                }
+
+                workerAccommodation.apply {
+                    iilValue = salon.display_have_place
+                }
+
+                shuttleBusWorker.apply {
+                    iilValue = salon.display_have_car
+                }
+
+                salonDescriptionView.apply {
+                    description = salon.description
+                }
+
+                salonPictureView.apply {
+                    setListPicture(salon.listImage)
+                }
+            } else {
+                shopInfoView.isVisible = false
+                itemInfoSalonActive.isVisible = false
+                majorityCustomerView.isVisible = false
+                workerAccommodation.isVisible = false
+                shuttleBusWorker.isVisible = false
+                salonDescriptionView.isVisible = false
+                salonPictureView.isVisible = false
+            }
+        }
+    }
+
 }
 
 

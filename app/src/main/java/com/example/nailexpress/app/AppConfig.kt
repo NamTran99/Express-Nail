@@ -1,5 +1,7 @@
 package com.example.nailexpress.app
 
+fun AppConfig.AppRole?.safe() = this?: AppConfig.AppRole.Customer
+
 object AppConfig {
     val endpoint: String get() = "https://dev.api.nails-express.kendemo.com/api/v1/"
 
@@ -67,3 +69,9 @@ object RecruitmentStatus {
     const val Destroy = 3 // Hủy
 }
 
+object BookingStatus{
+    const val Pending = 0
+    const val Accept = 1
+    const val Cancel = 2
+    const val Expired = 3
+}

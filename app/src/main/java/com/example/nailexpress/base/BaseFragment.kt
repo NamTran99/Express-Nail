@@ -77,6 +77,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
                 when (it) {
                     is AppEvent.OnNavigation -> navigateToDestination(
                         it.destination,
+
                         popUpToDes = it.popUpTo,
                         inclusive = it.isInclusive
                     )
@@ -103,6 +104,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
 
     open fun navigateToDestination(
         destination: Int,
+        bundle: Bundle? = null,
         inclusive: Boolean = false,
         popUpToDes: Int? = null
     ) {
@@ -118,7 +120,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         }
 
         findNavController().apply {
-            navigate(destination, null, navOptions = navOptionBuilder.build())
+            navigate(destination, bundle, navOptions = navOptionBuilder.build())
         }
     }
 

@@ -1,6 +1,9 @@
 package com.example.nailexpress.repository
 
 import android.content.Context
+import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.app.safe
+import com.example.nailexpress.datasource.local.SharePrefKey
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.datasource.remote.RecruitmentBookingStaffApi
 import com.example.nailexpress.extension.buildMultipart
@@ -16,7 +19,7 @@ class RecruitmentBookingStaffRepository(
     val userDataSource: SharePrefs,
     context: Context,
     val api: RecruitmentBookingStaffApi,
-    val factory: BookingCvFactory
+    val factory: BookingCvFactory,
 ) {
     suspend fun getListBookingStaff(search: String = "", page: Int = 1) = flow {
         emit(
@@ -29,7 +32,7 @@ class RecruitmentBookingStaffRepository(
     suspend fun getBookingById(id: Int) = flow {
         emit(
             factory.createBooking(
-                api.getBookingById(id).await()
+                api.getBookingById(id).await(), getRole().safe()
             )
         )
     }
@@ -80,4 +83,6 @@ class RecruitmentBookingStaffRepository(
     suspend fun getAllRecruitment(page: Int = 1) = flow {
         emit(api.getAllRecruitment(page).await())
     }
+    fun getRole() =
+        userDataSource.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
 }

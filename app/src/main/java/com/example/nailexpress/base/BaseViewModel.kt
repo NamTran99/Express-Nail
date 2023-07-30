@@ -1,6 +1,7 @@
 package com.example.nailexpress.base
 
 import android.app.Application
+import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -88,11 +89,11 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
         getApplication<Application>().getString(idString, str)
 
     open fun navigateToDestination(
-        action: Int, inclusive: Boolean = false,
+        action: Int, bundle: Bundle? = null, inclusive: Boolean = false,
         popUpToDes: Int? = null
     ) = viewModelScope.launch {
         evenSender.send(
-            AppEvent.OnNavigation(action, popUpToDes, inclusive)
+            AppEvent.OnNavigation(action, bundle, popUpToDes, inclusive)
         )
     }
 
@@ -138,7 +139,7 @@ abstract class BaseViewModel(application: Application) : AndroidViewModel(applic
 
 sealed class AppEvent {
     class OnNavigation(
-        val destination: Int, val popUpTo: Int? = null,
+        val destination: Int, val bundle: Bundle? = null, val popUpTo: Int? = null,
         val isInclusive: Boolean = false
     ) :
         AppEvent()

@@ -10,6 +10,7 @@ object Format {
     const val FORMAT_DATE_TIME_API = "yyyy-MM-dd HH:mm:ss"
     const val FORMAT_DATE_TIME_API_2 = "yyyy-MM-dd HH:mm:ss"
     const val FORMAT_DATE_MONTH_TIME = "MMMM dd, yyyy hh:mm a"
+    const val FORMAT_DATE_DISPLAY = "hh:mm a - MMMM dd yyyy"
     const val FORMAT_DATE_MONTH = "MMMM dd, yyyy"
     const val FORMAT_DATE_UTC = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
     const val FORMAT_TIME_1 = "hh:mm a"

@@ -2,7 +2,7 @@ package com.example.nailexpress.models.response
 
 data class BookingDTO(
     val address: String,
-    val booking_time: Any,
+    val booking_time: String? = null,
     val cancel_reason: Any,
     val canceled_by: Any,
     val city: String,
@@ -30,7 +30,7 @@ data class BookingDTO(
     val updated_at: String,
     val user: UserDTO,
     val user_id: Int,
-    val work_time: Int,
+    val work_time: Int?= 0,
     val zipcode: String,
     val skills: List<SkillDTO>? = listOf()
 )

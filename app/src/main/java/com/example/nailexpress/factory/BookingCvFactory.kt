@@ -1,5 +1,6 @@
 package com.example.nailexpress.factory
 
+import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.extension.formatPhoneUSCustom
 import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.safe
@@ -55,7 +56,7 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
         return list.map(this::createCvFactory)
     }
 
-    fun createBooking(booking: BookingDTO): Booking {
+    fun createBooking(booking: BookingDTO, role: AppConfig.AppRole): Booking {
         return Booking(
             bookingID = booking.id,
             cv = createCvFactory(booking.cv),
@@ -65,11 +66,14 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             bookingIDDisplay = "#ID: ${booking.id}",
             contact_name = booking.contact_name.safe(),
             contact_phone = booking.contact_phone.formatPhoneUSCustom(),
-            listSkill = createListSkill(booking.skills.safe())
+            listSkill = createListSkill(booking.skills.safe()),
+            bookingStatus = booking.status,
+            appRole = role,
+            displayTimeOrder = textFormatter.displayBookingTime(booking.booking_time, appRole = role)
         )
     }
 
     fun createListBooking(booking: List<BookingDTO>): List<Booking> {
-        return booking.map(this::createBooking)
+        return booking.map{createBooking(it, AppConfig.AppRole.Customer)}
     }
 }
