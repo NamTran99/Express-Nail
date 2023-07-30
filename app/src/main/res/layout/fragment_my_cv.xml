@@ -27,6 +27,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/topBar" />
 
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupData"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            app:constraint_referenced_ids="layoutContent, btnUpdateCv" />
+
         <androidx.core.widget.NestedScrollView
             android:id="@+id/layoutContent"
             android:layout_width="match_parent"
@@ -40,6 +47,7 @@
             app:layout_constraintTop_toBottomOf="@id/topBar">
 
             <LinearLayout
+                android:id="@+id/layoutData"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -90,6 +98,53 @@
                     app:jd_contentTextColor="@color/black"
                     app:jd_title="@string/describe_yourself"
                     app:jd_titleTextColor="@color/colorPrimary" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layoutContentNoCv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_16"
+            android:background="@drawable/bg_white_5"
+            android:paddingBottom="@dimen/size_28"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/topBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="42dp"
+                    android:src="@drawable/ic_empty_x_circle_bound"
+                    tools:ignore="ContentDescription" />
+
+                <TextView
+                    style="@style/Text14BlackAnuphan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:text="@string/you_have_not_create_cv_create_now" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnCreateCv"
+                    style="@style/AppTheme.Button.Responsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/size_18"
+                    android:paddingHorizontal="@dimen/size_60"
+                    android:text="@string/create_cv"
+                    app:cornerRadius="@dimen/size_60" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 

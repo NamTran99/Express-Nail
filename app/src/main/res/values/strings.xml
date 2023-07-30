@@ -271,5 +271,7 @@
     <string name="lbl_choose_state">Chọn tiểu bang</string>
     <string name="lbl_close">Lọc</string>
     <string name="update_cv">Cập nhật CV</string>
+    <string name="you_have_not_create_cv_create_now">Bạn chưa tạo hồ sơ việc làm. Tạo hồ sơ ngay !</string>
+    <string name="create_cv">Tạo hồ sơ</string>
 
 </resources>
