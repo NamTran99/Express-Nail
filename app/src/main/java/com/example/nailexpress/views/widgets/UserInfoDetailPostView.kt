@@ -24,11 +24,17 @@ class UserInfoDetailPostView @JvmOverloads constructor(
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.UserInfoDetailPostView, 0, 0).run {
             try {
+                val isShowStatus = getBoolean(R.styleable.UserInfoDetailPostView_uidp_isShowStatus, true)
 
+                setShowStatus(isShowStatus)
             } finally {
                 recycle()
             }
         }
+    }
+
+    fun setShowStatus(isShow: Boolean) {
+        binding.tvStatus.isVisible = isShow
     }
 
     fun setUserImg(url: String?) {

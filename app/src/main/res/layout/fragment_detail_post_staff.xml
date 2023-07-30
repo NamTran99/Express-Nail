@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F8F3F0"
+        android:orientation="vertical">
+
+        <com.example.nailexpress.views.widgets.TopBarMenu
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tbm_title="@string/detail_post" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_150"
+            android:background="@color/color_second"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar" />
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/layoutContent"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_0"
+            android:layout_marginHorizontal="@dimen/size_20"
+            android:layout_marginBottom="@dimen/size_24"
+            android:background="@drawable/bg_white_5"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/topBar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.example.nailexpress.views.widgets.UserInfoDetailPostView
+                    android:id="@+id/userInfoDetailPostView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:uidp_isShowStatus="false" />
+
+                <com.example.nailexpress.views.widgets.JobInfoView
+                    android:id="@+id/jobInfoView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_18"
+                    android:layout_marginTop="@dimen/size_16" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_15"
+                    android:background="@color/gray" />
+
+                <com.example.nailexpress.views.widgets.JobDescriptionView
+                    android:id="@+id/jobDescriptionView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_15"
+                    app:jd_title="@string/job_description" />
+
+                <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
+                    android:id="@+id/infoUserBookWorkerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    app:iubw_title="@string/info_user_book_worker"
+                    app:iubw_titleName="@string/name" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_24" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -77,7 +77,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
                 when (it) {
                     is AppEvent.OnNavigation -> navigateToDestination(
                         it.destination,
-
+                        bundle = it.bundle,
                         popUpToDes = it.popUpTo,
                         inclusive = it.isInclusive
                     )

@@ -7,10 +7,10 @@
 
     <TextView
         android:id="@+id/titleJobInfo"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/job_information"
-        style="@style/AppTheme.TextViewResponsive"
         android:textColor="@color/color_second"
         android:textSize="@dimen/text_size_14"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,6 +29,7 @@
 
         <TextView
             android:id="@+id/tvLocation"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="@dimen/size_0"
             android:layout_height="wrap_content"
             android:layout_marginVertical="@dimen/size_9"
@@ -36,7 +37,6 @@
             android:layout_marginEnd="@dimen/size_8"
             android:drawablePadding="@dimen/size_7"
             android:textColor="@color/black"
-            style="@style/AppTheme.TextViewResponsive"
             android:textSize="@dimen/text_size_12"
             app:drawableStartCompat="@drawable/ic_location_pin"
             app:drawableTint="@color/black"
@@ -49,14 +49,15 @@
 
         <TextView
             android:id="@+id/tvMap"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/size_12"
             android:drawablePadding="@dimen/size_4"
             android:text="@string/map"
-            style="@style/AppTheme.TextViewResponsive"
             android:textColor="@color/blue_2c7eed"
             android:textSize="@dimen/text_size_12"
+            android:visibility="gone"
             app:drawableEndCompat="@drawable/ic_map"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvLocation" />
@@ -113,12 +114,12 @@
 
     <TextView
         android:id="@+id/btnDetailServices"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_6"
         android:layout_marginTop="@dimen/size_9"
         android:drawablePadding="@dimen/size_5"
-        style="@style/AppTheme.TextViewResponsive"
         android:text="@string/detail_services"
         android:textColor="@color/color_second"
         android:textSize="@dimen/text_size_12"

@@ -214,6 +214,9 @@
             <action
                 android:id="@+id/action_navDashBoardStaff_to_myCvFragment"
                 app:destination="@id/myCvFragment" />
+            <action
+                android:id="@+id/action_navDashBoardStaff_to_detailPostStaffFragment"
+                app:destination="@id/detailPostStaffFragment" />
         </fragment>
 
         <fragment
@@ -226,6 +229,11 @@
             android:id="@+id/myCvFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.cv_profile.MyCvFragment"
             android:label="MyCvFragment" />
+
+        <fragment
+            android:id="@+id/detailPostStaffFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.detail_post.DetailPostStaffFragment"
+            android:label="DetailPostStaffFragment" />
     </navigation>
 
     <fragment

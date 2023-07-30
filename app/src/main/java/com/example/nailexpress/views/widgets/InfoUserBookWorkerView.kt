@@ -38,15 +38,30 @@ class InfoUserBookWorkerView @JvmOverloads constructor(
         context.theme.obtainStyledAttributes(attrs, R.styleable.InfoUserBookWorkerView, 0, 0).run {
             try {
                 val title = getString(R.styleable.InfoUserBookWorkerView_iubw_title)
+                val titleName = getString(R.styleable.InfoUserBookWorkerView_iubw_titleName)
+                    ?: context.getString(R.string.customer_name)
+
+                val titlePhoneNumber = getString(R.styleable.InfoUserBookWorkerView_iubw_titlePhoneNumber)
+                    ?: context.getString(R.string.phone_number)
                 with(binding) {
                     title?.let {
                         tvTitle.text = it
                     }
+                    setTitleName(titleName)
+                    setTitlePhoneNumber(titlePhoneNumber)
                 }
 
             } finally {
                 recycle()
             }
         }
+    }
+
+    fun setTitleName(title: String) {
+        binding.tvTitleCustomerName.text = title
+    }
+
+    fun setTitlePhoneNumber(title: String) {
+        binding.tvTitlePhoneNumber.text = title
     }
 }

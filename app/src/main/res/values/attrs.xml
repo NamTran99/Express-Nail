@@ -43,7 +43,9 @@
         <attr name="tbm_isShowOptionMenu" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="UserInfoDetailPostView"></declare-styleable>
+    <declare-styleable name="UserInfoDetailPostView">
+        <attr name="uidp_isShowStatus" format="boolean" />
+    </declare-styleable>
 
     <declare-styleable name="StatusOfWorkersView"></declare-styleable>
 
@@ -65,6 +67,8 @@
 
     <declare-styleable name="InfoUserBookWorkerView">
         <attr name="iubw_title" format="string" />
+        <attr name="iubw_titleName" format="string" />
+        <attr name="iubw_titlePhoneNumber" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ShopInfoView">
@@ -104,11 +108,11 @@
     </declare-styleable>
 
     <declare-styleable name="CustomFilterView">
-        <attr name="isVisibleExpression" format="boolean"/>
-        <attr name="isVisibleGender" format="boolean"/>
+        <attr name="isVisibleExpression" format="boolean" />
+        <attr name="isVisibleGender" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="CustomHeaderHome">
-        <attr name="hint_search" format="string"/>
+        <attr name="hint_search" format="string" />
     </declare-styleable>
 </resources>
