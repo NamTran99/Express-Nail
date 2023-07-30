@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.staff
 
 import android.app.Application
+import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -13,6 +14,7 @@ import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
+import com.example.nailexpress.utils.KEY_ID_POST_DETAIL
 import com.example.nailexpress.views.ui.main.customer.IActionTabChange
 import com.example.nailexpress.views.ui.main.customer.adapter.IMyPostAction
 import com.example.nailexpress.views.ui.main.customer.adapter.MyPostAdapter
@@ -33,26 +35,26 @@ import javax.inject.Inject
 class HomeStaff :
     BaseRefreshFragment<FragmentHomeStaffBinding, HomeStaffViewModel>(R.layout.fragment_home_staff),
     CustomHeaderHome.IActionHeader {
-    private val listFragment : List<Fragment> = listOf(PostFragment(), CvFragment())
+    private val listFragment: List<Fragment> = listOf(PostFragment(), CvFragment())
 
     override val viewModel: HomeStaffViewModel by viewModels()
 
     override fun initView() {
         binding.apply {
             vm = viewModel
-            with(vpMain){
-                if(vpMain.adapter == null){
+            with(vpMain) {
+                if (vpMain.adapter == null) {
                     vpMain.adapter = NavAdapter(this@HomeStaff, listFragment)
                 }
                 isSaveEnabled = true
                 isUserInputEnabled = false
 
-                viewModel.isTabPost.observe(viewLifecycleOwner){
-                    currentItem = if(it) TAB_POST else TAB_CV
+                viewModel.isTabPost.observe(viewLifecycleOwner) {
+                    currentItem = if (it) TAB_POST else TAB_CV
                 }
             }
 
-            with(header){
+            with(header) {
                 updateAction(this@HomeStaff)
                 updateTextNotification("3")
             }
@@ -71,7 +73,7 @@ class HomeStaff :
         navigateToDestination(R.id.filterFragment)
     }
 
-    companion object{
+    companion object {
         private const val TAB_POST = 0
         private const val TAB_CV = 1
         private const val TAB_NOTIFI = 2
@@ -131,7 +133,12 @@ class HomeStaffViewModel @Inject constructor(
 
     private val lostMoreCV = object : IMyPostAction {
         override val onClickDetail: (cvID: Int) -> Unit = {
-
+            navigateToDestination(
+                R.id.action_navDashBoardStaff_to_detailPostStaffFragment,
+                bundle = Bundle().apply {
+                    putInt(KEY_ID_POST_DETAIL, it)
+                }
+            )
         }
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
             getListCv(page)

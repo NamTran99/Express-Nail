@@ -32,6 +32,7 @@ class JobInfoView @JvmOverloads constructor(
         binding.tvLocation.apply {
             isVisible = nameLocation.isNullOrBlank().not() == true
             text = nameLocation
+            binding.tvMap.isVisible = nameLocation.isNullOrBlank().not()
         }
     }
 
