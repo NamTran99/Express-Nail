@@ -15,6 +15,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:tbm_isShowOptionMenu="false"
             app:tbm_title="@string/detail_post" />
 
         <View

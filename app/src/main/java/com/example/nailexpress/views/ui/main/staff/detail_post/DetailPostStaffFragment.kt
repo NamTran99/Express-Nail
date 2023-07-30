@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentDetailPostStaffBinding
@@ -36,6 +37,11 @@ class DetailPostStaffFragment : BaseFragment<FragmentDetailPostStaffBinding, Det
     override fun initView() {
         viewModel.dataPostDetail.observe(viewLifecycleOwner) {
             setUi(it)
+        }
+        with(binding) {
+            topBar.setOnBackPress {
+                findNavController().popBackStack()
+            }
         }
     }
 
