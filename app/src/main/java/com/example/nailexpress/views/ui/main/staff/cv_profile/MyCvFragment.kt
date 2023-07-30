@@ -31,8 +31,8 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
 
     private fun setUi(cvDTO: CvDTO?) {
         with(binding) {
-            layoutContent.isVisible = cvDTO != null
-            btnUpdateCv.isVisible = cvDTO != null
+            groupData.isVisible = cvDTO != null
+            layoutContentNoCv.isVisible = cvDTO == null
             if (cvDTO != null) {
                 cvPictureProfile.apply {
                     setAvatarUrl(cvDTO.avatar_url)
@@ -54,6 +54,8 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
                 descriptionView.apply {
                     description = cvDTO.description
                 }
+            } else {
+                btnCreateCv.setOnClickListener { }
             }
         }
     }

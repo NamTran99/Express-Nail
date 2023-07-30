@@ -256,6 +256,9 @@
             <action
                 android:id="@+id/action_navDashBoardStaff_to_filterFragment"
                 app:destination="@id/filterFragment" />
+            <action
+                android:id="@+id/action_navDashBoardStaff_to_myCvFragment"
+                app:destination="@id/myCvFragment" />
         </fragment>
 
         <fragment
