@@ -104,6 +104,7 @@
 
     <declare-styleable name="ServicesWorkerView">
         <attr name="sw_title" format="string" />
+        <attr name="sw_colorTitle" format="color" />
         <attr name="sw_itemSpace" format="float" />
     </declare-styleable>
 
@@ -115,4 +116,8 @@
     <declare-styleable name="CustomHeaderHome">
         <attr name="hint_search" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="UserBookedInfoView"></declare-styleable>
+
+    <declare-styleable name="JobInfoStaffView"></declare-styleable>
 </resources>

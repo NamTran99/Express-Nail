@@ -68,4 +68,7 @@
     <color name="black_656565">#656565</color>
     <color name="gray_c1c1c1">#C1C1C1</color>
     <color name="hFFE72E">#FFE72E</color>
+
+    <color name="orange_ed970e">#ED970E</color>
+    <color name="gray_6f6f6f">#6F6F6F</color>
 </resources>

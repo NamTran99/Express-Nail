@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvExpireTime"
+        style="@style/Text12BlackAnuphan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_primary_corner_top_5"
+        android:paddingHorizontal="@dimen/size_28"
+        android:paddingTop="@dimen/size_8"
+        android:paddingBottom="@dimen/size_4"
+        android:text="@string/expire_after_30_minutes_you_need_accept_in_30_minutes"
+        android:textColor="@color/white"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/layoutContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/size_16"
+        android:layout_marginTop="@dimen/size_12"
+        android:layout_marginEnd="@dimen/size_12"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvId"
+                style="@style/Text14PrimaryAnuphan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="#ID: 123456" />
+
+            <TextView
+                android:id="@+id/statusNow"
+                style="@style/Text10WhiteAnuphan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_8"
+                android:background="@drawable/bg_primary_corner_5"
+                android:padding="@dimen/size_2"
+                app:layout_constraintBottom_toBottomOf="@id/tvId"
+                app:layout_constraintStart_toEndOf="@id/tvId"
+                app:layout_constraintTop_toTopOf="@id/tvId"
+                tools:text="NOW" />
+
+            <TextView
+                android:id="@+id/statusBooking"
+                style="@style/Text12OrangeED970EAnuphan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawablePadding="@dimen/size_4"
+                app:drawableStartCompat="@drawable/ic_dot_5_orange"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Vui lòng xác nhận đơn" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/Text17BlackAnuphan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_4"
+            android:textFontWeight="500"
+            android:textStyle="bold"
+            tools:targetApi="p"
+            tools:text="Ken Nguyen" />
+
+        <TextView
+            android:id="@+id/tvPhoneNumber"
+            style="@style/Text14BlackAnuphan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_8"
+            android:drawablePadding="@dimen/size_4"
+            app:drawableStartCompat="@drawable/ic_phone"
+            tools:text="0342345678" />
+
+        <TextView
+            android:id="@+id/tvLocation"
+            style="@style/Text14BlackAnuphan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:drawablePadding="@dimen/size_6"
+            app:drawableStartCompat="@drawable/ic_location_black"
+            tools:text="2055 Lincoln Hwy, Edison, NJ 08817" />
+
+        <TextView
+            android:id="@+id/tvDistance"
+            style="@style/Text12BlackAnuphan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_15"
+            android:layout_marginTop="@dimen/size_4"
+            android:textColor="@color/color_7e7e7e"
+            tools:text="Cách vị trí của bạn 3 mi" />
+    </LinearLayout>
+
+</LinearLayout>

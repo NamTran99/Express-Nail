@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/Text14PrimaryAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="@string/job_information" />
+
+    <TextView
+        android:id="@+id/tvOrderedTime"
+        style="@style/Text12Gray6F6F6FAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_8"
+        tools:text="Đặt lúc : 08:00 AM - 07/25/2023" />
+
+    <TextView
+        android:id="@+id/tvTitleBookingType"
+        style="@style/Text14BlackAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_12"
+        android:text="@string/booking_type" />
+
+    <TextView
+        android:id="@+id/tvBookingType"
+        style="@style/Text14BlackAnuphan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/bg_gray_f7f7f7_corner_5"
+        android:gravity="center"
+        android:paddingTop="@dimen/size_14"
+        android:paddingBottom="@dimen/size_12"
+        tools:text="Theo dịch vụ" />
+
+    <TextView
+        android:id="@+id/tvTitleBookingTime"
+        style="@style/Text14BlackAnuphan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_16"
+        android:text="@string/booking_time" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_14"
+        android:background="@drawable/bg_gray_f7f7f7_corner_5">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_18"
+            android:src="@drawable/ic_feather_calenda"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/tvBookingTime"
+            style="@style/Text14BlackAnuphan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_14"
+            android:layout_marginBottom="@dimen/size_12"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="08:30 AM - April 72 2023" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>
