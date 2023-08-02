@@ -47,8 +47,10 @@ class CommonDialog(context: Context) : BaseDialog(context) {
         }
         super.show()
     }
+
+    @Deprecated("Not using this")
     override fun show() {
-        error("Not support")
+        super.show()
     }
 }
 interface CommonDialogOwner : ViewScopeOwner {

@@ -9,7 +9,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutItemInfo2LineBinding
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.setMargins
+import com.example.nailexpress.factory.TextFormatter
 
 class ItemInfo2LineView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -19,6 +21,9 @@ class ItemInfo2LineView @JvmOverloads constructor(
         this,
         true
     )
+    private val textFormatter by lazy {
+        TextFormatter(context)
+    }
 
     var iilIcon: Drawable? = null
         set(value) {
@@ -76,6 +81,12 @@ class ItemInfo2LineView @JvmOverloads constructor(
             } finally {
                 recycle()
             }
+        }
+    }
+
+    fun setValueExperienceDisplay(experienceYears: Int?) {
+        if (experienceYears != null) {
+            binding.tvValue.text = textFormatter.displayYearExper(experienceYears)
         }
     }
 }

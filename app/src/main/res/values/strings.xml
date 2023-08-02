@@ -275,5 +275,14 @@
     <string name="booking_now_staff">Cần bạn đến làm liền</string>
     <string name="you_have_not_create_cv_create_now">Bạn chưa tạo hồ sơ việc làm. Tạo hồ sơ ngay !</string>
     <string name="create_cv">Tạo hồ sơ</string>
+    <string name="expire_after_30_minutes_you_need_accept_in_30_minutes">Sau 30 phút sẽ hết hạn. Bạn cần chấp nhận đơn trong 30 phút</string>
+    <string name="id_format">#ID :%s</string>
+    <string name="booking_type">Loại booking</string>
+    <string name="booking_time">Thời gian đặt</string>
+    <string name="deny">Từ chối</string>
+    <string name="accept">Chấp nhận</string>
+    <string name="now">NOW</string>
+    <string name="ordered_time">Đặt lúc : %s</string>
+    <string name="need_to_do_immediately">Cần bạn đến làm liền</string>
 
 </resources>

@@ -62,7 +62,7 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             cv = createCvFactory(booking.cv),
             status_booking_display = textFormatter.displayStatusBooking(booking.status),
             colorStatus = textFormatter.displayStatusColor(booking.status),
-            salon_id = booking.salon_id,
+            salon_id = booking.salon_id.safe(),
             bookingIDDisplay = "#ID: ${booking.id}",
             contact_name = booking.contact_name.safe(),
             contact_phone = booking.contact_phone.formatPhoneUSCustom(),

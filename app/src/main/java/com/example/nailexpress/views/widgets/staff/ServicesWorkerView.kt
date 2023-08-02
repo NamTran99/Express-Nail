@@ -1,9 +1,12 @@
 package com.example.nailexpress.views.widgets.staff
 
 import android.content.Context
+import android.support.annotation.ColorInt
+import android.support.annotation.ColorRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutServicesWorkerBinding
@@ -34,8 +37,12 @@ class ServicesWorkerView @JvmOverloads constructor(
             try {
                 val title = getString(R.styleable.ServicesWorkerView_sw_title)
                 val itemSpace = getFloat(R.styleable.ServicesWorkerView_sw_itemSpace, ITEM_SPACE_DEFAULT.toFloat())
-
+                val titleColor = getColor(
+                    R.styleable.ServicesWorkerView_sw_colorTitle,
+                    ContextCompat.getColor(context, R.color.colorPrimary)
+                )
                 setTitle(title)
+                setTitleColor(titleColor)
                 setUpRecyclerView(itemSpace)
             } finally {
                 recycle()
@@ -47,6 +54,10 @@ class ServicesWorkerView @JvmOverloads constructor(
         title?.let {
             binding.tvTitle.text = it
         }
+    }
+
+    fun setTitleColor(@ColorInt color: Int) {
+        binding.tvTitle.setTextColor(color)
     }
 
     private fun setUpRecyclerView(itemSpace: Number = ITEM_SPACE_DEFAULT) {

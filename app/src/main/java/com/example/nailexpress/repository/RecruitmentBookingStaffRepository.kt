@@ -37,6 +37,10 @@ class RecruitmentBookingStaffRepository(
         )
     }
 
+    suspend fun getDetailBookingById(id: Int) = flow {
+        emit(api.getBookingById(id).await())
+    }
+
     suspend fun bookingStaff(form: BookingStaffForm) = flow {
         emit(
             api.bookStaff(form).await().id
@@ -83,6 +87,7 @@ class RecruitmentBookingStaffRepository(
     suspend fun getAllRecruitment(page: Int = 1) = flow {
         emit(api.getAllRecruitment(page).await())
     }
+
     fun getRole() =
         userDataSource.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
 }

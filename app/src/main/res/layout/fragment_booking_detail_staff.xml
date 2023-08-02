@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_bg"
+        android:orientation="vertical"
+        tools:context=".views.ui.main.staff.booking_detail.BookingDetailStaffFragment">
+
+        <com.example.nailexpress.views.widgets.TopBarMenu
+            android:id="@+id/topBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tbm_isShowOptionMenu="false"
+            app:tbm_title="@string/title_booking_detail" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layoutContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/size_0"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_14"
+                android:layout_marginBottom="36dp"
+                android:background="@drawable/bg_white_5"
+                app:layout_constraintBottom_toTopOf="@id/tvAccept"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.example.nailexpress.views.widgets.UserBookedInfoView
+                        android:id="@+id/userBookedInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" />
+
+                    <com.example.nailexpress.views.widgets.JobInfoStaffView
+                        android:id="@+id/jobInfoStaffView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_18"
+                        android:layout_marginTop="@dimen/size_22"
+                        app:jis_title="@string/job_information" />
+
+                    <com.example.nailexpress.views.widgets.staff.ServicesWorkerView
+                        android:id="@+id/serviceWorkerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_18"
+                        android:layout_marginTop="@dimen/size_24"
+                        app:sw_colorTitle="@color/black"
+                        app:sw_itemSpace="16"
+                        app:sw_title="@string/list_services" />
+
+                    <com.example.nailexpress.views.widgets.InfoUserBookWorkerView
+                        android:id="@+id/infoUserBookWorkerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/size_18"
+                        android:layout_marginTop="@dimen/size_16" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/size_1"
+                        android:layout_marginHorizontal="@dimen/size_16"
+                        android:layout_marginTop="@dimen/size_24"
+                        android:background="@color/gray" />
+
+                    <LinearLayout
+                        android:id="@+id/layoutSalon"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <com.example.nailexpress.views.widgets.ShopInfoView
+                            android:id="@+id/shopInfoView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_18" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/size_1"
+                            android:layout_marginHorizontal="@dimen/size_16"
+                            android:layout_marginTop="@dimen/size_24"
+                            android:background="@color/gray" />
+
+                        <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                            android:id="@+id/salonActiveTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_16"
+                            app:iil_showIcon="false"
+                            app:iil_title="@string/salon_was_active_in" />
+
+                        <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                            android:id="@+id/majorityCustomerView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_16"
+                            app:iil_showIcon="false"
+                            app:iil_title="@string/the_majority_of_customers_are_ethnic_minorities" />
+
+                        <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                            android:id="@+id/workerAccommodation"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_16"
+                            app:iil_showIcon="false"
+                            app:iil_title="@string/worker_accommodation" />
+
+                        <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                            android:id="@+id/shuttleBusWorker"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_16"
+                            app:iil_showIcon="false"
+                            app:iil_title="@string/shuttle_bus_to_work" />
+
+                        <com.example.nailexpress.views.widgets.SalonDescriptionView
+                            android:id="@+id/salonDescriptionView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_20"
+                            app:sd_title="@string/salon_description" />
+
+                        <com.example.nailexpress.views.widgets.SalonPictureView
+                            android:id="@+id/salonPictureView"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/size_18"
+                            android:layout_marginTop="@dimen/size_4" />
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <TextView
+                android:id="@+id/tvAccept"
+                style="@style/Text14WhiteAnuphan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/size_4"
+                android:background="@drawable/bg_primary_corner_180"
+                android:paddingHorizontal="54dp"
+                android:paddingTop="@dimen/size_19"
+                android:paddingBottom="@dimen/size_16"
+                android:text="@string/accept"
+                app:layout_constraintBottom_toTopOf="@id/tvDeny"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvDeny"
+                style="@style/Text14PrimaryAnuphan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="54dp"
+                android:paddingTop="@dimen/size_16"
+                android:paddingBottom="@dimen/size_16"
+                android:text="@string/deny"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>
