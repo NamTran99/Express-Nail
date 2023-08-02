@@ -281,5 +281,8 @@
     <string name="booking_time">Thời gian đặt</string>
     <string name="deny">Từ chối</string>
     <string name="accept">Chấp nhận</string>
+    <string name="now">NOW</string>
+    <string name="ordered_time">Đặt lúc : %s</string>
+    <string name="need_to_do_immediately">Cần bạn đến làm liền</string>
 
 </resources>

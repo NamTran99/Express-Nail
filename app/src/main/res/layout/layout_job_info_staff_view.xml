@@ -14,7 +14,7 @@
         tools:text="@string/job_information" />
 
     <TextView
-        android:id="@+id/tvOrderedTime"
+        android:id="@+id/tvCreatedTime"
         style="@style/Text12Gray6F6F6FAnuphan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

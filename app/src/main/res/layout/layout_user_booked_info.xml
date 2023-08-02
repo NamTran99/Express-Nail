@@ -50,10 +50,10 @@
                 android:layout_marginStart="@dimen/size_8"
                 android:background="@drawable/bg_primary_corner_5"
                 android:padding="@dimen/size_2"
+                android:text="@string/now"
                 app:layout_constraintBottom_toBottomOf="@id/tvId"
                 app:layout_constraintStart_toEndOf="@id/tvId"
-                app:layout_constraintTop_toTopOf="@id/tvId"
-                tools:text="NOW" />
+                app:layout_constraintTop_toTopOf="@id/tvId" />
 
             <TextView
                 android:id="@+id/statusBooking"

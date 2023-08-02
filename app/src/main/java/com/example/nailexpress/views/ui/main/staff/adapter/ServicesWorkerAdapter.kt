@@ -24,7 +24,7 @@ class ServicesWorkerAdapter : BaseAdapter<SkillDTO, ServicesWorkerAdapter.Servic
     inner class ServiceWorkerVH(private val binding: ItemServiceWorkerBinding) : BaseVH<SkillDTO>(binding.root) {
         override fun bindView(data: SkillDTO) {
             with(binding) {
-                tvName.text = data.name
+                tvName.text = if (data.name.isNullOrBlank()) data.custom_skill else data.name
                 tvPrice.apply {
                     isVisible = (data.price ?: 0.0) > 0.0
                     text = data.price.addPrefixDollar()

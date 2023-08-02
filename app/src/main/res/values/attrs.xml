@@ -119,5 +119,7 @@
 
     <declare-styleable name="UserBookedInfoView"></declare-styleable>
 
-    <declare-styleable name="JobInfoStaffView"></declare-styleable>
+    <declare-styleable name="JobInfoStaffView">
+        <attr name="jis_title" format="string" />
+    </declare-styleable>
 </resources>

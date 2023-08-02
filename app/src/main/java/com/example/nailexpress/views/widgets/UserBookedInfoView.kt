@@ -13,9 +13,7 @@ class UserBookedInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : LinearLayout(context, attrs) {
     private val binding = LayoutUserBookedInfoBinding.inflate(
-        LayoutInflater.from(context),
-        this,
-        true
+        LayoutInflater.from(context), this, true
     )
     private val textFormatter by lazy {
         TextFormatter(context)
@@ -38,12 +36,14 @@ class UserBookedInfoView @JvmOverloads constructor(
         binding.tvId.text = context.getString(R.string.id_format, id?.toString())
     }
 
-    fun setStatusNow() {
-        binding.statusNow
+    fun setStatusNow(bookingTime: String?) {
+        binding.statusNow.isVisible = bookingTime.isNullOrBlank()
     }
 
-    fun setStatusBooking() {
-        binding.statusBooking
+    fun setStatusBooking(status: Int?) {
+        if (status != null) {
+            binding.statusBooking.text = status.toString()
+        }
     }
 
     fun setName(name: String?) {
