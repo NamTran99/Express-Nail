@@ -23,13 +23,13 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
 ) {
     override val viewModel: BookingDetailStaffViewModel by viewModels()
     private val id: Int? by lazy {
-        arguments?.getInt(KEY_ID_BOOKING_DETAIL)
+        arguments?.getInt(KEY_ID_BOOKING_DETAIL) ?: 1
     }
 
     override fun initView() {
         with(binding) {
             layoutContent.isVisible = id != null
-            tvAccept.setOnClickListener { }
+            tvPositive.setOnClickListener { }
             tvDeny.setOnClickListener { }
             topBar.setOnBackPress { findNavController().popBackStack() }
         }

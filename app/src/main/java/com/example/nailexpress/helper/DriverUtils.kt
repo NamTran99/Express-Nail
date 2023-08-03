@@ -52,6 +52,12 @@ object DriverUtils {
             }
         }
     }
+
+    fun message(context: Context, phoneNumber: String) {
+        val intent = Intent(Intent.ACTION_SENDTO)
+        intent.data = Uri.parse("smsto:$phoneNumber")
+        context.startActivity(intent)
+    }
 }
 
 

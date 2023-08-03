@@ -30,11 +30,12 @@ import java.util.*
 
 private const val SELECT_MULTIPLE_IMAGE = 2
 private const val CAMERA_REQUEST = 3
+
 class AppSettings(private val context: Context) {
 
 //    val activityContext = context as Bas
 
-    companion object{
+    companion object {
         const val AUTOCOMPLETE_REQUEST_CODE = 1
     }
 
@@ -43,7 +44,11 @@ class AppSettings(private val context: Context) {
     }
 
     fun callPhone(phoneNumber: String) {
-        DriverUtils.call(context,phoneNumber)
+        DriverUtils.call(context, phoneNumber)
+    }
+
+    fun sendMessageTo(phoneNumber: String) {
+        DriverUtils.message(context, phoneNumber)
     }
 
 //    fun enableGPS(

@@ -1,8 +1,9 @@
 package com.example.nailexpress.app
 
+import androidx.annotation.ColorRes
 import com.example.nailexpress.R
 
-fun AppConfig.AppRole?.safe() = this?: AppConfig.AppRole.Customer
+fun AppConfig.AppRole?.safe() = this ?: AppConfig.AppRole.Customer
 
 object AppConfig {
     val endpoint: String get() = "https://dev.api.nails-express.kendemo.com/api/v1/"
@@ -14,7 +15,7 @@ object AppConfig {
     const val REQUEST_CODE_SHARE_APP = 99
 
 
-    enum class AppRole(val  id: Int) {
+    enum class AppRole(val id: Int) {
         Customer(1), Staff(0)
     }
 
@@ -22,9 +23,10 @@ object AppConfig {
     * READ: dành cho load ảnh
     * UPDATE: Dành cho upload ảnh
     * */
-    enum class Status(val inx: Int){
+    enum class Status(val inx: Int) {
         READ(0), UPDATE(1);
-        companion object{
+
+        companion object {
             fun getDayByIndex(index: Int): Status {
                 Status.values().forEach {
                     if (it.inx == index) return it
@@ -45,7 +47,7 @@ object WorkType {
     const val NoXuyenBang = 1
 }
 
-object PriceUnit{
+object PriceUnit {
     const val HOUR = 1
     const val DAY = 2
     const val WEEK = 3
@@ -53,13 +55,13 @@ object PriceUnit{
     const val YEAR = 5
 }
 
-object SKillType{
+object SKillType {
     const val SKill = 1
     const val Time = 2
 }
 
 // Recruitment
-object SalaryType{
+object SalaryType {
     const val Both = 0
     const val Service = 1
     const val Time = 2
@@ -71,19 +73,19 @@ object RecruitmentStatus {
     const val Destroy = 3 // Hủy
 }
 
-object BookingStatus{
+object BookingStatus {
     const val Pending = 0
     const val Accept = 1
     const val Cancel = 2
     const val Expired = 3
 }
 
-enum class BookingStatusDefine(val bookingStatus: Int,val res: Int,val color: Int){
-    Pending(0,R.string.lbl_pending,R.color.hED970E),
-    Accept(1, R.string.lbl_worker_accept,R.color.h0089FF),
-    Deny(2,R.string.lbl_customer_has_mobilized,R.color.hED1B1B),
-    Expires(3,R.string.lbl_expired_1,R.color.h909090),
-    StartMoving(4,R.string.lbl_start_moving,R.color.hFF662E),
-    Arrived(5,R.string.lbl_arrived,R.color.h0CD3B4),
-    Finish(6,R.string.lbl_finish,R.color.h29DB12)
+enum class BookingStatusDefine(val bookingStatus: Int, val res: Int, @ColorRes val color: Int) {
+    Pending(0, R.string.lbl_pending, R.color.hED970E),
+    Accept(1, R.string.lbl_worker_accept, R.color.h0089FF),
+    Deny(2, R.string.lbl_customer_has_mobilized, R.color.hED1B1B),
+    Expires(3, R.string.lbl_expired_1, R.color.h909090),
+    StartMoving(4, R.string.lbl_start_moving, R.color.hFF662E),
+    Arrived(5, R.string.lbl_arrived, R.color.h0CD3B4),
+    Finish(6, R.string.lbl_finish, R.color.h29DB12)
 }

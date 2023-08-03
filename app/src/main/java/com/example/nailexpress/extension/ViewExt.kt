@@ -30,6 +30,8 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.ArrayRes
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.MenuRes
 import androidx.annotation.StringRes
@@ -415,9 +417,9 @@ fun LinearLayout.weightSum(weightSum: Float) {
 
 fun EditText.bind(any: (String) -> Unit) {
     doOnTextChanged { text, _, _, _ ->
-        if(text.isNullOrBlank()){
+        if (text.isNullOrBlank()) {
             hideKeyboard(this)
-        }else{
+        } else {
             any(text?.toString().orEmpty())
         }
     }
@@ -577,9 +579,9 @@ fun Spinner.configSpinner(
     content: Array<String> = arrayOf(),
     onItemSelected: (position: Int) -> Unit = {}
 ) {
-    val listItem =  contentID?.let {
+    val listItem = contentID?.let {
         context.resources.getStringArray(it)
-    }?:content
+    } ?: content
     adapter = object : ArrayAdapter<String>(
         context,
         R.layout.layout_spinner_item, listItem
@@ -741,7 +743,7 @@ fun ShapeableImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Uni
 
 fun CircleImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Unit) = {}) {
     if (link.isNullOrEmpty()) {
-        this.setImageDrawable(AppCompatResources.getDrawable(context,R.drawable.ic_logo))
+        this.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.ic_logo))
         return
     }
     if (link.contains("http")) {
@@ -895,7 +897,15 @@ fun View.hideKeyboard(v: View) {
     inputMethodManager.hideSoftInputFromWindow(v.applicationWindowToken, 0)
 }
 
-fun View.scrollToViewABitTop(){
+fun View.scrollToViewABitTop() {
     val rect = Rect(0, -100, width, height + 100)
     requestRectangleOnScreen(rect)
+}
+
+fun TextView.setDrawableStartTint(@ColorRes color: Int) {
+    val drawables = compoundDrawablesRelative
+    val drawableStart = drawables[0]
+    val drawable = drawableStart.constantState?.newDrawable()?.mutate()
+    drawable?.setTint(ContextCompat.getColor(this.context, color))
+    setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, drawables[1], drawables[2], drawables[3])
 }
