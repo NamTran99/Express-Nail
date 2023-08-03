@@ -15,6 +15,9 @@
     <color name="color_ED1B1B">#ED1B1B</color>
     <color name="gray_disabled">#F4F4F4</color>
     <color name="text_content_default">#a2a2a2</color>
+    <color name="hED970E">#ED970E</color>
+    <color name="h0089FF">#0089FF</color>
+    <color name="h909090">#909090</color>
 
     <!--GRAY-->
     <color name="gray">#CFCFCF</color>
@@ -58,6 +61,10 @@
     <color name="red_240">#F24747</color>
     <color name="white_700">#B3FFFFFF</color>
     <color name="color_second">#FF662E</color>
+    <color name="hED1B1B">#ED1B1B</color>
+    <color name="hFF662E">#FF662E</color>
+    <color name="h0CD3B4">#0CD3B4</color>
+    <color name="h29DB12">#29DB12</color>
     <color name="color_ffd8ca">#FFD8CA</color>
     <color name="hffd9ca">#ffd9ca</color>
     <color name="gray_d5d5d5">#d5d5d5</color>
