@@ -200,7 +200,7 @@
 
     <navigation
         android:id="@+id/staffGraph"
-        app:startDestination="@id/navDashBoardStaff">
+        app:startDestination="@id/bookingDetailStaffFragment">
 
         <fragment
             android:id="@+id/navDashBoardStaff"

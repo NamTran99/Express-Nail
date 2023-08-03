@@ -27,9 +27,9 @@
                 android:layout_height="@dimen/size_0"
                 android:layout_marginHorizontal="@dimen/size_20"
                 android:layout_marginTop="@dimen/size_14"
-                android:layout_marginBottom="36dp"
+                android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_white_5"
-                app:layout_constraintBottom_toTopOf="@id/tvAccept"
+                app:layout_constraintBottom_toTopOf="@id/tvPositive"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -151,7 +151,7 @@
             </androidx.core.widget.NestedScrollView>
 
             <TextView
-                android:id="@+id/tvAccept"
+                android:id="@+id/tvPositive"
                 style="@style/Text14WhiteAnuphan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

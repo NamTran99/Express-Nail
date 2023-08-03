@@ -6,8 +6,12 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
 import com.example.nailexpress.R
+import com.example.nailexpress.app.AppSettings
 import com.example.nailexpress.databinding.LayoutUserBookedInfoBinding
+import com.example.nailexpress.extension.setDrawableStartTint
 import com.example.nailexpress.factory.TextFormatter
+import com.example.nailexpress.factory.statusBookingGetColorRes
+import com.example.nailexpress.factory.statusBookingGetStringRes
 
 class UserBookedInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -18,6 +22,8 @@ class UserBookedInfoView @JvmOverloads constructor(
     private val textFormatter by lazy {
         TextFormatter(context)
     }
+
+    private val appSettings by lazy { AppSettings(context) }
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.UserBookedInfoView, 0, 0).run {
@@ -42,7 +48,11 @@ class UserBookedInfoView @JvmOverloads constructor(
 
     fun setStatusBooking(status: Int?) {
         if (status != null) {
-            binding.statusBooking.text = status.toString()
+            binding.statusBooking.apply {
+                text = context.getString(status.statusBookingGetStringRes())
+                setTextColor(status.statusBookingGetColorRes())
+                setDrawableStartTint(status.statusBookingGetColorRes())
+            }
         }
     }
 
@@ -54,6 +64,19 @@ class UserBookedInfoView @JvmOverloads constructor(
         binding.tvPhoneNumber.apply {
             isVisible = phone.isNullOrBlank().not()
             text = phone
+        }
+        binding.layoutContactAction.apply {
+            isVisible = phone.isNullOrBlank().not()
+        }
+        if (phone.isNullOrBlank().not()) {
+            with(binding) {
+                btnMessage.setOnClickListener {
+                    appSettings.sendMessageTo(phone!!)
+                }
+                btnCall.setOnClickListener {
+                    appSettings.callPhone(phone!!)
+                }
+            }
         }
     }
 

@@ -143,8 +143,8 @@ class TextFormatter(private val cxt: Context) {
     }
 }
 
-fun Int.statusBookingGetColor() =
+fun Int.statusBookingGetColorRes() =
     kotlin.run { BookingStatusDefine.values().first { it.bookingStatus == this }.color }
 
-fun Int.statusBookingGetRes() =
+fun Int.statusBookingGetStringRes() =
     run { BookingStatusDefine.values().first { it.bookingStatus == this }.res }
