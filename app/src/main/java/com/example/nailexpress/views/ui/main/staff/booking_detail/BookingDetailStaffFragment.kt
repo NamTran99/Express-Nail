@@ -23,7 +23,7 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
 ) {
     override val viewModel: BookingDetailStaffViewModel by viewModels()
     private val id: Int? by lazy {
-        arguments?.getInt(KEY_ID_BOOKING_DETAIL) ?: 1
+        arguments?.getInt(KEY_ID_BOOKING_DETAIL)
     }
 
     override fun initView() {
