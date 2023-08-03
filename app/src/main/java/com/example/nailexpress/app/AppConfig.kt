@@ -1,6 +1,7 @@
 package com.example.nailexpress.app
 
 import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
 import com.example.nailexpress.R
 
 fun AppConfig.AppRole?.safe() = this ?: AppConfig.AppRole.Customer
@@ -80,12 +81,17 @@ object BookingStatus {
     const val Expired = 3
 }
 
-enum class BookingStatusDefine(val bookingStatus: Int, val res: Int, @ColorRes val color: Int) {
-    Pending(0, R.string.lbl_pending, R.color.hED970E),
-    Accept(1, R.string.lbl_worker_accept, R.color.h0089FF),
+enum class BookingStatusDefine(
+    val bookingStatus: Int,
+    val bookingStringRes: Int,
+    @ColorRes val color: Int,
+    @StringRes val positiveStringRes: Int = R.string.empty
+) {
+    Pending(0, R.string.lbl_pending, R.color.hED970E, R.string.accept),
+    Accept(1, R.string.lbl_worker_accept, R.color.h0089FF, R.string.start_go_to_meeting_place),
     Deny(2, R.string.lbl_customer_has_mobilized, R.color.hED1B1B),
     Expires(3, R.string.lbl_expired_1, R.color.h909090),
-    StartMoving(4, R.string.lbl_start_moving, R.color.hFF662E),
-    Arrived(5, R.string.lbl_arrived, R.color.h0CD3B4),
+    StartMoving(4, R.string.lbl_start_moving, R.color.hFF662E, R.string.i_have_arrived),
+    Arrived(5, R.string.lbl_arrived, R.color.h0CD3B4, R.string.lbl_finish),
     Finish(6, R.string.lbl_finish, R.color.h29DB12)
 }

@@ -147,4 +147,4 @@ fun Int.statusBookingGetColorRes() =
     kotlin.run { BookingStatusDefine.values().first { it.bookingStatus == this }.color }
 
 fun Int.statusBookingGetStringRes() =
-    run { BookingStatusDefine.values().first { it.bookingStatus == this }.res }
+    run { BookingStatusDefine.values().first { it.bookingStatus == this }.bookingStringRes }

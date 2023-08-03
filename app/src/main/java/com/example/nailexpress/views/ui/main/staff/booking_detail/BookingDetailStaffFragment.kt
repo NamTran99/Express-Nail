@@ -1,14 +1,10 @@
 package com.example.nailexpress.views.ui.main.staff.booking_detail
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
+import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentBookingDetailStaffBinding
 import com.example.nailexpress.models.response.BookingDTO
@@ -52,6 +48,7 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
             }
             with(binding) {
                 layoutSalon.isVisible = bookingDTO.salon_id != null
+                setShowBottomButton(bookingDTO.status)
                 userBookedInfo.apply {
                     setID(bookingDTO.id)
                     setShowExpireTime(bookingDTO.booking_time.isNullOrBlank())
@@ -98,6 +95,20 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
                 }
                 salonPictureView.apply {
                     setListPicture(salon.listImage)
+                }
+            }
+        }
+    }
+
+    private fun setShowBottomButton(status: Int) {
+        with(binding) {
+            tvDeny.isVisible = status == BookingStatusDefine.Pending.bookingStatus
+            tvPositive.isVisible = status != BookingStatusDefine.Expires.bookingStatus
+            val bookingStatusDefine = BookingStatusDefine.values()
+                .firstOrNull { bookingStatusDefine -> bookingStatusDefine.bookingStatus == status }
+            bookingStatusDefine?.let {
+                tvPositive.apply {
+                    text = context.getString(bookingStatusDefine.positiveStringRes)
                 }
             }
         }
