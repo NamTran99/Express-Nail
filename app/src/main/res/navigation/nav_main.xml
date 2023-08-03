@@ -234,6 +234,11 @@
             android:id="@+id/detailPostStaffFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.detail_post.DetailPostStaffFragment"
             android:label="DetailPostStaffFragment" />
+
+        <fragment
+            android:id="@+id/bookingDetailStaffFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.booking_detail.BookingDetailStaffFragment"
+            android:label="BookingDetailStaffFragment" />
     </navigation>
 
     <fragment

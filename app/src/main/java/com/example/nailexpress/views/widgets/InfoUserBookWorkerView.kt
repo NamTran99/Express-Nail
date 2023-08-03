@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutInfoUserBookWorkerViewBinding
+import com.example.nailexpress.extension.formatPhoneUSCustom
 
 class InfoUserBookWorkerView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -63,5 +64,11 @@ class InfoUserBookWorkerView @JvmOverloads constructor(
 
     fun setTitlePhoneNumber(title: String) {
         binding.tvTitlePhoneNumber.text = title
+    }
+
+    fun setPhoneNumberFormatPhoneUSCustom(phoneNumber: String?) {
+        if (phoneNumber.isNullOrBlank().not()) {
+            binding.tvPhoneNumber.text = phoneNumber?.formatPhoneUSCustom()
+        }
     }
 }
