@@ -1,8 +1,10 @@
 package com.example.nailexpress.factory
 
 import android.content.Context
+import android.telephony.PhoneNumberUtils
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.app.Gender
 import com.example.nailexpress.app.PriceUnit.DAY
 import com.example.nailexpress.app.PriceUnit.HOUR
@@ -12,6 +14,8 @@ import com.example.nailexpress.app.PriceUnit.YEAR
 import com.example.nailexpress.app.WorkType
 import com.example.nailexpress.extension.*
 import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class TextFormatter(private val cxt: Context) {
     fun displayGender(gender: Int): String {
@@ -34,10 +38,11 @@ class TextFormatter(private val cxt: Context) {
         return getString(R.string.num_of_workers, number)
     }
 
-    fun displayBookingTime(bookingTime: String?, appRole: AppConfig.AppRole): String{
-        return bookingTime?.let{
+    fun displayBookingTime(bookingTime: String?, appRole: AppConfig.AppRole): String {
+        return bookingTime?.let {
             bookingTime.convertUTCToLocal(formatOutput = FORMAT_DATE_DISPLAY)
-        }?: getString((appRole == AppConfig.AppRole.Customer) or1 R.string.booking_now_customer or2  R.string.booking_now_staff)
+        }
+            ?: getString((appRole == AppConfig.AppRole.Customer) or1 R.string.booking_now_customer or2 R.string.booking_now_staff)
     }
 
     fun displaySalary(price: Double, unit: Int): String {
@@ -117,4 +122,29 @@ class TextFormatter(private val cxt: Context) {
         }
     }
 
+    fun getTimeWorking(time: String?) = time ?: getString(R.string.lbl_need_you_to_working)
+
+    fun formatPhoneUS(str: String?): String {
+        return if (str.isNullOrEmpty()) ""
+        else PhoneNumberUtils.formatNumber(str, "US")
+    }
+
+    fun formatDate(inputDate: String?): String {
+        if (inputDate == null) return ""
+        val inputDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.US)
+        val outputDateFormat = SimpleDateFormat("hh:mm a - dd/MM/yyyy", Locale.US)
+
+        return try {
+            val date = inputDateFormat.parse(inputDate)
+            outputDateFormat.format(date)
+        } catch (e: Exception) {
+            inputDate
+        }
+    }
 }
+
+fun Int.statusBookingGetColor() =
+    kotlin.run { BookingStatusDefine.values().first { it.bookingStatus == this }.color }
+
+fun Int.statusBookingGetRes() =
+    run { BookingStatusDefine.values().first { it.bookingStatus == this }.res }
