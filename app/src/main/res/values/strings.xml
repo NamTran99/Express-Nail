@@ -303,4 +303,7 @@
     <string name="now">NOW</string>
     <string name="ordered_time">Đặt lúc : %s</string>
     <string name="need_to_do_immediately">Cần bạn đến làm liền</string>
+    <string name="empty" />
+    <string name="start_go_to_meeting_place">Bắt đầu di chuyển đến điểm hẹn</string>
+    <string name="i_have_arrived">Tôi đã đến</string>
 </resources>
