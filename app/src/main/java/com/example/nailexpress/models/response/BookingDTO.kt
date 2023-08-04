@@ -1,5 +1,9 @@
 package com.example.nailexpress.models.response
 
+import com.example.nailexpress.app.BookingStatusDefine
+import com.example.nailexpress.factory.statusBookingGetStringRes
+import com.example.nailexpress.factory.statusBookingGetColorRes
+
 data class BookingDTO(
     val address: String,
     val booking_time: String? = null,
@@ -33,4 +37,10 @@ data class BookingDTO(
     val work_time: Int? = 0,
     val zipcode: String,
     val skills: List<SkillDTO>? = listOf()
-)
+){
+    fun getStatusBookingColor() = status.statusBookingGetColorRes()
+
+    fun getStatusBookingRes() = status.statusBookingGetStringRes()
+
+    fun visibleMessAndCall() = status == BookingStatusDefine.Accept.bookingStatus || status == BookingStatusDefine.StartMoving.bookingStatus || status == BookingStatusDefine.Arrived.bookingStatus
+}

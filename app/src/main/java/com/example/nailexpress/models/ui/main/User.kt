@@ -9,6 +9,7 @@ interface Form{
 }
 
 data class User(
+    var id: Int = 0,
     var address: String = "",
     var avatar_url: String = "",
     var city: String = "",

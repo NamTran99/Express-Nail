@@ -41,6 +41,9 @@
     <declare-styleable name="TopBarMenu">
         <attr name="tbm_title" format="string" />
         <attr name="tbm_isShowOptionMenu" format="boolean" />
+        <attr name="tbm_icEnd" format="reference" />
+        <attr name="tbm_isShowBack" format="boolean" />
+        <attr name="tbm_padding_ic_end" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="UserInfoDetailPostView">

@@ -84,7 +84,6 @@ class HomeStaff :
 class HomeStaffViewModel @Inject constructor(
     application: Application,
     private val recruitmentRepository: RecruitmentBookingStaffRepository,
-    private val cvRepository: CvRepository
 ) : BaseRefreshViewModel(application), IActionTabChange {
     val isTabPost = MutableLiveData(true)
     val adapterPost by lazy { PostAdapter(loadMorePost) }
@@ -92,7 +91,7 @@ class HomeStaffViewModel @Inject constructor(
 
     init {
         getAllRecruitment()
-        getListCv()
+        getListRecruitmentMyApply()
     }
 
     override fun onTabChangeListener(index: Int) {
@@ -101,21 +100,21 @@ class HomeStaffViewModel @Inject constructor(
 
     override fun onSwipeRefreshData() {
         getAllRecruitment()
-        getListCv()
+        getListRecruitmentMyApply()
     }
 
     private fun getAllRecruitment(page: Int = 1) {
         launch(loading = refreshLoading) {
             recruitmentRepository.getAllRecruitment(page).onEach {
-                adapterPost.submit(it)
+                adapterPost.submit(it,page)
             }.collect()
         }
     }
 
-    private fun getListCv(page: Int = 1) {
+    private fun getListRecruitmentMyApply(page: Int = 1) {
         launch(loading = refreshLoading) {
-            cvRepository.getListCvStaff(page).onEach { e ->
-                adapterCv.submit(e.map { it.convertToRecruitmentForm() })
+            recruitmentRepository.getListRecruitmentMyApply(page).onEach { e ->
+                adapterCv.submit(e,page)
             }.collect()
         }
     }
@@ -141,7 +140,7 @@ class HomeStaffViewModel @Inject constructor(
             )
         }
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
-            getListCv(page)
+            getListRecruitmentMyApply(page)
         }
     }
 
