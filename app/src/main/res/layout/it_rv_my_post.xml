@@ -25,6 +25,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:paddingBottom="@dimen/size_10"
             android:layout_height="wrap_content">
 
             <com.makeramen.roundedimageview.RoundedImageView
@@ -43,7 +44,6 @@
                 style="@style/AppTheme.Content"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_marginTop="@dimen/size_10"
-                android:text='@{"#ID :"+data.salon_id}'
                 android:textColor="@color/color_second"
                 app:layout_constraintStart_toEndOf="@+id/ivLogo"
                 app:layout_constraintTop_toTopOf="@id/ivLogo"
@@ -114,7 +114,7 @@
                         android:ellipsize="end"
                         android:maxWidth="@dimen/size_300"
                         android:maxLines="2"
-                        android:text="@{data.address}"
+                        android:text='@{data.city+", "+data.state}'
                         app:drawableStartCompat="@drawable/ic_location"
                         app:layout_constraintStart_toEndOf="@+id/ivLogo"
                         app:layout_constraintTop_toTopOf="@id/ivLogo"
@@ -129,11 +129,11 @@
                         app:riv_mutate_background="true" />
 
                     <TextView
+                        android:id="@+id/tvLocation"
                         style="@style/AppTheme.Content"
                         android:drawablePadding="@dimen/size_7"
                         android:ellipsize="end"
                         android:maxLines="2"
-                        android:text="@{context.getString(R.string.lbl_distance_from_your_location, data.distanceSafe())}"
                         app:layout_constraintStart_toEndOf="@+id/ivLogo"
                         app:layout_constraintTop_toTopOf="@id/ivLogo"
                         tools:text="Cách vị trí của bạn" />
@@ -149,18 +149,11 @@
                     tools:text="Theo dịch vụ" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btnDetail"
-                    style="@style/AppTheme.Button"
                     android:layout_width="@dimen/size_150"
-                    android:layout_height="@dimen/radius_40"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:layout_marginBottom="@dimen/size_20"
-                    android:paddingHorizontal="@dimen/size_20"
+                    android:id="@+id/btnDetail"
+                    style="@style/AppTheme.Button.StyleButton"
                     android:text="@string/lbl_see_detail"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/AppTheme.Content"
-                    android:textColor="@color/color_primary"
+                    android:textColor="@color/colorPrimary"
                     app:backgroundTint="@color/hffd9ca"
                     app:cornerRadius="@dimen/size_50" />
             </androidx.appcompat.widget.LinearLayoutCompat>

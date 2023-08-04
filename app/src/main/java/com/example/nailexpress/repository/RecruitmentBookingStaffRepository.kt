@@ -90,4 +90,12 @@ class RecruitmentBookingStaffRepository(
 
     fun getRole() =
         userDataSource.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
+
+    suspend fun getListBookingOfMe(page: Int) = flow {
+        emit(api.getListBookingOfMe(page = page).await())
+    }
+
+    suspend fun getListRecruitmentMyApply(page: Int) = flow {
+        emit(api.getListRecruitmentMyApply(page = page).await())
+    }
 }

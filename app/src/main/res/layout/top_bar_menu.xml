@@ -55,11 +55,11 @@
         android:id="@+id/btnOption"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:src="@drawable/ic_3_dot_more"
-        android:padding="@dimen/size_14"
+        android:padding="@dimen/size_7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/guideline1"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        tools:ignore="ContentDescription"
+        tools:src="@drawable/ic_3_dot_more" />
 </androidx.constraintlayout.widget.ConstraintLayout>

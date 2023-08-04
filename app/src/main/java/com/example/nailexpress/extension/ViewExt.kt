@@ -909,3 +909,6 @@ fun TextView.setDrawableStartTint(@ColorRes color: Int) {
     drawable?.setTint(ContextCompat.getColor(this.context, color))
     setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, drawables[1], drawables[2], drawables[3])
 }
+
+fun View.getString(res: Int) = context.getString(res)
+fun View.getString(res: Int,params: Any) = context.getString(res,params)

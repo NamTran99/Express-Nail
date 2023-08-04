@@ -5,12 +5,14 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
+import androidx.core.view.setPadding
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.TopBarMenuBinding
 import com.example.nailexpress.utils.Constant
 
 private typealias OnBackPress = () -> Unit
-private typealias OnClickOption = (optionType: OptionType) -> Unit
+private typealias OnClickOption = () -> Unit
 
 class TopBarMenu @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -43,12 +45,32 @@ class TopBarMenu @JvmOverloads constructor(
             try {
                 val title = getString(R.styleable.TopBarMenu_tbm_title) ?: Constant.EMPTY
                 val isShowOptionMenu = getBoolean(R.styleable.TopBarMenu_tbm_isShowOptionMenu, true)
+                val icEnd = getDrawable(R.styleable.TopBarMenu_tbm_icEnd)
+                val isShowBack = getBoolean(R.styleable.TopBarMenu_tbm_isShowBack,true)
+                val paddingIcEnd = getDimension(R.styleable.TopBarMenu_tbm_padding_ic_end,14f)
+
                 with(binding) {
-                    btnBack.setOnClickListener {
-                        onBackPress?.invoke()
-                    }
                     textView.text = title
                     btnOption.isInvisible = isShowOptionMenu.not()
+
+                    with(btnOption){
+                        icEnd?.let {
+                            setImageDrawable(it)
+                        }
+
+                        if (btnOption.isVisible) {
+                            setOnClickListener { onClickOption?.invoke() }
+                        }
+
+                        setPadding(paddingIcEnd.toInt())
+                    }
+
+                    btnBack.isInvisible = isShowBack.not()
+                    if(btnBack.isVisible){
+                        btnBack.setOnClickListener {
+                            onBackPress?.invoke()
+                        }
+                    }
                 }
             } finally {
                 recycle()
@@ -64,5 +86,3 @@ class TopBarMenu @JvmOverloads constructor(
         this.onClickOption = onClickOption
     }
 }
-
-enum class OptionType()

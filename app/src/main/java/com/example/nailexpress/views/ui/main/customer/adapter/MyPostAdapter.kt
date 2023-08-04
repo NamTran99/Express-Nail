@@ -5,8 +5,11 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.ItRvMyPostBinding
 import com.example.nailexpress.databinding.ItemListStaffBinding
+import com.example.nailexpress.extension.getString
 import com.example.nailexpress.extension.onClick
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.setImageURICustom
+import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 
@@ -26,6 +29,9 @@ class MyPostAdapter(val action: IMyPostAction): PageRecyclerAdapter<RecruitmentF
             btnDetail.setOnClickListener {
                 item.id?.let { it1 -> action.onClickDetail(it1) }
             }
+
+            tvId.text = tvId.getString(R.string.lbl_id,item.salon_id.safe())
+            tvLocation.text = TextFormatter(root.context).displayDistance(item.distance.safe().toDouble())
         }
     }
 
