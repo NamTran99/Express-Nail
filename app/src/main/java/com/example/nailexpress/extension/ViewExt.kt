@@ -899,3 +899,6 @@ fun View.scrollToViewABitTop(){
     val rect = Rect(0, -100, width, height + 100)
     requestRectangleOnScreen(rect)
 }
+
+fun View.getString(res: Int) = context.getString(res)
+fun View.getString(res: Int,params: Any) = context.getString(res,params)

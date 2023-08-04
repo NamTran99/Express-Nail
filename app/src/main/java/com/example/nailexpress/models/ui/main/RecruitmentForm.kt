@@ -13,6 +13,7 @@ import com.example.nailexpress.utils.Validator.checkEqual
 import com.example.nailexpress.utils.Validator.checkLength
 
 class RecruitmentForm(
+    var user_id: Int? = null,
     var avatar: String = "",
     var title: String = "",
     var gender: Int = GenderDefault, //0: fe

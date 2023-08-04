@@ -110,6 +110,10 @@ class TextFormatter(private val cxt: Context) {
         return cxt.getString(value)
     }
 
+    fun getString(value: Int, params: Any): String {
+        return cxt.getString(value, params)
+    }
+
     fun getString(value: Int, vararg data: Any): String {
         return cxt.getString(value, *data)
     }
@@ -136,7 +140,7 @@ class TextFormatter(private val cxt: Context) {
 
         return try {
             val date = inputDateFormat.parse(inputDate)
-            outputDateFormat.format(date)
+            getString(R.string.lbl_booking,outputDateFormat.format(date))
         } catch (e: Exception) {
             inputDate
         }

@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.nailexpress.models.response.BookingDTO" />
+
+        <variable
+            name="textFormat"
+            type="com.example.nailexpress.factory.TextFormatter" />
+
+        <import type="androidx.core.content.ContextCompat" />
+
+        <import type="com.example.nailexpress.R"/>
+
+        <import type="com.example.nailexpress.app.BookingStatusDefine"/>
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_15"
+        android:background="@color/white"
+        android:elevation="@dimen/size_0"
+        app:cardCornerRadius="@dimen/size_8"
+        app:cardElevation="@dimen/size_1">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvExpired"
+                style="@style/AppTheme.Content"
+                android:layout_width="match_parent"
+                android:background="@color/color_primary"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/size_20"
+                android:paddingVertical="@dimen/size_7"
+                android:text="@string/lbl_after_30_minutes_will_expire"
+                android:textColor="@color/white"
+                app:layout_constraintTop_toTopOf="parent"
+                app:visibility="@{data.booking_time != null}"
+                tools:text="Sau 30  phut xe het han" />
+
+
+            <TextView
+                android:id="@+id/tvId"
+                style="@style/AppTheme.Large"
+                android:layout_marginStart="@dimen/size_10"
+                android:layout_marginTop="@dimen/size_10"
+                android:text='@{context.getString(R.string.lbl_id,data.id)}'
+                android:textColor="@color/color_second"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvExpired"
+                tools:text="#ID :123456" />
+
+            <TextView
+                style="@style/AppTheme.Content"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_10"
+                android:background="@drawable/bg_tab_selected"
+                android:paddingHorizontal="@dimen/size_5"
+                android:paddingVertical="@dimen/size_2"
+                android:text="@string/lbl_now"
+                android:textColor="@color/white"
+                android:textSize="@dimen/text_size_8"
+                app:layout_constraintBottom_toBottomOf="@+id/tvId"
+                app:layout_constraintLeft_toRightOf="@+id/tvId"
+                app:visibility="@{data.booking_time != null}"
+                tools:text="Now" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                style="@style/AppTheme.Content"
+                android:layout_marginEnd="@dimen/size_15"
+                android:text="@{data.getStatusBookingRes()}"
+                android:textColor="@{ContextCompat.getColor(context,data.getStatusBookingColor())}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvId"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:text="Vui long xac nhan don" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:layout_width="@dimen/size_4"
+                android:layout_height="@dimen/size_4"
+                android:layout_marginEnd="@dimen/size_5"
+                android:background="@{ContextCompat.getColor(context,data.getStatusBookingColor())}"
+                app:layout_constraintBottom_toBottomOf="@+id/tvStatus"
+                app:layout_constraintEnd_toStartOf="@+id/tvStatus"
+                app:layout_constraintTop_toTopOf="@+id/tvStatus"
+                app:riv_corner_radius="@dimen/size_4"
+                app:riv_mutate_background="true" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:id="@+id/llGroup"
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/size_30"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tvId"
+                app:layout_constraintTop_toBottomOf="@+id/tvId">
+
+                <TextView
+                    style="@style/AppTheme.Large"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:layout_marginEnd="@dimen/size_20"
+                    android:text="@{data.contact_name}"
+                    tools:text="Ken Nguyen" />
+
+                <TextView
+                    style="@style/AppTheme.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:drawablePadding="@dimen/size_5"
+                    android:drawableTint="@color/black"
+                    android:text="@{textFormat.formatPhoneUS(data.contact_phone)}"
+                    app:drawableStartCompat="@drawable/ic_call"
+                    tools:text="+0987 654 3210" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/AppTheme.Large"
+                        android:drawablePadding="@dimen/size_7"
+                        android:text='@{data.state+ ", "+data.city}'
+                        app:drawableStartCompat="@drawable/ic_location"
+                        app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                        app:layout_constraintTop_toTopOf="@id/ivLogo"
+                        tools:text="New Jersey" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/size_3"
+                        android:layout_height="@dimen/size_3"
+                        android:layout_marginHorizontal="@dimen/size_5"
+                        android:background="@color/text_content_default"
+                        app:riv_corner_radius="@dimen/size_4"
+                        app:riv_mutate_background="true" />
+
+                    <TextView
+                        style="@style/AppTheme.Content"
+                        android:drawablePadding="@dimen/size_7"
+                        android:text="@{textFormat.displayDistance(data.distance)}"
+                        app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                        app:layout_constraintTop_toTopOf="@id/ivLogo"
+                        tools:text="Cách vị trí của bạn" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        style="@style/AppTheme.Large"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:drawablePadding="@dimen/size_5"
+                        android:text="@string/lbl_time_work"
+                        app:drawableStartCompat="@drawable/ic_work"
+                        tools:text="Thoi gian lam : " />
+
+                    <TextView
+                        style="@style/AppTheme.Large"
+                        android:layout_marginTop="@dimen/size_5"
+                        android:text='@{" "+textFormat.getTimeWorking(data.booking_time)}'
+                        android:textColor="@color/color_primary"
+                        tools:text="Thoi gian lam: " />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_40"
+                    android:layout_marginHorizontal="@dimen/size_15"
+                    android:layout_marginTop="@dimen/size_15"
+                    android:gravity="center_horizontal"
+                    app:visibility="@{data.status == BookingStatusDefine.Pending.bookingStatus}">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnRefuse"
+                        style="@style/AppTheme.Button.StyleButton"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_weight="1"
+                        android:text="@string/lbl_refuse"
+                        android:textColor="@color/colorPrimary"
+                        app:backgroundTint="@color/hffd9ca"
+                        app:cornerRadius="@dimen/size_50" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAccept"
+                        style="@style/AppTheme.Button.StyleButton"
+                        android:layout_width="@dimen/size_0"
+                        android:layout_weight="1"
+                        android:layout_marginStart="@dimen/size_15"
+                        android:text="@string/lbl_accept"
+                        app:cornerRadius="@dimen/size_50" />
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnFinish"
+                    style="@style/AppTheme.Button.StyleButton"
+                    android:layout_width="@dimen/size_150"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/size_15"
+                    android:text="@string/lbl_finish"
+                    app:cornerRadius="@dimen/size_50"
+                    app:visibility="@{data.status == BookingStatusDefine.Arrived.bookingStatus}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnStartMoveRendezvous"
+                    style="@style/AppTheme.Button.StyleButton"
+                    android:layout_width="match_parent"
+                    android:text="@string/lbl_start_move_to_rendezvous"
+                    app:backgroundTint="@color/color_primary"
+                    app:cornerRadius="@dimen/size_50"
+                    android:layout_marginHorizontal="@dimen/size_15"
+                    app:visibility="@{data.status == BookingStatusDefine.Accept.bookingStatus}" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnIHaveArrived"
+                    style="@style/AppTheme.Button.StyleButton"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/size_15"
+                    android:text="@string/lbl_i_have_arived"
+                    app:backgroundTint="@color/color_primary"
+                    app:cornerRadius="@dimen/size_50"
+                    app:visibility="@{data.status == BookingStatusDefine.StartMoving.bookingStatus}" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_15"
+                    android:gravity="center"
+                    app:visibility="@{data.visibleMessAndCall()}">
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/size_40"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_marginEnd="@dimen/size_5"
+                        android:background="@color/blue_2c7eed"
+                        android:padding="@dimen/size_10"
+                        android:src="@drawable/ic_mess"
+                        app:riv_corner_radius="@dimen/size_20"
+                        app:riv_mutate_background="true" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:layout_width="@dimen/size_40"
+                        android:layout_height="@dimen/size_40"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:background="@color/color_second"
+                        android:padding="@dimen/size_5"
+                        android:src="@drawable/ic_call"
+                        app:riv_corner_radius="@dimen/size_20"
+                        app:riv_mutate_background="true" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvOderTime"
+                    style="@style/AppTheme.Content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_marginBottom="@dimen/size_20"
+                    android:text="@{textFormat.formatDate(data.created_at)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llGroup"
+                    tools:text="Đặt : 08:00 AM - 07/25/2023" />
+
+                <View
+                    style="@style/LineHorizontal"
+                    app:visibility="@{data.status == BookingStatusDefine.Deny.bookingStatus}" />
+
+                <TextView
+                    style="@style/AppTheme.Content"
+                    android:layout_marginTop="@dimen/size_20"
+                    android:layout_marginBottom="@dimen/size_15"
+                    android:text="@{context.getString(R.string.lbl_cancellation_reason,data.cancel_reason)}"
+                    app:visibility="@{data.status == BookingStatusDefine.Deny.bookingStatus}"
+                    tools:text="Lý do hủy: Lorem ipsum dolor sit amet" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

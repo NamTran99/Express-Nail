@@ -16,6 +16,7 @@ class ProfileFactory(val textFormatter: TextFormatter) {
 
     fun createAUser(data: UserData): User {
         return User(
+            id = data.id.safe(),
             address = data.address.safe(),
             avatar_url = data.avatar_url.safe(),
             birthday = data.birthday.safe(),

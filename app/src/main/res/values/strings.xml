@@ -291,9 +291,10 @@
     <string name="lbl_worker_accept">Thợ đã chấp nhận</string>
     <string name="lbl_customer_has_mobilized">khách hàng đã huy</string>
     <string name="lbl_start_moving">Thợ đang di chuyển đến điểm hẹn</string>
-    <string name="lbl_arrived">Đã đến</string>
-    <string name="lbl_finish">Hoàn thành</string>
+    <string name="lbl_arrived">Thợ đã đến và sẵn sàng phục vụ</string>
+    <string name="lbl_finish">Đã hoàn thành</string>
     <string name="lbl_pending">Vui lòng xác nhận đơn</string>
-    <string name="lbl_expired_1">Đã hết thời gian ứng tuyển</string>
-
+    <string name="lbl_booking">Đặt lúc: %s</string>
+    <string name="lbl_cancellation_reason">Lý do hủy: %s</string>
+    <string name="lbl_i_have_arived">Tôi đã đến</string>
 </resources>
