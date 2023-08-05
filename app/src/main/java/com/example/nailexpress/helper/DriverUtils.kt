@@ -45,6 +45,7 @@ object DriverUtils {
         ) {
             val intent = Intent(Intent.ACTION_CALL)
             intent.data = Uri.parse("tel:$phoneNumber")
+            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
             if (ActivityCompat.checkSelfPermission(context, Manifest.permission.CALL_PHONE)
                 == PackageManager.PERMISSION_GRANTED
             ) {
@@ -56,6 +57,7 @@ object DriverUtils {
     fun message(context: Context, phoneNumber: String) {
         val intent = Intent(Intent.ACTION_SENDTO)
         intent.data = Uri.parse("smsto:$phoneNumber")
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         context.startActivity(intent)
     }
 }

@@ -1,24 +1,21 @@
 package com.example.nailexpress.base
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResult
+import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.lifecycleScope
-import com.example.nailexpress.R
-import com.example.nailexpress.helper.network.ExceptionType
-import kotlinx.coroutines.launch
 
 abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
+    open val gravity = Gravity.CENTER_HORIZONTAL or Gravity.TOP
+
     val TAG by lazy { this::class.java.name }
 
     lateinit var binding: T
@@ -50,16 +47,20 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
 
     abstract fun initView()
 
+    fun showToast(res: Int){
+        Toast.makeText(requireContext(),res,Toast.LENGTH_SHORT).show()
+    }
+
     fun setDialogOnTop(){
-        dialog?.window?.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.TOP)
+        dialog?.window?.setGravity(gravity)
         val param  = dialog?.window?.attributes
         param?.width = ViewGroup.LayoutParams.MATCH_PARENT
         dialog?.window?.attributes = param
     }
 
-
     override fun onStart() {
         super.onStart()
+        setDialogOnTop()
         Log.d(TAG, "onStart: ")
     }
 

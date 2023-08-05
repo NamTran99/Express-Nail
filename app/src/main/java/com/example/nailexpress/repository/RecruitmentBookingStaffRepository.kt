@@ -98,4 +98,8 @@ class RecruitmentBookingStaffRepository(
     suspend fun getListRecruitmentMyApply(page: Int) = flow {
         emit(api.getListRecruitmentMyApply(page = page).await())
     }
+
+    suspend fun changeStatusBooking(idBooking: Int, status: Int, message: String?) = flow {
+        emit(api.changeStatusBooking(idBooking,status,message).await())
+    }
 }
