@@ -71,4 +71,12 @@ interface RecruitmentBookingStaffApi {
         @Query("per_page") perPage: Int = AppConfig.perPage,
         @Query("page") page: Int
     ): ApiAsync<List<RecruitmentForm>>
+
+    @POST("booking/change-status")
+    @FormUrlEncoded
+    fun changeStatusBooking(
+        @Field("booking_id") idBooking: Int,
+        @Field("status") status: Int,
+        @Field("cancel_reason") message: String?
+    ): ApiAsync<Any>
 }

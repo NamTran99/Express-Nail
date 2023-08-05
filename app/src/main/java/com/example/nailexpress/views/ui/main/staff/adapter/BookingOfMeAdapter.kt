@@ -10,10 +10,21 @@ import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.ui.main.User
 
-interface IBookingOfMeAction : ILoadMoreAction{
+interface IBookingOfMeAction : ILoadMoreAction {
+    fun denied(id: Int)
+    fun accept(id: Int)
+    fun finish(id: Int)
+    fun startMoveToRendezvous(id: Int)
 
+    fun iHaveArived(id: Int)
+
+    fun message(phone: String)
+
+    fun call(phone: String)
 }
-class BookingOfMeAdapter(action: IBookingOfMeAction) : PageRecyclerAdapter<BookingDTO,ItRvBookingOfMeBinding>(action) {
+
+class BookingOfMeAdapter(private val action: IBookingOfMeAction) :
+    PageRecyclerAdapter<BookingDTO, ItRvBookingOfMeBinding>(action) {
     override val layoutId = R.layout.it_rv_booking_of_me
 
     override fun onBindHolder(
@@ -21,9 +32,10 @@ class BookingOfMeAdapter(action: IBookingOfMeAction) : PageRecyclerAdapter<Booki
         binding: ItRvBookingOfMeBinding,
         adapterPosition: Int
     ) {
-        with(binding){
+        with(binding) {
             textFormat = TextFormatter(binding.root.context)
             data = item
+            action = this@BookingOfMeAdapter.action
         }
     }
 }

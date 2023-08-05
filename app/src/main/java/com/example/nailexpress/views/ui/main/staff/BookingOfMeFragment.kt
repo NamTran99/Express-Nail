@@ -3,13 +3,14 @@ package com.example.nailexpress.views.ui.main.staff
 import android.app.Application
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
-import com.example.nailexpress.base.BaseFragment
+import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
-import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.FragmentBookingOfMeBinding
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.helper.DriverUtils
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
+import com.example.nailexpress.views.dialog.DialogDenied
 import com.example.nailexpress.views.ui.main.staff.adapter.BookingOfMeAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.IBookingOfMeAction
 import com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff
@@ -22,6 +23,7 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class BookingOfMeFragment :
     BaseRefreshFragment<FragmentBookingOfMeBinding, BookingOfMeViewModel>(R.layout.fragment_booking_of_me) {
+    private val dialogDenied by lazy { DialogDenied() }
     override val viewModel: BookingOfMeViewModel by viewModels()
 
     override fun initView() {
@@ -31,6 +33,10 @@ class BookingOfMeFragment :
                 (parentFragment as? NavDashboardStaff)?.tabNotificationClick()
             }
         }
+
+        viewModel.showDialogDenied = {
+            dialogDenied.show(childFragmentManager, dialogDenied.TAG)
+        }
     }
 }
 
@@ -38,7 +44,9 @@ class BookingOfMeFragment :
 class BookingOfMeViewModel @Inject constructor(
     application: Application, private val repository: RecruitmentBookingStaffRepository
 ) : BaseRefreshViewModel(application), IBookingOfMeAction {
+    private var _idBookingDenied: Int? = null
     val adapter by lazy { BookingOfMeAdapter(this) }
+    var showDialogDenied: (() -> Unit)? = null
 
     init {
         getListBookingOfMe()
@@ -47,10 +55,53 @@ class BookingOfMeViewModel @Inject constructor(
     private fun getListBookingOfMe(page: Int = 1) {
         launch(loading = refreshLoading) {
             repository.getListBookingOfMe(page).onEach {
-                adapter.submit(it,page)
+                adapter.submit(it, page)
             }.collect()
         }
     }
+
+    private fun changeStatus(idBooking: Int, status: Int, message: String? = null) {
+        launch(loading = refreshLoading) {
+            repository.changeStatusBooking(idBooking, status, message).onEach {
+                    getListBookingOfMe()
+                }.collect()
+        }
+    }
+
+    fun changeStatusBookingDeniedAfterShowDialog(message: String = "") {
+        val id = _idBookingDenied ?: return
+        changeStatus(id, BookingStatusDefine.Deny.bookingStatus, message)
+    }
+
+    override fun denied(id: Int) {
+        _idBookingDenied = id
+        showDialogDenied?.invoke()
+    }
+
+    override fun accept(id: Int) {
+        changeStatus(id, BookingStatusDefine.Accept.bookingStatus)
+    }
+
+    override fun finish(id: Int) {
+        changeStatus(id, BookingStatusDefine.Finish.bookingStatus)
+    }
+
+    override fun startMoveToRendezvous(id: Int) {
+        changeStatus(id, BookingStatusDefine.StartMoving.bookingStatus)
+    }
+
+    override fun iHaveArived(id: Int) {
+        changeStatus(id, BookingStatusDefine.Arrived.bookingStatus)
+    }
+
+    override fun message(phone: String) {
+        DriverUtils.message(getApplication(), phone)
+    }
+
+    override fun call(phone: String) {
+        DriverUtils.call(getApplication(), phone)
+    }
+
 
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
         getListBookingOfMe(page)

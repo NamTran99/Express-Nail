@@ -18,6 +18,10 @@
         <import type="com.example.nailexpress.R"/>
 
         <import type="com.example.nailexpress.app.BookingStatusDefine"/>
+
+        <variable
+            name="action"
+            type="com.example.nailexpress.views.ui.main.staff.adapter.IBookingOfMeAction" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -195,6 +199,7 @@
                         android:layout_width="@dimen/size_0"
                         android:layout_weight="1"
                         android:text="@string/lbl_refuse"
+                        android:onClick="@{()->action.denied(data.id)}"
                         android:textColor="@color/colorPrimary"
                         app:backgroundTint="@color/hffd9ca"
                         app:cornerRadius="@dimen/size_50" />
@@ -204,6 +209,7 @@
                         style="@style/AppTheme.Button.StyleButton"
                         android:layout_width="@dimen/size_0"
                         android:layout_weight="1"
+                        android:onClick="@{()->action.accept(data.id)}"
                         android:layout_marginStart="@dimen/size_15"
                         android:text="@string/lbl_accept"
                         app:cornerRadius="@dimen/size_50" />
@@ -217,6 +223,7 @@
                     android:layout_marginStart="@dimen/size_15"
                     android:text="@string/lbl_finish"
                     app:cornerRadius="@dimen/size_50"
+                    android:onClick="@{()->action.finish(data.id)}"
                     app:visibility="@{data.status == BookingStatusDefine.Arrived.bookingStatus}" />
 
                 <com.google.android.material.button.MaterialButton
@@ -226,6 +233,7 @@
                     android:text="@string/lbl_start_move_to_rendezvous"
                     app:backgroundTint="@color/color_primary"
                     app:cornerRadius="@dimen/size_50"
+                    android:onClick="@{()->action.startMoveToRendezvous(data.id)}"
                     android:layout_marginHorizontal="@dimen/size_15"
                     app:visibility="@{data.status == BookingStatusDefine.Accept.bookingStatus}" />
 
@@ -237,6 +245,7 @@
                     android:text="@string/lbl_i_have_arived"
                     app:backgroundTint="@color/color_primary"
                     app:cornerRadius="@dimen/size_50"
+                    android:onClick="@{()->action.iHaveArived(data.id)}"
                     app:visibility="@{data.status == BookingStatusDefine.StartMoving.bookingStatus}" />
 
                 <LinearLayout
@@ -254,6 +263,7 @@
                         android:padding="@dimen/size_10"
                         android:src="@drawable/ic_mess"
                         app:riv_corner_radius="@dimen/size_20"
+                        android:onClick="@{()->action.message(data.contact_phone)}"
                         app:riv_mutate_background="true" />
 
                     <com.makeramen.roundedimageview.RoundedImageView
@@ -263,6 +273,7 @@
                         android:background="@color/color_second"
                         android:padding="@dimen/size_5"
                         android:src="@drawable/ic_call"
+                        android:onClick="@{()->action.call(data.contact_phone)}"
                         app:riv_corner_radius="@dimen/size_20"
                         app:riv_mutate_background="true" />
                 </LinearLayout>

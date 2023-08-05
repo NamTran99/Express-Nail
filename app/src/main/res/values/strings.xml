@@ -309,4 +309,7 @@
     <string name="lbl_booking">Đặt lúc: %s</string>
     <string name="lbl_cancellation_reason">Lý do hủy: %s</string>
     <string name="lbl_i_have_arived">Tôi đã đến</string>
+    <string name="lbl_send">Gửi</string>
+    <string name="lbl_please_enter_a_reason_for_cancellation">Please enter a reason for cancellation</string>
+    <string name="lbl_cause_cancel">Lý do hủy</string>
 </resources>
