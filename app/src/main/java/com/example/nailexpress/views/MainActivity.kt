@@ -3,7 +3,6 @@ package com.example.nailexpress.views
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
-import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
@@ -11,8 +10,6 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.databinding.ActivityMainBinding
 import com.example.nailexpress.datasource.local.PrefUtils
-import com.example.nailexpress.datasource.local.SharePrefKey
-import com.example.nailexpress.extension.safe
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,17 +47,6 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
-            if (getRole() == AppConfig.AppRole.Customer) {
-                navigateToDestination(R.id.action_global_customerGraph, popUpToDes = R.id.authGraph, inclusive = true)
-            } else {
-                navigateToDestination(R.id.action_global_staff_graph, popUpToDes = R.id.authGraph, inclusive = true)
-            }
-        }
-    }
-
     override fun onResume() {
         super.onResume()
         askNotificationPermission()
@@ -75,4 +61,5 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
             prefUtils.saveDeviceId(token)
         })
     }
+
 }
