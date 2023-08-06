@@ -33,7 +33,9 @@ class PostAdapter(val action: IPostAction) :
             }
 
             btnDetail.setOnClickListener {
-                item.id?.let { it1 -> action.onClickDetail(it1) }
+                item.id?.let {
+                        it1 -> action.onClickDetail(it1)
+                }
             }
 
             tvPost.isVisible = user.id == item.user_id
