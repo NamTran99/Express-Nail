@@ -87,14 +87,14 @@ class SharePrefs private constructor(context: Context) {
         const val INT_DEFAULT = -1
         const val LONG_DEFAULT = -1L
 
-        fun getInstance(context: Context): SharePrefs = synchronized(this){
+        fun getInstance(context: Context): SharePrefs = synchronized(this) {
             instance ?: SharePrefs(context).also { instance = it }
         }
     }
 }
 
-object SharePrefKey{
+object SharePrefKey {
     const val USER_DTO: String = "user_dto"
-    const val TOKEN : String = "token"
+    const val TOKEN: String = "token"
     const val APP_ROLE: String = "AppRole"
 }
