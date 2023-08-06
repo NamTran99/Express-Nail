@@ -72,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_14"
             android:layout_marginBottom="@dimen/size_12"
+            android:drawablePadding="@dimen/size_10"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

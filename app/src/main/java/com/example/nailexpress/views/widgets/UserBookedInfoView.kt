@@ -1,17 +1,21 @@
 package com.example.nailexpress.views.widgets
 
 import android.content.Context
+import android.support.core.view.ILoadMoreAction
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.view.isVisible
+import androidx.databinding.BindingMethod
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppSettings
+import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.databinding.LayoutUserBookedInfoBinding
 import com.example.nailexpress.extension.setDrawableStartTint
 import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.factory.statusBookingGetColorRes
 import com.example.nailexpress.factory.statusBookingGetStringRes
+import com.example.nailexpress.views.ui.main.staff.adapter.IBookingOfMeAction
 
 class UserBookedInfoView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -43,14 +47,14 @@ class UserBookedInfoView @JvmOverloads constructor(
     }
 
     fun setStatusNow(bookingTime: String?) {
-        binding.statusNow.isVisible = bookingTime.isNullOrBlank()
+        binding.statusNow.isVisible = !bookingTime.isNullOrBlank()
     }
 
     fun setStatusBooking(status: Int?) {
         if (status != null) {
             binding.statusBooking.apply {
                 text = context.getString(status.statusBookingGetStringRes())
-                setTextColor(status.statusBookingGetColorRes())
+                setTextColor(context.getColor(status.statusBookingGetColorRes()))
                 setDrawableStartTint(status.statusBookingGetColorRes())
             }
         }
@@ -64,19 +68,6 @@ class UserBookedInfoView @JvmOverloads constructor(
         binding.tvPhoneNumber.apply {
             isVisible = phone.isNullOrBlank().not()
             text = phone
-        }
-        binding.layoutContactAction.apply {
-            isVisible = phone.isNullOrBlank().not()
-        }
-        if (phone.isNullOrBlank().not()) {
-            with(binding) {
-                btnMessage.setOnClickListener {
-                    appSettings.sendMessageTo(phone!!)
-                }
-                btnCall.setOnClickListener {
-                    appSettings.callPhone(phone!!)
-                }
-            }
         }
     }
 

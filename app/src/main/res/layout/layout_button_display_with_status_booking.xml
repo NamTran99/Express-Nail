@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginHorizontal="@dimen/size_15"
+    tools:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/llPending"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_40"
+        android:layout_marginHorizontal="@dimen/size_15"
+        android:layout_marginTop="@dimen/size_15"
+        android:gravity="center_horizontal"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnRefuse"
+            style="@style/AppTheme.Button.StyleButton"
+            android:layout_width="@dimen/size_0"
+            android:layout_weight="1"
+            android:text="@string/lbl_refuse"
+            android:textColor="@color/colorPrimary"
+            app:backgroundTint="@color/hffd9ca"
+            app:cornerRadius="@dimen/size_50" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAccept"
+            style="@style/AppTheme.Button.StyleButton"
+            android:layout_width="@dimen/size_0"
+            android:layout_marginStart="@dimen/size_15"
+            android:layout_weight="1"
+            android:text="@string/lbl_accept"
+            app:cornerRadius="@dimen/size_50" />
+    </LinearLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFinish"
+        style="@style/AppTheme.Button.StyleButton"
+        android:layout_width="@dimen/size_150"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/lbl_finish"
+        android:visibility="gone"
+        app:cornerRadius="@dimen/size_50"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStartMoveRendezvous"
+        style="@style/AppTheme.Button.StyleButton"
+        android:layout_width="match_parent"
+        android:text="@string/lbl_start_move_to_rendezvous"
+        android:visibility="gone"
+        app:backgroundTint="@color/color_primary"
+        app:cornerRadius="@dimen/size_50"
+        tools:visibility="visible" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIHaveArrived"
+        style="@style/AppTheme.Button.StyleButton"
+        android:layout_width="match_parent"
+        android:text="@string/lbl_i_have_arived"
+        android:visibility="gone"
+        app:backgroundTint="@color/color_primary"
+        app:cornerRadius="@dimen/size_50"
+        tools:visibility="visible" />
+
+    <LinearLayout
+        android:id="@+id/llContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/size_15"
+        android:gravity="center"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivMess"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginEnd="@dimen/size_5"
+            android:background="@color/blue_2c7eed"
+            android:padding="@dimen/size_10"
+            android:src="@drawable/ic_mess"
+            app:riv_corner_radius="@dimen/size_20"
+            app:riv_mutate_background="true" />
+
+        <com.makeramen.roundedimageview.RoundedImageView
+            android:id="@+id/ivCall"
+            android:layout_width="@dimen/size_40"
+            android:layout_height="@dimen/size_40"
+            android:layout_marginStart="@dimen/size_10"
+            android:background="@color/color_second"
+            android:padding="@dimen/size_5"
+            android:src="@drawable/ic_call"
+            app:riv_corner_radius="@dimen/size_20"
+            app:riv_mutate_background="true" />
+    </LinearLayout>
+
+</LinearLayout>
