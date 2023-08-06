@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="MissingDefaultResource">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.example.nailexpress.views.ui.nologin.NoLoginViewModel" />
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/viewRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_bg"
+            android:orientation="vertical">
+
+            <com.example.nailexpress.views.widgets.CustomHeaderHome
+                android:id="@+id/header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:hint_search="@string/hint_search_area" />
+
+            <include
+                android:id="@+id/tabHome"
+                layout="@layout/layout_tab_home"
+                app:action="@{vm}"
+                app:isTab1="@{vm.isTabPost}"
+                app:text1="@{@string/lbl_find_work}"
+                app:text2="@{@string/lbl_job_nails}" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vpMain"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</layout>

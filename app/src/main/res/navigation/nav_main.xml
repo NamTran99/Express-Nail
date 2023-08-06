@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_auth"
-    app:startDestination="@id/authGraph">
+    app:startDestination="@id/fragmentNoLogin">
 
     <navigation
         android:id="@+id/authGraph"
@@ -280,15 +280,21 @@
     <action
         android:id="@+id/action_global_selectRoleProfileFragment"
         app:destination="@id/selectRoleProfileFragment" />
+
     <action
         android:id="@+id/action_global_accountInforFragment"
         app:destination="@id/accountInforFragment" />
     <action
-        android:id="@+id/action_global_changePassFragment"
-        app:destination="@id/changePassFragment" />
-    <action
         android:id="@+id/action_global_authGraph"
-        app:launchSingleTop="true"
         app:destination="@id/authGraph" />
 
+    <action
+        android:id="@+id/action_global_changePassFragment"
+        app:destination="@id/changePassFragment" />
+
+    <fragment
+        android:id="@+id/fragmentNoLogin"
+        android:name="com.example.nailexpress.views.ui.nologin.NoLoginFragment"
+        android:label="FragmentNoLogin"
+        tools:layout="@layout/fragment_no_login" />
 </navigation>
