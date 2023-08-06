@@ -1,5 +1,6 @@
 package com.example.nailexpress.views.ui.nologin
 
+import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
@@ -14,6 +15,11 @@ class NoLoginFragment :
     BaseRefreshFragment<FragmentNoLoginBinding, NoLoginViewModel>(R.layout.fragment_no_login),
     CustomHeaderHome.IActionHeader {
     override val viewModel: NoLoginViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.checkIsLogin()
+    }
 
     override fun initView() {
         binding.apply {
@@ -43,7 +49,11 @@ class NoLoginFragment :
     }
 
     override fun onTextChange(string: String) {
-
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
     }
 
     override fun onClickNotification() {
@@ -51,7 +61,11 @@ class NoLoginFragment :
     }
 
     override fun onClickFilter() {
-
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
     }
 
     companion object {
