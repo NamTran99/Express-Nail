@@ -16,13 +16,13 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
-            if(getRole() == AppConfig.AppRole.Customer){
-                navigateToDestination(R.id.action_global_customerGraph, popUpToDes = R.id.authGraph, inclusive = true)
-            }else{
-                navigateToDestination(R.id.action_global_staff_graph, popUpToDes = R.id.authGraph, inclusive = true )
-            }
-        }
+//        if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
+//            if(getRole() == AppConfig.AppRole.Customer){
+//                navigateToDestination(R.id.action_global_customerGraph, popUpToDes = R.id.authGraph, inclusive = true)
+//            }else{
+//                navigateToDestination(R.id.action_global_staff_graph, popUpToDes = R.id.authGraph, inclusive = true )
+//            }
+//        }
     }
 
     fun getRole() =  sharePrefs.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
