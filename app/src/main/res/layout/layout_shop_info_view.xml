@@ -19,12 +19,11 @@
         android:id="@+id/shopName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_4"
+        android:layout_marginStart="@dimen/size_10"
         android:layout_marginTop="@dimen/size_8"
         android:textColor="@color/black"
         android:textSize="18sp"
-        android:textStyle="bold"   style="@style/AppTheme.TextViewResponsive"
-
+        style="@style/AppTheme.TextViewResponsive"
         tools:text="Beauty Salon Spa" />
 
     <TextView

@@ -85,7 +85,11 @@ class ProfileVM @Inject constructor(
 
     fun onClickLogOut() = launch {
         authRepository.logOut()
-        navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.customerGraph, inclusive = true)
+        if(profileRepository.getRole()  == AppConfig.AppRole.Customer){
+            navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.staffGraph, inclusive = true)
+        }else{
+            navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.customerGraph, inclusive = true)
+        }
     }
 
     fun onChangeRole() {

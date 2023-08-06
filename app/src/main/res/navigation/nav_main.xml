@@ -22,8 +22,7 @@
             tools:layout="@layout/fragment_login">
             <action
                 android:id="@+id/action_loginFragment_to_verifyFragment"
-                app:destination="@id/verifyFragmentStepOne"
-              />
+                app:destination="@id/verifyFragmentStepOne" />
             <action
                 android:id="@+id/action_loginFragment_to_selectRoleFragment"
                 app:destination="@id/selectRoleFragment" />
@@ -35,8 +34,7 @@
             tools:layout="@layout/fragment_verify_step_one">
             <action
                 android:id="@+id/action_verifyFragmentStepOne_to_verifyPhoneStepTwoFragment"
-                app:destination="@id/verifyPhoneStepTwoFragment"
-               />
+                app:destination="@id/verifyPhoneStepTwoFragment" />
         </fragment>
 
         <fragment
@@ -46,8 +44,7 @@
             tools:layout="@layout/fragment_verify_step_two">
             <action
                 android:id="@+id/action_verifyPhoneStepTwoFragment_to_signUpFragment"
-                app:destination="@id/signUpFragment"
-              />
+                app:destination="@id/signUpFragment" />
         </fragment>
 
         <fragment
@@ -61,13 +58,11 @@
         </fragment>
         <action
             android:id="@+id/action_global_customerGraph"
-            app:destination="@id/customerGraph"
-            />
+            app:destination="@id/customerGraph" />
 
         <action
             android:id="@+id/action_global_staff_graph"
-            app:destination="@id/staffGraph"
-          />
+            app:destination="@id/staffGraph" />
     </navigation>
 
     <navigation
@@ -141,8 +136,7 @@
                 app:argType="integer" />
             <action
                 android:id="@+id/action_bookNowStaffFragment_to_bookingDetailFragment"
-                app:destination="@id/bookingDetailFragment"
-            />
+                app:destination="@id/bookingDetailFragment" />
             <argument
                 android:name="isBookNow"
                 android:defaultValue="true"
@@ -170,14 +164,6 @@
             android:label="CreateRecruitmentFragment"
             tools:layout="@layout/fragment_create_recruitment" />
 
-        <action
-            android:id="@+id/action_global_authGraph"
-            app:destination="@id/authGraph"
-            />
-
-        <action
-            android:id="@+id/action_global_authGraph2"
-            app:destination="@id/authGraph" />
 
         <fragment
             android:id="@+id/detailPostCustomerFragment"
@@ -270,15 +256,13 @@
         android:id="@+id/selectRoleProfileFragment"
         android:name="com.example.nailexpress.views.ui.main.profile.SelectRoleProfileFragment"
         android:label="SelectRoleProfileFragment"
-        tools:layout="@layout/fragment_select_role_profile" >
+        tools:layout="@layout/fragment_select_role_profile">
         <action
             android:id="@+id/action_selectRoleProfileFragment_to_customerGraph"
-            app:destination="@id/customerGraph"
-          />
+            app:destination="@id/customerGraph" />
         <action
             android:id="@+id/action_selectRoleProfileFragment_to_staffGraph"
-            app:destination="@id/staffGraph"
-           />
+            app:destination="@id/staffGraph" />
     </fragment>
 
     <fragment
@@ -299,7 +283,12 @@
     <action
         android:id="@+id/action_global_accountInforFragment"
         app:destination="@id/accountInforFragment" />
-    <action android:id="@+id/action_global_changePassFragment" app:destination="@id/changePassFragment" />
-
+    <action
+        android:id="@+id/action_global_changePassFragment"
+        app:destination="@id/changePassFragment" />
+    <action
+        android:id="@+id/action_global_authGraph"
+        app:launchSingleTop="true"
+        app:destination="@id/authGraph" />
 
 </navigation>

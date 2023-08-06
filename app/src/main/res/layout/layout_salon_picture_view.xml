@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/salon_image"
         android:textSize="@dimen/text_size_14"
-        android:textStyle="bold" />
+         />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"

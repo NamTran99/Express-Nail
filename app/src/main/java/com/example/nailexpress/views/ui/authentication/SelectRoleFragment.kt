@@ -41,9 +41,9 @@ class SelectAppRoleVM @Inject constructor(
     fun setRole(appRole: AppConfig.AppRole) = launch {
         profileRepository.selectRole(appRole)
         if(appRole == AppConfig.AppRole.Customer){
-            navigateToDestination(R.id.customerGraph)
+            navigateToDestination(R.id.action_global_customerGraph, popUpToDes = R.id.authGraph, inclusive = true)
         }else{
-            navigateToDestination(R.id.action_global_staff_graph)
+            navigateToDestination(R.id.action_global_staff_graph, popUpToDes = R.id.authGraph, inclusive = true )
         }
 //        navigateToDestination(R.id.action_global_customerGraph)
     }
