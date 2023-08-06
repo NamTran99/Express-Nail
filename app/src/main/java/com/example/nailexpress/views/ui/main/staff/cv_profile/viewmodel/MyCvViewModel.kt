@@ -21,11 +21,7 @@ class MyCvViewModel @Inject constructor(
 
     val myCvLiveData: MutableLiveData<CvDTO?> = MutableLiveData()
 
-    init {
-        getAllMyCv()
-    }
-
-    private fun getAllMyCv() = launch {
+    fun getAllMyCv() = launch {
             cvRepository.getAllMyCv().onEach {
                 myCvLiveData.value = it.getOrNull(MY_CV_POSITION)
             }.collect()

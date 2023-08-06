@@ -113,7 +113,7 @@ class WorkerInfoView @JvmOverloads constructor(
 
     fun setValueBotRight(city: String?, state: String?) {
         if (city != null && state != null) {
-            binding.itemBotRight.iilValue = "$city,$state"
+            binding.itemBotRight.iilValue = "$city, $state"
         }
     }
 

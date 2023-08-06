@@ -243,6 +243,8 @@ class CreateCvVM @Inject constructor(
     fun onClickSubmit() = launch {
         cvForm.value?.apply {
             cvRepository.createCv(this)
+            showToast(R.string.success_create_cv)
+            backScreen()
         }
     }
 

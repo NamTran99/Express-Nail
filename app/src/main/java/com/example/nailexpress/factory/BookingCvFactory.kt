@@ -41,7 +41,7 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             id = cvDTO.id,
             year_exper = cvDTO.experience_years,
             year_exper_display = textFormatter.displayYearExper(cvDTO.experience_years),
-            description = cvDTO.description,
+            description = cvDTO.description.safe(),
             phone = cvDTO.phone.formatPhoneUSCustom(),
             listSkill = createListSkill(cvDTO.skills ?: listOf()),
             state = cvDTO.state,

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutJobDescriptionViewBinding
+import com.example.nailexpress.extension.show
 
 class JobDescriptionView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -25,7 +26,11 @@ class JobDescriptionView @JvmOverloads constructor(
 
     var description: String? = null
         set(value) {
-            binding.tvContent.text = value
+            binding.apply {
+                tvContent.show(!value.isNullOrEmpty())
+                tvTitle.show(!value.isNullOrEmpty())
+                tvContent.text = value
+            }
             field = value
         }
         get() = binding.tvContent.text?.toString()

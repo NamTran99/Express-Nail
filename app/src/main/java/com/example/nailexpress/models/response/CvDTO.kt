@@ -3,19 +3,19 @@ package com.example.nailexpress.models.response
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 
 data class CvDTO(
-    val address: String,
+    val address: String? = "",
     val avatar_url: String,
     val birthday: Any,
     val city: String,
-    val description: String,
+    val description: String?,
     val distance: Double = 0.0,
     val email: Any,
     val experience_years: Int,
     val fullname: String,
     val gender: Int,
     val id: Int,
-    val latitude: Double,
-    val longitude: Double,
+    val latitude: Double?= 0.0,
+    val longitude: Double?= 0.0,
     val phone: String,
     val salary_type: Int,
     val state: String,

@@ -160,6 +160,7 @@
     <string name="skin_all">Tổng hợp</string>
     <string name="skin_select">Chọn sắc dân</string>
     <string name="success_create_salon">Bạn đã tạo thông tin salon thành công !</string>
+    <string name="success_create_cv">Bạn đã tạo thông tin CV!</string>
     <string name="success_create_recruitment">Bạn đã tạo bài tuyển dụng thành công !</string>
     <string name="success_update_account">Bạn đã cập nhật thông tin thành công !</string>
     <string name="success_booking_staff">Bạn đã đặt nhân viên này thành công !</string>

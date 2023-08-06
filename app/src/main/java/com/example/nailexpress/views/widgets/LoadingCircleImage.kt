@@ -49,6 +49,7 @@ class LoadingCircleImage(context: Context, attributeSet: AttributeSet) :
      private var url : String? = ""
         set(value) {
             binding.apply {
+                imgCamera.hide()
                 imgImage.setImageURICustom(value)
             }
             field = value

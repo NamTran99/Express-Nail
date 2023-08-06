@@ -31,4 +31,10 @@ class GeneralRepository(
             generalApi.getListCity(stateCode = stateCode).await()
         )
     }
+
+    suspend fun getNotification(search: String = "") = flow {
+        emit(
+            generalApi.getListNotification(search = search).await()
+        )
+    }
 }

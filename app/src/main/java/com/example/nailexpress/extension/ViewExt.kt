@@ -723,6 +723,7 @@ fun ShapeableImageView.setImageURICustom(link: String?, onLoadFinish: (() -> Uni
         Picasso.get().load(link)
             .resize(1024, 1024)
             .centerInside()
+            .placeholder(context.getLoadingCircleDrawable())
             .transform(
                 RotateTransformation(
                     getRotateDegree(context, link)

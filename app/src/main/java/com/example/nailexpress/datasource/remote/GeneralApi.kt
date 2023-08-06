@@ -28,4 +28,11 @@ interface GeneralApi {
         @Query("per_page") perPage: Int = -1, // get all
         @Query("state_code") stateCode: String,
     ): ApiAsync<List<CityDTO>>
+
+    @GET("state/cities")
+    fun getListNotification(
+        @Query("page") page: Int = 1,
+        @Query("per_page") perPage: Int = 10, // get all
+        @Query("search") search: String = "",
+    ): ApiAsync<List<Any>>
 }

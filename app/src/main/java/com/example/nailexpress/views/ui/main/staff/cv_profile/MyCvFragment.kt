@@ -24,6 +24,10 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
         }
     }
 
+    override fun loadData() {
+        viewModel.getAllMyCv()
+    }
+
     private fun setUi(cvDTO: CvDTO?) {
         with(binding) {
             groupData.isVisible = cvDTO != null
