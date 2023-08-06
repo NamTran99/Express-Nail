@@ -2,6 +2,8 @@ package com.example.nailexpress.factory
 
 import android.content.Context
 import android.telephony.PhoneNumberUtils
+import android.text.SpannableStringBuilder
+import androidx.core.text.color
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.app.BookingStatusDefine
@@ -62,6 +64,40 @@ class TextFormatter(private val cxt: Context) {
         }
     }
 
+    //theo gio 4 gio x $50/gio
+    fun displayDetailSalary(salaryType: Int?,time: Int?, price: Double?, unit: Int?): CharSequence {
+        if(salaryType == 1) return getString(R.string.book_type_1)
+        return if (unit in 1..5) {
+            val temp = when (unit) {
+                HOUR -> R.string.time_type_1
+                DAY -> R.string.time_type_2
+                WEEK -> R.string.time_type_3
+                MONTH -> R.string.time_type_4
+                YEAR -> R.string.time_type_5
+                else -> R.string.time_type_1
+            }
+            val suffix = getString(temp)
+
+            SpannableStringBuilder().apply {
+                append(cxt.getString(R.string.lbl_flow)," ",convertDisplayUnit(unit)," ")
+                color(cxt.getColor(R.color.color_primary)){
+                    append(time?.toString() ?: " "," ",convertDisplayUnit(unit)," x ")
+                    append("$${price}${suffix}")
+                }
+            }
+        } else {
+            "$ $price"
+        }
+    }
+
+    private fun convertDisplayUnit(unit: Int?) = getString(when(unit){
+        HOUR -> R.string.time_type_1_1
+        DAY -> R.string.time_type_2_2
+        WEEK -> R.string.time_type_3_3
+        MONTH -> R.string.time_type_4_4
+        YEAR -> R.string.time_type_5_5
+        else -> R.string.time_type_1_1
+    })
 
     fun displayYesNo(inx: Int): String {
         return getString(
@@ -126,7 +162,7 @@ class TextFormatter(private val cxt: Context) {
         }
     }
 
-    fun getTimeWorking(time: String?) = time ?: getString(R.string.lbl_need_you_to_working)
+    fun getTimeWorking(time: String?) = time?.convertUTCToLocal(formatOutput = FORMAT_DATE_DISPLAY) ?: getString(R.string.lbl_need_you_to_working)
 
     fun formatPhoneUS(str: String?): String {
         return if (str.isNullOrEmpty()) ""

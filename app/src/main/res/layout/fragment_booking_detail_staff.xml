@@ -29,7 +29,7 @@
                 android:layout_marginTop="@dimen/size_14"
                 android:layout_marginBottom="@dimen/size_12"
                 android:background="@drawable/bg_white_5"
-                app:layout_constraintBottom_toTopOf="@id/tvPositive"
+                app:layout_constraintBottom_toTopOf="@id/btnStatusDisplay"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
@@ -150,33 +150,16 @@
                 </LinearLayout>
             </androidx.core.widget.NestedScrollView>
 
-            <TextView
-                android:id="@+id/tvPositive"
-                style="@style/Text14WhiteAnuphan"
-                android:layout_width="wrap_content"
+            <com.example.nailexpress.views.widgets.ButtonDisplayWithStatusBooking
+                android:id="@+id/btnStatusDisplay"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/size_4"
-                android:background="@drawable/bg_primary_corner_180"
-                android:paddingHorizontal="54dp"
-                android:paddingTop="@dimen/size_19"
-                android:paddingBottom="@dimen/size_16"
-                android:text="@string/accept"
-                app:layout_constraintBottom_toTopOf="@id/tvDeny"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <TextView
-                android:id="@+id/tvDeny"
-                style="@style/Text14PrimaryAnuphan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="54dp"
-                android:paddingTop="@dimen/size_16"
-                android:paddingBottom="@dimen/size_16"
-                android:text="@string/deny"
+                android:layout_marginTop="@dimen/size_15"
+                android:layout_marginBottom="@dimen/size_25"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>

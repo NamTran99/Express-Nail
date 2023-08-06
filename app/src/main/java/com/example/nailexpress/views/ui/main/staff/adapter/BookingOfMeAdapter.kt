@@ -15,27 +15,30 @@ interface IBookingOfMeAction : ILoadMoreAction {
     fun accept(id: Int)
     fun finish(id: Int)
     fun startMoveToRendezvous(id: Int)
-
     fun iHaveArived(id: Int)
-
     fun message(phone: String)
-
     fun call(phone: String)
-}
+    fun onClickDetail(idBooking: Int) {
+    }
 
-class BookingOfMeAdapter(private val action: IBookingOfMeAction) :
-    PageRecyclerAdapter<BookingDTO, ItRvBookingOfMeBinding>(action) {
-    override val layoutId = R.layout.it_rv_booking_of_me
+    class BookingOfMeAdapter(private val action: IBookingOfMeAction) :
+        PageRecyclerAdapter<BookingDTO, ItRvBookingOfMeBinding>(action) {
+        override val layoutId = R.layout.it_rv_booking_of_me
 
-    override fun onBindHolder(
-        item: BookingDTO,
-        binding: ItRvBookingOfMeBinding,
-        adapterPosition: Int
-    ) {
-        with(binding) {
-            textFormat = TextFormatter(binding.root.context)
-            data = item
-            action = this@BookingOfMeAdapter.action
+        override fun onBindHolder(
+            item: BookingDTO,
+            binding: ItRvBookingOfMeBinding,
+            adapterPosition: Int
+        ) {
+            with(binding) {
+                textFormat = TextFormatter(binding.root.context)
+                data = item
+                action = this@BookingOfMeAdapter.action
+
+                rvRoot.setOnClickListener {
+                    this@BookingOfMeAdapter.action.onClickDetail(item.id)
+                }
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ import com.example.nailexpress.extension.Format
 import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
 import com.example.nailexpress.extension.convertUTCToLocal
 import com.example.nailexpress.extension.setDrawableStart
+import com.example.nailexpress.factory.TextFormatter
 
 class JobInfoStaffView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -18,6 +19,7 @@ class JobInfoStaffView @JvmOverloads constructor(
     private val binding = LayoutJobInfoStaffViewBinding.inflate(
         LayoutInflater.from(context), this, true
     )
+    private val textFormatter by lazy { TextFormatter(context) }
 
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.JobInfoStaffView, 0, 0).run {
@@ -51,25 +53,22 @@ class JobInfoStaffView @JvmOverloads constructor(
     }
 
     fun setOrderedTime(
-        time: String?,
-        inputFormatTime: String = Format.FORMAT_DATE_TIME_API,
-        outputFormatTime: String = FORMAT_DATE_DISPLAY
+        time: String?
     ) {
         binding.tvBookingTime.apply {
+            text = textFormatter.getTimeWorking(time)
             if (time.isNullOrBlank()) {
-                text = context.getString(R.string.need_to_do_immediately)
                 setDrawableStart(R.drawable.ic_dot_5_orange)
                 compoundDrawablePadding = PADDING_START_TEXT_BOOKING_TIME
                 setTextColor(context.getColor(R.color.colorPrimary))
             } else {
-                text = time.convertUTCToLocal(inputFormatTime, outputFormatTime)
                 setTextColor(context.getColor(R.color.black))
             }
         }
     }
 
-    fun setBookingType(salaryType: Int?) {
-        binding.tvBookingType.text = salaryType.toString()
+    fun setBookingType(salaryType: Int?,time: Int?, price: Double?, unit: Int?) {
+        binding.tvBookingType.text = TextFormatter(context).displayDetailSalary(salaryType,time,price,unit)
     }
 
     companion object {

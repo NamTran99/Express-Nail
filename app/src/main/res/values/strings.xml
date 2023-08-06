@@ -211,6 +211,11 @@
     <string name="time_type_3">/tuần</string>
     <string name="time_type_4">/tháng</string>
     <string name="time_type_5">/năm</string>
+    <string name="time_type_1_1">giờ</string>
+    <string name="time_type_2_2">ngày</string>
+    <string name="time_type_3_3">tuần</string>
+    <string name="time_type_4_4">tháng</string>
+    <string name="time_type_5_5">năm</string>
     <string name="yes">Có</string>
     <string name="no">Không</string>
     <string name="status_booking_0">Đợi thợ chấp nhận</string>
@@ -312,4 +317,6 @@
     <string name="lbl_send">Gửi</string>
     <string name="lbl_please_enter_a_reason_for_cancellation">Please enter a reason for cancellation</string>
     <string name="lbl_cause_cancel">Lý do hủy</string>
+    <string name="lbl_flow">Theo </string>
+    <string name="lbl_hourly">%s giờ x</string>
 </resources>

@@ -37,7 +37,7 @@ class PostAdapter(val action: IPostAction) :
             }
 
             tvPost.isVisible = user.id == item.user_id
-            tvId.text = root.getString(R.string.lbl_id,item.salon_id.safe())
+            tvId.text = root.getString(R.string.lbl_id,item.id.toString())
             textFormat = TextFormatter(root.context)
         }
     }

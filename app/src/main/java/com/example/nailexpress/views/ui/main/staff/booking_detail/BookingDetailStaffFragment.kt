@@ -7,9 +7,11 @@ import com.example.nailexpress.R
 import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentBookingDetailStaffBinding
+import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.utils.KEY_ID_BOOKING_DETAIL
+import com.example.nailexpress.views.dialog.DialogDenied
 import com.example.nailexpress.views.ui.main.staff.booking_detail.viewmodel.BookingDetailStaffViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -21,6 +23,7 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
     private val id: Int? by lazy {
         arguments?.getInt(KEY_ID_BOOKING_DETAIL)
     }
+    private val dialogDenied by lazy { DialogDenied() }
 
     override fun initView() {
         with(binding) {
@@ -32,11 +35,21 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
         id?.let {
             viewModel.getBookingById(it)
         }
-        viewModel.dataBookingDetail.observe(viewLifecycleOwner) {
-            setUi(it)
-        }
-        viewModel.salonData.observe(viewLifecycleOwner) {
-            setUiSalon(it)
+
+        listener()
+    }
+
+    private fun listener() {
+        with(viewModel){
+            dataBookingDetail.observe(viewLifecycleOwner) {
+                setUi(it)
+            }
+            salonData.observe(viewLifecycleOwner) {
+                setUiSalon(it)
+            }
+            showDeniedDialog = {
+                dialogDenied.show(childFragmentManager,dialogDenied.javaClass.simpleName)
+            }
         }
     }
 
@@ -63,7 +76,7 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
                 jobInfoStaffView.apply {
                     setCreateTime(bookingDTO.created_at)
                     setOrderedTime(bookingDTO.booking_time)
-                    setBookingType(bookingDTO.salary_type)
+                    setBookingType(bookingDTO.salary_type,bookingDTO.work_time,bookingDTO.price,bookingDTO.unit)
                 }
                 serviceWorkerView.apply {
                     setDataListService(bookingDTO.skills)
@@ -73,6 +86,10 @@ class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBindin
                     setPhoneNumberFormatPhoneUSCustom(bookingDTO.contact_phone)
                 }
 
+                btnStatusDisplay.apply {
+                    disPlayButtonWithStatus(bookingDTO.status)
+                    setListener(bookingDTO.status,viewModel)
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.staff
 
 import android.app.Application
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.app.BookingStatusDefine
@@ -10,8 +11,8 @@ import com.example.nailexpress.databinding.FragmentBookingOfMeBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.helper.DriverUtils
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
+import com.example.nailexpress.utils.KEY_ID_BOOKING_DETAIL
 import com.example.nailexpress.views.dialog.DialogDenied
-import com.example.nailexpress.views.ui.main.staff.adapter.BookingOfMeAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.IBookingOfMeAction
 import com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff
 import dagger.hilt.android.AndroidEntryPoint
@@ -42,10 +43,11 @@ class BookingOfMeFragment :
 
 @HiltViewModel
 class BookingOfMeViewModel @Inject constructor(
-    application: Application, private val repository: RecruitmentBookingStaffRepository
+    application: Application,
+    private val repository: RecruitmentBookingStaffRepository
 ) : BaseRefreshViewModel(application), IBookingOfMeAction {
     private var _idBookingDenied: Int? = null
-    val adapter by lazy { BookingOfMeAdapter(this) }
+    val adapter by lazy { IBookingOfMeAction.BookingOfMeAdapter(this) }
     var showDialogDenied: (() -> Unit)? = null
 
     init {
@@ -63,11 +65,15 @@ class BookingOfMeViewModel @Inject constructor(
     private fun changeStatus(idBooking: Int, status: Int, message: String? = null) {
         launch(loading = refreshLoading) {
             repository.changeStatusBooking(idBooking, status, message).onEach {
-                    getListBookingOfMe()
-                }.collect()
+                with(adapter){
+                    getData().first { it.id == idBooking }.status = status
+                    notifyItemChanged(getData().indexOfFirst { it.id ==idBooking })
+                }
+            }.collect()
         }
     }
 
+    //không thể remove vì đang sử dụng java.getDeractorMethod để call func này
     fun changeStatusBookingDeniedAfterShowDialog(message: String = "") {
         val id = _idBookingDenied ?: return
         changeStatus(id, BookingStatusDefine.Deny.bookingStatus, message)
@@ -109,5 +115,12 @@ class BookingOfMeViewModel @Inject constructor(
 
     override fun onSwipeRefreshData() {
         getListBookingOfMe()
+    }
+
+    override fun onClickDetail(idBooking: Int) {
+        navigateToDestination(
+            R.id.bookingDetailStaffFragment,
+            bundleOf(KEY_ID_BOOKING_DETAIL to idBooking)
+        )
     }
 }

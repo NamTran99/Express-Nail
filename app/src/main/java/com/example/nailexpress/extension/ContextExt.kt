@@ -6,6 +6,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.net.Uri
 import android.os.*
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.base.BaseFragment
@@ -27,4 +28,6 @@ fun Context.asMainActivity() = when (this) {
     is FragmentActivity -> this as? BaseActivity<*>
     else -> null
 }
+
+fun Context.getColor(res: Int) = ContextCompat.getColor(this,res)
 
