@@ -8,7 +8,6 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import com.example.nailexpress.R
-import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.databinding.ActivityMainBinding
 import com.example.nailexpress.datasource.local.PrefUtils
@@ -20,7 +19,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activity_main) {
-
     override val fragmentContainerView = R.id.fragmentContainerView
 
     private val prefUtils by lazy { PrefUtils(context = this) }
@@ -29,9 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
         if (isGranted) {
-            // FCM SDK (and your app) can post notifications.
         } else {
-            // TODO: Inform user that that your app will not show notifications.
         }
     }
 
@@ -79,6 +75,4 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
             prefUtils.saveDeviceId(token)
         })
     }
-
-    fun getRole() = sharePrefs.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
 }

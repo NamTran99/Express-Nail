@@ -130,6 +130,7 @@
 
     <declare-styleable name="CustomHeaderHome">
         <attr name="hint_search" format="string" />
+        <attr name="isVisibleIcNotify" format="boolean"/>
     </declare-styleable>
 
     <declare-styleable name="UserBookedInfoView"></declare-styleable>

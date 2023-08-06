@@ -26,8 +26,13 @@ class CustomHeaderHome(context: Context, attributeSet: AttributeSet) : Constrain
     }
 
     init {
-        context.loadAttrs(attributeSet,R.styleable.CustomHeaderHome){
+        context.loadAttrs(attributeSet,R.styleable.CustomHeaderHome){ it ->
             binding.edtSearch.hint = it.getString(R.styleable.CustomHeaderHome_hint_search)
+            it.getBoolean(R.styleable.CustomHeaderHome_isVisibleIcNotify,true).let {isVisibleIcNotifi->
+                if(!isVisibleIcNotifi){
+                    binding.tvTitle.setCompoundDrawables(null,null,null,null)
+                }
+            }
         }
 
         with(binding){
