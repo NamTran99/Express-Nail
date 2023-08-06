@@ -162,11 +162,13 @@
 
             <TextView
                 android:id="@+id/btnDetail"
-                style="@style/AppTheme.Button"
+                style="@style/FocusClick"
+                android:textAppearance="@style/AppTheme.Content"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/size_40"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/size_15"
                 android:text="@string/lbl_see_detail"
-                android:textAllCaps="false"
                 android:textColor="@color/color_primary"
                 android:textStyle="bold"
                 android:textSize="@dimen/size_10"

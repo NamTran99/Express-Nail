@@ -2,8 +2,13 @@ package com.example.nailexpress.views.ui.nologin
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
+import com.example.nailexpress.R
+import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseRefreshViewModel
+import com.example.nailexpress.datasource.local.SharePrefKey
+import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.views.ui.main.customer.IActionTabChange
@@ -21,7 +26,8 @@ import javax.inject.Inject
 class NoLoginViewModel @Inject constructor(
     application: Application,
     private val recruitmentRepository: RecruitmentBookingStaffRepository,
-    private val cvRepository: CvRepository
+    private val cvRepository: CvRepository,
+    private val sharePrefs: SharePrefs
 ) : BaseRefreshViewModel(application), IActionTabChange, INailStaffAction {
     val isTabPost = MutableLiveData(true)
     val adapterPost by lazy { PostAdapter(loadMorePost) }
@@ -59,10 +65,42 @@ class NoLoginViewModel @Inject constructor(
         }
     }
 
+    fun checkIsLogin() {
+        if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
+            if (getRole() == AppConfig.AppRole.Customer) {
+                navigateToDestination(
+                    R.id.action_fragmentNoLogin_to_customerGraph2,
+                    popUpToDes = R.id.authGraph,
+                    inclusive = true
+                )
+            } else {
+                navigateToDestination(
+                    R.id.action_fragmentNoLogin_to_staffGraph,
+                    popUpToDes = R.id.authGraph,
+                    inclusive = true
+                )
+            }
+        }
+    }
+
+    fun getRole() = sharePrefs.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
+
+    fun startNavLogin() {
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
+    }
+
     //load more Post
     private val loadMorePost = object : IPostAction {
         override val onClickDetail: (cvID: Int) -> Unit = {
-
+            navigateToDestination(
+                R.id.action_fragmentNoLogin_to_authGraph,
+                inclusive = true,
+                popUpToDes = R.id.fragmentNoLogin
+            )
         }
 
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
@@ -70,13 +108,25 @@ class NoLoginViewModel @Inject constructor(
         }
     }
 
-    //--------------------
     override val onClickBookStaff: (cvID: Int) -> Unit = {
-
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
     }
     override val onClickViewDetail: (id: Int) -> Unit = {
-
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
     }
-    override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = {page,_->
+    override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
+        navigateToDestination(
+            R.id.action_fragmentNoLogin_to_authGraph,
+            inclusive = true,
+            popUpToDes = R.id.fragmentNoLogin
+        )
     }
 }

@@ -16,31 +16,71 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.LinearLayoutCompat
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
             android:background="@color/color_bg"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <com.example.nailexpress.views.widgets.CustomHeaderHome
-                android:id="@+id/header"
+            <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@color/color_bg"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/btnCreateCv"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.example.nailexpress.views.widgets.CustomHeaderHome
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:hint_search="@string/hint_search_area"
+                    app:isVisibleIcNotify="false" />
+
+                <include
+                    android:id="@+id/tabHome"
+                    layout="@layout/layout_tab_home"
+                    app:action="@{vm}"
+                    app:isTab1="@{vm.isTabPost}"
+                    app:text1="@{@string/lbl_find_work}"
+                    app:text2="@{@string/lbl_job_nails}" />
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpMain"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnCreateCv"
+                style="@style/AppTheme.Button.StyleButton"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
-                app:hint_search="@string/hint_search_area" />
+                android:layout_marginTop="@dimen/size_20"
+                android:layout_marginBottom="@dimen/size_10"
+                android:onClick="@{()->vm.startNavLogin()}"
+                android:paddingHorizontal="@dimen/size_50"
+                android:text="@{vm.isTabPost? @string/create_cv_find_job : @string/create_a_worker_route}"
+                app:cornerRadius="@dimen/size_50"
+                app:layout_constraintBottom_toTopOf="@+id/tvDesEnd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-            <include
-                android:id="@+id/tabHome"
-                layout="@layout/layout_tab_home"
-                app:action="@{vm}"
-                app:isTab1="@{vm.isTabPost}"
-                app:text1="@{@string/lbl_find_work}"
-                app:text2="@{@string/lbl_job_nails}" />
-
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/vpMain"
+            <TextView
+                android:id="@+id/tvDesEnd"
+                style="@style/FocusClick"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </androidx.appcompat.widget.LinearLayoutCompat>
+                android:layout_height="@dimen/size_50"
+                android:background="@color/hFFD8CA"
+                android:gravity="center"
+                android:onClick="@{()->vm.startNavLogin()}"
+                android:paddingHorizontal="@dimen/size_10"
+                android:text="@string/lbl_register_or_login_display_all_func"
+                android:textAppearance="@style/AppTheme.Content"
+                android:textColor="@color/color_primary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:drawableEndCompat="@drawable/icon_feather_arrow_l" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </layout>
