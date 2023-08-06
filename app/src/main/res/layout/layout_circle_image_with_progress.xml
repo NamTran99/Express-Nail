@@ -10,13 +10,21 @@
     app:layout_constraintTop_toBottomOf="@+id/lvRvCustomers"
     tools:layout_editor_absoluteX="5dp">
 
+   <ImageView
+       android:id="@+id/imgCamera"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:src="@drawable/ic_camera"
+       android:layout_centerInParent="true"/>
+
+
    <de.hdodenhof.circleimageview.CircleImageView
        android:id="@+id/imgImage"
        android:src="@drawable/ic_upload_circle_bg"
        android:layout_width="match_parent"
        app:civ_border_color="@color/color_primary"
        app:civ_border_overlay="true"
-       app:civ_border_width="@dimen/size_2"
+       app:civ_border_width="@dimen/size_1"
        android:layout_height="match_parent"/>
 
 </RelativeLayout>

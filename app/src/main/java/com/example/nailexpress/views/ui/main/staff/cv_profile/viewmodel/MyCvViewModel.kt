@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.nailexpress.base.BaseViewModel
+import com.example.nailexpress.extension.launch
 import com.example.nailexpress.models.response.CvDTO
 import com.example.nailexpress.repository.CvRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -24,13 +25,12 @@ class MyCvViewModel @Inject constructor(
         getAllMyCv()
     }
 
-    private fun getAllMyCv() {
-        viewModelScope.launch {
+    private fun getAllMyCv() = launch {
             cvRepository.getAllMyCv().onEach {
                 myCvLiveData.value = it.getOrNull(MY_CV_POSITION)
             }.collect()
         }
-    }
+
 
     companion object {
         private const val MY_CV_POSITION = 0

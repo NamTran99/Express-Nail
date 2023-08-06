@@ -36,6 +36,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     AppSettingsOwner {
     val loadingDialog by lazy { LoadingDialog(requireContext(), this) }
     val mWindowManager: WindowManager by lazy { requireActivity().windowManager }
+
     protected var jobEventReceiver: Job? = null
     val self get() = this
 
@@ -45,7 +46,6 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
 
     @Inject
     lateinit var appEvent: AppEvent2
-
 
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -40,11 +40,9 @@ abstract class RecyclerAdapter<T : Any, VB : ViewDataBinding> :
     fun getItem(pos: Int): T? = asynList.currentList.getOrNull(pos)
 
     open fun addData(item: T) {
-        Log.d("TAG", "addData: oldList size - 1 ${mitems.size}")
         val oldList = mitems
         oldList.add(item)
         asynList.submitList(oldList)
-        Log.d("TAG", "addData: oldList size - 2 ${oldList.size}")
     }
 
     open fun removeData(item: T) {
@@ -80,4 +78,8 @@ abstract class RecyclerAdapter<T : Any, VB : ViewDataBinding> :
     override fun getItemCount(): Int = asynList.currentList.count()
 }
 
-class BaseViewHolder<T : ViewDataBinding>(val binding: T) : RecyclerView.ViewHolder(binding.root)
+open class BaseViewHolder<VB : ViewDataBinding>(open val binding: VB) : RecyclerView.ViewHolder(binding.root)
+
+interface ViewHolderExtension<T>{
+    fun bind(item: T)
+}

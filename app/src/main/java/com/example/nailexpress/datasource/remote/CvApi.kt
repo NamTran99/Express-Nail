@@ -6,9 +6,17 @@ import com.example.nailexpress.helper.network.Async
 import com.example.nailexpress.models.response.CvDTO
 import com.example.nailexpress.models.response.UserDTO
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 
 interface CvApi {
+    @Multipart
+    @POST("cv/create")
+    fun createCv(@PartMap buildMultipart: Map<String, @JvmSuppressWildcards RequestBody>,
+                 @Part avatar: MultipartBody.Part?,
+                 @Part moreImage: Array<MultipartBody.Part?>
+                 ): ApiAsync<Any>
 
     @GET("cv/list")
     fun getListCv(

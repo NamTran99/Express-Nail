@@ -50,7 +50,6 @@ class ActionTopBarImpl() : IActionTopBar {
     override fun initTopBarAction(vm: BaseViewModel) {
         self = vm
     }
-
 }
 
 abstract class BaseViewModel(application: Application) : AndroidViewModel(application) {

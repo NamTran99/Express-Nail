@@ -1,10 +1,5 @@
 package com.example.nailexpress.views.ui.main.staff.cv_profile
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -55,7 +50,9 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
                     description = cvDTO.description
                 }
             } else {
-                btnCreateCv.setOnClickListener { }
+                btnCreateCv.setOnClickListener {
+                    navigateToDestination(com.example.nailexpress.R.id.action_myCvFragment_to_createCvFragment)
+                }
             }
         }
     }

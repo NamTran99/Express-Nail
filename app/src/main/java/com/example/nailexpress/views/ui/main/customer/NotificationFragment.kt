@@ -34,5 +34,8 @@ class NotificationVM @Inject constructor(
 ) :
     BaseViewModel(app),   IActionTopBar by ActionTopBarImpl() {
 
-
+    init{
+        initTopBarAction(this)
+        setTitle(R.string.notification)
+    }
 }

@@ -22,13 +22,6 @@ class ErrorHandlerImpl : ErrorHandler {
 
     override fun handle(activity: BaseActivity<*>, error: Throwable) = block(activity) {
         when (error) {
-//            is ViewErrorCustom -> {
-//                val view =
-//                    activity.findViewById<View>(error.viewId)
-//                if (view is IViewCustomerErrorHandler) {
-//                }
-//                return
-//            }
             is ViewError -> {
                 if (error.viewId == null) {
                     activity.toast(error.res)
@@ -57,9 +50,6 @@ class ErrorHandlerImpl : ErrorHandler {
                     else -> activity.toast(error.res)
                 }
             }
-//            is ResourceException -> {
-//                activity.toast(error.resource)
-//            }
             is UnauthorizedException -> {
                 activity.commonDialog.show(DialogData().buildError(error.message.toString()))
             }

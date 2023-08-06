@@ -195,7 +195,7 @@
     <string name="book_des_3">Danh sách dịch vụ</string>
     <string name="book_des_4">Mô tả thêm (không bắt buộc)</string>
     <string name="hint_des_book">Nhập mô tả cụ thể công việc</string>
-    <string name="book_des_5">Thông tin người đặt thợ</string>
+    <string name="book_des_5">Thông tin liên hệ của bạn</string>
     <string name="customer_name">Tên khách hàng</string>
     <string name="booker_name">Tên người đặt</string>
     <string name="book_des_6">Địa chỉ thợ sẽ đến làm</string>
@@ -299,6 +299,19 @@
     <string name="lbl_arrived">Thợ đã đến và sẵn sàng phục vụ</string>
     <string name="lbl_finish">Đã hoàn thành</string>
     <string name="lbl_pending">Vui lòng xác nhận đơn</string>
+    <string name="cv_infor">Thông tin cá nhân</string>
+    <string name="lb_avatar">Ảnh đại diện</string>
+    <string name="lb_image">Hình ảnh khác</string>
+    <string name="hint_last_name">Họ</string>
+    <string name="hint_name_2">Tên</string>
+    <string name="skill">Kỹ năng</string>
+    <string name="btn_submit">Submit</string>
+    <string name="add_more_service">Thêm dịch vụ khác</string>
+    <string name="lb_describe">Mô tả chi tiết</string>
+    <string name="hint_describe_create_cv">Nhập mô tả cụ thể về bản thân</string>
+    <string name="select_state">Chọn bang</string>
+    <string name="lv_create_cv_1">Bạn muốn được trả lương như thế nào</string>
+    <string name="lv_create_cv_2">Có thể chọn cả 2 cách trả lương</string>
     <string name="expire_after_30_minutes_you_need_accept_in_30_minutes">Sau 30 phút sẽ hết hạn. Bạn cần chấp nhận đơn trong 30 phút</string>
     <string name="id_format">#ID :%s</string>
     <string name="booking_type">Loại booking</string>
@@ -317,6 +330,13 @@
     <string name="lbl_send">Gửi</string>
     <string name="lbl_please_enter_a_reason_for_cancellation">Please enter a reason for cancellation</string>
     <string name="lbl_cause_cancel">Lý do hủy</string>
+    <string name="search_by_state">Search by State</string>
+    <string name="search_by_city">Search by City</string>
+    <string name="reset">Reset</string>
+    <string name="select_city">Chọn thành phố</string>
+    <string name="price_by_time">Lương theo thời gian</string>
+    <string name="salary_by_service">Lương theo kỹ năng dịch vụ</string>
     <string name="lbl_flow">Theo </string>
     <string name="lbl_hourly">%s giờ x</string>
+    <string name="salon_des_1">Nhập mô tả Salon</string>
 </resources>

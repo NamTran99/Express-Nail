@@ -1,5 +1,6 @@
 package com.example.nailexpress.views.widgets
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
@@ -109,6 +110,15 @@ class CustomEditText(context: Context, attributeSet: AttributeSet) : IViewCustom
             field = value
         }
 
+    @SuppressLint("ResourceAsColor")
+    private var bgTint: Int = resources.getColor(R.color.white, null)
+        set(value) {
+            binding.apply {
+                imgLayout.setBackgroundColor(value)
+                field = value
+            }
+        }
+
     init {
         context.loadAttrs(attributeSet, R.styleable.CustomEditText) {
             hint = it.getString(R.styleable.CustomEditText_android_hint) ?: DEFAULT_STRING
@@ -118,6 +128,7 @@ class CustomEditText(context: Context, attributeSet: AttributeSet) : IViewCustom
                 InputType.getTypeByIndex(it.getInt(R.styleable.CustomEditText_input_type, 0))
             maxNumberInput =
                 it.getFloat(R.styleable.CustomEditText_max_number_input, -1f).toDouble()
+            bgTint = it.getColor(R.styleable.CustomEditText_backgroundTint, resources.getColor(R.color.white, null))
         }
 
         setupListener()

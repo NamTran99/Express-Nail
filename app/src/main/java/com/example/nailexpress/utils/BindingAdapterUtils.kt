@@ -118,10 +118,12 @@ object BindingAdapterUtils {
     @JvmStatic
     fun getValue(view: SwitchCompat) = view.isChecked or1 1 or2 0
 
-    @BindingAdapter(value = ["valueAttrChanged"])
+    @BindingAdapter(value = ["valueAttrChanged", "onChangeValue"], requireAll = false)
     @JvmStatic
-    fun setValueChanged(view: SwitchCompat, listener: InverseBindingListener) {
-        view.setOnCheckedChangeListener { buttonView, isChecked -> listener.onChange() }
+    fun setValueChanged(view: SwitchCompat, listener: InverseBindingListener?, onItemSelected: ((Boolean) -> Unit)?) {
+        view.setOnCheckedChangeListener { buttonView, isChecked -> listener?.onChange()
+            onItemSelected?.invoke(isChecked)
+        }
     }
 
     @BindingAdapter(value = ["value"])

@@ -18,16 +18,18 @@
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
             <include
                 android:id="@+id/toolbar"
                 layout="@layout/top_bar_simple"
                 app:action="@{action}" />
+
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -54,8 +56,8 @@
                                 android:id="@+id/imgImage"
                                 android:layout_width="@dimen/size_70"
                                 android:layout_height="@dimen/size_70"
-                                app:setUrl = "@{action.cv.avatar}"
-                                android:layout_marginEnd="@dimen/size_10" />
+                                android:layout_marginEnd="@dimen/size_10"
+                                app:setUrl="@{action.cv.avatar}" />
 
                             <androidx.appcompat.widget.LinearLayoutCompat
                                 android:layout_width="0dp"
@@ -83,12 +85,12 @@
                                         style="@style/AppTheme.TextViewResponsive"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:text="@{action.booking.status_booking_display}"
-                                        app:drawableTint="@{action.booking.colorStatus}"
-                                        android:drawableStart="@drawable/ic_dot"
                                         android:layout_marginStart="@dimen/size_10"
+                                        android:drawableStart="@drawable/ic_dot"
                                         android:gravity="end"
+                                        android:text="@{action.booking.status_booking_display}"
                                         android:textColor="@color/color_primary"
+                                        app:drawableTint="@{action.booking.colorStatus}"
                                         tools:text="Đã chấp nhận" />
                                 </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -103,8 +105,8 @@
                                         style="@style/AppTheme.TextViewResponsive"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:textSize="@dimen/text_size_14"
                                         android:text="@{action.cv.name}"
+                                        android:textSize="@dimen/text_size_14"
                                         tools:text="Kim Nguyen" />
 
                                     <TextView
@@ -113,8 +115,8 @@
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_marginStart="@dimen/size_5"
-                                        android:textSize="@dimen/text_size_14"
                                         android:text="@{action.cv.genderFormat2}"
+                                        android:textSize="@dimen/text_size_14"
                                         tools:text="(Nam)" />
 
                                 </androidx.appcompat.widget.LinearLayoutCompat>
@@ -205,8 +207,8 @@
                                         app:cornerRadius="@dimen/size_50" />
 
 
-
                                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                                 <androidx.appcompat.widget.LinearLayoutCompat
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
@@ -234,8 +236,9 @@
 
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <View style="@style/AppTheme.Line.Horizontal"
-                            android:layout_marginVertical="@dimen/size_10"/>
+                        <View
+                            style="@style/AppTheme.Line.Horizontal"
+                            android:layout_marginVertical="@dimen/size_10" />
 
                         <TextView
                             style="@style/AppTheme.TextViewResponsive.Title"
@@ -253,27 +256,25 @@
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:gravity="center"
-                            android:paddingHorizontal="@dimen/size_20"
+                            android:layout_marginTop="@dimen/size_10"
                             android:background="@drawable/bg_white_radius"
                             android:backgroundTint="@color/color_f7f7f7"
-                            android:layout_marginTop="@dimen/size_10"
                             android:drawableStart="@drawable/ic_clock"
-                            tools:text = "120 phút"
-                            />
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/size_20"
+                            tools:text="120 phút" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:text="@{action.booking.displayTimeOrder}"
-                            android:gravity="center"
-                            android:paddingHorizontal="@dimen/size_20"
+                            android:layout_marginTop="@dimen/size_10"
                             android:background="@drawable/bg_white_radius"
                             android:backgroundTint="@color/color_f7f7f7"
-                            android:layout_marginTop="@dimen/size_10"
                             android:drawableStart="@drawable/ic_calendar"
-                            tools:text = "08:30 AM - April 72 2023"
-                            />
+                            android:gravity="center"
+                            android:paddingHorizontal="@dimen/size_20"
+                            android:text="@{action.booking.displayTimeOrder}"
+                            tools:text="08:30 AM - April 72 2023" />
 
                         <TextView
                             style="@style/AppTheme.TextViewResponsive"
@@ -286,9 +287,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:adapter="@{action.serviceAdapter}"
-                            tools:listitem="@layout/item_list_service"
+                            android:orientation="vertical"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                            android:orientation="vertical" />
+                            tools:listitem="@layout/item_list_service" />
 
                         <TextView
                             style="@style/AppTheme.TextViewResponsive.Title"
@@ -341,8 +342,9 @@
                                 android:text="@{action.booking.contact_phone}" />
                         </androidx.appcompat.widget.LinearLayoutCompat>
 
-                        <View style="@style/AppTheme.Line.Horizontal"
-                            android:layout_marginTop="@dimen/size_20"/>
+                        <View
+                            style="@style/AppTheme.Line.Horizontal"
+                            android:layout_marginTop="@dimen/size_20" />
 
                         <com.example.nailexpress.views.widgets.ShopInfoView
                             android:id="@+id/shopInfoView"
@@ -404,7 +406,6 @@
 
 
         </androidx.appcompat.widget.LinearLayoutCompat>
-
 
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

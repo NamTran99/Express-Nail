@@ -2,9 +2,11 @@ package com.example.nailexpress.views.ui.main.staff.dialogs
 
 import android.app.Application
 import android.support.core.livedata.*
+import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
@@ -13,6 +15,7 @@ import com.example.nailexpress.base.BaseDialogFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.DialogSelectServiceBinding
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.extension.onClick
 import com.example.nailexpress.extension.showKeyboard
 import com.example.nailexpress.extension.visible
 import com.example.nailexpress.models.ui.main.Skill
@@ -30,10 +33,14 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class SelectServiceDialog : BaseDialogFragment<DialogSelectServiceBinding>() {
+
+    companion object{
+        const val ARG_TEXT_SEARCH = "ARGS_SEARCH"
+    }
     override val layoutId: Int
         get() = R.layout.dialog_select_service
 
-    val viewModel: ServiceVM by activityViewModels()
+    val viewModel: ServiceVM by viewModels()
 
     override fun initView() {
         dialog?.window?.setGravity(Gravity.CENTER_HORIZONTAL or Gravity.TOP)
@@ -42,19 +49,25 @@ class SelectServiceDialog : BaseDialogFragment<DialogSelectServiceBinding>() {
         dialog?.window?.attributes = param
 
         binding.apply {
-            action = viewModel
-
-            viewModel.dissmiss.observe(viewLifecycleOwner) {
-                dismissNow()
+            root.onClick{
+                hideKeyboard()
             }
-            viewModel.customLoading.observe(viewLifecycleOwner) {
-                progressBar.visible(it)
+            action = viewModel
+            viewModel.apply {
+                changeTextSearch(requireArguments().getString(ARG_TEXT_SEARCH)?:"")
+                dissmiss.observe(viewLifecycleOwner) {
+                    this@SelectServiceDialog.dismiss()
+                }
+                customLoading.observe(viewLifecycleOwner) {
+                    progressBar.visible(it)
+                }
             }
         }
     }
 
     override fun onResume() {
         binding.etSearch.showKeyboard()
+        viewModel.loadData()
         super.onResume()
     }
 }
@@ -69,21 +82,25 @@ class ServiceVM @Inject constructor(
         it.isNotEmpty()
     }.asLiveData()
     val listService = MutableLiveData<List<Skill>>()
-    val isEmptyData = MutableStateFlow(false)
-
-
     val dissmiss: SingleLiveEvent<Any> = SingleLiveEvent()
     val adapter: SelectServiceAdapter by lazy { SelectServiceAdapter(this) }
     val customLoading = LoadingLiveData()
 
     init {
+        Log.d(TAG, "NamTD888: ")
         getListService(1)
-        loadData()
     }
 
-    private fun loadData()= viewModelScope.launch{
+    fun changeTextSearch(text: String){
+        textSearch.value = text
+    }
+
+    fun loadData()= viewModelScope.launch{
+        Log.d("TAG", "NamTD8: 1 ")
+
         textSearch.onEach {
-            if(it == "") isEmptyData.value = false
+            Log.d("TAG", "NamTD8: 2 ")
+//            if(it == "") isEmptyData.value = false
             getListService(1)
         }.collect()
     }
@@ -99,7 +116,7 @@ class ServiceVM @Inject constructor(
                     item.isSKill = true
                     item
                 })
-                isEmptyData.value = adapter.itemCount == 0
+//                isEmptyData.value = adapter.itemCount == 0
             }.collect()
         }
     }

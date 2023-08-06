@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/custom_bg_service_check"
+    android:gravity="center_vertical"
+    android:paddingHorizontal="@dimen/size_16">
+
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_marginTop="@dimen/size_10"
+        style="@style/AppTheme.TextViewResponsive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/text_size_12"
+        tools:text="Manicure Manicure Manicure Manicure Manicure Manicure Manicure Manicure" />
+
+    <View
+        android:layout_marginTop="@dimen/size_10"
+        style="@style/AppTheme.Line.Horizontal"/>
+</LinearLayout>

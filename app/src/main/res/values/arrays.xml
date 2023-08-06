@@ -29,5 +29,11 @@
         <item>Cả nam và nữ</item>
     </string-array>
 
+    <string-array name="arr_gender_1">
+        <item>Chọn giới tính</item>
+        <item>Nữ</item>
+        <item>Nam</item>
+    </string-array>
+
 
 </resources>

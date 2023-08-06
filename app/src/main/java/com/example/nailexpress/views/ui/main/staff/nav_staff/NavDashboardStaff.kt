@@ -31,6 +31,7 @@ class NavDashboardStaff : NavDashBoard() {
         }
 
         with(binding) {
+            fabClientCheckIn.setText(R.string.my_cv)
             fabClientCheckIn.setOnClickListener {
                 findNavController().navigate(R.id.action_navDashBoardStaff_to_myCvFragment)
             }

@@ -55,7 +55,7 @@ class AccountInforFragment :
         binding.apply {
             action = viewModel
 
-            imgAvatar.onClickUploadImage = {
+            imgAvatar.setOnClickListener {
                 FishBun.with(self)
                     .setImageAdapter(GlideAdapter())
                     .setMaxCount(1)

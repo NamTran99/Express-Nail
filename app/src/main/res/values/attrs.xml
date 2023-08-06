@@ -18,6 +18,17 @@
             <enum name="upload" value="1" />
         </attr>
         <attr name="background" format="reference" />
+        <attr name="image_holder" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="LoadingCircleImage">
+        <attr name="custom_enable_remove_image_circle" format="boolean" />
+        <attr name="status_circle" format="enum">
+            <enum name="read" value="0" />
+            <enum name="upload" value="1" />
+        </attr>
+        <attr name="background_circle" format="reference" />
+        <attr name="image_holder_circle" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="CustomEditText">
@@ -25,6 +36,7 @@
         <attr name="custom_end_text" format="string" />
         <attr name="custom_start_text" format="string" />
         <attr name="max_number_input" format="float" />
+        <attr name="backgroundTint" format="color"/>
         <attr name="input_type" format="enum">
             <enum name="number" value="0" />
             <enum name="decimal" value="1" />

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <ImageView
+        android:layout_width="@dimen/size_100"
+        android:layout_height="@dimen/size_100"
+        android:layout_marginTop="@dimen/size_10"
+        android:background="@drawable/bg_add_more_photo"
+        android:orientation="horizontal"
+        android:scaleType="center"
+        android:src="@drawable/ic_baseline_add_24" />
+</layout>

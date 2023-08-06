@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_white_radius"
     android:gravity="center"
+    android:id="@+id/imgLayout"
     android:orientation="horizontal"
     android:paddingHorizontal="@dimen/size_20">
 

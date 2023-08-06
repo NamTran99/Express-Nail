@@ -154,9 +154,9 @@
 
         <fragment
             android:id="@+id/bookingDetailFragment"
-            android:name="com.example.nailexpress.views.ui.main.customer.booking.BookingDetailFragment"
+            android:name="com.example.nailexpress.views.ui.main.customer.booking.BookingCustomerDetailFragment"
             android:label="BookingDetailFragment"
-            tools:layout="@layout/fragment_booking_detail">
+            tools:layout="@layout/fragment_detail_staff_applies">
 
             <argument
                 android:name="bookingID"
@@ -203,6 +203,16 @@
         app:startDestination="@id/navDashBoardStaff">
 
         <fragment
+            android:id="@+id/createCvFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.cv_profile.CreateCvFragment"
+            android:label="CreateCvFr agment"
+            tools:layout="@layout/fragment_create_cv">
+            <action
+                android:id="@+id/action_createCvFragment_to_findWorkingAreaFragment"
+                app:destination="@id/findWorkingAreaFragment" />
+        </fragment>
+
+        <fragment
             android:id="@+id/navDashBoardStaff"
             android:name="com.example.nailexpress.views.ui.main.staff.nav_staff.NavDashboardStaff"
             android:label="NavDashBoardStaff"
@@ -228,7 +238,12 @@
         <fragment
             android:id="@+id/myCvFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.cv_profile.MyCvFragment"
-            android:label="MyCvFragment" />
+            android:label="MyCvFragment"
+            tools:layout="@layout/fragment_my_cv">
+            <action
+                android:id="@+id/action_myCvFragment_to_createCvFragment"
+                app:destination="@id/createCvFragment" />
+        </fragment>
 
         <fragment
             android:id="@+id/detailPostStaffFragment"
@@ -239,6 +254,16 @@
             android:id="@+id/bookingDetailStaffFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.booking_detail.BookingDetailStaffFragment"
             android:label="BookingDetailStaffFragment" />
+
+        <fragment
+            android:id="@+id/findWorkingAreaFragment"
+            android:name="com.example.nailexpress.views.ui.main.common.FindWorkingAreaFragment"
+            android:label="FindWorkingAreaFragment"
+            tools:layout="@layout/fragment_find_working_area">
+            <argument
+                android:name="form"
+                app:argType="com.example.nailexpress.models.ui.main.SearchCityStateForm" />
+        </fragment>
     </navigation>
 
     <fragment
@@ -275,5 +300,6 @@
         android:id="@+id/action_global_accountInforFragment"
         app:destination="@id/accountInforFragment" />
     <action android:id="@+id/action_global_changePassFragment" app:destination="@id/changePassFragment" />
+
 
 </navigation>

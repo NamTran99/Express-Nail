@@ -21,7 +21,7 @@ class SalonRepository(
     suspend fun createSalon(form: Salon) = flow {
         form.validate()
         val imageParts =
-            form.localImage.filterRemoteImage().toArrayPart("images[]")
+            form.localImage.filterRemoteImage().toArrayPart("salon_images[]")
 
         emit(
             salonFactory.createASalon(
@@ -40,7 +40,7 @@ class SalonRepository(
                         .put("city", form.city)
                         .put("state", form.state)
                         .put("zipcode", form.zipcode)
-                        .put("create_type", 1)//create salon 1,
+                        .put("create_type", 1) //create salon 1,
                         .buildMultipart(), imageParts
                 ).await()
             )

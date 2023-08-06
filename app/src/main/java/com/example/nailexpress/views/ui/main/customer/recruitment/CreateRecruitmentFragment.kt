@@ -139,13 +139,11 @@ class CreateRecruitmentVM @Inject constructor(
     BaseViewModel(app), IActionTopBar by ActionTopBarImpl(), ICreateSalonVM, ICreateRecruitmentVM,
     IBookServiceAdapter {
 
-
     override val title = MutableLiveData(getString(R.string.title_create_recruitment))
     override val salonForm = MutableLiveData(Salon())
     override val salonImageAdapter = ImageLocalAdapter()
     val serviceAdapter = BookServiceAdapter(this)
     var selectService = MutableLiveData(BookServiceForm())
-
 
     val recruitmentForm = MutableLiveData(RecruitmentForm())
     val isShowSalon = MutableLiveData(false)

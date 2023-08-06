@@ -1,6 +1,7 @@
 package com.example.nailexpress.models.ui.main
 
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.toDateUTC
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
@@ -39,6 +40,8 @@ data class BookingStaffForm(
     override fun validate() {
         handleData()
     }
+
+
 
     fun clearListSkill() {
         listBookTime.clear()
@@ -109,6 +112,7 @@ data class BookServiceForm(
     @Transient
     var isTypeTime: Boolean = false
 ) {
+    // chỉ lấy skill name
     constructor(service: Skill) : this() {
         skill_name = service.name
     }
@@ -118,8 +122,6 @@ data class BookServiceForm(
         price_display = "$${price}"
         return this
     }
-
-
 
     override fun toString(): String {
         return Gson().toJson(this)

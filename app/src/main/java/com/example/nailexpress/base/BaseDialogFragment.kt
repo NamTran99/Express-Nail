@@ -3,17 +3,18 @@ package com.example.nailexpress.base
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
+import com.example.nailexpress.datasource.AppEvent2
+import com.example.nailexpress.extension.onClick
+import javax.inject.Inject
 
-abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
+abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment() {
     open val gravity = Gravity.CENTER_HORIZONTAL or Gravity.TOP
 
     val TAG by lazy { this::class.java.name }
@@ -24,10 +25,14 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
     @get:LayoutRes
     abstract val layoutId: Int
 
+    @Inject
+    lateinit var appEvent: AppEvent2
+
     override fun onAttach(ctx: Context) {
         super.onAttach(ctx)
         Log.d(TAG, "onAttach: ")
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -47,13 +52,20 @@ abstract class BaseDialogFragment<T : ViewDataBinding> : DialogFragment(){
 
     abstract fun initView()
 
-    fun showToast(res: Int){
-        Toast.makeText(requireContext(),res,Toast.LENGTH_SHORT).show()
+    fun hideKeyboard() {
+        val view = requireActivity().currentFocus
+        val imm =
+            requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(view?.windowToken, 0)
     }
 
-    fun setDialogOnTop(){
+    fun showToast(res: Int) {
+        Toast.makeText(requireContext(), res, Toast.LENGTH_SHORT).show()
+    }
+
+    fun setDialogOnTop() {
         dialog?.window?.setGravity(gravity)
-        val param  = dialog?.window?.attributes
+        val param = dialog?.window?.attributes
         param?.width = ViewGroup.LayoutParams.MATCH_PARENT
         dialog?.window?.attributes = param
     }

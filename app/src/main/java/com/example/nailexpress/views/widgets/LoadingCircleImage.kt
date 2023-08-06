@@ -8,13 +8,14 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.BindingMethod
 import androidx.databinding.BindingMethods
+import com.bumptech.glide.Glide.init
 import com.example.nailexpress.R
+import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.databinding.LayoutCircleImageWithProgressBinding
 import com.example.nailexpress.extension.*
 import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 import com.example.nailexpress.app.AppConfig.Status
-
 
 
 @BindingMethods(
@@ -35,26 +36,45 @@ class LoadingCircleImage(context: Context, attributeSet: AttributeSet) :
     private val binding =
         LayoutCircleImageWithProgressBinding.inflate(LayoutInflater.from(context), this, true)
 
+    var status = AppConfig.Status.READ
+        set(value) {
+            field = value
+            binding.apply {
+                val isUpdate = status == AppConfig.Status.UPDATE
+                imgCamera.show(isUpdate)
+            }
+        }
+
+
+     private var url : String? = ""
+        set(value) {
+            binding.apply {
+                imgImage.setImageURICustom(value)
+            }
+            field = value
+        }
     init {
+        context.loadAttrs(attributeSet, R.styleable.LoadingCircleImage){
+            status =
+                AppConfig.Status.getDayByIndex(
+                    it.getInt(
+                        R.styleable.LoadingCircleImage_status_circle,
+                        AppConfig.Status.READ.inx
+                    )
+                )
+        }
         initView()
     }
-    var onClickUploadImage  ={}
 
     private fun initView() {
         with(binding) {
-            root.onClick{
-                if(status == Status.UPDATE){
-                    onClickUploadImage.invoke()
-                }
-            }
+
         }
     }
 
-    var status = Status.READ
-
     fun setImageUrl(link: String?) {
-        with(binding) {
-            imgImage.setImageURICustom(link)
+        link?.let{
+            url = it
         }
     }
 }

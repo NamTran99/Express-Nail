@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_bg_service_check"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/size_16">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/size_10"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvState"
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="@dimen/text_size_12"
+                tools:text="Manicure Manicure " />
+
+            <TextView
+                android:id="@+id/tvAcronym"
+                android:layout_width="wrap_content"
+                style="@style/AppTheme.TextViewResponsive"
+                android:layout_marginStart="@dimen/size_5"
+                android:textColor="@color/colorPrimary"
+                android:textSize="@dimen/text_size_12"
+                android:padding="@dimen/size_10"
+                android:background="@drawable/button_primary_stroke_solid_white_corner_5"
+                tools:text="HL" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            style="@style/AppTheme.Line.Horizontal"
+            android:layout_marginTop="@dimen/size_10" />
+    </LinearLayout>
+</layout>

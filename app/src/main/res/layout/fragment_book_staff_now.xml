@@ -40,7 +40,6 @@
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:text="@string/book_des_1"
                     android:textSize="@dimen/text_size_14" />
 
@@ -302,7 +301,6 @@
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_marginTop="@dimen/size_10"
                     android:text="@string/book_des_5"
                     android:textSize="@dimen/text_size_14" />

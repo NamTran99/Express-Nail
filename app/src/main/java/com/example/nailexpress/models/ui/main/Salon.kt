@@ -35,7 +35,7 @@ data class Salon(
         checkEmpty(name, R.string.error_blank_salon_name, R.id.etSalonName)
         checkPhone(phoneDisplay, R.id.etSalonPhone)
         checkEmpty(address, R.string.error_empty_address, R.id.etAddress)
-        checkEmpty(experience_years_display,R.string.error_blank_salon_year, R.id.etYearExist)
+        checkEmpty(experience_years,R.string.error_blank_salon_year, R.id.etYearExist)
     }
 }
 

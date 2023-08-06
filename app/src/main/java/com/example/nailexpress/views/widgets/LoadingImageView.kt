@@ -5,6 +5,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.appcompat.widget.LinearLayoutCompat
+import com.bumptech.glide.Glide.init
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.databinding.LoadingImageBinding
@@ -21,10 +22,10 @@ class LoadingImageView @JvmOverloads constructor(
     var enableRemoveImage = true
         set(value) {
             field = value
-            binding.btClose.show(value && status == AppConfig.Status.READ)
+            binding.btClose.show(value && status == AppConfig.Status.UPDATE)
         }
 
-    var status = AppConfig.Status.UPDATE
+    private var status = AppConfig.Status.UPDATE
         set(value) {
             field = value
             binding.apply {
@@ -37,6 +38,12 @@ class LoadingImageView @JvmOverloads constructor(
         set(value) {
             binding.lvImage.setBackgroundResource(value)
             field = value
+        }
+
+    var srcImage: Int = R.drawable.ic_camera
+        set(value)  {
+            field = value
+            binding.imgCamera.setImageResource(value)
         }
 
 
@@ -63,10 +70,13 @@ class LoadingImageView @JvmOverloads constructor(
                     R.styleable.LoadingImageView_background,
                     R.drawable.bg_white_radius
                 )
+            srcImage = it.getResourceId(
+                R.styleable.LoadingImageView_image_holder, R.drawable.ic_camera
+            )
         }
     }
 
-    var onClickClearImage: ((url: String) -> Unit) = {}
+    private var onClickClearImage: ((url: String) -> Unit) = {}
 
     private var url: String? = ""
         set(value) {
@@ -92,5 +102,17 @@ class LoadingImageView @JvmOverloads constructor(
         binding.apply {
             this@LoadingImageView.url = url
         }
+    }
+
+    fun setImageStatus(status: AppConfig.Status){
+        this.status = status
+    }
+
+    fun setVisibleRemoveButton(isVisible: Boolean){
+        this.enableRemoveImage = isVisible
+    }
+
+    fun setActionClearImage(callback:(url: String) -> Unit){
+        onClickClearImage = callback
     }
 }

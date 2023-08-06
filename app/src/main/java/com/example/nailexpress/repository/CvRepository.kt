@@ -1,12 +1,13 @@
 package com.example.nailexpress.repository
 
 import android.content.Context
-import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.datasource.remote.CvApi
+import com.example.nailexpress.extension.*
 import com.example.nailexpress.factory.BookingCvFactory
+import com.example.nailexpress.helper.RequestBodyBuilder
+import com.example.nailexpress.models.ui.main.CvForm
 import kotlinx.coroutines.flow.flow
-import retrofit2.http.Path
 
 class CvRepository(
     val userDataSource: SharePrefs,
@@ -36,5 +37,26 @@ class CvRepository(
 
     suspend fun getAllMyCv() = flow {
         emit(cvApi.getAllMyCv().await())
+    }
+
+    suspend fun createCv(form: CvForm) {
+        form.validate()
+        val avatar = form.avatar.toScaleImagePart("avatar")
+        val moreImage = form.moreImage.filterRemoteImage().toArrayPart("images[]")
+        cvApi.createCv(
+            RequestBodyBuilder()
+                .put("fullname", form.fullName)
+                .put("phone", form.phone.convertPhoneToNormalFormat())
+                .put("gender", form.gender)
+                .put("experience_years", form.experience_years)
+                .put("description", form.description)
+                .put("state", form.workingAreaForm.stateSearch)
+                .put("city", form.workingAreaForm.citySearch)
+                .putIf(form.isSkillByTime,"salary_by_time", form.listBookTime.toString())
+                .putIf(form.isSkillByService,"salary_by_skill", form.listBookSkill.toString())
+                .putIf(form.isSkillByTime,"salary_time_values", form.bookTime.toString())
+                .buildMultipart(),
+            avatar,moreImage
+        ).await()
     }
 }
