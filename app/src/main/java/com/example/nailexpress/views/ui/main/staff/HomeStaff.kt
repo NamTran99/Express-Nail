@@ -122,7 +122,12 @@ class HomeStaffViewModel @Inject constructor(
     //load more Post
     private val loadMorePost = object : IPostAction {
         override val onClickDetail: (cvID: Int) -> Unit = {
-
+            navigateToDestination(
+                R.id.action_navDashBoardStaff_to_detailPostStaffFragment,
+                bundle = Bundle().apply {
+                    putInt(KEY_ID_POST_DETAIL, it)
+                }
+            )
         }
 
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
@@ -132,12 +137,6 @@ class HomeStaffViewModel @Inject constructor(
 
     private val lostMoreCV = object : IMyPostAction {
         override val onClickDetail: (cvID: Int) -> Unit = {
-            navigateToDestination(
-                R.id.action_navDashBoardStaff_to_detailPostStaffFragment,
-                bundle = Bundle().apply {
-                    putInt(KEY_ID_POST_DETAIL, it)
-                }
-            )
         }
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
             getListRecruitmentMyApply(page)
