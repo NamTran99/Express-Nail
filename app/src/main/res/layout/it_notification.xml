@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="notify"
+            type="com.example.nailexpress.models.response.NotificationResponse" />
+
+        <import type="com.example.nailexpress.R" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/white"
+        android:layout_marginBottom="@dimen/size_10"
+        app:cardCornerRadius="@dimen/size_10">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/size_10"
+            android:background="@color/white"
+            android:paddingHorizontal="@dimen/size_15"
+            android:paddingVertical="@dimen/size_15"
+            android:paddingTop="@dimen/size_10">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="@dimen/size_50"
+                android:layout_height="@dimen/size_50"
+                android:background="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:riv_corner_radius="@dimen/size_30"
+                app:riv_mutate_background="true"
+                app:src="@{notify.avatarUrl}" />
+
+            <LinearLayout
+                android:layout_width="@dimen/size_0"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/size_15"
+                android:layout_marginEnd="@dimen/size_5"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/tvTime"
+                app:layout_constraintStart_toEndOf="@+id/ivAvatar"
+                app:layout_constraintTop_toTopOf="@+id/tvTime">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    style="@style/AppTheme.Tile"
+                    android:text="Thanh Tran"
+                    tools:text="Thanh Tran" />
+
+                <TextView
+                    android:id="@+id/tvDess"
+                    style="@style/AppTheme.Large"
+                    android:layout_marginTop="@dimen/size_2"
+                    android:text="@{notify.message}"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    tools:text="đã gửi yêu cầu booking cho bạn" />
+
+                <TextView
+                    android:id="@+id/tvId"
+                    style="@style/AppTheme.Large"
+                    android:layout_marginTop="@dimen/size_2"
+                    android:text="@{context.getString(R.string.lbl_id,notify.id)}"
+                    android:textColor="@color/color_primary"
+                    tools:text="#ID :123456" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btBookStaff"
+                    style="@style/AppTheme.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/size_30"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:backgroundTint="#FFD8CA"
+                    android:text="@string/view_detail"
+                    android:textColor="@color/color_primary"
+                    android:textSize="@dimen/text_size_10"
+                    app:cornerRadius="@dimen/size_50" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvTime"
+                style="@style/AppTheme.Content"
+                android:layout_marginTop="@dimen/size_5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="09:54 AM" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
