@@ -37,8 +37,14 @@ class LoginFragment :
 }
 
 @HiltViewModel
-class LoginVM @Inject constructor(app: Application, private val authRepository: AuthRepository) :
+class LoginVM @Inject constructor(
+    app: Application,
+    private val authRepository: AuthRepository
+) :
     BaseViewModel(app) {
+    init {
+        logOut()
+    }
 
     private val prefUtils by lazy { PrefUtils(app.applicationContext) }
 
@@ -48,6 +54,9 @@ class LoginVM @Inject constructor(app: Application, private val authRepository: 
 
         const val SPIN_EN_CODE = "+1"
         const val SPIN_VN_CODE = "+84"
+    }
+    private fun logOut()= launch{
+        authRepository.logOut(false)
     }
 
     val spinIndexSelected = MutableLiveData(SPIN_EN)

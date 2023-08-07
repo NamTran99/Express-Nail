@@ -5,16 +5,16 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.NavOptions
 import com.example.nailexpress.app.AppConfig.REQUEST_CODE_SHARE_APP
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.base.BaseFragment
-import com.example.nailexpress.models.ui.AppImage
 import com.example.nailexpress.views.ui.main.customer.detailpost.adapter.ViewTypeService
 import com.google.gson.Gson
 import java.io.File
@@ -161,3 +161,16 @@ fun Double?.addPrefixDollar(): String {
 }
 
 
+fun NavController.clearBackStackAndNavigate(destinationId: Int) {
+    visibleEntries.value.size.let {
+        if (it > 0) {
+            val navOptions = NavOptions.Builder()
+                .setPopUpTo(
+                    visibleEntries.value[0].destination.parent!!.id, true
+                )
+                .build()
+            navigate(destinationId, null, navOptions)
+        }
+    }
+    navigate(destinationId)
+}

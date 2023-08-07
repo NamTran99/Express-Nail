@@ -2,6 +2,7 @@ package com.example.nailexpress.views.ui.main.customer.nav_doash_board
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

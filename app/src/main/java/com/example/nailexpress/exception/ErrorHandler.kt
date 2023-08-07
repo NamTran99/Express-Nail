@@ -1,11 +1,16 @@
 package com.example.nailexpress.exception
 
-import android.graphics.Rect
 import android.support.core.extensions.block
 import android.view.View
 import android.widget.EditText
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
+import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseActivity
+import com.example.nailexpress.datasource.local.SharePrefKey
+import com.example.nailexpress.extension.clearBackStackAndNavigate
+//import com.example.nailexpress.extension.clearBackStack
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.scrollToViewABitTop
 import com.example.nailexpress.extension.showKeyboard
@@ -37,7 +42,7 @@ class ErrorHandlerImpl : ErrorHandler {
                                 this.error = activity.getString(error.res)
                                 view.scrollToViewABitTop()
                                 activity.toast(error.res)
-                            }else{
+                            } else {
                                 this.error = activity.getString(error.res)
                                 showKeyboard()
                                 view.scrollToViewABitTop()
@@ -51,7 +56,11 @@ class ErrorHandlerImpl : ErrorHandler {
                 }
             }
             is UnauthorizedException -> {
-                activity.commonDialog.show(DialogData().buildError(error.message.toString()))
+                activity.commonDialog.show(
+                    DialogData().buildError(error.message.toString())
+                        .setCallBack {
+                            navController?.clearBackStackAndNavigate(R.id.authGraph)
+                        })
             }
             is UnknownHostException -> {
                 activity.commonDialog.show(

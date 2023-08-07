@@ -55,6 +55,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/size_10"
                     app:background="@drawable/bg_ff662e_radius"
+                    app:custom_enable_remove_image="false"
                     app:status="upload" />
 
                 <TextView

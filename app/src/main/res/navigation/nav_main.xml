@@ -191,7 +191,7 @@
         <fragment
             android:id="@+id/createCvFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.cv_profile.CreateCvFragment"
-            android:label="CreateCvFr agment"
+            android:label="CreateCvFragment"
             tools:layout="@layout/fragment_create_cv">
             <action
                 android:id="@+id/action_createCvFragment_to_findWorkingAreaFragment"
@@ -286,6 +286,7 @@
         app:destination="@id/accountInforFragment" />
     <action
         android:id="@+id/action_global_authGraph"
+        app:launchSingleTop="true"
         app:destination="@id/authGraph" />
 
     <action

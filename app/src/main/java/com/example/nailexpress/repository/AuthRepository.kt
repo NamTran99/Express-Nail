@@ -8,7 +8,12 @@ import com.example.nailexpress.factory.ProfileFactory
 import com.example.nailexpress.models.ui.auth.LoginForm
 import com.example.nailexpress.models.ui.auth.VerifyForm
 
-class AuthRepository(val userDataSource: SharePrefs, context: Context, val authApi: AuthApi, val profileFactory: ProfileFactory) {
+class AuthRepository(
+    val userDataSource: SharePrefs,
+    context: Context,
+    val authApi: AuthApi,
+    val profileFactory: ProfileFactory
+) {
 
     suspend fun loginAccount(loginForm: LoginForm) {
         loginForm.validate()
@@ -34,8 +39,9 @@ class AuthRepository(val userDataSource: SharePrefs, context: Context, val authA
         }
     }
 
-    suspend fun logOut() {
-        authApi.logoutAccount().await()
+    suspend fun logOut(sendToServer: Boolean = true) {
+        if (sendToServer)
+            authApi.logoutAccount().await()
         userDataSource.remove(SharePrefKey.TOKEN)
         userDataSource.remove(SharePrefKey.APP_ROLE)
         userDataSource.remove(SharePrefKey.USER_DTO)

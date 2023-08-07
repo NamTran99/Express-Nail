@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppSettingsOwner
 import com.example.nailexpress.datasource.AppEvent2
+import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.views.dialog.ConfirmDialogOwner
 import com.example.nailexpress.views.dialog.loading.LoadingDialog
 import kotlinx.coroutines.Job
@@ -46,6 +47,9 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
 
     @Inject
     lateinit var appEvent: AppEvent2
+
+    @Inject
+    lateinit var sharePrefs: SharePrefs
 
     override fun onCreateView(
         inflater: LayoutInflater,

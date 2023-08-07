@@ -10,6 +10,7 @@ import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentSelectRoleBinding
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.repository.AuthRepository
 import com.example.nailexpress.repository.ProfileRepository
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -31,7 +32,8 @@ class SelectRoleFragment :
 @HiltViewModel
 class SelectAppRoleVM @Inject constructor(
     app: Application,
-    private val profileRepository: ProfileRepository
+    private val profileRepository: ProfileRepository,
+    private val authRepository: AuthRepository
 ) : BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
     init {
         initTopBarAction(this)
