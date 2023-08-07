@@ -40,6 +40,10 @@ class RepositoryModule {
     @Singleton
     fun provideProfileApi(retrofit: Retrofit): ProfileApi = retrofit.create(ProfileApi::class.java)
 
+    @Provides
+    @Singleton
+    fun provideNotificationApi(retrofit: Retrofit): NotificationApi = retrofit.create(NotificationApi::class.java)
+
     @Singleton
     @Provides
     fun provideTextFormatter(cxt: Application): TextFormatter = TextFormatter(cxt)

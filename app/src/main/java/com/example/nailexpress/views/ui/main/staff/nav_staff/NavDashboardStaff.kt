@@ -13,10 +13,11 @@ import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoa
 import com.example.nailexpress.views.ui.main.profile.ProfileFragment
 import com.example.nailexpress.views.ui.main.staff.BookingOfMeFragment
 import com.example.nailexpress.views.ui.main.staff.HomeStaff
+import com.example.nailexpress.views.ui.main.staff.NotificationStaff
 
 class NavDashboardStaff : NavDashBoard() {
     override val listItem: List<Fragment> = listOf(
-        HomeStaff(), BookingOfMeFragment(), NotificationFragment(),
+        HomeStaff(), BookingOfMeFragment(), NotificationStaff(),
         ProfileFragment()
     )
     override val listItemId: List<Int> = listOf(

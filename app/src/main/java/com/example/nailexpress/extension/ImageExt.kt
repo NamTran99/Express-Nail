@@ -6,7 +6,13 @@ import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
 import android.os.Build
+import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.databinding.BindingAdapter
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.example.nailexpress.R
 import com.example.nailexpress.base.MainApplication
 import com.example.nailexpress.models.ui.AppImage
 import com.squareup.picasso.Transformation
@@ -74,4 +80,26 @@ suspend fun String.toScaleImagePart(key: String): MultipartBody.Part? {
     val context = MainApplication.application
     return  context.getFilePath(toUri())!!.scalePhotoLibrary(context)
         .toImagePart(key)
+}
+
+@BindingAdapter(value = ["src", "color", "size"], requireAll = false)
+fun srcServer(
+    imageView: ImageView,
+    src: String?,
+    color: Int?,
+    size: Float?
+) {
+    if(src == null) return
+    val circularProgressDrawable = CircularProgressDrawable(imageView.context).apply {
+        strokeWidth = 5f
+        centerRadius = size ?: 25F
+        setColorSchemeColors(ContextCompat.getColor(imageView.context,color ?: R.color.white))
+        start()
+    }
+
+    Glide.with(imageView.context)
+        .load(src) //replace with contact image uri
+        .placeholder(circularProgressDrawable)
+        .error(R.drawable.img_error)
+        .into(imageView)
 }

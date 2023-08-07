@@ -1,7 +1,9 @@
 package com.example.nailexpress.extension
 
+import android.annotation.SuppressLint
 import com.example.nailexpress.extension.Format.DATE_PICKER
 import com.example.nailexpress.extension.Format.FORMAT_DATE_TIME_API
+import com.example.nailexpress.extension.Format.FORMAT_TIME_1
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -68,4 +70,21 @@ fun String.convertTime(oldFormat: String,newFormat : String): String {
     val outputFormat = SimpleDateFormat(newFormat, Locale.US)
     val date = inputFormat.parse(this)
     return outputFormat.format(date)
+}
+
+@SuppressLint("SimpleDateFormat")
+fun convertTimestampToFormattedTime(timestamp: String?): String {
+    val inputDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ")
+    inputDateFormat.timeZone = TimeZone.getTimeZone("UTC")
+
+    val outputDateFormat = SimpleDateFormat("hh:mm a")
+    outputDateFormat.timeZone = TimeZone.getDefault()
+
+    return try {
+        val date = inputDateFormat.parse(timestamp)
+        outputDateFormat.format(date.time)
+    } catch (e: Exception) {
+        e.printStackTrace()
+        ""
+    }
 }
