@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NotificationStaff :
+open class NotificationStaff :
     BaseRefreshFragment<FragmentNotificationStaffBinding, NotificationStaffViewModel>(
         R.layout.fragment_notification_staff
     ) {
@@ -26,13 +26,12 @@ class NotificationStaff :
     override fun initView() {
         with(binding) {
             vm = viewModel
-            topBar.title = getString(R.string.lbl_notification)
         }
     }
 }
 
 @HiltViewModel
-class NotificationStaffViewModel @Inject constructor(
+open class NotificationStaffViewModel @Inject constructor(
     application: Application,
     private val notifyRepository: NotificationRepository
 ) : BaseRefreshViewModel(application), IActionNotification {
@@ -51,6 +50,10 @@ class NotificationStaffViewModel @Inject constructor(
                 adapter.submit(it, page)
             }.collect()
         }
+    }
+
+    override fun onClickDetail() {
+
     }
 
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->

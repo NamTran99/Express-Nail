@@ -70,13 +70,13 @@ class NoLoginViewModel @Inject constructor(
             if (getRole() == AppConfig.AppRole.Customer) {
                 navigateToDestination(
                     R.id.action_fragmentNoLogin_to_customerGraph2,
-                    popUpToDes = R.id.authGraph,
+                    popUpToDes = R.id.fragmentNoLogin,
                     inclusive = true
                 )
             } else {
                 navigateToDestination(
                     R.id.action_fragmentNoLogin_to_staffGraph,
-                    popUpToDes = R.id.authGraph,
+                    popUpToDes = R.id.fragmentNoLogin,
                     inclusive = true
                 )
             }

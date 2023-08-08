@@ -3,39 +3,27 @@ package com.example.nailexpress.views.ui.main.customer
 import android.app.Application
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
-import com.example.nailexpress.base.*
-import com.example.nailexpress.databinding.FragmentNotificationBinding
-import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
-import com.example.nailexpress.repository.CvRepository
+import com.example.nailexpress.repository.NotificationRepository
+import com.example.nailexpress.views.ui.main.staff.NotificationStaff
+import com.example.nailexpress.views.ui.main.staff.NotificationStaffViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class NotificationFragment :
-    BaseFragment<FragmentNotificationBinding, NotificationVM>(layoutId = R.layout.fragment_notification) {
-
-    override val viewModel: NotificationVM by viewModels()
-    override fun initView() {
-        binding.apply {
-            action = viewModel
-
-        }
-
-    }
+class NotificationFragment : NotificationStaff(){
+    override val viewModel: NotificationStaffViewModel by viewModels<NotificationVM>()
 }
-
 
 @HiltViewModel
 class NotificationVM @Inject constructor(
-    app: Application,
-    private val cvRepository: CvRepository,
-    private val bookingStaffRepository: RecruitmentBookingStaffRepository
-) :
-    BaseViewModel(app),   IActionTopBar by ActionTopBarImpl() {
-
-    init{
-        initTopBarAction(this)
-        setTitle(R.string.notification)
+    application: Application,
+    notifyRepository: NotificationRepository
+) : NotificationStaffViewModel(
+    application, notifyRepository
+){
+    override fun onClickDetail() {
+        navigateToDestination(R.id.detailStaffFragment)
     }
 }
+

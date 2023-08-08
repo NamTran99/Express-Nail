@@ -13,6 +13,7 @@ import com.example.nailexpress.databinding.FragmentStaffDetailBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.repository.CvRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.staff.adapter.DetailServiceAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -23,12 +24,13 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DetailStaffFragment() : BaseFragment<FragmentStaffDetailBinding, DetailStaffVM>(layoutId = R.layout.fragment_staff_detail){
 
-    private val args: DetailStaffFragmentArgs by navArgs()
     override val viewModel: DetailStaffVM by viewModels()
     override fun initView() {
+        arguments?.getInt(Constant.STAFF_ID)?.let {
+            viewModel.getDetailStaff(it)
+        }
         binding.apply {
             action = viewModel
-            viewModel.getDetailStaff(args.staffId)
         }
     }
 

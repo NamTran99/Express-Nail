@@ -1,6 +1,7 @@
 package com.example.nailexpress.views.ui.main.customer
 
 import android.app.Application
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
@@ -14,6 +15,7 @@ import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.customer.adapter.BookingCVAdapter
 import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
@@ -100,9 +102,7 @@ class HomeCustomerVM @Inject constructor(
 
     override val onClickViewDetail: (Int) -> Unit = {
         navigateToDestination(
-            NavDashBoardDirections.actionHomeCustomerFragmentToDetailStaffFragment(
-                it
-            )
+            R.id.action_homeCustomerFragment_to_detailStaffFragment, bundle = bundleOf(Constant.STAFF_ID to it)
         )
     }
 
