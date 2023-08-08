@@ -10,7 +10,7 @@ import com.example.nailexpress.extension.convertTime
 import com.example.nailexpress.models.response.NotificationResponse
 
 interface IActionNotification : ILoadMoreAction{
-
+    open fun onClickDetail()
 }
 class AdapterNotification(val action: IActionNotification) : PageRecyclerAdapter<NotificationResponse,ItNotificationBinding>(action) {
     override val layoutId = R.layout.it_notification
@@ -23,6 +23,9 @@ class AdapterNotification(val action: IActionNotification) : PageRecyclerAdapter
         with(binding){
             notify = item
             tvTime.text = item.createdAt?.convertTime(FORMAT_DATE_UTC,FORMAT_TIME_1)
+            btBookStaff.setOnClickListener {
+                action.onClickDetail()
+            }
         }
     }
 }

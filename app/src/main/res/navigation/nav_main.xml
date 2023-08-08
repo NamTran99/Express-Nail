@@ -234,12 +234,14 @@
         <fragment
             android:id="@+id/detailPostStaffFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.detail_post.DetailPostStaffFragment"
-            android:label="DetailPostStaffFragment" />
+            android:label="DetailPostStaffFragment"
+            tools:layout="@layout/fragment_detail_post_staff"/>
 
         <fragment
             android:id="@+id/bookingDetailStaffFragment"
             android:name="com.example.nailexpress.views.ui.main.staff.booking_detail.BookingDetailStaffFragment"
-            android:label="BookingDetailStaffFragment" />
+            android:label="BookingDetailStaffFragment"
+            tools:layout="@layout/fragment_booking_detail_staff"/>
 
         <fragment
             android:id="@+id/findWorkingAreaFragment"
