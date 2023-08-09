@@ -86,23 +86,17 @@ class HomeCustomerVM @Inject constructor(
     }
 
     override val onClickBookStaff: (Int) -> Unit = { cvID ->
-        navigateToDestination(
-            NavDashBoardDirections.actionHomeCustomerFragmentToBookNowStaffFragment(
-                cvID
-            )
-        )
+        navigateToDestination(R.id.action_homeCustomerFragment_to_bookNowStaffFragment, bundle = bundleOf(Constant.CV_ID to cvID))
     }
     override val onClickViewDetailBooking: (id: Int) -> Unit = {
         navigateToDestination(
-            NavDashBoardDirections.actionHomeCustomerFragmentToBookingDetailFragment(
-                it
-            )
+            R.id.action_homeCustomerFragment_to_bookingDetailFragment, bundleOf(Constant.BOOKING_ID to it)
         )
     }
 
     override val onClickViewDetail: (Int) -> Unit = {
         navigateToDestination(
-            R.id.action_homeCustomerFragment_to_detailStaffFragment, bundle = bundleOf(Constant.STAFF_ID to it)
+            R.id.detailStaffFragment, bundle = bundleOf(Constant.STAFF_ID to it)
         )
     }
 

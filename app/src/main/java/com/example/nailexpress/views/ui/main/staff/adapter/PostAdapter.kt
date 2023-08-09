@@ -16,6 +16,10 @@ import com.example.nailexpress.models.ui.main.User
 
 interface IPostAction : ILoadMoreAction {
     val onClickDetail: ((cvID: Int) -> Unit)
+
+    fun onClickApply(){
+
+    }
 }
 
 class PostAdapter(val action: IPostAction) :
@@ -25,7 +29,7 @@ class PostAdapter(val action: IPostAction) :
         item: RecruitmentForm, binding: ItRvPostStaffBinding, adapterPosition: Int
     ) {
         binding.apply {
-            val user =  SharePrefs.getInstance(binding.root.context).get<User>(SharePrefKey.USER_DTO) ?: return
+            val user =  SharePrefs.getInstance(binding.root.context).get<User>(SharePrefKey.USER_DTO)
             data = item
 
             item.image_url?.let {
@@ -33,12 +37,14 @@ class PostAdapter(val action: IPostAction) :
             }
 
             btnDetail.setOnClickListener {
-                item.id?.let {
-                        it1 -> action.onClickDetail(it1)
-                }
+                action.onClickDetail(item.id ?: -1)
             }
 
-            tvPost.isVisible = user.id == item.user_id
+            btnApply.setOnClickListener {
+                action.onClickApply()
+            }
+
+            tvPost.isVisible = user?.id == item.user_id
             tvId.text = root.getString(R.string.lbl_id,item.id.safe())
             textFormat = TextFormatter(root.context)
         }

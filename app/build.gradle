@@ -70,10 +70,10 @@ dependencies {
 
     // Others
     implementation "com.github.GrenderG:Toasty:$toastyVersion"
-    implementation "com.squareup.retrofit2:retrofit:$retrofitV"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitV"
-    implementation "com.squareup.okhttp3:okhttp:$okhttp3V"
-    implementation "com.squareup.okhttp3:logging-interceptor:$okhttp3V"
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation "com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.7"
     implementation 'id.zelory:compressor:3.0.1'
     implementation "com.squareup.picasso:picasso:$picasso"
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'

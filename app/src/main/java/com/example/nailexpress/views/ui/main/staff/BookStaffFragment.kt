@@ -7,6 +7,7 @@ import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -30,6 +31,7 @@ import com.example.nailexpress.models.ui.main.Skill
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.SalonRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
@@ -49,7 +51,6 @@ class BookStaffFragment() :
     BaseFragment<FragmentBookStaffNowBinding, BookNowStaffVM>(layoutId = R.layout.fragment_book_staff_now),
     TimePickerCustomDialogOwner {
 
-    private val args: BookStaffFragmentArgs by navArgs()
     override val viewModel: BookNowStaffVM by activityViewModels()
     private val selectDateDialog by lazy { DatePickerDialog(appActivity) }
 
@@ -63,12 +64,12 @@ class BookStaffFragment() :
 
             viewModel.apply {
                 form.changeValue {
-                    curriculum_vitae_id = args.cvID
+                    curriculum_vitae_id = arguments?.getInt(Constant.CV_ID).safe()
                 }
 
                 viewModel.apply {
-                    updateTitle(args.isBookNow)
-                    selectedServiceDialog.bind{
+                    arguments?.getBoolean(Constant.IS_BOOK_NOW)?.let { updateTitle(it) }
+                    selectedServiceDialog.bind {
                     }
                 }
 
@@ -131,6 +132,7 @@ class BookNowStaffVM @Inject constructor(
         collectSelectedService()
         getCVByID()
     }
+
     override val salon = MutableLiveData(Salon())
     override val imageAdapter = ImageLocalAdapter(status = AppConfig.Status.READ)
 
@@ -243,9 +245,10 @@ class BookNowStaffVM @Inject constructor(
             bookingStaffRepository.bookingStaff(it).onEach { id ->
                 showToast(R.string.success_booking_staff)
                 navigateToDestination(
-                    BookStaffFragmentDirections.actionBookNowStaffFragmentToBookingDetailFragment(
-                         bookingID = id
-                    ), popUpToDes = R.id.bookNowStaffFragment, inclusive = true
+                    R.id.action_bookNowStaffFragment_to_bookingDetailFragment,
+                    bundleOf(Constant.BOOKING_ID to id),
+                    popUpToDes = R.id.bookNowStaffFragment,
+                    inclusive = true
                 )
             }.collect()
         }
@@ -287,7 +290,7 @@ class BookNowStaffVM @Inject constructor(
         }
     }
 
-    fun filterTextSearch(){
+    fun filterTextSearch() {
         form.changeValue {
             adapter.submit(listSkill.filter { it.name.contains(textSearch) && it.isSKill == isSelectBookingService })
             isEmptyData.value = adapter.itemCount == 0
@@ -299,7 +302,7 @@ class BookNowStaffVM @Inject constructor(
     }
 
     val onSearchChange: ((text: String) -> Unit) = {
-        textSearch  = it
+        textSearch = it
         filterTextSearch()
     }
 }
