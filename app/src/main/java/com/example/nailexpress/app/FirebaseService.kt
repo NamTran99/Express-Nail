@@ -25,7 +25,6 @@ class FirebaseService : FirebaseMessagingService() {
             val messageBody = notification.body
             val image = notification.imageUrl
 
-            // Hiển thị thông báo
             showNotification(title, messageBody, image)
         }
     }
@@ -53,17 +52,8 @@ class FirebaseService : FirebaseMessagingService() {
             .setSmallIcon(image?.port ?: R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                "0",
-                "Nail Express channel",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            channel.description = "Channel Description"
-
-            notificationManager.createNotificationChannel(channel)
-        }
         notificationManager.notify(1, builder.build())
     }
 }
