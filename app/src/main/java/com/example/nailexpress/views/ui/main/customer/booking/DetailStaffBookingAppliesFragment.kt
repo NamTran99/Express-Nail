@@ -9,11 +9,13 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.*
 import com.example.nailexpress.databinding.FragmentDetailStaffAppliesBinding
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.main.Booking
 import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.SalonRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
 import com.example.nailexpress.views.ui.main.staff.ISalonLayout
 import com.example.nailexpress.views.ui.main.staff.adapter.DetailServiceAdapter
@@ -28,11 +30,11 @@ class BookingCustomerDetailFragment :
     BaseRefreshFragment<FragmentDetailStaffAppliesBinding, BookingDetailVM>(layoutId = R.layout.fragment_detail_staff_applies) {
 
     override val viewModel: BookingDetailVM by viewModels()
-    val args: BookingCustomerDetailFragmentArgs by navArgs()
     override fun initView() {
         binding.apply {
             action = viewModel
-            viewModel.bookingID= args.bookingID
+            arguments
+            viewModel.bookingID= arguments?.getInt(Constant.BOOKING_ID).safe()
         }
 
         setListener()

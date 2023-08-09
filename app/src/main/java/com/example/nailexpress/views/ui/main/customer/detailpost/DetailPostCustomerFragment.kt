@@ -10,19 +10,20 @@ import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
 import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.Salon
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.customer.detailpost.viewmodel.DetailPostCustomerVM
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class DetailPostCustomerFragment : BaseFragment<FragmentDetailPostCustomerBinding, DetailPostCustomerVM>(
-    R.layout.fragment_detail_post_customer
-) {
+class DetailPostCustomerFragment :
+    BaseFragment<FragmentDetailPostCustomerBinding, DetailPostCustomerVM>(
+        R.layout.fragment_detail_post_customer
+    ) {
     override val viewModel: DetailPostCustomerVM by viewModels()
-    private val detailPostCustomerFragmentArgs by navArgs<DetailPostCustomerFragmentArgs>()
 
     override fun loadData() {
         super.loadData()
-        viewModel.getRecruitmentById(detailPostCustomerFragmentArgs.recruimentId)
+        arguments?.getInt(Constant.RECRUIMENT_ID)?.let { viewModel.getRecruitmentById(it) }
     }
 
     override fun initView() {
@@ -102,7 +103,8 @@ class DetailPostCustomerFragment : BaseFragment<FragmentDetailPostCustomerBindin
         with(binding) {
             if (salon != null) {
                 shopInfoView.apply {
-                    isVisible = salon.name.isNotBlank() && salon.phoneDisplay.isNotBlank() && salon.address.isNotBlank()
+                    isVisible =
+                        salon.name.isNotBlank() && salon.phoneDisplay.isNotBlank() && salon.address.isNotBlank()
                     shopName = salon.name
                     phoneNumber = salon.phoneDisplay
                     location = salon.address

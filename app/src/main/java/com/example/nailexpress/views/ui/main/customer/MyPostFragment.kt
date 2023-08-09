@@ -2,6 +2,7 @@ package com.example.nailexpress.views.ui.main.customer
 
 import android.app.Application
 import android.util.Log
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
@@ -10,6 +11,7 @@ import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.FragmentMyPostBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.IMyPostAction
 import com.example.nailexpress.views.ui.main.customer.adapter.MyPostAdapter
@@ -51,7 +53,7 @@ class MyPostViewModel @Inject constructor(
     }
 
     override val onClickDetail: (cvID: Int) -> Unit = {
-        navigateToDestination(NavDashBoardDirections.actionNavPostToDetailPostCustomerFragment(it))
+        navigateToDestination(R.id.action_navPost_to_detailPostCustomerFragment, bundle = bundleOf(Constant.RECRUIMENT_ID to it))
     }
 
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->

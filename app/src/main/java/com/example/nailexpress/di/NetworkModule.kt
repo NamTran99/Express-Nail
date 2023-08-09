@@ -1,6 +1,5 @@
 package com.example.nailexpress.di
 
-import com.example.nailexpress.datasource.remote.AuthApi
 import android.app.Application
 import androidx.viewbinding.BuildConfig
 import com.chuckerteam.chucker.api.ChuckerInterceptor
@@ -10,7 +9,7 @@ import com.example.nailexpress.helper.interceptor.Logger
 import com.example.nailexpress.helper.interceptor.LoggingInterceptor
 import com.example.nailexpress.helper.interceptor.TokenInterceptor
 import com.example.nailexpress.datasource.local.SharePrefs
-import com.example.nailexpress.datasource.remote.CvApi
+import com.example.nailexpress.helper.interceptor.Logging
 import com.example.nailexpress.helper.network.ApiAsyncAdapterFactory
 import com.example.nailexpress.helper.network.DefaultApiErrorHandler
 import com.google.gson.Gson
@@ -87,21 +86,22 @@ class NetworkModule {
     fun providesOkHttpClient(
         application: Application,
         tokenInterceptor: Interceptor,
-        loggingInterceptor: LoggingInterceptor
     ): OkHttpClient {
         val cacheDir = File(application.cacheDir, this.javaClass.simpleName)
         val cache = Cache(cacheDir, 10485760L) // 10mb
         val tlsSocketFactory = TLSSocketFactory()
         val interceptor = HttpLoggingInterceptor()
+        val logging = Logging().setDebug(BuildConfig.DEBUG).setTag("RETROFIT_LOG")
+
         interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
-        return  OkHttpClient.Builder()
+        return OkHttpClient.Builder()
             .sslSocketFactory(tlsSocketFactory, tlsSocketFactory.unsafeTrustManager())
             .hostnameVerifier { _, _ -> true }
             .cache(cache)
             .addInterceptor(tokenInterceptor)
             .addInterceptor(interceptor)
             .addInterceptor(ChuckerInterceptor(application))
-            .addInterceptor(loggingInterceptor)
+            .addInterceptor(logging)
             .connectTimeout(90, TimeUnit.SECONDS)
             .writeTimeout(90, TimeUnit.SECONDS)
             .readTimeout(90, TimeUnit.SECONDS)

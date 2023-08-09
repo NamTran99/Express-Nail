@@ -1,17 +1,15 @@
 package com.example.nailexpress.views.widgets.staff
 
 import android.content.Context
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import androidx.annotation.ColorInt
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutServicesWorkerBinding
 import com.example.nailexpress.models.response.SkillDTO
-import com.example.nailexpress.models.ui.main.Skill
 import com.example.nailexpress.views.ui.main.staff.adapter.ServicesWorkerAdapter
 import com.example.nailexpress.views.widgets.divider.VerticalDivider
 

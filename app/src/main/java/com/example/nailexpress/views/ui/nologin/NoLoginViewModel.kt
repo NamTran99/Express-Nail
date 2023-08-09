@@ -106,6 +106,14 @@ class NoLoginViewModel @Inject constructor(
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
             getAllRecruitment(page)
         }
+
+        override fun onClickApply() {
+            navigateToDestination(
+                R.id.action_fragmentNoLogin_to_authGraph,
+                inclusive = true,
+                popUpToDes = R.id.fragmentNoLogin
+            )
+        }
     }
 
     override val onClickBookStaff: (cvID: Int) -> Unit = {

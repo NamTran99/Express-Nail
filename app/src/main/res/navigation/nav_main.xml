@@ -74,14 +74,6 @@
             android:name="com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoard"
             android:label="NavDashBoard"
             tools:layout="@layout/nav_dash_board">
-            <action
-                android:id="@+id/action_homeCustomerFragment_to_detailStaffFragment"
-                app:destination="@id/detailStaffFragment">
-                <argument
-                    android:name="staffId"
-                    android:defaultValue="0"
-                    app:argType="integer" />
-            </action>
 
             <action
                 android:id="@+id/action_homeCustomerFragment_to_bookNowStaffFragment"
@@ -109,10 +101,6 @@
             android:name="com.example.nailexpress.views.ui.main.staff.DetailStaffFragment"
             android:label="Deta ilStaffFragment"
             tools:layout="@layout/fragment_staff_detail">
-            <argument
-                android:name="staffId"
-                android:defaultValue="0"
-                app:argType="integer" />
             <action
                 android:id="@+id/action_detailStaffFragment_to_bookNowStaffFragment"
                 app:destination="@id/bookNowStaffFragment" />
@@ -130,17 +118,10 @@
             android:label="BookNowStaffFragment"
             tools:layout="@layout/fragment_book_staff_now">
 
-            <argument
-                android:name="cvID"
-                android:defaultValue="0"
-                app:argType="integer" />
             <action
                 android:id="@+id/action_bookNowStaffFragment_to_bookingDetailFragment"
                 app:destination="@id/bookingDetailFragment" />
-            <argument
-                android:name="isBookNow"
-                android:defaultValue="true"
-                app:argType="boolean" />
+
             <action
                 android:id="@+id/action_bookNowStaffFragment_to_createSalonFragment"
                 app:destination="@id/createSalonFragment" />
@@ -152,10 +133,6 @@
             android:label="BookingDetailFragment"
             tools:layout="@layout/fragment_detail_staff_applies">
 
-            <argument
-                android:name="bookingID"
-                android:defaultValue="0"
-                app:argType="integer" />
         </fragment>
 
         <fragment
@@ -170,10 +147,7 @@
             android:name="com.example.nailexpress.views.ui.main.customer.detailpost.DetailPostCustomerFragment"
             android:label="DetailPostCustomerFragment"
             tools:layout="@layout/fragment_detail_post_customer">
-            <argument
-                android:name="recruimentId"
-                app:argType="integer"
-                app:nullable="false" />
+
         </fragment>
 
         <fragment
