@@ -29,6 +29,10 @@ object Validator {
         if (firstValue != second) showError(errorID = errID)
     }
 
+    fun checkGender(firstValue: Any, second: Any, @StringRes errID: Int) {
+        if (firstValue == second) showError(errorID = errID)
+    }
+
     fun checkPhone(phone: String,@IdRes viewID: Int? = null){
         checkEmpty(phone, R.string.error_blank_phone, viewID)
         checkLength(phone.trim().convertPhoneToNormalFormat(), 10,R.string.error_type_phone_not_enough, viewID)

@@ -226,7 +226,7 @@
                         app:drawable="@{action.getBgBtnSelectBooking(!action.recruitmentForm.selectBookingService,action.recruitmentForm.timeSkillEmpty)}"
                         app:colorTint="@{@color/white}"
                         app:icTint="@{action.recruitmentForm.timeSkillEmpty?null:@drawable/ic_tick_2}"
-                        app:title="@{@string/book_type_1}" />
+                        app:title="@{@string/book_type_2}" />
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 

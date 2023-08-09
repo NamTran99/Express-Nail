@@ -54,7 +54,7 @@ class SelectServiceDialog : BaseDialogFragment<DialogSelectServiceBinding>() {
             }
             action = viewModel
             viewModel.apply {
-                changeTextSearch(requireArguments().getString(ARG_TEXT_SEARCH)?:"")
+                changeTextSearch(arguments?.getString(ARG_TEXT_SEARCH)?:"")
                 dissmiss.observe(viewLifecycleOwner) {
                     this@SelectServiceDialog.dismiss()
                 }
