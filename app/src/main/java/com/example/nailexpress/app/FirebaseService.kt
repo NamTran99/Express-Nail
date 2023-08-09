@@ -36,13 +36,10 @@ class FirebaseService : FirebaseMessagingService() {
     }
 
     private fun showNotification(title: String?, message: String?, image: Uri?) {
-        // Tạo intent để mở màn hình chi tiết
         val intent = Intent(this, MainActivity::class.java).apply {
-            // Đặt các dữ liệu cần thiết cho màn hình chi tiết (nếu có)
             putExtra("notification_title", title)
             putExtra("notification_message", message)
         }
-        // Tạo PendingIntent để mở màn hình chi tiết khi nhấn vào thông báo
         val pendingIntent = PendingIntent.getActivity(
             this,
             0,
@@ -50,32 +47,23 @@ class FirebaseService : FirebaseMessagingService() {
             PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
         )
 
-        // Xây dựng thông báo
         val builder = NotificationCompat.Builder(this, "0")
             .setContentTitle(title)
             .setContentText(message)
             .setSmallIcon(image?.port ?: R.drawable.ic_launcher_foreground)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
-
-        // Tạo kênh thông báo
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "0",
-                "My Channel",
+                "Nail Express channel",
                 NotificationManager.IMPORTANCE_DEFAULT
             )
-            // Cấu hình các tùy chọn khác cho kênh thông báo (nếu cần)
             channel.description = "Channel Description"
 
-            // Lấy NotificationManager
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-            // Tạo kênh thông báo
             notificationManager.createNotificationChannel(channel)
         }
-        // Hiển thị thông báo
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(1, builder.build())
     }
 }
