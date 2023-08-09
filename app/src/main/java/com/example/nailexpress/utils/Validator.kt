@@ -29,7 +29,7 @@ object Validator {
         if (firstValue != second) showError(errorID = errID)
     }
 
-    fun checkGender(firstValue: Any, second: Any, @StringRes errID: Int) {
+    fun checkEqualDefault(firstValue: Any, second: Any, @StringRes errID: Int) {
         if (firstValue == second) showError(errorID = errID)
     }
 

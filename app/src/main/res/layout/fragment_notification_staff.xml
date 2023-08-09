@@ -21,17 +21,12 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/textView"
-                style="@style/AppTheme.TextViewResponsive.AutoSize"
+            <com.example.nailexpress.views.widgets.TopBarMenu
+                android:id="@+id/topBar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_56"
-                android:background="@color/color_second"
-                android:gravity="center"
-                android:maxLines="2"
-                android:text="@string/lbl_notification"
-                android:textColor="@color/white"
-                android:textSize="@dimen/text_size_14" />
+                android:layout_height="wrap_content"
+                app:tbm_isShowOptionMenu="false"
+                app:tbm_title="@string/lbl_notification" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvNotification"

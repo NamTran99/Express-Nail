@@ -6,12 +6,9 @@ import com.example.nailexpress.extension.convertPhoneToNormalFormat
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.toDateUTC
 import com.example.nailexpress.factory.TextFormatter
-import com.example.nailexpress.utils.Validator
 import com.example.nailexpress.utils.Validator.GenderDefault
 import com.example.nailexpress.utils.Validator.checkEmpty
-import com.example.nailexpress.utils.Validator.checkEqual
-import com.example.nailexpress.utils.Validator.checkGender
-import com.example.nailexpress.utils.Validator.checkLength
+import com.example.nailexpress.utils.Validator.checkEqualDefault
 
 class RecruitmentForm(
     var user_id: Int? = null,
@@ -65,9 +62,9 @@ class RecruitmentForm(
         handleData()
         checkEmpty(title, R.string.error_empty_title, R.id.etTitle)
         checkEmpty(address, R.string.error_empty_address, R.id.etAddress)
-        checkGender(gender, GenderDefault, R.string.error_select_gender)
+        checkEqualDefault(gender, GenderDefault, R.string.error_select_gender)
         checkEmpty(experience_years, R.string.error_empty_experience, R.id.etYearExist)
-        checkEqual(listBookSkill.size +listBookTime.size, 0, R.string.error_skill_empty)
+        checkEqualDefault(listBookSkill.size +listBookTime.size, 0, R.string.error_skill_empty)
         checkEmpty(contact_name, R.string.error_empty_customer_name, R.id.etCustomerName)
         checkEmpty(contact_phone, R.string.error_empty_customer_phone, R.id.etCustomerPhone)
 

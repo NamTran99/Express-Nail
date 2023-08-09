@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/size_56"
+    android:layout_height="wrap_content"
     android:background="@color/color_second"
     android:gravity="center_vertical"
     android:orientation="horizontal"
-    android:paddingTop="@dimen/size_35"
-    android:paddingBottom="@dimen/size_20"
+    android:paddingTop="@dimen/size_30"
+    android:paddingBottom="@dimen/size_15"
     android:visibility="visible">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -18,7 +18,7 @@
         android:background="@drawable/bg_button_text"
         android:padding="@dimen/size_10"
         android:src="@drawable/ic_back"
-        app:layout_constraintBottom_toBottomOf="@+id/textView"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -53,8 +53,8 @@
 
     <ImageView
         android:id="@+id/btnOption"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:padding="@dimen/size_7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
