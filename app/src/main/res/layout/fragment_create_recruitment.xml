@@ -230,17 +230,6 @@
 
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
-                <!--                    <com.google.android.material.button.MaterialButton-->
-                <!--                        style="@style/AppTheme.Button"-->
-                <!--                        android:layout_width="match_parent"-->
-                <!--                        android:layout_height="@dimen/size_50"-->
-                <!--                        android:layout_marginTop="@dimen/size_10"-->
-                <!--                        android:backgroundTint="@color/white"-->
-                <!--                        android:drawableEnd="@drawable/ic_arrow_right"-->
-                <!--                        android:gravity="start|center_vertical"-->
-                <!--                        android:text="@string/select_service"-->
-                <!--                        android:textAllCaps="false"-->
-                <!--                        android:textColor="@color/black" />-->
 
                 <EditText
                     style="@style/AppTheme.EditText"

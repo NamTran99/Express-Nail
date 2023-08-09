@@ -21,15 +21,12 @@
             android:background="@color/color_bg"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/AppTheme.TextViewResponsive.AutoSize"
+            <com.example.nailexpress.views.widgets.TopBarMenu
+                android:id="@+id/topBar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/size_56"
-                android:background="@color/color_second"
-                android:gravity="bottom|center"
-                android:paddingBottom="@dimen/size_10"
-                android:text="@string/lbl_my_post"
-                android:textColor="@color/white" />
+                android:layout_height="wrap_content"
+                app:tbm_isShowOptionMenu="false"
+                app:tbm_title="@string/lbl_my_post" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMyPost"
