@@ -3,6 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="data"
+            type="com.example.nailexpress.models.ui.main.Booking" />
+
+        <variable
+            name="textFormater"
+            type="com.example.nailexpress.factory.TextFormatter" />
+
+        <import type="com.example.nailexpress.R" />
+    </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -18,42 +30,69 @@
             android:layout_height="@dimen/size_70"
             android:layout_marginEnd="@dimen/size_10" />
 
-        <androidx.appcompat.widget.LinearLayoutCompat
-            android:layout_width="0dp"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/size_10"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
                     android:id="@+id/tvId"
                     style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:text="@{context.getString(R.string.lbl_id,data.bookingID)}"
                     android:textColor="@color/color_primary"
                     tools:text="#ID: 123456" />
 
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvStatus"
-                    style="@style/AppTheme.TextViewResponsive"
+                <TextView
+                    android:id="@+id/tvNow"
+                    style="@style/AppTheme.Content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_10"
-                    android:drawableStart="@drawable/ic_dot"
-                    android:drawableTint="@color/color_primary"
+                    android:layout_marginStart="@dimen/size_5"
+                    android:background="@drawable/bg_tab_selected"
+                    android:paddingHorizontal="@dimen/size_5"
+                    android:paddingVertical="@dimen/size_2"
+                    android:text="@string/lbl_now"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/text_size_8"
+                    app:visibility="@{data.bookingTime != null}"
+                    tools:text="Now" />
+
+                <androidx.appcompat.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
                     android:gravity="end"
-                    android:textColor="@color/color_primary"
-                    tools:text="Đã chấp nhận" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
+                    android:layout_height="wrap_content">
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvStatus"
+                        style="@style/AppTheme.TextViewResponsive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_10"
+                        android:drawableStart="@drawable/ic_dot"
+                        android:drawableTint="@color/color_primary"
+                        android:ellipsize="end"
+                        android:gravity="end"
+                        android:maxLines="1"
+                        android:text="@{data.status_booking_display}"
+                        android:textColor="@color/color_primary"
+                        tools:text="Đã chấp nhận" />
+                </androidx.appcompat.widget.LinearLayoutCompat>
+            </LinearLayout>
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_3"
                 android:orientation="horizontal">
 
                 <TextView
@@ -61,129 +100,99 @@
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@{data.contact_name}"
                     android:textSize="@dimen/text_size_14"
                     tools:text="Kim Nguyen" />
 
                 <TextView
                     android:id="@+id/tvGender"
-                    style="@style/AppTheme.TextViewResponsive"
+                    style="@style/AppTheme.Large"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_5"
+                    android:text="@{data.cv.genderFormat2}"
                     android:textSize="@dimen/text_size_14"
                     tools:text="(Nam)" />
 
             </androidx.appcompat.widget.LinearLayoutCompat>
 
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_5"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/item_staff_des_1"
-                    tools:text="Khu vuc lam viec" />
-
-                <TextView
-                    android:id="@+id/tvWorkingType"
-                    style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_5"
-                    android:background="@drawable/bg_border_radius_5"
-                    android:padding="@dimen/size_5"
-                    android:textColor="@color/color_primary"
-                    android:textSize="@dimen/text_size_10"
-                    tools:text="Xuyen bang" />
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tvState"
-                    style="@style/AppTheme.TextViewResponsive.Hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_5"
-                    android:padding="@dimen/size_5"
-                    app:drawableStartCompat="@drawable/ic_location"
-                    tools:text="New Jersey" />
-
-                <TextView
-                    android:id="@+id/tvDistance"
-                    style="@style/AppTheme.TextViewResponsive.Hint"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_5"
-                    android:padding="@dimen/size_5"
-                    app:drawableStartCompat="@drawable/ic_dot"
-                    tools:text="Cach vi tri cua ban 3 m" />
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
             <TextView
                 android:id="@+id/tvSalary"
+                style="@style/AppTheme.Large"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_3"
+                android:textColor="@color/color_primary"
+                tools:text="$250.00/ngay" />
+
+            <TextView
+                style="@style/AppTheme.Content"
+                android:layout_marginTop="@dimen/size_3"
+                android:text="@string/lbl_time_oder"
+                android:textColor="@color/black"
+                tools:text="Thoi gian dat" />
+
+            <TextView
+                style="@style/AppTheme.Large"
+                android:layout_marginVertical="@dimen/size_5"
+                android:background="@drawable/bg_corner_gray_4"
+                android:padding="@dimen/size_5"
+                android:text="@{data.getTimeWorkingNow(context)}"
+                android:textColor="@color/color_second"
+                tools:text="Can tho ngay" />
+
+            <TextView
+                android:id="@+id/tvState"
                 style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_5"
                 android:padding="@dimen/size_5"
-                tools:text="$250.00/ngay"
-                android:textColor="@color/color_primary" />
+                android:text='@{data.state+ ", "+ data.city}'
+                android:textColor="@color/black"
+                app:drawableStartCompat="@drawable/ic_location"
+                tools:text="New Jersey" />
 
-            <androidx.appcompat.widget.LinearLayoutCompat
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_5"
-                android:orientation="horizontal">
+                android:layout_height="wrap_content">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btBookStaff"
-                    style="@style/AppTheme.Button"
+                    style="@style/AppTheme.Button.StyleButton"
                     android:layout_width="wrap_content"
-                    android:layout_height="@dimen/size_40"
+                    android:layout_height="@dimen/size_30"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:width="@dimen/size_140"
                     android:backgroundTint="#FFD8CA"
                     android:text="@string/view_detail"
                     android:textColor="@color/color_primary"
                     android:textSize="@dimen/text_size_10"
                     app:cornerRadius="@dimen/size_50" />
 
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="0dp"
-                    android:gravity="center"
-                    android:layout_marginStart="@dimen/size_20"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                <ImageButton
+                    android:id="@+id/ivMess"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toStartOf="@+id/ivCall"
+                    android:background="@null"
+                    android:src="@drawable/ic_message" />
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@null"
-                        android:src="@drawable/ic_message" />
+                <ImageButton
+                    android:id="@+id/ivCall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/size_10"
+                    android:background="@null"
+                    android:src="@drawable/ic_phone_round" />
+            </RelativeLayout>
 
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:background="@null"
-                        android:src="@drawable/ic_phone_round" />
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-            </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
+            <TextView
+                style="@style/AppTheme.Content"
+                android:layout_marginTop="@dimen/size_10"
+                android:text="@{textFormater.formatDate(data.createTime)}"
+                tools:text="Đặt lúc: 08:00 AM - 07/25/2023" />
+        </LinearLayout>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

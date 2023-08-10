@@ -74,7 +74,11 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             displayTimeOrder = textFormatter.displayBookingTime(booking.booking_time, appRole = role),
             workTime = booking.work_time,
             price = booking.price,
-            unit = booking.unit
+            unit = booking.unit,
+            bookingTime = booking.booking_time,
+            state = booking.state,
+            city = booking.city,
+            createTime = booking.created_at
         )
     }
 

@@ -1,12 +1,9 @@
 package com.example.nailexpress.views.ui.main.customer.adapter
 
 import android.annotation.SuppressLint
-import android.graphics.ColorFilter
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.support.core.view.ILoadMoreAction
-import android.support.core.view.bindingOf
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
@@ -18,6 +15,8 @@ import com.example.nailexpress.models.ui.main.Booking
 
 interface IBookingCVAction : ILoadMoreAction {
     val onClickViewDetailBooking: ((id: Int) -> Unit)
+    fun clickOpenMess(phone: String)
+    fun clickOpenCall(phone: String)
 }
 
 class BookingCVAdapter(val action: IBookingCVAction) :
@@ -31,31 +30,34 @@ class BookingCVAdapter(val action: IBookingCVAction) :
         adapterPosition: Int
     ) {
         binding.apply {
+            data = item
             val cv = item.cv
-            tvStatus.text = item.status_booking_display
             imgImage.setImageUrl(cv.avatar)
-            tvId.text = item.bookingIDDisplay
             tvStatus.compoundDrawablesRelative[0].colorFilter = PorterDuffColorFilter(
                 ContextCompat.getColor(
                     binding.root.context,
                     item.colorStatus
                 ), PorterDuff.Mode.SRC_IN
             )
-            tvName.text = cv.name
-            tvGender.text = cv.genderFormat2
-            tvState.text = cv.state
-            tvWorkingType.text = cv.workTypeDisplay
-            tvDistance.text = cv.distanceFormat
             btBookStaff.onClick {
                 action.onClickViewDetailBooking.invoke(item.bookingID)
             }
 
-            tvSalary.text =
-                TextFormatter(root.context).displaySalaryType(
-                    cv.salaryType,
-                    item.price.safe(),
-                    item.unit
-                )
+            val formater = TextFormatter(root.context)
+            textFormater = formater
+            tvSalary.text = formater.displaySalaryType(
+                cv.salaryType,
+                item.price.safe(),
+                item.unit
+            )
+
+            ivCall.setOnClickListener {
+                action.clickOpenCall(item.contact_phone)
+            }
+
+            ivMess.setOnClickListener {
+                action.clickOpenMess(item.contact_phone)
+            }
         }
     }
 

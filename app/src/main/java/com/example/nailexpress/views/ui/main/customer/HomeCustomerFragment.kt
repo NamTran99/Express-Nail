@@ -10,9 +10,8 @@ import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentHomeCustomerBinding
-import com.example.nailexpress.extension.bind
-import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
+import com.example.nailexpress.helper.DriverUtils
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.Constant
@@ -21,7 +20,6 @@ import com.example.nailexpress.views.ui.main.customer.adapter.IBookingCVAction
 import com.example.nailexpress.views.ui.main.customer.adapter.INailStaffAction
 import com.example.nailexpress.views.ui.main.customer.adapter.NailStaffAdapter
 import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoard
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoardDirections
 import com.example.nailexpress.views.widgets.CustomHeaderHome
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -45,6 +43,10 @@ class HomeCustomerFragment :
                 updateTextNotification("3")
             }
         }
+
+        viewModel.callbackOpenCall = {
+            DriverUtils.message(requireActivity(), it)
+        }
     }
 
     override fun onTextChange(string: String) {
@@ -67,7 +69,7 @@ class HomeCustomerVM @Inject constructor(
 ) :
     BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
     IBookingCVAction, IActionTabChange {
-
+     var callbackOpenCall: ((String)->Unit)? = null
     companion object {
         const val TAB_STAFF = 0
         const val TAB_STAFF_UNBOOKED = 1
@@ -92,6 +94,14 @@ class HomeCustomerVM @Inject constructor(
         navigateToDestination(
             R.id.action_homeCustomerFragment_to_bookingDetailFragment, bundleOf(Constant.BOOKING_ID to it)
         )
+    }
+
+    override fun clickOpenMess(phone: String) {
+        callbackOpenCall?.invoke(phone)
+    }
+
+    override fun clickOpenCall(phone: String) {
+        DriverUtils.call(getApplication(), phone)
     }
 
     override val onClickViewDetail: (Int) -> Unit = {
