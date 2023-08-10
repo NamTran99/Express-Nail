@@ -347,4 +347,6 @@
     <string name="create_a_worker_route">create a worker route</string>
     <string name="default_notification_channel_id">0</string>
     <string name="lbl_notification">Thông báo</string>
+    <string name="lbl_need_worker_now">Need a worker now</string>
+    <string name="lbl_time_oder">Thời gian đặt</string>
 </resources>

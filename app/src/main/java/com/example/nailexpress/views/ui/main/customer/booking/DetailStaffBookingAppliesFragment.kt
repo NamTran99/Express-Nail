@@ -33,8 +33,7 @@ class BookingCustomerDetailFragment :
     override fun initView() {
         binding.apply {
             action = viewModel
-            arguments
-            viewModel.bookingID= arguments?.getInt(Constant.BOOKING_ID).safe()
+            viewModel.getBookingByID(arguments?.getInt(Constant.BOOKING_ID).safe())
         }
 
         setListener()
@@ -113,7 +112,7 @@ class BookingDetailVM @Inject constructor(
 
     val serviceAdapter = DetailServiceAdapter()
 
-    private fun getBookingByID(id: Int)= launch(loading = refreshLoading){
+    fun getBookingByID(id: Int)= launch(loading = refreshLoading){
         bookingStaffRepository.getBookingById(id).onEach {
             getSalonID(it.salon_id)
             serviceAdapter.submit(it.listSkill)
