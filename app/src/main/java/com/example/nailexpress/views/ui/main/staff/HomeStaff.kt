@@ -133,6 +133,10 @@ class HomeStaffViewModel @Inject constructor(
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
             getAllRecruitment(page)
         }
+
+        override fun onClickApply() {
+
+        }
     }
 
     private val lostMoreCV = object : IMyPostAction {

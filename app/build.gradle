@@ -107,5 +107,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
 
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation "androidx.core:core-splashscreen:1.0.0-alpha01"
 
 }
