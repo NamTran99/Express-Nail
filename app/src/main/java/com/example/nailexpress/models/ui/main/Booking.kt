@@ -17,5 +17,8 @@ class Booking(
     val status_booking_display : String= "",
     val bookingIDDisplay: String = "",
     val colorStatus: Int = R.color.color_primary,
-    val displayTimeOrder: String
+    val displayTimeOrder: String,
+    val workTime : Int? = null,
+    val price: Double? = null,
+    val unit: Int? = null
 )

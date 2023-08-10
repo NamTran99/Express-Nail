@@ -22,6 +22,8 @@ class Cv(
     val priceFormat: String = "",
     val isSkillEmpty: Boolean = false,
     val salaryType: Int = 0,
+    val price: Double? = null,
+    val unit: Int? = null
     // custom
 )
 

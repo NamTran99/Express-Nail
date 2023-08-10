@@ -132,12 +132,13 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <TextView
+                android:id="@+id/tvSalary"
                 style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:padding="@dimen/size_5"
-                android:text="$250.00/ngay"
+                tools:text="$250.00/ngay"
                 android:textColor="@color/color_primary" />
 
             <androidx.appcompat.widget.LinearLayoutCompat

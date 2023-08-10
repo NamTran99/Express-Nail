@@ -102,13 +102,14 @@
                     tools:text="Cach vi tri cua ban 3 m" />
             </androidx.appcompat.widget.LinearLayoutCompat>
             <TextView
+                android:id="@+id/tvSalary"
                 style="@style/AppTheme.TextViewResponsive.Hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/size_5"
                 android:padding="@dimen/size_5"
                 android:textColor="@color/color_primary"
-                android:text="$250.00/ngay" />
+                tools:text="$250.00/ngay" />
 
             <androidx.appcompat.widget.LinearLayoutCompat
                 android:layout_width="match_parent"

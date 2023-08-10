@@ -47,7 +47,9 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             state = cvDTO.state,
             priceFormat = textFormatter.displaySalary(cvDTO.price.safe(), cvDTO.unit.safe()),
             isSkillEmpty = cvDTO.skills.safe().isEmpty(),
-            salaryType = cvDTO.salary_type.safe()
+            salaryType = cvDTO.salary_type.safe(),
+            price = cvDTO.price,
+            unit = cvDTO.unit
         )
     }
 
@@ -69,7 +71,10 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             listSkill = createListSkill(booking.skills.safe()),
             bookingStatus = booking.status,
             appRole = role,
-            displayTimeOrder = textFormatter.displayBookingTime(booking.booking_time, appRole = role)
+            displayTimeOrder = textFormatter.displayBookingTime(booking.booking_time, appRole = role),
+            workTime = booking.work_time,
+            price = booking.price,
+            unit = booking.unit
         )
     }
 

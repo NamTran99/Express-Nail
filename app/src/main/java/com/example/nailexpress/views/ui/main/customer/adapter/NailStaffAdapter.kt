@@ -8,12 +8,15 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.ItemListStaffBinding
 import com.example.nailexpress.extension.onClick
+import com.example.nailexpress.extension.safe
+import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.ui.main.Cv
 
-interface INailStaffAction: ILoadMoreAction{
+interface INailStaffAction : ILoadMoreAction {
     val onClickBookStaff: ((cvID: Int) -> Unit)
-    val onClickViewDetail : ((id:Int) -> Unit)
+    val onClickViewDetail: ((id: Int) -> Unit)
 }
+
 class NailStaffAdapter(val action: INailStaffAction) :
     PageRecyclerAdapter<Cv, ItemListStaffBinding>(action) {
 
@@ -25,12 +28,19 @@ class NailStaffAdapter(val action: INailStaffAction) :
             tvWorkplace.text = item.state
             tvWorkingType.text = item.workTypeDisplay
             tvDistance.text = item.distanceFormat
-            btViewDetail.onClick{
+            btViewDetail.onClick {
                 action.onClickViewDetail.invoke(item.id)
             }
-            btBookStaff.onClick{
+            btBookStaff.onClick {
                 action.onClickBookStaff.invoke(item.id)
             }
+            tvSalary.text =
+                TextFormatter(root.context).displaySalaryType(
+                    item.salaryType,
+                    item.price.safe(),
+                    item.unit
+                )
+
         }
     }
 
