@@ -64,6 +64,14 @@ class TextFormatter(private val cxt: Context) {
         }
     }
 
+    fun displaySalaryType(salaryType: Int?,price: Double, unit: Int?): String{
+        return when(salaryType){
+            0 -> getString(R.string.lbl_flow_service_or,TextFormatter(cxt).displaySalary(price.safe(),unit.safe()))
+            1-> getString(R.string.lbl_flow_service)
+            else -> TextFormatter(cxt).displaySalary(price.safe(),unit.safe())
+        }
+    }
+
     //theo gio 4 gio x $50/gio
     fun displayDetailSalary(salaryType: Int?,time: Int?, price: Double?, unit: Int?): CharSequence {
         if(salaryType == 1) return getString(R.string.book_type_1)
