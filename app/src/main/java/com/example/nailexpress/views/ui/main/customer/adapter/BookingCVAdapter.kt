@@ -45,9 +45,10 @@ class BookingCVAdapter(val action: IBookingCVAction) :
 
             val formater = TextFormatter(root.context)
             textFormater = formater
-            tvSalary.text = formater.displaySalaryType(
+            tvSalary.text = formater.displayDetailSalaryCustomer(
                 cv.salaryType,
-                item.price.safe(),
+                item.workTime,
+                item.price,
                 item.unit
             )
 

@@ -4,6 +4,8 @@ import android.content.Context
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.app.BookingStatus
+import com.example.nailexpress.app.BookingStatusCustomerDefine
+import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.factory.TextFormatter
 
 class Booking(
@@ -33,4 +35,7 @@ class Booking(
 
         return TextFormatter(ctx).displayBookingTime(bookingTime,AppConfig.AppRole.Customer)
     }
+
+    fun displayStatusMess() = BookingStatusCustomerDefine.values().first { bookingStatus == it.bookingStatus }.bookingStringRes
+    fun getColor() = BookingStatusCustomerDefine.values().first { bookingStatus == it.bookingStatus }.color
 }

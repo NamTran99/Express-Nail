@@ -95,3 +95,17 @@ enum class BookingStatusDefine(
     Arrived(5, R.string.lbl_arrived, R.color.h0CD3B4, R.string.lbl_finish),
     Finish(6, R.string.lbl_finish, R.color.h29DB12)
 }
+
+enum class BookingStatusCustomerDefine(
+    val bookingStatus: Int,
+    val bookingStringRes: Int,
+    @ColorRes val color: Int,
+) {
+    Pending(0, R.string.lbl_pending_customer, R.color.hED970E),
+    Accept(1, R.string.lbl_worker_accept, R.color.h0089FF),
+    Deny(2, R.string.lbl_master_refused, R.color.hED1B1B),
+    Expires(3, R.string.lbl_expired_1, R.color.h909090),
+    StartMoving(4, R.string.lbl_start_moving, R.color.hFF662E),
+    Arrived(5, R.string.lbl_arrived, R.color.h0CD3B4),
+    Finish(6, R.string.lbl_finish, R.color.h29DB12)
+}

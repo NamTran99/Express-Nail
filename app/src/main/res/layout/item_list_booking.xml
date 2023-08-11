@@ -14,6 +14,8 @@
             type="com.example.nailexpress.factory.TextFormatter" />
 
         <import type="com.example.nailexpress.R" />
+
+        <import type="androidx.core.content.ContextCompat" />
     </data>
 
     <androidx.appcompat.widget.LinearLayoutCompat
@@ -70,8 +72,9 @@
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:gravity="end"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:gravity="end">
+
                     <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvStatus"
                         style="@style/AppTheme.TextViewResponsive"
@@ -79,12 +82,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_10"
                         android:drawableStart="@drawable/ic_dot"
-                        android:drawableTint="@color/color_primary"
                         android:ellipsize="end"
                         android:gravity="end"
                         android:maxLines="1"
-                        android:text="@{data.status_booking_display}"
-                        android:textColor="@color/color_primary"
+                        android:text="@{data.displayStatusMess()}"
+                        android:textColor="@{ContextCompat.getColor(context,data.getColor())}"
+                        app:drawableTint="@{data.getColor()}"
                         tools:text="Đã chấp nhận" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
             </LinearLayout>
