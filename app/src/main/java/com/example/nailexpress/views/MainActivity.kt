@@ -18,6 +18,7 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.databinding.ActivityMainBinding
 import com.example.nailexpress.datasource.local.PrefUtils
+import com.example.nailexpress.event.EventNotification
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
@@ -25,9 +26,8 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activity_main) {
     override val fragmentContainerView = R.id.fragmentContainerView
-
     private val prefUtils by lazy { PrefUtils(context = this) }
-
+    private val eventNotification = EventNotification()
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
     ) { isGranted: Boolean ->
@@ -41,6 +41,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         askNotificationPermission()
+
+        supportFragmentManager.registerFragmentLifecycleCallbacks(eventNotification, true)
     }
 
     private fun askNotificationPermission() {
@@ -85,7 +87,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
     }
 
     private fun createNotificationChannel() {
-        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        val notificationManager =
+            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 "0",
@@ -112,4 +115,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         })
     }
 
+    override fun onDestroy() {
+        supportFragmentManager.unregisterFragmentLifecycleCallbacks(eventNotification)
+        super.onDestroy()
+    }
 }

@@ -56,7 +56,7 @@ class HomeStaff :
 
             with(header) {
                 updateAction(this@HomeStaff)
-                updateTextNotification("3")
+                updateTextNotification("")
             }
         }
     }
@@ -71,6 +71,10 @@ class HomeStaff :
 
     override fun onClickFilter() {
         navigateToDestination(R.id.filterFragment)
+    }
+
+    fun updateTextNotification(str: String){
+        binding.header.updateTextNotification(str)
     }
 
     companion object {

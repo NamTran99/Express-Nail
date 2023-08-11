@@ -10,9 +10,11 @@ import android.os.Build
 import androidx.core.app.NotificationCompat
 import com.example.nailexpress.R
 import com.example.nailexpress.datasource.local.PrefUtils
+import com.example.nailexpress.event.AutoReloadFragment
 import com.example.nailexpress.views.MainActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import org.greenrobot.eventbus.EventBus
 
 class FirebaseService : FirebaseMessagingService() {
 
@@ -31,6 +33,7 @@ class FirebaseService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         super.onNewToken(token)
+        EventBus.getDefault().post(AutoReloadFragment())
         prefUtils.saveDeviceId(token)
     }
 
