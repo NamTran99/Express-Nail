@@ -15,7 +15,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class EventNotification : FragmentLifecycleCallbacks() {
     private val TAG = this.javaClass.simpleName
-    private var fragmentNotifi: Fragment? = null
+    private var fragmentNotifi: NotificationStaff? = null
     private var homeFragment: Fragment? = null
     private var fragment: Fragment? = null
 
@@ -48,6 +48,7 @@ class EventNotification : FragmentLifecycleCallbacks() {
                 }
             }
         }
+        fragmentNotifi?.viewModel?.onSwipeRefreshData()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
