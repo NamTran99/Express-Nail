@@ -72,6 +72,20 @@ class TextFormatter(private val cxt: Context) {
         }
     }
 
+    //4 gio x $50/gio
+    fun displayDetailSalaryCustomer(salaryType: Int?,time: Int?, price: Double?, unit: Int?): CharSequence {
+        if(salaryType == 1) return getString(R.string.book_type_1)
+        return if (unit in 1..5) {
+
+            SpannableStringBuilder().apply {
+                append(time.toString()," ",convertDisplayUnit(unit)," ")
+                append("(",displaySalaryType(salaryType,price.safe(),unit),")")
+            }
+        } else {
+            "$ $price"
+        }
+    }
+
     //theo gio 4 gio x $50/gio
     fun displayDetailSalary(salaryType: Int?,time: Int?, price: Double?, unit: Int?): CharSequence {
         if(salaryType == 1) return getString(R.string.book_type_1)
