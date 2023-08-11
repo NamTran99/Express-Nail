@@ -40,7 +40,7 @@ class HomeCustomerFragment :
 
             with(header) {
                 updateAction(this@HomeCustomerFragment)
-                updateTextNotification("3")
+                updateTextNotification("")
             }
         }
 
@@ -59,6 +59,10 @@ class HomeCustomerFragment :
     override fun onClickFilter() {
         navigateToDestination(R.id.fragmentFilterCustomer)
     }
+
+    fun updateTextNotification(str: String){
+        binding.header.updateTextNotification(str)
+    }
 }
 
 @HiltViewModel
@@ -66,10 +70,10 @@ class HomeCustomerVM @Inject constructor(
     app: Application,
     private val cvRepository: CvRepository,
     private val bookingStaffRepository: RecruitmentBookingStaffRepository
-) :
-    BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
+) : BaseRefreshViewModel(app), INailStaffAction, IActionTopBar by ActionTopBarImpl(),
     IBookingCVAction, IActionTabChange {
-     var callbackOpenCall: ((String)->Unit)? = null
+    var callbackOpenCall: ((String) -> Unit)? = null
+
     companion object {
         const val TAB_STAFF = 0
         const val TAB_STAFF_UNBOOKED = 1
@@ -88,11 +92,15 @@ class HomeCustomerVM @Inject constructor(
     }
 
     override val onClickBookStaff: (Int) -> Unit = { cvID ->
-        navigateToDestination(R.id.action_homeCustomerFragment_to_bookNowStaffFragment, bundle = bundleOf(Constant.CV_ID to cvID))
+        navigateToDestination(
+            R.id.action_homeCustomerFragment_to_bookNowStaffFragment,
+            bundle = bundleOf(Constant.CV_ID to cvID)
+        )
     }
     override val onClickViewDetailBooking: (id: Int) -> Unit = {
         navigateToDestination(
-            R.id.action_homeCustomerFragment_to_bookingDetailFragment, bundleOf(Constant.BOOKING_ID to it)
+            R.id.action_homeCustomerFragment_to_bookingDetailFragment,
+            bundleOf(Constant.BOOKING_ID to it)
         )
     }
 
@@ -110,10 +118,9 @@ class HomeCustomerVM @Inject constructor(
         )
     }
 
-    override val onLoadMoreListener: (Int, Int) -> Unit =
-        { nextPage, _ ->
-            getListStaffNail(nextPage)
-        }
+    override val onLoadMoreListener: (Int, Int) -> Unit = { nextPage, _ ->
+        getListStaffNail(nextPage)
+    }
 
     val adapter = NailStaffAdapter(this).apply {
         onLoadMoreListener = { nextPage, _ ->
