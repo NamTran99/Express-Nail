@@ -7,21 +7,21 @@
 
     <TextView
         android:id="@+id/tvTitleStatus"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/message_status"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_12"
-        style="@style/AppTheme.TextViewResponsive"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvMessageStatus"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_second"
-        style="@style/AppTheme.TextViewResponsive"
         android:textSize="@dimen/text_size_12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/tvTitleStatus"
@@ -29,9 +29,9 @@
 
     <TextView
         android:id="@+id/tvTitleWorkersApplied"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.TextViewResponsive"
         android:layout_marginTop="@dimen/size_10"
         android:text="@string/list_of_worker_applied"
         android:textColor="@color/black"
@@ -41,9 +41,9 @@
 
     <TextView
         android:id="@+id/tvWorkersApplied"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        style="@style/AppTheme.TextViewResponsive"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_12"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,12 +52,14 @@
 
     <TextView
         android:id="@+id/btnViewAllWorkerApplied"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="@dimen/size_0"
         android:layout_height="@dimen/size_40"
         android:layout_marginHorizontal="@dimen/size_5"
         android:layout_marginTop="@dimen/size_24"
-        style="@style/AppTheme.TextViewResponsive"
+        android:alpha="0.5"
         android:background="@drawable/orange_ffd8ca_corner_180"
+        android:enabled="false"
         android:gravity="center"
         android:text="@string/view_all_workers_applied"
         android:textColor="@color/color_second"
