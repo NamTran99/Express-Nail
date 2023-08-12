@@ -40,7 +40,14 @@ class StatusOfWorkersView @JvmOverloads constructor(
 
     fun setListWorkerApplied(data: Int?) {
         if (data == null) return
-        binding.tvWorkersApplied.text = TextFormatter(context).displayWorkersNumber(data)
+        with(binding) {
+            tvWorkersApplied.text = TextFormatter(context).displayWorkersNumber(data)
+            btnViewAllWorkerApplied.apply {
+                val isEnable = data > 0
+                isEnabled = isEnable
+                alpha = if (isEnable) 1f else 0.5f
+            }
+        }
     }
 
     fun setOnClickViewAllWorkerApplied(onClickViewAllWorkersApplied: OnClickViewAllWorkersApplied) {
