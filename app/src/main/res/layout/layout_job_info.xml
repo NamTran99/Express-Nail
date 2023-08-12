@@ -59,8 +59,10 @@
             android:textSize="@dimen/text_size_12"
             android:visibility="gone"
             app:drawableEndCompat="@drawable/ic_map"
+            app:layout_constraintBottom_toBottomOf="@+id/tvLocation"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/tvLocation" />
+            app:layout_constraintTop_toTopOf="@id/tvLocation"
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
