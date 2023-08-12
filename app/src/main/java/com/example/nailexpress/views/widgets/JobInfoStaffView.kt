@@ -72,6 +72,6 @@ class JobInfoStaffView @JvmOverloads constructor(
     }
 
     companion object {
-        private const val PADDING_START_TEXT_BOOKING_TIME = 4
+        private const val PADDING_START_TEXT_BOOKING_TIME = 10
     }
 }

@@ -156,7 +156,7 @@ class CreateRecruitmentVM @Inject constructor(
 
     val onSelectTimeType: ((Int) -> Unit) = {
         recruitmentForm.changeValue {
-//            unitIndex = it
+            salaryTimeValue.unitIndex = it
         }
     }
 
@@ -206,13 +206,12 @@ class CreateRecruitmentVM @Inject constructor(
                 if (isSelectBookingService) {
                     selectService.value = BookServiceForm()
                 } else {
-                    bookTime.price = price
+                    salaryTimeValue.unit = unit
+                    salaryTimeValue.price = price
                     selectService.value = BookServiceForm(price = price)
                 }
             }
         }
-
-        selectService.value = BookServiceForm()
     }
 
     val showDialogSelectService = SingleLiveEvent<Any>()
@@ -256,7 +255,7 @@ class CreateRecruitmentVM @Inject constructor(
         isShowSalon.value = false
     }
 
-    fun onClickPost() = launch {
+    fun onClickSubmit() = launch {
         recruitmentForm.value?.let {
             salonForm.value?.let { salon ->
                 isShowSalon.value?.let { isShow ->

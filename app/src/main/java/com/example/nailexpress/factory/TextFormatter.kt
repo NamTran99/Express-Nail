@@ -14,8 +14,11 @@ import com.example.nailexpress.app.PriceUnit.MONTH
 import com.example.nailexpress.app.PriceUnit.WEEK
 import com.example.nailexpress.app.PriceUnit.YEAR
 import com.example.nailexpress.app.WorkType
-import com.example.nailexpress.extension.*
 import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
+import com.example.nailexpress.extension.convertUTCToLocal
+import com.example.nailexpress.extension.formatAmount
+import com.example.nailexpress.extension.or1
+import com.example.nailexpress.extension.safe
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -48,7 +51,6 @@ class TextFormatter(private val cxt: Context) {
     }
 
     fun displaySalary(price: Double, unit: Int): String {
-        return if (unit in 1..5) {
             val temp = when (unit) {
                 HOUR -> R.string.time_type_1
                 DAY -> R.string.time_type_2
@@ -58,17 +60,15 @@ class TextFormatter(private val cxt: Context) {
                 else -> R.string.time_type_1
             }
             val suffix = getString(temp)
-            "$${price}${suffix}"
-        } else {
-            "$${price}"
+        return "$${price} $suffix"
         }
-    }
 
-    fun displaySalaryType(salaryType: Int?,price: Double, unit: Int?): String{
+
+    fun displaySalaryType(salaryType: Int?,price: Double?, unit: Int?): String{
         return when(salaryType){
-            0 -> getString(R.string.lbl_flow_service_or,TextFormatter(cxt).displaySalary(price.safe(),unit.safe()))
+            0 -> getString(R.string.lbl_flow_service_or,displaySalary(price.safe(),unit.safe()))
             1-> getString(R.string.lbl_flow_service)
-            else -> TextFormatter(cxt).displaySalary(price.safe(),unit.safe())
+            else -> displaySalary(price.safe(),unit.safe())
         }
     }
 

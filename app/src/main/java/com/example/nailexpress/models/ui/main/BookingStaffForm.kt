@@ -1,7 +1,6 @@
 package com.example.nailexpress.models.ui.main
 
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
-import com.example.nailexpress.extension.formatPrice
 import com.example.nailexpress.extension.toDateUTC
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
@@ -87,8 +86,8 @@ data class BookingStaffForm(
 }
 
 data class BookingTime(
-    var unit: String = "",
-    var price: String = "",
+    var unit: String ?= null,
+    var price: String? = null,
     @Transient var unitIndex: Int = 0,
 ) {
     fun handleData() {
@@ -103,7 +102,7 @@ data class BookingTime(
 
 data class BookServiceForm(
     var skill_id: String = "",
-    var price: String = "",
+    var price: String? = null,
     @SerializedName("custom_skill")
     var skill_name: String = "",
     var unit: String? = null,
@@ -124,6 +123,10 @@ data class BookServiceForm(
     }
 
     override fun toString(): String {
+        if(isTypeTime){
+            price = null
+            unit = null
+        }
         return Gson().toJson(this)
     }
 }

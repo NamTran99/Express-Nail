@@ -50,7 +50,7 @@ class RecruitmentForm(
     @Transient var isSelectBookingService: Boolean = true,
     var isVisibleRecycler: Boolean = false,
     @Transient
-    var bookTime: BookingTime = BookingTime(),
+    var salaryTimeValue: BookingTime = BookingTime(),
     @Transient
     var isSkillEmpty: Boolean = true,
     @Transient
@@ -67,7 +67,6 @@ class RecruitmentForm(
         checkEqualDefault(listBookSkill.size +listBookTime.size, 0, R.string.error_skill_empty)
         checkEmpty(contact_name, R.string.error_empty_customer_name, R.id.etCustomerName)
         checkEmpty(contact_phone, R.string.error_empty_customer_phone, R.id.etCustomerPhone)
-
     }
 
     fun distanceSafe() = distance?.toString() ?: ""
@@ -120,8 +119,8 @@ class RecruitmentForm(
         }
 
         salary_time_values = if (!isTimeSkillEmpty) {
-            bookTime.handleData()
-            bookTime.toString()
+            salaryTimeValue.handleData()
+            salaryTimeValue.toString()
         } else {
             null
         }

@@ -1,20 +1,14 @@
 package com.example.nailexpress.views.ui.main.staff.cv_profile
 
-import android.util.Log
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
-import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentMyCvBinding
-import com.example.nailexpress.datasource.local.SharePrefKey
-import com.example.nailexpress.extension.clearBackStackAndNavigate
 import com.example.nailexpress.models.response.CvDTO
 import com.example.nailexpress.views.ui.main.staff.cv_profile.viewmodel.MyCvViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 
 @AndroidEntryPoint
 class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.fragment_my_cv) {
@@ -25,20 +19,7 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
             findNavController().popBackStack()
         }
         binding.btnUpdateCv.setOnClickListener {
-//            findNavController().navigate(R.id.authGraph)
-
-            findNavController().setGraph(R.id.authGraph)
-
-
-//            Log.d("TAG", "initView: ${findNavController().displayName}")
-//            findNavController().clearBackStackAndNavigate(R.id.authGraph)
-//            navigateToDestination(R.id.authGraph)
-//            val role = sharePrefs.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE)
-//            if(role  == AppConfig.AppRole.Customer){
-//                navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.staffGraph, inclusive = true)
-//            }else{
-//                navigateToDestination(R.id.action_global_authGraph, popUpToDes = R.id.customerGraph, inclusive = true)
-//            }
+            navigateToDestination(R.id.nav_main, inclusive = true, popUpToDes = R.id.nav_main)
         }
         viewModel.myCvLiveData.observe(viewLifecycleOwner) {
             setUi(it)

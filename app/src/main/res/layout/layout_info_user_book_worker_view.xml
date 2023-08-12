@@ -7,7 +7,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/AppTheme.TextViewResponsive"
+        style="@style/AppTheme.TextViewResponsive.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_second"
@@ -31,7 +31,6 @@
             android:layout_height="wrap_content"
             android:text="@string/customer_name"
             android:textColor="@color/gray_818181"
-            android:textSize="@dimen/text_size_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +43,6 @@
             android:layout_marginStart="@dimen/size_16"
             android:gravity="end"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/tvTitleCustomerName"
@@ -66,7 +64,6 @@
             android:layout_height="wrap_content"
             android:text="@string/phone_number"
             android:textColor="@color/gray_818181"
-            android:textSize="@dimen/text_size_14"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -77,7 +74,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="@dimen/text_size_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@id/tvTitlePhoneNumber"

@@ -8,7 +8,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg"
         android:orientation="vertical"
-        tools:context=".views.ui.main.staff.booking_detail.BookingDetailStaffFragment">
+        tools:context=".views.ui.main.staff.booking_detail.DetailBookingStaffFragment">
 
         <com.example.nailexpress.views.widgets.TopBarMenu
             android:id="@+id/topBar"

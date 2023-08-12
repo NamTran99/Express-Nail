@@ -8,6 +8,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutJobInfoBinding
+import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
+import com.example.nailexpress.extension.convertUTCToLocal
 import com.example.nailexpress.extension.openMap
 import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.response.SkillDTO
@@ -72,25 +74,18 @@ class JobInfoView @JvmOverloads constructor(
         }
     }
 
-    fun setSalary(icon: Drawable?, title: String?, price: Double?, unit: Int?) {
+    fun setSalary(icon: Drawable?, title: String? = null, salaryType: Int?,price: Double?, unit: Int?) {
         binding.itemSalary.apply {
             iilIcon = icon
             iilTitle = title
-            setSalaryValue(price, unit)
+            iilValue =  TextFormatter(context).displaySalaryType(salaryType,price, unit)
         }
     }
-
-    fun setSalaryValue(price: Double?, unit: Int?) {
-        if (price != null && unit != null) {
-            binding.itemSalary.iilValue = TextFormatter(context).displaySalary(price, unit)
-        }
-    }
-
     fun setTime(icon: Drawable?, title: String?, value: String?) {
         binding.itemTime.apply {
             iilIcon = icon
             iilTitle = title
-            setTimeValue(value)
+            setTimeValue(value?.convertUTCToLocal(formatOutput = FORMAT_DATE_DISPLAY))
         }
     }
 

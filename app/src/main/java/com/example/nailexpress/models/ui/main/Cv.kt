@@ -1,6 +1,5 @@
 package com.example.nailexpress.models.ui.main
 
-import android.hardware.Camera
 import com.example.nailexpress.models.ui.AppImage
 
 class Cv(
@@ -23,7 +22,8 @@ class Cv(
     val isSkillEmpty: Boolean = false,
     val salaryType: Int = 0,
     val price: Double? = null,
-    val unit: Int? = null
+    val unit: Int? = null,
+    val address: String? = ""
     // custom
 )
 

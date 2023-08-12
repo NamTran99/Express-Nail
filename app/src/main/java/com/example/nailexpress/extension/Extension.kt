@@ -174,7 +174,6 @@ fun NavController.clearBackStackAndNavigate(destinationId: Int) {
             navigate(destinationId, null, navOptions)
         }
     }
-    navigate(destinationId)
 }
 
 fun Context.openMap(address: String) {

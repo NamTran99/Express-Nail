@@ -29,7 +29,7 @@ class InfoUserBookWorkerView @JvmOverloads constructor(
     var phoneNumber: String? = null
         set(value) {
             value?.let {
-                binding.tvPhoneNumber.text = it
+                binding.tvPhoneNumber.text = it.formatPhoneUSCustom()
             }
             field = value
         }

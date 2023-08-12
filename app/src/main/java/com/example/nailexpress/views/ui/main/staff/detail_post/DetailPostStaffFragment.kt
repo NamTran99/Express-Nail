@@ -73,11 +73,12 @@ class DetailPostStaffFragment : BaseFragment<FragmentDetailPostStaffBinding, Det
                     setSalary(
                         icon = AppCompatResources.getDrawable(context, R.drawable.ic_salary_dollar),
                         title = context.getString(R.string.salary),
+                        salaryType = recruitmentDataDTO.salary_type,
                         price = recruitmentDataDTO.price,
                         unit = recruitmentDataDTO.unit
                     )
                     setTime(
-                        icon = AppCompatResources.getDrawable(context, R.drawable.ic_clock),
+                        icon = AppCompatResources.getDrawable(context, R.drawable.ic_clock_2),
                         title = context.getString(R.string.time),
                         value = recruitmentDataDTO.booking_time
                     )

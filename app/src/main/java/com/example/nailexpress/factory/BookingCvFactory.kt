@@ -49,7 +49,8 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             isSkillEmpty = cvDTO.skills.safe().isEmpty(),
             salaryType = cvDTO.salary_type.safe(),
             price = cvDTO.price,
-            unit = cvDTO.unit
+            unit = cvDTO.unit,
+            address = cvDTO.address
         )
     }
 
@@ -64,7 +65,7 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             cv = createCvFactory(booking.cv),
             status_booking_display = textFormatter.displayStatusBooking(booking.status),
             colorStatus = textFormatter.displayStatusColor(booking.status),
-            salon_id = booking.salon_id.safe(),
+            salon_id = booking.salon_id,
             bookingIDDisplay = "#ID: ${booking.id}",
             contact_name = booking.contact_name.safe(),
             contact_phone = booking.contact_phone.formatPhoneUSCustom(),

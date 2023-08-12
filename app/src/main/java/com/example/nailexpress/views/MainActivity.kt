@@ -4,7 +4,6 @@ import android.Manifest
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
@@ -20,6 +19,9 @@ import com.example.nailexpress.databinding.ActivityMainBinding
 import com.example.nailexpress.datasource.local.PrefUtils
 import com.example.nailexpress.event.EventNotification
 import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,6 +29,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activity_main) {
     override val fragmentContainerView = R.id.fragmentContainerView
     private val prefUtils by lazy { PrefUtils(context = this) }
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
+
     private val eventNotification = EventNotification()
     private val requestPermissionLauncher = registerForActivityResult(
         ActivityResultContracts.RequestPermission(),
@@ -41,6 +45,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(layoutId = R.layout.activ
         super.onCreate(savedInstanceState)
         createNotificationChannel()
         askNotificationPermission()
+        firebaseAnalytics = Firebase.analytics
 
         supportFragmentManager.registerFragmentLifecycleCallbacks(eventNotification, true)
     }

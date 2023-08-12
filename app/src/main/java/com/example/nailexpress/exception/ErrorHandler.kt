@@ -1,16 +1,11 @@
 package com.example.nailexpress.exception
 
+//import com.example.nailexpress.extension.clearBackStack
 import android.support.core.extensions.block
 import android.view.View
 import android.widget.EditText
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
-import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseActivity
-import com.example.nailexpress.datasource.local.SharePrefKey
-import com.example.nailexpress.extension.clearBackStackAndNavigate
-//import com.example.nailexpress.extension.clearBackStack
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.scrollToViewABitTop
 import com.example.nailexpress.extension.showKeyboard
@@ -59,7 +54,7 @@ class ErrorHandlerImpl : ErrorHandler {
                 activity.commonDialog.show(
                     DialogData().buildError(error.message.toString())
                         .setCallBack {
-                            navController?.clearBackStackAndNavigate(R.id.authGraph)
+                            navigateToDestination(R.id.nav_main, inclusive = true, popUpToDes = R.id.nav_main)
                         })
             }
             is UnknownHostException -> {

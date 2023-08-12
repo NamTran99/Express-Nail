@@ -11,9 +11,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/shop_info"
-        style="@style/AppTheme.TextViewResponsive"
-        android:textColor="@color/color_second"
-        android:textSize="@dimen/text_size_14" />
+        style="@style/AppTheme.TextViewResponsive.Title"
+       />
 
     <TextView
         android:id="@+id/shopName"
@@ -22,7 +21,6 @@
         android:layout_marginStart="@dimen/size_10"
         android:layout_marginTop="@dimen/size_8"
         android:textColor="@color/black"
-        android:textSize="18sp"
         style="@style/AppTheme.TextViewResponsive"
         tools:text="Beauty Salon Spa" />
 
@@ -35,7 +33,6 @@
         android:drawablePadding="@dimen/size_12"
         android:textColor="@color/black"
         style="@style/AppTheme.TextViewResponsive"
-        android:textSize="@dimen/text_size_14"
         android:visibility="gone"
         app:drawableStartCompat="@drawable/ic_phone"
         tools:visibility="visible" />
@@ -48,7 +45,6 @@
         android:layout_marginTop="@dimen/size_12"
         android:drawablePadding="@dimen/size_12"
         android:textColor="@color/black"
-        android:textSize="@dimen/text_size_14"
         style="@style/AppTheme.TextViewResponsive"
         android:visibility="gone"
         app:drawableStartCompat="@drawable/ic_location_pin"

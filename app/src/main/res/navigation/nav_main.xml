@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_auth"
+    android:id="@+id/nav_main"
     app:startDestination="@id/fragmentNoLogin">
 
     <navigation
@@ -213,7 +213,7 @@
 
         <fragment
             android:id="@+id/bookingDetailStaffFragment"
-            android:name="com.example.nailexpress.views.ui.main.staff.booking_detail.BookingDetailStaffFragment"
+            android:name="com.example.nailexpress.views.ui.main.staff.booking_detail.DetailBookingStaffFragment"
             android:label="BookingDetailStaffFragment"
             tools:layout="@layout/fragment_booking_detail_staff"/>
 

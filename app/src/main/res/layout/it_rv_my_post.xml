@@ -106,10 +106,10 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_5"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
                     <TextView
-                        style="@style/AppTheme.Content"
+                        style="@style/AppTheme.TextViewResponsive"
                         android:drawablePadding="@dimen/size_7"
                         android:ellipsize="end"
                         android:maxWidth="@dimen/size_300"
@@ -120,19 +120,13 @@
                         app:layout_constraintTop_toTopOf="@id/ivLogo"
                         tools:text="New Jersey" />
 
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:layout_width="@dimen/size_3"
-                        android:layout_height="@dimen/size_3"
-                        android:layout_marginHorizontal="@dimen/size_5"
-                        android:background="@color/text_content_default"
-                        app:riv_corner_radius="@dimen/size_4"
-                        app:riv_mutate_background="true" />
-
                     <TextView
                         android:id="@+id/tvLocation"
                         style="@style/AppTheme.Content"
                         android:drawablePadding="@dimen/size_7"
+                        android:layout_marginStart="@dimen/size_14"
                         android:ellipsize="end"
+                        android:textSize="@dimen/text_size_8"
                         android:maxLines="2"
                         app:layout_constraintStart_toEndOf="@+id/ivLogo"
                         app:layout_constraintTop_toTopOf="@id/ivLogo"

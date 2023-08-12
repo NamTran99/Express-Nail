@@ -50,7 +50,9 @@ class RecruitmentBookingStaffRepository(
 
     suspend fun createRecruitment(form: RecruitmentForm, salon: Salon, isShowSalon: Boolean) {
         form.validate()
-        salon.validate()
+        if(form.isShowSalon){
+            salon.validate()
+        }
         val imageParts =
             form.avatar.toScaleImagePart("image")
         api.createRecruitment(

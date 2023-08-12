@@ -1,7 +1,5 @@
 package com.example.nailexpress.models.response
 
-import com.example.nailexpress.models.ui.main.RecruitmentForm
-
 data class CvDTO(
     val address: String? = "",
     val avatar_url: String,

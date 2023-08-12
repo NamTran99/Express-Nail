@@ -8,7 +8,7 @@
     <item
         android:id="@+id/navPost"
         android:icon="@drawable/ic_post"
-        android:title="Bài đăng của tôi" />
+        android:title="@string/lbl_my_post" />
 
     <item
         android:id="@+id/placeHolder"

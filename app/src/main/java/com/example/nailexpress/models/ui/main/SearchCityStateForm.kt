@@ -10,10 +10,12 @@ data class SearchCityStateForm(
     var citySearch: String = "",
     var format: String = ""
 ) : BundleArgument {
+
     fun setSate(item: StateDTO): String {
         stateSearch = item.state_code
         stateFormat = "${item.state} (${item.state_code})"
         format = stateFormat
+
         return stateFormat
     }
 

@@ -130,7 +130,7 @@
     <string name="title_booking_staff_now">Đặt thợ ngay</string>
     <string name="title_booking_staff_later">Đặt thợ sau</string>
     <string name="title_create_salon">Tạo thông tin Salon</string>
-    <string name="title_booking_detail">Chi tiết booking</string>
+    <string name="title_booking_detail">Chi tiết đặt thợ</string>
     <string name="title_select_role">Đổi vai trò</string>
     <string name="create_salon_infor">Nhập thông tin tiệm</string>
     <string name="salon_name">Tên salon</string>
@@ -207,11 +207,11 @@
     <string name="select_service">Chọn dịch vụ</string>
     <string name="add">Thêm</string>
     <string name="delete">Xóa</string>
-    <string name="time_type_1">/giờ</string>
-    <string name="time_type_2">/ngày</string>
-    <string name="time_type_3">/tuần</string>
-    <string name="time_type_4">/tháng</string>
-    <string name="time_type_5">/năm</string>
+    <string name="time_type_1">/ giờ</string>
+    <string name="time_type_2">/ ngày</string>
+    <string name="time_type_3">/ tuần</string>
+    <string name="time_type_4">/ tháng</string>
+    <string name="time_type_5">/ năm</string>
     <string name="time_type_1_1">giờ</string>
     <string name="time_type_2_2">ngày</string>
     <string name="time_type_3_3">tuần</string>
@@ -295,7 +295,7 @@
     <string name="lbl_expired_1">Đã hết hạn</string>
     <string name="lbl_start_move_to_rendezvous">Bắt đầu di chuyển đến diểm hẹn</string>
     <string name="lbl_worker_accept">Thợ đã chấp nhận</string>
-    <string name="lbl_customer_has_mobilized">khách hàng đã huy</string>
+    <string name="lbl_customer_has_mobilized">Khách hàng đã hủy</string>
     <string name="lbl_start_moving">Thợ đang di chuyển đến điểm hẹn</string>
     <string name="lbl_arrived">Thợ đã đến và sẵn sàng phục vụ</string>
     <string name="lbl_finish">Đã hoàn thành</string>

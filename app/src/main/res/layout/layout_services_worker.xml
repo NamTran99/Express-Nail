@@ -16,6 +16,8 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:itemCount="4"
+        tools:listitem=""
         android:layout_marginTop="@dimen/size_12" />
 
 </LinearLayout>

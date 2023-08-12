@@ -4,13 +4,10 @@ import android.support.core.view.ILoadMoreAction
 import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.ItRvMyPostBinding
-import com.example.nailexpress.databinding.ItemListStaffBinding
 import com.example.nailexpress.extension.getString
-import com.example.nailexpress.extension.onClick
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.setImageURICustom
 import com.example.nailexpress.factory.TextFormatter
-import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.models.ui.main.RecruitmentForm
 
 interface IMyPostAction: ILoadMoreAction {
@@ -30,7 +27,7 @@ class MyPostAdapter(val action: IMyPostAction): PageRecyclerAdapter<RecruitmentF
                 item.id?.let { it1 -> action.onClickDetail(it1) }
             }
 
-            tvId.text = tvId.getString(R.string.lbl_id,item.salon_id.safe())
+            tvId.text = tvId.getString(R.string.lbl_id,item.id.safe())
             tvLocation.text = TextFormatter(root.context).displayDistance(item.distance.safe().toDouble())
         }
     }

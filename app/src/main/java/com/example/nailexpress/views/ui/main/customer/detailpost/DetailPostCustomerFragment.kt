@@ -4,10 +4,10 @@ import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
+import com.example.nailexpress.extension.show
 import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.utils.Constant
@@ -78,11 +78,12 @@ class DetailPostCustomerFragment :
                 setSalary(
                     icon = AppCompatResources.getDrawable(context, R.drawable.ic_salary_dollar),
                     title = context.getString(R.string.salary),
+                    salaryType = recruitmentDataDTO.salary_type,
                     price = recruitmentDataDTO.price,
                     unit = recruitmentDataDTO.unit
                 )
                 setTime(
-                    icon = AppCompatResources.getDrawable(context, R.drawable.ic_clock),
+                    icon = AppCompatResources.getDrawable(context, R.drawable.ic_clock_2),
                     title = context.getString(R.string.time),
                     value = recruitmentDataDTO.booking_time
                 )
@@ -102,6 +103,7 @@ class DetailPostCustomerFragment :
     private fun setSalonUi(salon: Salon?) {
         with(binding) {
             if (salon != null) {
+                view1.show()
                 shopInfoView.apply {
                     isVisible =
                         salon.name.isNotBlank() && salon.phoneDisplay.isNotBlank() && salon.address.isNotBlank()

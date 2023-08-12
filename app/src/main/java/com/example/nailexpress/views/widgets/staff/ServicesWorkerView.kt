@@ -34,7 +34,10 @@ class ServicesWorkerView @JvmOverloads constructor(
         context.theme.obtainStyledAttributes(attrs, R.styleable.ServicesWorkerView, 0, 0).run {
             try {
                 val title = getString(R.styleable.ServicesWorkerView_sw_title)
-                val itemSpace = getFloat(R.styleable.ServicesWorkerView_sw_itemSpace, ITEM_SPACE_DEFAULT.toFloat())
+                val itemSpace = getFloat(
+                    R.styleable.ServicesWorkerView_sw_itemSpace,
+                    ITEM_SPACE_DEFAULT.toFloat()
+                )
                 val titleColor = getColor(
                     R.styleable.ServicesWorkerView_sw_colorTitle,
                     ContextCompat.getColor(context, R.color.colorPrimary)

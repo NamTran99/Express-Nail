@@ -108,7 +108,7 @@
         android:id="@+id/itemTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:iil_icon="@drawable/ic_clock"
+        app:iil_icon="@drawable/ic_clock_2"
         app:iil_title="@string/time"
         app:layout_constraintStart_toStartOf="@id/guidelineMid"
         app:layout_constraintTop_toBottomOf="@id/itemGender"

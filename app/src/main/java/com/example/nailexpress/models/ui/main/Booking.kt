@@ -10,7 +10,7 @@ import com.example.nailexpress.factory.TextFormatter
 
 class Booking(
     val bookingID: Int = 0,
-    val salon_id: Int = 0,
+    val salon_id: Int?,
     val cv: Cv,
     val contact_name: String,
     val contact_phone: String,

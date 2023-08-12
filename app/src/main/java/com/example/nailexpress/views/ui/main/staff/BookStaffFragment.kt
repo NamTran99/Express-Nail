@@ -11,7 +11,6 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.ActionTopBarImpl
@@ -26,6 +25,7 @@ import com.example.nailexpress.extension.onClick
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.main.BookServiceForm
 import com.example.nailexpress.models.ui.main.BookingStaffForm
+import com.example.nailexpress.models.ui.main.Cv
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.models.ui.main.Skill
 import com.example.nailexpress.repository.CvRepository
@@ -43,7 +43,11 @@ import com.example.nailexpress.views.ui.main.staff.dialogs.BookStaffServiceDialo
 import com.google.android.libraries.places.api.model.Place
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -138,6 +142,7 @@ class BookNowStaffVM @Inject constructor(
 
     var selectService = MutableLiveData(BookServiceForm())
     val form = MutableLiveData(BookingStaffForm())
+    val staffCV = MutableLiveData<Cv>()
     val isHaveSalon = MutableLiveData(false)
     val serviceAdapter = BookServiceAdapter(this)
 
@@ -283,6 +288,7 @@ class BookNowStaffVM @Inject constructor(
     private fun getCVByID() = launch {
         form.value?.apply {
             cvRepository.getCvDetail(curriculum_vitae_id).onEach {
+                staffCV.value = it
                 listSkill.clear()
                 listSkill.addAll(it.listSkill)
                 adapter.submit(it.listSkill)

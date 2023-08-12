@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -91,10 +92,13 @@
                     app:iubw_title="@string/info_user_book_worker" />
 
                 <View
+                    android:id="@+id/view1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_1"
                     android:layout_marginHorizontal="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_16"
+                    android:visibility="gone"
+                    tools:visibility = "visible"
                     android:background="@color/gray" />
 
                 <com.example.nailexpress.views.widgets.ShopInfoView

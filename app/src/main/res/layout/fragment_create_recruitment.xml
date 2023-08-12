@@ -417,7 +417,7 @@
                     android:layout_width="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="@dimen/size_10"
-                    android:onClick="@{() -> action.onClickPost()}"
+                    android:onClick="@{() -> action.onClickSubmit()}"
                     android:text="@string/btn_post"
                     app:cornerRadius="@dimen/size_60" />
             </androidx.appcompat.widget.LinearLayoutCompat>

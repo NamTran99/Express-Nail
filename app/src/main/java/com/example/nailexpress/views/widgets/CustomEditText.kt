@@ -53,7 +53,7 @@ enum class InputType(val index: Int) {
 class CustomEditText(context: Context, attributeSet: AttributeSet) : IViewCustomerErrorHandler,
     ConstraintLayout(context, attributeSet) {
 
-    var text: String = ""
+    var text: String? = ""
         get() = binding.etContent.text.toString()
         set(value) {
             field = value

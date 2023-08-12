@@ -4,10 +4,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
-import com.example.nailexpress.app.BookingStatusDefine
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentBookingDetailStaffBinding
-import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.response.BookingDTO
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.utils.KEY_ID_BOOKING_DETAIL
@@ -16,7 +14,7 @@ import com.example.nailexpress.views.ui.main.staff.booking_detail.viewmodel.Book
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class BookingDetailStaffFragment : BaseFragment<FragmentBookingDetailStaffBinding, BookingDetailStaffViewModel>(
+class DetailBookingStaffFragment : BaseFragment<FragmentBookingDetailStaffBinding, BookingDetailStaffViewModel>(
     R.layout.fragment_booking_detail_staff
 ) {
     override val viewModel: BookingDetailStaffViewModel by viewModels()
