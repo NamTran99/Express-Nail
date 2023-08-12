@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.res.Resources
 import android.graphics.Color
+import android.net.Uri
 import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.WindowManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
@@ -173,4 +175,12 @@ fun NavController.clearBackStackAndNavigate(destinationId: Int) {
         }
     }
     navigate(destinationId)
+}
+
+fun Context.openMap(address: String) {
+    val uri = "http://maps.google.co.in/maps?q=$address"
+    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+    intent.setPackage("com.google.android.apps.maps")
+
+    startActivity(intent)
 }

@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.nailexpress.R
 import com.example.nailexpress.databinding.LayoutJobInfoBinding
+import com.example.nailexpress.extension.openMap
 import com.example.nailexpress.factory.TextFormatter
 import com.example.nailexpress.models.response.SkillDTO
 
@@ -32,7 +33,14 @@ class JobInfoView @JvmOverloads constructor(
         binding.tvLocation.apply {
             isVisible = nameLocation.isNullOrBlank().not() == true
             text = nameLocation
-            binding.tvMap.isVisible = nameLocation.isNullOrBlank().not()
+            binding.tvMap.apply {
+                isVisible = nameLocation.isNullOrBlank().not()
+                setOnClickListener {
+                    if (nameLocation != null) {
+                        context.openMap(nameLocation)
+                    }
+                }
+            }
         }
     }
 
