@@ -1,11 +1,13 @@
 package com.example.nailexpress.views.ui.main.staff.dialogs
 
 import android.app.Application
-import android.support.core.livedata.*
+import android.support.core.livedata.LoadingLiveData
+import android.support.core.livedata.SingleLiveEvent
+import android.support.core.livedata.changeValue
+import android.support.core.livedata.refresh
 import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
@@ -87,7 +89,6 @@ class ServiceVM @Inject constructor(
     val customLoading = LoadingLiveData()
 
     init {
-        Log.d(TAG, "NamTD888: ")
         getListService(1)
     }
 
@@ -96,10 +97,7 @@ class ServiceVM @Inject constructor(
     }
 
     fun loadData()= viewModelScope.launch{
-        Log.d("TAG", "NamTD8: 1 ")
-
         textSearch.onEach {
-            Log.d("TAG", "NamTD8: 2 ")
 //            if(it == "") isEmptyData.value = false
             getListService(1)
         }.collect()

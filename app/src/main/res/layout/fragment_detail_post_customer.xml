@@ -48,18 +48,16 @@
                     android:layout_height="wrap_content" />
 
                 <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_1"
+                    style="@style/AppTheme.Line.Horizontal"
                     android:layout_marginHorizontal="@dimen/size_12"
-                    android:layout_marginTop="@dimen/size_5"
-                    android:background="@color/gray" />
+                    android:layout_marginTop="@dimen/size_15" />
 
                 <com.example.nailexpress.views.widgets.StatusOfWorkersView
                     android:id="@+id/statusOfWorkerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/size_18"
-                    android:layout_marginTop="@dimen/size_10" />
+                    android:layout_marginTop="@dimen/size_15" />
 
                 <com.example.nailexpress.views.widgets.JobInfoView
                     android:id="@+id/jobInfoView"
@@ -97,9 +95,9 @@
                     android:layout_height="@dimen/size_1"
                     android:layout_marginHorizontal="@dimen/size_12"
                     android:layout_marginTop="@dimen/size_16"
+                    android:background="@color/gray"
                     android:visibility="gone"
-                    tools:visibility = "visible"
-                    android:background="@color/gray" />
+                    tools:visibility="visible" />
 
                 <com.example.nailexpress.views.widgets.ShopInfoView
                     android:id="@+id/shopInfoView"

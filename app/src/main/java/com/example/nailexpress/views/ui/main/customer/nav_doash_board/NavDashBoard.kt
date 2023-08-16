@@ -2,7 +2,6 @@ package com.example.nailexpress.views.ui.main.customer.nav_doash_board
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,10 +12,6 @@ import com.example.nailexpress.databinding.NavDashBoardBinding
 import com.example.nailexpress.views.ui.main.customer.HomeCustomerFragment
 import com.example.nailexpress.views.ui.main.customer.MyPostFragment
 import com.example.nailexpress.views.ui.main.customer.NotificationFragment
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_1
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_2
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_3
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter.Companion.INDEX_O
 import com.example.nailexpress.views.ui.main.profile.ProfileFragment
 
 open class NavDashBoard : Fragment() {
@@ -45,7 +40,7 @@ open class NavDashBoard : Fragment() {
     private fun listener() {
         binding.apply {
             fabClientCheckIn.setOnClickListener {
-                findNavController().navigate(R.id.createRecruitmentFragment)
+                findNavController().navigate(R.id.action_navDashBoard_to_createRecruitmentFragment)
             }
 
             bottomNavigation.setOnItemSelectedListener {

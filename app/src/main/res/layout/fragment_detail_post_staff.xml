@@ -49,6 +49,11 @@
                     android:layout_height="wrap_content"
                     app:uidp_isShowStatus="false" />
 
+                <View
+                    style="@style/AppTheme.Line.Horizontal"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_15" />
+
                 <com.example.nailexpress.views.widgets.JobInfoView
                     android:id="@+id/jobInfoView"
                     android:layout_width="match_parent"

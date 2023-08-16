@@ -10,14 +10,13 @@ import android.os.Build
 import android.util.DisplayMetrics
 import android.util.TypedValue
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import com.example.nailexpress.app.AppConfig.REQUEST_CODE_SHARE_APP
+import com.example.nailexpress.app.SalaryType
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.base.BaseFragment
-import com.example.nailexpress.views.ui.main.customer.detailpost.adapter.ViewTypeService
 import com.google.gson.Gson
 import java.io.File
 import kotlin.math.roundToInt
@@ -148,11 +147,10 @@ val Number.toPx
         Resources.getSystem().displayMetrics
     ).roundToInt()
 
-fun Double?.toViewTypeService(): ViewTypeService {
+fun Double?.toSalaryType(): SalaryType {
     return when (this) {
-        ViewTypeService.Name.type.toDouble() -> ViewTypeService.Name
-        ViewTypeService.NameAndPrice.type.toDouble() -> ViewTypeService.NameAndPrice
-        else -> ViewTypeService.Name
+        0.0 -> SalaryType.Time
+       else -> SalaryType.Service
     }
 }
 

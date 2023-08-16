@@ -6,7 +6,6 @@ import android.support.core.flow.stateFlowOf
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
-import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
@@ -182,29 +181,12 @@ class BookNowStaffVM @Inject constructor(
         }.launchIn(viewModelScope)
     }
 
-    fun onClickAddService() {
-        form.changeValue {
-            selectService.changeValue {
-                this.handleAddItem(!isSelectBookingService)
-                saveItem(this)
-                serviceAdapter.addData(this)
-
-                if (isSelectBookingService) {
-                    selectService.value = BookServiceForm()
-                } else {
-                    bookTime.price = price
-                    selectService.value = BookServiceForm(price = price)
-                }
-            }
-        }
-    }
 
     private fun getMySalon() = launch {
         salonRepository.getSalonDetail().onEach {
             isHaveSalon.value = it.isNotEmpty()
             if (it.isNotEmpty()) {
                 salon.value = it[0]
-                Log.d(TAG, "getMySalon: ${it[0].isImageEmpty}")
                 form.changeValue {
                     salon_id = it[0].salonID
                 }
@@ -214,23 +196,11 @@ class BookNowStaffVM @Inject constructor(
     }
 
     fun onClickBySKill() {
-        form.refresh {
-            if (!isSelectBookingService) {
-                clearListSkill()
-                serviceAdapter.submit(listBookSkill)
-                isSelectBookingService = true
-            }
-        }
+
     }
 
     fun onClickByTime() {
-        form.refresh {
-            if (isSelectBookingService) {
-                clearListSkill()
-                serviceAdapter.submit(listBookTime)
-                isSelectBookingService = false
-            }
-        }
+
     }
 
     fun onClickCreateSalon() {
@@ -238,10 +208,6 @@ class BookNowStaffVM @Inject constructor(
     }
 
     val showDialogSelectService = SingleLiveEvent<Any>()
-
-    fun onClickSelectService() {
-        showDialogSelectService.refresh()
-    }
 
     fun onClickSubmit() = launch {
         form.changeValue {

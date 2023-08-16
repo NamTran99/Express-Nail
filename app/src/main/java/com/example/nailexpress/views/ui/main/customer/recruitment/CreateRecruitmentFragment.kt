@@ -10,6 +10,7 @@ import android.support.core.livedata.refresh
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -29,6 +30,7 @@ import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.repository.SalonRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
@@ -147,7 +149,7 @@ class CreateRecruitmentVM @Inject constructor(
 
     val recruitmentForm = MutableLiveData(RecruitmentForm())
     val isShowSalon = MutableLiveData(false)
-    var isLoadSalonData = false
+    private var isLoadSalonData = false
 
     init {
         collectSelectedService()
@@ -237,13 +239,6 @@ class CreateRecruitmentVM @Inject constructor(
         }
     }
 
-    fun createBooking() = launch {
-        salonForm.value?.apply {
-            salonRepository.createSalon(this).onEach {
-            }.collect()
-        }
-    }
-
     fun onClickShowSalon() {
         isShowSalon.value = true
         if (!isLoadSalonData) {
@@ -259,9 +254,11 @@ class CreateRecruitmentVM @Inject constructor(
         recruitmentForm.value?.let {
             salonForm.value?.let { salon ->
                 isShowSalon.value?.let { isShow ->
-                    recruitmentRepo.createRecruitment(it, salon, isShow)
-                    showToast(R.string.success_create_recruitment)
-                    onBackClick()
+                    recruitmentRepo.createRecruitment(it, salon, isShow)?.let{
+                        showToast(R.string.success_create_recruitment)
+                        navigateToDestination(R.id.action_createRecruitmentFragment_to_detailPostCustomerFragment, bundle = bundleOf(
+                            Constant.RECRUIMENT_ID to it), popUpToDes = R.id.navDashBoard)
+                    }
                 }
             }
         }

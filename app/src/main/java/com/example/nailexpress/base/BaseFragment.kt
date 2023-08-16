@@ -17,6 +17,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navOptions
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppSettingsOwner
 import com.example.nailexpress.datasource.AppEvent2
@@ -112,19 +113,22 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         inclusive: Boolean = false,
         popUpToDes: Int? = null
     ) {
-        val navOptionBuilder =NavOptions.Builder()
-            .setEnterAnim(R.anim.enter_anim)
-            .setExitAnim(R.anim.exit_anim)
-            .setPopEnterAnim(R.anim.pop_enter_anim)
-            .setPopExitAnim(R.anim.pop_exit_anim)
-
-        popUpToDes?.let {
-            navOptionBuilder
-                .setPopUpTo(destinationId = it, inclusive = inclusive)
+        val navOptionBuilder = navOptions{
+            anim{
+                enter= R.anim.enter_anim
+                exit = R.anim.exit_anim
+                popEnter = R.anim.pop_enter_anim
+                popExit = R.anim.pop_exit_anim
+            }
+            popUpToDes?.let {
+                popUpTo(it){
+                    this.inclusive = inclusive
+                }
+            }
         }
 
         findNavController().apply {
-            navigate(destination, bundle, navOptions = navOptionBuilder.build())
+            navigate(destination, bundle, navOptions = navOptionBuilder)
         }
     }
 

@@ -161,7 +161,7 @@
 
     <!--========Line============-->
     <style name="AppTheme.Line">
-        <item name="android:background">@color/gray07</item>
+        <item name="android:background">#E5E5E5</item>
     </style>
 
     <style name="AppTheme.Line.Horizontal">

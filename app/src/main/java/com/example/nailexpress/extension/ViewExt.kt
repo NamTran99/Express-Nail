@@ -22,7 +22,6 @@ import android.text.style.CharacterStyle
 import android.text.style.ClickableSpan
 import android.util.AttributeSet
 import android.util.DisplayMetrics
-import android.util.Log
 import android.util.TypedValue
 import android.view.*
 import android.view.animation.AccelerateDecelerateInterpolator
@@ -30,7 +29,6 @@ import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.annotation.ArrayRes
-import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.MenuRes
@@ -38,7 +36,6 @@ import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.GravityCompat
@@ -54,7 +51,6 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.functional.DecimalDigitsInputFilter
 import com.example.nailexpress.functional.UsPhoneNumberFormatter
-import com.example.nailexpress.views.widgets.LoadingCircleImage
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
@@ -630,7 +626,6 @@ fun Spinner.configSpinner(
 }
 
 fun Context.getLoadingCircleDrawable(): CircularProgressDrawable {
-    Log.d("TAG", "getLoadingCircleDrawable: NamTD8")
     val circularProgressDrawable = CircularProgressDrawable(this)
     circularProgressDrawable.strokeWidth = 10f
     circularProgressDrawable.centerRadius = 50f

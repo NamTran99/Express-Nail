@@ -1,9 +1,7 @@
 package com.example.nailexpress.views.dialog.picker
 
 import android.content.Context
-import android.icu.text.TimeZoneFormat
 import android.support.core.view.ViewScopeOwner
-import com.bumptech.glide.Glide.init
 import com.example.nailexpress.base.BaseDialog
 import com.example.nailexpress.databinding.DialogTimePickerBinding
 import com.example.nailexpress.extension.Format
@@ -33,16 +31,20 @@ class TimePickerCustomDialog(context: Context) :
                 timePicker.setInitialSelectedTime("12:00 am")
             }
             btSetUp.onClick {
-                timePicker.getCurrentlySelectedTime().let{
-                    onSubmitClick.invoke(
-                        it,
-                       it.convertTime(Format.FORMAT_TIME_1, Format.FORMAT_TIME_2)
-                    )
-                }
+                getCurrentTime(onSubmitClick)
                 dismiss()
             }
         }
         super.show()
+    }
+
+    private fun getCurrentTime(onSubmitClick: ((time_display: String, time_api: String) -> Unit)){
+        binding.timePicker.getCurrentlySelectedTime().let{
+            onSubmitClick.invoke(
+                it,
+                it.convertTime(Format.FORMAT_TIME_1, Format.FORMAT_TIME_2)
+            )
+        }
     }
 }
 

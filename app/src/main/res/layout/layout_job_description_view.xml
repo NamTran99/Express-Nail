@@ -10,7 +10,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/color_second"
-        android:textSize="@dimen/text_size_14"
         style="@style/AppTheme.TextViewResponsive.Title"
         android:textAllCaps="true"
         tools:text="@string/job_description" />

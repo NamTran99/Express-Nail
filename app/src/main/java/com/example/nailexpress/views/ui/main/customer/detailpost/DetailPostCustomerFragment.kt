@@ -7,6 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentDetailPostCustomerBinding
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.show
 import com.example.nailexpress.models.response.RecruitmentDataDTO
 import com.example.nailexpress.models.ui.main.Salon
@@ -88,7 +89,9 @@ class DetailPostCustomerFragment :
                     value = recruitmentDataDTO.booking_time
                 )
 
-                setListService(recruitmentDataDTO.skills)
+                setListService(recruitmentDataDTO.salary_type ,recruitmentDataDTO.skills)
+                setTimeTitle(recruitmentDataDTO.salary_type, recruitmentDataDTO.price.safe(), recruitmentDataDTO.unit.safe())
+
             }
             jobDescriptionView.apply {
                 description = recruitmentDataDTO.description

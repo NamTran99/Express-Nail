@@ -99,10 +99,6 @@
         <attr name="sp_title" format="string" />
     </declare-styleable>
 
-    <declare-styleable name="ServicePriceView">
-        <attr name="spv_title" format="string" />
-    </declare-styleable>
-
     <declare-styleable name="CvPictureProfile"></declare-styleable>
 
     <declare-styleable name="WorkerInfoView">

@@ -3,13 +3,13 @@ package com.example.nailexpress.extension
 import android.annotation.SuppressLint
 import com.example.nailexpress.extension.Format.DATE_PICKER
 import com.example.nailexpress.extension.Format.FORMAT_DATE_TIME_API
-import com.example.nailexpress.extension.Format.FORMAT_TIME_1
 import java.text.SimpleDateFormat
 import java.util.*
 
 object Format {
     const val DATE_PICKER = "MM/dd/yyyy"
     const val FORMAT_DATE_TIME_API = "yyyy-MM-dd HH:mm:ss"
+    const val FORMAT_DATE = "yyyy-MM-dd"
     const val FORMAT_DATE_TIME_API_2 = "yyyy-MM-dd HH:mm:ss"
     const val FORMAT_DATE_MONTH_TIME = "MMMM dd, yyyy hh:mm a"
     const val FORMAT_DATE_DISPLAY = "hh:mm a - MMMM dd yyyy"
@@ -59,9 +59,11 @@ fun String.convertUTCToLocal(
     return outputFormat.format(dateInput ?: getDateCurrent(formatOutput))
 }
 
-fun getDateCurrent(format: String = FORMAT_DATE_TIME_API): String {
+fun getDateCurrent(format: String = FORMAT_DATE_TIME_API, isUTC: Boolean = false): String {
     val timeCurrent = Calendar.getInstance().time
     val outputFormat = SimpleDateFormat(format, Locale.getDefault())
+    if(isUTC)
+        outputFormat.timeZone = TimeZone.getTimeZone("UTC")
     return outputFormat.format(timeCurrent)
 }
 

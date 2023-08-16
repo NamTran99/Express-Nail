@@ -122,7 +122,7 @@
     <string name="hint_search_area">Tìm kiếm theo khu vực</string>
     <string name="staff_infor">Thông tin thợ</string>
     <string name="staff_salary">Mức lương</string>
-    <string name="list_service">Danh sách theo dịch vụ</string>
+    <string name="list_service">Danh sách Theo dịch vụ</string>
     <string name="list_service_by_time">Danh sách theo thời gian (%s)</string>
     <string name="describe_yourself">Mô tả về bản thân</string>
     <string name="title_detail_staff">Thông tin chi tiết thợ</string>

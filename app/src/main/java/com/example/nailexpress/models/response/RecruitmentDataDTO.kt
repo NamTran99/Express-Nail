@@ -18,7 +18,7 @@ data class RecruitmentDataDTO(
     val longitude: Double? = null,
     val price: Double? = null,
     val recruitment_status: Int? = null,
-    val salary_type: Int? = null,
+    val salary_type: Int = 0,
     val salary_type_text: String? = null,
     val salon_id: Int? = null,
     val skills: List<SkillDTO>? = null,

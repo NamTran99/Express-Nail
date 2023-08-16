@@ -48,14 +48,14 @@ class RecruitmentBookingStaffRepository(
     }
 
 
-    suspend fun createRecruitment(form: RecruitmentForm, salon: Salon, isShowSalon: Boolean) {
+    suspend fun createRecruitment(form: RecruitmentForm, salon: Salon, isShowSalon: Boolean): Int? {
         form.validate()
         if(form.isShowSalon){
             salon.validate()
         }
         val imageParts =
             form.avatar.toScaleImagePart("image")
-        api.createRecruitment(
+        return api.createRecruitment(
             RequestBodyBuilder()
                 .put("title", form.title)
                 .put("booking_time", form.booking_time)
@@ -75,7 +75,7 @@ class RecruitmentBookingStaffRepository(
                 .put("salon_id", form.salon_id)
                 .putIf(form.zipcode.isNotEmpty(), "zipcode", form.zipcode)
                 .buildMultipart(), imageParts
-        ).await()
+        ).await().id
     }
 
     suspend fun getAllMyRecruitment(page: Int = 1) = flow {

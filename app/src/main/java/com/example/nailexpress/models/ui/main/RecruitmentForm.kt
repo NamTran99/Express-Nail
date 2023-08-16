@@ -2,7 +2,10 @@ package com.example.nailexpress.models.ui.main
 
 import android.content.Context
 import com.example.nailexpress.R
+import com.example.nailexpress.app.AppConfig.TIME_DEFAULT
+import com.example.nailexpress.extension.Format.FORMAT_DATE
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.getDateCurrent
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.toDateUTC
 import com.example.nailexpress.factory.TextFormatter
@@ -40,9 +43,9 @@ class RecruitmentForm(
 
     //custom
     @Transient
-    var date: String = "",
+    var date: String = getDateCurrent(FORMAT_DATE),
     @Transient
-    var time: String = "",
+    var time: String = TIME_DEFAULT,
     @Transient
     var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
     @Transient
@@ -110,13 +113,12 @@ class RecruitmentForm(
         }
     }
 
+    private fun handleBookingTime(){
+        booking_time = "$date $time".toDateUTC()
+    }
 
     override fun handleData() {
-        booking_time = if (time.isNotEmpty() && date.isNotEmpty()) {
-            "$date $time".toDateUTC()
-        } else {
-            null
-        }
+        handleBookingTime()
 
         salary_time_values = if (!isTimeSkillEmpty) {
             salaryTimeValue.handleData()

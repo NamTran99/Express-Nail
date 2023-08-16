@@ -13,6 +13,8 @@ object AppConfig {
     const val perPage = 10
     const val timeSearch = 500L //ms
 
+    const val TIME_DEFAULT = "08:00:00"
+
     const val REQUEST_CODE_SHARE_APP = 99
 
 
@@ -62,10 +64,23 @@ object SKillType {
 }
 
 // Recruitment
-object SalaryType {
-    const val Both = 0
-    const val Service = 1
-    const val Time = 2
+//object SalaryType {
+//    const val Both = 0
+//    const val Service = 1
+//    const val Time = 2
+//}
+
+enum class SalaryType(val data: Int) {
+    Both(0), Service(1), Time(2);
+
+    companion object {
+        fun getSalaryType(data: Int): SalaryType {
+            SalaryType.values().forEach {
+                if (it.data == data) return it
+            }
+            return SalaryType.Service
+        }
+    }
 }
 
 object RecruitmentStatus {

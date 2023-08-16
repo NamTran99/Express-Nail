@@ -4,17 +4,13 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
-import androidx.core.view.isVisible
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.nailexpress.R
+import com.example.nailexpress.app.SalaryType
 import com.example.nailexpress.databinding.LayoutServicePriceViewBinding
-import com.example.nailexpress.extension.toViewTypeService
+import com.example.nailexpress.extension.safe
+import com.example.nailexpress.extension.show
+import com.example.nailexpress.extension.toSalaryType
 import com.example.nailexpress.models.response.SkillDTO
-import com.example.nailexpress.models.ui.main.Skill
-import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.customer.detailpost.adapter.NamePriceServiceAdapter
-import com.example.nailexpress.views.ui.main.customer.detailpost.adapter.ViewTypeService
 
 class ServicePriceView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
@@ -25,60 +21,37 @@ class ServicePriceView @JvmOverloads constructor(
         true
     )
 
-    private lateinit var namePriceServiceAdapter: NamePriceServiceAdapter
-
-    private val gridLayoutManager: GridLayoutManager by lazy {
-        GridLayoutManager(context, NUM_OF_ROW, GridLayoutManager.VERTICAL, false)
-    }
-
-    private val linearLayoutManager: LinearLayoutManager by lazy {
-        LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-    }
-
-    var spTitle: String? = null
+    private lateinit var listServiceAdapter: NamePriceServiceAdapter
+    private lateinit var listTimeAdapter: NamePriceServiceAdapter
+    private var status: SalaryType = SalaryType.Time
         set(value) {
-            value?.let {
-                binding.tvTitle.text = it
-            }
             field = value
+            binding.apply {
+                listOf(tvTitleService, recyclerService).show(SalaryType.Service == value || value == SalaryType.Both)
+                listOf(tvTitleTime, recyclerTime).show(SalaryType.Time == value || value == SalaryType.Both)
+            }
         }
 
-    init {
-        context.theme.obtainStyledAttributes(attrs, R.styleable.ServicePriceView, 0, 0).run {
-            try {
-                val title = getString(R.styleable.ServicePriceView_spv_title) ?: Constant.EMPTY
-                with(binding) {
-                    tvTitle.apply {
-                        text = title
-                    }
-                }
-            } finally {
-                recycle()
-            }
+    fun setListService(status: Int,list: List<SkillDTO>?) {
+        this.status = SalaryType.getSalaryType(status)
+
+        val listSkillService = list.safe().filter { it.price.toSalaryType() == SalaryType.Service }
+        val listSkillTime = list.safe().filter { it.price.toSalaryType() == SalaryType.Time }
+
+        if(listSkillService.isNotEmpty()){
+            listServiceAdapter = NamePriceServiceAdapter(viewType = SalaryType.Service)
+            binding.recyclerService.adapter = listServiceAdapter
+            listServiceAdapter.setData(listSkillService)
+        }
+        if(listSkillTime.isNotEmpty()){
+            listTimeAdapter = NamePriceServiceAdapter(viewType = SalaryType.Time)
+            binding.recyclerTime.adapter = listTimeAdapter
+            listTimeAdapter.setData(listSkillTime)
         }
     }
 
-    fun setListService(list: List<SkillDTO>?) {
-        if (list.isNullOrEmpty().not()) {
-            list?.firstOrNull()?.price?.toViewTypeService()?.let { viewTypeService ->
-                binding.tvTitle.apply {
-                    text = when (viewTypeService) {
-                        ViewTypeService.Name -> context.getString(R.string.service_can_do)
-                        ViewTypeService.NameAndPrice -> context.getString(R.string.list_service)
-                    }
-                }
-                namePriceServiceAdapter = NamePriceServiceAdapter(viewType = viewTypeService)
-                binding.recyclerView.apply {
-                    layoutManager = when (viewTypeService) {
-                        ViewTypeService.Name -> gridLayoutManager
-                        ViewTypeService.NameAndPrice -> linearLayoutManager
-                    }
-                    adapter = namePriceServiceAdapter
-                }
-                namePriceServiceAdapter.setData(list)
-            }
-
-        }
+    fun setTimeTitle(content: String){
+        binding.tvTitleTime.text = "Danh sách Theo thời gian ($content)"
     }
 
     companion object {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.view.isVisible
 import com.example.nailexpress.R
+import com.example.nailexpress.app.SalaryType
 import com.example.nailexpress.databinding.LayoutJobInfoBinding
 import com.example.nailexpress.extension.Format.FORMAT_DATE_DISPLAY
 import com.example.nailexpress.extension.convertUTCToLocal
@@ -21,6 +22,7 @@ class JobInfoView @JvmOverloads constructor(
         LayoutInflater.from(context), this, true
     )
 
+    val textFormatter  = TextFormatter(context)
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.JobInfoView, 0, 0).run {
             try {
@@ -95,9 +97,17 @@ class JobInfoView @JvmOverloads constructor(
         }
     }
 
-    fun setListService(list: List<SkillDTO>?) {
+    fun setListService(salaryType: Int, list: List<SkillDTO>?) {
         binding.servicePriceView.apply {
-            setListService(list)
+            setListService(salaryType, list)
+        }
+    }
+
+    fun setTimeTitle(salaryType: Int, price: Double, unit: Int){
+        binding.servicePriceView.apply {
+            if(SalaryType.getSalaryType(salaryType) != SalaryType.Service){
+                setTimeTitle(textFormatter.displaySalary(price,unit))
+            }
         }
     }
 }

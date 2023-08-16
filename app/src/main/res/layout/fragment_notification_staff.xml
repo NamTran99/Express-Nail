@@ -26,6 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:tbm_isShowOptionMenu="false"
+                app:tbm_isShowBack="false"
                 app:tbm_title="@string/lbl_notification" />
 
             <androidx.recyclerview.widget.RecyclerView

@@ -1,10 +1,6 @@
 package com.example.nailexpress.views.dialog.picker
 
 import android.app.DatePickerDialog
-import android.content.DialogInterface
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
-import android.view.Display
 import android.view.View
 import android.view.WindowManager
 import android.widget.DatePicker
@@ -16,7 +12,8 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
 import com.example.nailexpress.extension.toDateWithFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Calendar
+import java.util.Locale
 
 class DatePickerDialog(private val activity: BaseActivity<*>) :
     DatePickerDialog(activity, R.style.DialogTheme, null, 0, 0, 0),
@@ -52,9 +49,10 @@ class DatePickerDialog(private val activity: BaseActivity<*>) :
      */
 
     var disPlayFormat = FORMAT_DATE_DISPLAY
-    fun setDisplayFormat(form: String){
+    fun setDisplayFormat(form: String) {
         disPlayFormat = form
     }
+
     fun setDisableFutureDates(disableFutureDates: Boolean) {
         mDisableFutureDate = disableFutureDates
     }
@@ -63,7 +61,7 @@ class DatePickerDialog(private val activity: BaseActivity<*>) :
         mDisablePastDate = disablePastDates
     }
 
-    var mEnableDisplay = true
+    private var mEnableDisplay = true
 
     fun setupClickWithView(view: View, enableDisplay: Boolean = true) {
         mEnableDisplay = enableDisplay
@@ -88,7 +86,7 @@ class DatePickerDialog(private val activity: BaseActivity<*>) :
     }
 
     private var positiveText: Int? = null
-    fun setPositiveButtonText(text: Int){
+    fun setPositiveButtonText(text: Int) {
         positiveText = text
     }
 
@@ -143,7 +141,7 @@ class DatePickerDialog(private val activity: BaseActivity<*>) :
             WindowManager.LayoutParams.WRAP_CONTENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
-        positiveText?.let{
+        positiveText?.let {
             datePickerDialog.getButton(DatePickerDialog.BUTTON_POSITIVE).setText(it)
         }
     }
@@ -151,7 +149,7 @@ class DatePickerDialog(private val activity: BaseActivity<*>) :
     private fun display(date: String, dateTag: String = "") {
         when (mView) {
             is TextView -> {
-                if(mEnableDisplay){
+                if (mEnableDisplay) {
                     (mView as TextView).text = date
                 }
                 (mView as TextView).tag = dateTag

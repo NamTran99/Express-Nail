@@ -7,12 +7,13 @@
 
     <TextView
         android:id="@+id/titleJobInfo"
-        style="@style/AppTheme.TextViewResponsive"
+        style="@style/AppTheme.TextViewResponsive.Title"
+        android:textAllCaps="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textStyle="bold"
         android:text="@string/job_information"
         android:textColor="@color/color_second"
-        android:textSize="@dimen/text_size_14"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,39 +78,49 @@
 
     <com.example.nailexpress.views.widgets.ItemInfo2LineView
         android:id="@+id/itemExp"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_14"
         app:iil_icon="@drawable/ic_bag_exp"
         app:iil_title="@string/experience"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layoutLocation" />
 
     <com.example.nailexpress.views.widgets.ItemInfo2LineView
         android:id="@+id/itemGender"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:iil_icon="@drawable/ic_user_gender"
         app:iil_title="@string/gender"
+        android:paddingHorizontal="@dimen/size_10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guidelineMid"
         app:layout_constraintTop_toTopOf="@+id/itemExp" />
 
     <com.example.nailexpress.views.widgets.ItemInfo2LineView
         android:id="@+id/itemSalary"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_18"
         app:iil_icon="@drawable/ic_salary_dollar"
         app:iil_title="@string/salary"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toStartOf="@+id/guidelineMid"
         app:layout_constraintStart_toStartOf="@id/itemExp"
         app:layout_constraintTop_toBottomOf="@id/itemExp" />
 
     <com.example.nailexpress.views.widgets.ItemInfo2LineView
         android:id="@+id/itemTime"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
+        android:paddingHorizontal="@dimen/size_10"
         android:layout_height="wrap_content"
         app:iil_icon="@drawable/ic_clock_2"
         app:iil_title="@string/time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/guidelineMid"
         app:layout_constraintTop_toBottomOf="@id/itemGender"
         app:layout_constraintTop_toTopOf="@+id/itemSalary" />
@@ -119,9 +130,9 @@
         style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/size_6"
         android:layout_marginTop="@dimen/size_9"
         android:drawablePadding="@dimen/size_5"
+        android:layout_marginStart="@dimen/size_20"
         android:text="@string/detail_services"
         android:textColor="@color/color_second"
         android:textSize="@dimen/text_size_12"
@@ -133,7 +144,6 @@
         android:id="@+id/servicePriceView"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_5"
         android:layout_marginTop="@dimen/size_8"
         android:background="@drawable/bg_gray_f7f7f7_corner_5"
         app:layout_constraintEnd_toEndOf="parent"
