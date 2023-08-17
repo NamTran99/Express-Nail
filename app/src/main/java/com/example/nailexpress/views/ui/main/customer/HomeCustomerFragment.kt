@@ -45,7 +45,7 @@ class HomeCustomerFragment :
         }
 
         viewModel.callbackOpenCall = {
-            DriverUtils.message(requireActivity(), it)
+            DriverUtils.call(requireActivity(), it)
         }
     }
 
@@ -60,7 +60,7 @@ class HomeCustomerFragment :
         navigateToDestination(R.id.fragmentFilterCustomer)
     }
 
-    fun updateTextNotification(str: String){
+    fun updateTextNotification(str: String) {
         binding.header.updateTextNotification(str)
     }
 }
@@ -82,6 +82,7 @@ class HomeCustomerVM @Inject constructor(
     val bookingAdapter = BookingCVAdapter(this)
     var searchText = ""
     var tabSelect = MutableLiveData(TAB_STAFF)
+    var showCallPhone: ((String) -> Unit)? = null
 
     init {
         title.value = getString(R.string.home_des_1)
@@ -105,11 +106,11 @@ class HomeCustomerVM @Inject constructor(
     }
 
     override fun clickOpenMess(phone: String) {
-        callbackOpenCall?.invoke(phone)
+        DriverUtils.message(getApplication(),phone)
     }
 
     override fun clickOpenCall(phone: String) {
-        DriverUtils.call(getApplication(), phone)
+        callbackOpenCall?.invoke(phone)
     }
 
     override val onClickViewDetail: (Int) -> Unit = {
