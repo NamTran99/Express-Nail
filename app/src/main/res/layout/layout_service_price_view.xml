@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/tvTitleService"
-        style="@style/Text12BlackNormal"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"
@@ -27,7 +27,7 @@
 
     <TextView
         android:id="@+id/tvTitleTime"
-        style="@style/Text12BlackNormal"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_12"

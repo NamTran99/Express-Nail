@@ -4,5 +4,6 @@
     android:id="@+id/image"
     android:layout_width="@dimen/size_140"
     android:layout_height="@dimen/size_100"
+    android:layout_marginEnd="@dimen/size_10"
     android:scaleType="centerCrop"
     tools:ignore="ContentDescription" />

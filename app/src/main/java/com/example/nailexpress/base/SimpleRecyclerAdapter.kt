@@ -50,6 +50,16 @@ abstract class SimpleSelectorRecyclerAdapter<T : Any, VB : ViewDataBinding> :
             }
         }
     }
+
+    fun selectMore(item: T){
+        mitems.forEachIndexed { index, roleOption ->
+            roleOption as ISelector<*>
+            if (roleOption == item) {
+                roleOption.isCheck = !roleOption.isCheck
+                notifyItemChanged(index)
+            }
+        }
+    }
 }
 
 //abstract class SimpleViewPagerAdapter<T: Any, V : ViewBinding>(protected val view: ViewPager2) :

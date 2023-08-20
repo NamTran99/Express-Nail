@@ -193,7 +193,6 @@
     <string name="book_des_2">Chọn loại đặt thợ</string>
     <string name="book_type_1">Theo dịch vụ</string>
     <string name="book_type_2">Theo thời gian</string>
-    <string name="book_des_3">Danh sách dịch vụ</string>
     <string name="book_des_4">Mô tả thêm (không bắt buộc)</string>
     <string name="hint_des_book">Nhập mô tả cụ thể công việc</string>
     <string name="book_des_5">Thông tin liên hệ của bạn</string>

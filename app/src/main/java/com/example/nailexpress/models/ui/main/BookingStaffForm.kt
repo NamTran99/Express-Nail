@@ -1,6 +1,9 @@
 package com.example.nailexpress.models.ui.main
 
+import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.extension.Format
 import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.getDateCurrent
 import com.example.nailexpress.extension.toDateUTC
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
@@ -11,20 +14,20 @@ data class BookingStaffForm(
     var contact_phone: String = "",
     var description: String = "",
     var address: String = "",
-    var state: String = "",
     var longitude: String = "",
-    var salon_id: Int = 0,
-    var booking_by_skill: String? = null,
+    var salon_id: Int? = null,
+    var state: String = "",
     var city: String = "",
     var zipcode: Int? = null,
     var latitude: String = "",
+    var booking_by_skill: String? = null,
     var booking_by_time: String? = null,
+    var work_time: String? = null,
     var booking_time_values: String? = null,
     var booking_time: String? = null,
     // custom
+    @Transient var adapterSelectListItem: List<Skill> = listOf(),
     @Transient var isBookNow: Boolean = true,
-    @Transient var listBookSkill: MutableList<BookServiceForm> = mutableListOf(),
-    @Transient var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
     @Transient var isVisibleRecycler: Boolean = false,
     @Transient var isSelectBookingService: Boolean = true,
     @Transient var isSkillEmpty: Boolean = false,
@@ -32,61 +35,48 @@ data class BookingStaffForm(
     @Transient
     var bookTime: BookingTime = BookingTime(),
     @Transient
-    var time: String = "",
+    var date: String = getDateCurrent(Format.FORMAT_DATE),
     @Transient
-    var date: String = "",
+    var time: String = AppConfig.TIME_DEFAULT,
 ) : Form {
     override fun validate() {
         handleData()
     }
 
-
-
-    fun clearListSkill() {
-        listBookTime.clear()
-        listBookSkill.clear()
-        booking_by_skill = ""
-        booking_by_time = ""
+    private fun handleBookingTime() {
+        booking_time = "$date $time".toDateUTC()
     }
 
-    fun saveItem(item: BookServiceForm) {
-        if (isSelectBookingService) {
-            listBookSkill.add(item)
-        } else {
-            listBookTime.add(item)
+    private fun handleAdapterItems(){
+        val list = adapterSelectListItem.filter {
+            it.isCheck
+        }.map {
+            BookServiceForm(it, isTimeType = !isSelectBookingService)
         }
-    }
 
-    fun removeItem(item: BookServiceForm) {
-        if (isSelectBookingService) {
-            listBookSkill.remove(item)
-        } else {
-            listBookTime.remove(item)
+        if(isSelectBookingService){
+            booking_by_skill = list.toString()
+        }else{
+            booking_by_time = list.toString()
         }
     }
 
     override fun handleData() {
-        booking_time = if (time.isNotEmpty() && date.isNotEmpty()) {
-            "$date $time".toDateUTC()
-        } else {
-            null
-        }
+        handleAdapterItems()
+        handleBookingTime()
 
-        booking_time_values = if(!isSkillByTimeEmpty){
-            bookTime.handleData()
-            bookTime.toString()
+        if(isSelectBookingService){
+            work_time = null
         }else{
-            null
+
         }
 
-        booking_by_skill = if (listBookSkill.isNotEmpty()) listBookSkill.toString() else null
-        booking_by_time = if (listBookTime.isNotEmpty()) listBookTime.toString() else null
         contact_phone = contact_phone.convertPhoneToNormalFormat()
     }
 }
 
 data class BookingTime(
-    var unit: String ?= null,
+    var unit: String? = null,
     var price: String? = null,
     @Transient var unitIndex: Int = 0,
 ) {
@@ -116,6 +106,11 @@ data class BookServiceForm(
         skill_name = service.name
     }
 
+    constructor(service: Skill, isTimeType: Boolean) : this() {
+        skill_name = service.name
+        isTypeTime = isTimeType
+    }
+
     fun handleAddItem(isTimeType: Boolean): BookServiceForm {
         isTypeTime = isTimeType
         price_display = "$${price}"
@@ -123,7 +118,7 @@ data class BookServiceForm(
     }
 
     override fun toString(): String {
-        if(isTypeTime){
+        if (isTypeTime) {
             price = null
             unit = null
         }

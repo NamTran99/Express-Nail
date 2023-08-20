@@ -6,13 +6,13 @@ import android.support.core.flow.stateFlowOf
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
-import android.util.Log
 import androidx.core.os.bundleOf
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
+import com.example.nailexpress.app.SalaryType
 import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
@@ -36,7 +36,6 @@ import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.BookSelectServiceAdapter
-import com.example.nailexpress.views.ui.main.staff.adapter.IBookServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.ISelectServiceAdapter
 import com.google.android.libraries.places.api.model.Place
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,7 +51,7 @@ class BookStaffFragment() :
     BaseFragment<FragmentBookStaffNowBinding, BookNowStaffVM>(layoutId = R.layout.fragment_book_staff_now),
     TimePickerCustomDialogOwner {
 
-    override val viewModel: BookNowStaffVM by activityViewModels()
+    override val viewModel: BookNowStaffVM by viewModels()
     private val selectDateDialog by lazy { DatePickerDialog(appActivity) }
 
     private val form get() = viewModel.form
@@ -115,7 +114,7 @@ class BookNowStaffVM @Inject constructor(
     private val cvRepository: CvRepository,
     private val appEvent2: AppEvent2
 ) :
-    BaseViewModel(application), IActionTopBar by ActionTopBarImpl(), IBookServiceAdapter,
+    BaseViewModel(application), IActionTopBar by ActionTopBarImpl(),
     ISalonLayout, ISelectServiceAdapter {
 
     init {
@@ -139,12 +138,6 @@ class BookNowStaffVM @Inject constructor(
 
     private var listSkillService = listOf<Skill>()
     private var listSkillTime = listOf<Skill>()
-
-//    val onSelectTimeType: ((Int) -> Unit) = {
-//        form.changeValue {
-//            bookTime.unitIndex = it
-//        }
-//    }
 
     fun updateTitle(isBookNow: Boolean) {
         form.refresh {
@@ -170,13 +163,83 @@ class BookNowStaffVM @Inject constructor(
         }
     }
 
+
+
+    fun onClickBySKill() {
+        form.refresh {
+            isSelectBookingService = true
+        }
+        serviceAdapter.submit(listSkillService)
+    }
+
+    fun onClickByTime() {
+        form.refresh {
+            isSelectBookingService = false
+        }
+        serviceAdapter.submit(listSkillTime)
+    }
+
+    fun onClickCreateSalon() {
+        navigateToDestination(R.id.action_bookNowStaffFragment_to_createSalonFragment)
+    }
+
+    fun onClickSubmit() = launch {
+        form.changeValue {
+            adapterSelectListItem = serviceAdapter.mitems
+        }
+
+        form.value?.let {
+            bookingStaffRepository.bookingStaff(it).onEach { id ->
+                showToast(R.string.success_booking_staff)
+                navigateToDestination(
+                    R.id.action_bookNowStaffFragment_to_bookingDetailFragment,
+                    bundleOf(Constant.BOOKING_ID to id),
+                    popUpToDes = R.id.bookNowStaffFragment,
+                    inclusive = true
+                )
+            }.collect()
+        }
+    }
+
+    // for dialog
+    val selectedServiceDialog = stateFlowOf(Skill())
+    val dissmiss: SingleLiveEvent<Any> = SingleLiveEvent()
+    override val onItemSelect = { service: Skill ->
+        selectedServiceDialog.value = service
+        dissmiss.value = Any()
+    }
+
+    private fun setUpServicesFirstTimeLoading(cv: Cv){
+        when(cv.salaryType){
+            SalaryType.Service.data, SalaryType.Both.data -> {
+                onClickBySKill()
+            }
+            SalaryType.Time.data -> {
+                onClickByTime()
+            }
+        }
+    }
+
     private fun collectSelectedService() {
         appEvent2.selectedService.drop(1).onEach {
             selectService.value = BookServiceForm(it)
         }.launchIn(viewModelScope)
     }
 
-
+    private fun getCVByID() = launch {
+        form.value?.apply {
+            cvRepository.getCvDetail(curriculum_vitae_id).onEach {
+                listSkillService = it.listSkill.filter {
+                    it.isService
+                }
+                listSkillTime = it.listSkill.filter {
+                    !it.isService
+                }
+                staffCV.value = it
+                setUpServicesFirstTimeLoading(it)
+            }.collect()
+        }
+    }
     private fun getMySalon() = launch {
         salonRepository.getSalonDetail().onEach {
             isHaveSalon.value = it.isNotEmpty()
@@ -190,86 +253,9 @@ class BookNowStaffVM @Inject constructor(
         }.collect()
     }
 
-    fun onClickBySKill() {
-        Log.d(TAG, "onClickBySKill: NamTD8 1")
-        serviceAdapter.submit(listSkillService)
-    }
-
-    fun onClickByTime() {
-        Log.d(TAG, "onClickBySKill: NamTD8 2")
-        serviceAdapter.submit(listSkillTime)
-    }
-
-    fun onClickCreateSalon() {
-        navigateToDestination(R.id.action_bookNowStaffFragment_to_createSalonFragment)
-    }
-
-    fun onClickSubmit() = launch {
-        form.changeValue {
-            handleData()
-        }?.let {
-            bookingStaffRepository.bookingStaff(it).onEach { id ->
-                showToast(R.string.success_booking_staff)
-                navigateToDestination(
-                    R.id.action_bookNowStaffFragment_to_bookingDetailFragment,
-                    bundleOf(Constant.BOOKING_ID to id),
-                    popUpToDes = R.id.bookNowStaffFragment,
-                    inclusive = true
-                )
-            }.collect()
-        }
-    }
-
-    override val onClickRemoveService: (BookServiceForm) -> Unit
-        get() = {
-            form.changeValue {
-                removeItem(it)
-            }
-        }
-
-    override val onVisibleRecycler: (Boolean) -> Unit
-        get() = {
-            form.refresh {
-                isVisibleRecycler = it
-            }
-        }
-
-    // for dialog
-    val selectedServiceDialog = stateFlowOf(Skill())
-    var textSearch = ""
-    val dissmiss: SingleLiveEvent<Any> = SingleLiveEvent()
-    override val onItemSelect = { service: Skill ->
-        selectedServiceDialog.value = service
-        dissmiss.value = Any()
-    }
-    private fun getCVByID() = launch {
-        form.value?.apply {
-            cvRepository.getCvDetail(curriculum_vitae_id).onEach {
-                listSkillService = it.listSkill.filter {
-                    it.isService
-                }
-
-                listSkillTime = it.listSkill.filter {
-                    !it.isService
-                }
-                staffCV.value = it
-            }.collect()
-        }
-    }
-
-//    fun filterTextSearch() {
-//        form.changeValue {
-//            adapter.addAll(listSkill.filter { it.name.contains(textSearch) && it.isSKill == isSelectBookingService })
-//            isEmptyData.value = adapter.itemCount == 0
-//        }
-//    }
-
     override val onLoadMoreListener: ((Int, Int) -> Unit) = { page: Int, _ ->
         // bo qua
     }
 
-//    val onSearchChange: ((text: String) -> Unit) = {
-//        textSearch = it
-//        filterTextSearch()
-//    }
+
 }

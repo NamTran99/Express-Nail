@@ -195,6 +195,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
             android:text="@{action.salon.description}"
+            app:visibility="@{action.salon.showDes}"
             android:textColor="@color/color_7e7e7e"
             tools:text="@string/salon_des" />
 

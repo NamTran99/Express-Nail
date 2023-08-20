@@ -62,6 +62,7 @@
                     tools:text="Khu vuc lam viec" />
 
                 <TextView
+                    android:visibility="gone"
                     android:id="@+id/tvWorkingType"
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
@@ -121,7 +122,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    style="AppTheme.Button.StyleButton"
+                    style="@style/AppTheme.Button"
                     android:backgroundTint="#FFD8CA"
                     app:cornerRadius="@dimen/size_50"
                     android:textSize="@dimen/text_size_10"

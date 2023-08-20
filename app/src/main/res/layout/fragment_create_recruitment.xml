@@ -78,7 +78,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_15"
-                    android:text="Thời gian đặt" />
+                    android:text="@string/booking_time" />
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/lvSelectDate"
@@ -293,7 +293,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
-                    android:text="@string/book_des_3"
+                    android:text="@string/list_services"
                     app:visibility="@{action.recruitmentForm.visibleRecycler}" />
 
                 <androidx.recyclerview.widget.RecyclerView

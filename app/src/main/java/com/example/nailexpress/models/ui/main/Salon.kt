@@ -11,6 +11,7 @@ data class Salon(
     var have_place: Int = 0,
     var customer_skin_color: Int = 0,//0: all, 1:white, 2:black, 3 xi (default 0)
     var description: String = "",
+    var isShowDes: Boolean = false,
     var address: String = "",
     var latitude: Double = 0.0,
     var longitude: Double = 0.0,

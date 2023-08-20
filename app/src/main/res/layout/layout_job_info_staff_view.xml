@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Text14PrimaryAnuphan"
+        style="@style/AppTheme.TextViewResponsive.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="@string/job_information" />
 
     <TextView
         android:id="@+id/tvCreatedTime"
-        style="@style/Text12Gray6F6F6FAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_8"
@@ -23,7 +23,7 @@
 
     <TextView
         android:id="@+id/tvTitleBookingType"
-        style="@style/Text14BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_12"
@@ -31,7 +31,7 @@
 
     <TextView
         android:id="@+id/tvBookingType"
-        style="@style/Text14BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_10"
@@ -43,7 +43,7 @@
 
     <TextView
         android:id="@+id/tvTitleBookingTime"
-        style="@style/Text14BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_16"
@@ -67,7 +67,7 @@
 
         <TextView
             android:id="@+id/tvBookingTime"
-            style="@style/Text14BlackAnuphan"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_14"

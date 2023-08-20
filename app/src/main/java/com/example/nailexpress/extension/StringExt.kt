@@ -1,14 +1,8 @@
 package com.example.nailexpress.extension
 
-import android.content.Context
 import android.telephony.PhoneNumberUtils
 import android.text.Editable
 import android.text.SpannableStringBuilder
-import androidx.annotation.StringRes
-import androidx.core.net.toUri
-import com.example.nailexpress.R
-import com.example.nailexpress.base.MainApplication
-import okhttp3.MultipartBody
 import java.net.URLDecoder
 
 fun Int.formatTime(): String {
@@ -44,12 +38,12 @@ fun String.convertPhoneToNormalFormat(): String {
         .replace(" ", "").trim()
 }
 
-fun String.formatPhoneUSCustom(): String {
-    return if (this.isEmpty()) ""
-    else formatUsNumberCustom(SpannableStringBuilder(this))
+fun String.formatPhoneUSCustom(default: String = ""): String {
+    return if (this.isEmpty()) default
+    else formatUsNumberCustom(SpannableStringBuilder(this), default)
 }
 
-fun formatUsNumberCustom(text: Editable): String {
+fun formatUsNumberCustom(text: Editable, default: String = ""): String {
     val formattedString = StringBuilder()
     var p = 0
     while (p < text.length) {
@@ -98,7 +92,11 @@ fun formatUsNumberCustom(text: Editable): String {
 
     text.clear()
     text.append(formattedString.toString())
-    return formattedString.toString()
+    return formattedString.toString().emptyDefaultDisplay(default)
+}
+
+fun String.emptyDefaultDisplay(default: String = ""): String{
+    return this.ifBlank { return default }
 }
 
 fun String.formatUsNumberCustom(): String {

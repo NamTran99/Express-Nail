@@ -4,7 +4,6 @@ import android.app.Application
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.fragment.navArgs
 import com.example.nailexpress.R
 import com.example.nailexpress.base.ActionTopBarImpl
 import com.example.nailexpress.base.BaseFragment
@@ -32,7 +31,12 @@ class DetailStaffFragment() :
         viewModel.getDetailStaff(arguments?.getInt(Constant.STAFF_ID).safe())
         binding.apply {
             action = viewModel
+
+            viewModel.detailCV.bind{
+                tvTimeTitle.text = getString(R.string.list_service_by_time, it.priceFormat)
+            }
         }
+
     }
 
 }
@@ -50,13 +54,17 @@ class DetailStaffVM @Inject constructor(app: Application, val cvRepository: CvRe
         initTopBarAction(this)
     }
 
+    val skillByServiceAdapter = DetailServiceAdapter()
+    val skillByTimeAdapter = DetailServiceAdapter()
     val adapter = DetailServiceAdapter()
 
     fun getDetailStaff(id: Int) = launch {
         cvRepository.getCvDetail(id).onEach {
             cvId = it.id
             detailCV.value = it
-            adapter.submit(it.listSkill)
+
+            skillByServiceAdapter.submit(it.listSkillByService)
+            skillByTimeAdapter.submit(it.listSkillByTime)
         }.collect()
     }
 

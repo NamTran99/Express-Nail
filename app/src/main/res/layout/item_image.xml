@@ -4,6 +4,7 @@
 
     <com.example.nailexpress.views.widgets.LoadingImageView
         android:id="@+id/image"
+        android:layout_marginEnd="@dimen/size_10"
         android:layout_width="@dimen/size_100"
         android:layout_height="@dimen/size_100"
         android:layout_marginTop="@dimen/size_10"/>

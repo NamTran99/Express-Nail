@@ -6,7 +6,7 @@
 
     <TextView
         android:id="@+id/tvName"
-        style="@style/Text12BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@+id/guideline"
@@ -22,7 +22,7 @@
 
     <TextView
         android:id="@+id/tvPrice"
-        style="@style/Text12BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="@dimen/size_0"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"

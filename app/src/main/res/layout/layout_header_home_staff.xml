@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/Widget.AppCompat.TextView"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_50"

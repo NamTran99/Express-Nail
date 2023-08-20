@@ -216,40 +216,46 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/list_service"
-                                app:visibility="@{!action.detailCV.skillEmpty}" />
+                                app:visibility = "@{action.detailCV.salaryType != 2}"/>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvService"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:adapter="@{action.adapter}"
+                                android:adapter="@{action.skillByServiceAdapter}"
                                 android:orientation="vertical"
                                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/item_list_service" />
+                                tools:listitem="@layout/item_list_service"
+                                app:visibility = "@{action.detailCV.salaryType != 2}"
+                                />
 
                             <TextView
+                                android:id="@+id/tvTimeTitle"
                                 style="@style/AppTheme.TextViewResponsive.Title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 tools:text="@string/list_service_by_time"
                                 android:layout_marginTop="@dimen/size_10"
-                                app:visibility="@{!action.detailCV.skillEmpty}" />
+                                app:visibility = "@{action.detailCV.salaryType != 1}"/>
 
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/rvServiceByTime"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:adapter="@{action.adapter}"
+                                android:adapter="@{action.skillByTimeAdapter}"
                                 android:orientation="vertical"
-                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                                tools:listitem="@layout/item_list_service" />
+                                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                                app:spanCount="2"
+                                tools:listitem="@layout/item_list_service"
+                                app:visibility = "@{action.detailCV.salaryType != 1}"/>
 
                             <TextView
                                 style="@style/AppTheme.TextViewResponsive.Title"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_20"
-                                android:text="@string/describe_yourself" />
+                                android:text="@string/describe_yourself"
+                                app:visibility = "@{action.detailCV.showDes}"/>
 
                             <TextView
                                 android:id="@+id/tvDes"
@@ -257,7 +263,9 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="@dimen/size_10"
-                                android:text="@{action.detailCV.description}" />
+                                android:text="@{action.detailCV.description}"
+                                android:layout_marginBottom="@dimen/size_10"
+                                app:visibility = "@{action.detailCV.showDes}"/>
                         </LinearLayout>
                     </LinearLayout>
 

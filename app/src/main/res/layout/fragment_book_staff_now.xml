@@ -189,14 +189,18 @@
                     android:layout_marginTop="10dp"
                     android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:drawableStart="@drawable/ic_clock"
-                    android:hint="Nhập số giờ bạn muốn thuê" />
+                    android:text="@={action.form.work_time}"
+                    android:hint="Nhập số giờ bạn muốn thuê"
+                    android:inputType="number"
+                    app:visibility  = "@{!action.form.selectBookingService}"
+                    />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
-                    android:text="@string/book_des_3" />
+                    android:text="@string/list_services" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
@@ -205,9 +209,8 @@
                     android:adapter="@{action.serviceAdapter}"
                     android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:orientation="vertical"
-                    android:paddingTop="@dimen/size_10"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:listitem="@layout/item_select_service" />
+                    tools:listitem="@layout/item_book_select_service" />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
@@ -321,8 +324,7 @@
 
                 <View
                     style="@style/AppTheme.Line.Horizontal"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:background="@color/gray14" />
+                    android:layout_marginTop="@dimen/size_10" />
 
                 <include
                     layout="@layout/layout_salon_infor"

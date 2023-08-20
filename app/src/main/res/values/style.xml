@@ -203,16 +203,6 @@
         <item name="cornerSizeBottomRight">5dp</item>
     </style>
 
-    <style name="Text12BlackNormal">
-        <item name="android:textSize">@dimen/text_size_12</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
-    <style name="Text12BlackAnuphan">
-        <item name="android:textSize">@dimen/text_size_12</item>
-        <item name="android:textColor">@color/black</item>
-    </style>
-
     <style name="AppSearchView" parent="Widget.AppCompat.SearchView">
         <item name="android:textSize">12sp</item>
     </style>

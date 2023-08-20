@@ -143,6 +143,7 @@
                         android:layout_gravity="center"
                         android:drawablePadding="@dimen/size_10"
                         android:gravity="center"
+                        style="@style/AppTheme.TextViewResponsive"
                         android:text="@string/delete_account"
                         android:textColor="@color/color_primary"
                         app:drawableStartCompat="@drawable/ic_garbage" />

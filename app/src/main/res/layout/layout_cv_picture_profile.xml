@@ -28,7 +28,7 @@
 
     <TextView
         android:id="@+id/tvGender"
-        style="@style/Text12BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/size_4"
@@ -39,7 +39,8 @@
 
     <TextView
         android:id="@+id/tvNickName"
-        style="@style/Text10PrimaryAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
+        android:textColor="@color/color_primary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/size_4"

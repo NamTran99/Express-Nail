@@ -15,6 +15,7 @@ class Cv(
     val year_exper: Int = 0,
     val year_exper_display: String = "",// 2 năm
     val description: String = "",
+    val isShowDes: Boolean = false,
     val phone: String = "",
     val listSkill: List<Skill> = listOf(),
     val state: String = "",
@@ -23,7 +24,9 @@ class Cv(
     val salaryType: Int = 0,
     val price: Double? = null,
     val unit: Int? = null,
-    val address: String? = ""
+    val address: String? = "",
+    val listSkillByService: List<Skill> = listOf(),
+    val listSkillByTime : List<Skill> = listOf(),
     // custom
 )
 

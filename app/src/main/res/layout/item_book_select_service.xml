@@ -5,9 +5,10 @@
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/size_10"
-        android:background="@color/white"
+        android:layout_marginTop="@dimen/size_10"
         android:gravity="center"
+        android:paddingVertical="@dimen/size_10"
+        android:background="?selectableItemBackground"
         android:orientation="horizontal"
         android:paddingHorizontal="@dimen/size_20">
 
@@ -28,12 +29,16 @@
             android:layout_weight="1"
             tools:text="$100.00" />
 
-        <CheckBox
+        <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
+            android:background="@null"
+            android:clickable="false"
             android:button="@drawable/bg_radio_button"
-            android:paddingHorizontal="@dimen/size_10" />
+ />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 

@@ -70,7 +70,6 @@ class BookingCustomerDetailFragment :
             }
             infoUserBookWorkerView.apply {
                 customerName = bookingDTO.cv.fullname
-                setPhoneNumberFormatPhoneUSCustom(bookingDTO.cv.phone)
             }
         }
     }
@@ -84,6 +83,10 @@ class BookingCustomerDetailFragment :
                     phoneNumber = salon.phoneDisplay
                     location = salon.address
                 }
+                infoUserBookWorkerView.apply {
+                    setPhoneNumberFormatPhoneUSCustom(salon.phoneDisplay)
+                }
+
                 salonActiveTime.iilValue = salon.experience_years_display
                 majorityCustomerView.iilValue = salon.skinColorDisplay
                 workerAccommodation.iilValue = salon.display_have_place

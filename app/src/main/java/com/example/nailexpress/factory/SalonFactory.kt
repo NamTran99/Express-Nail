@@ -19,6 +19,7 @@ class SalonFactory(val textFormatter: TextFormatter) {
             customer_skin_color = salon.customer_skin_color.safe(),
             phoneDisplay = salon.phone.safe().formatPhoneUSCustom(),
             description = salon.description.safe(),
+            isShowDes = salon.description.isNullOrBlank().not(),
             latitude = salon.latitude.safe(),
             longitude = salon.longitude.safe(),
             city = salon.city.safe(),

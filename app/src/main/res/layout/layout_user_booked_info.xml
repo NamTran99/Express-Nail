@@ -8,7 +8,7 @@
 
     <TextView
         android:id="@+id/tvExpireTime"
-        style="@style/Text12BlackAnuphan"
+        style="@style/AppTheme.TextViewResponsive"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_primary_corner_top_5"
@@ -35,33 +35,36 @@
 
             <TextView
                 android:id="@+id/tvId"
-                style="@style/Text14PrimaryAnuphan"
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/statusNow"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="#ID: 123456" />
 
             <TextView
                 android:id="@+id/statusNow"
-                style="@style/Text10WhiteAnuphan"
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_8"
+                android:layout_marginStart="@dimen/size_15"
                 android:background="@drawable/bg_primary_corner_5"
-                android:padding="@dimen/size_2"
+                android:padding="@dimen/size_4"
                 android:text="@string/now"
-                app:layout_constraintBottom_toBottomOf="@id/tvId"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tvId"
-                app:layout_constraintTop_toTopOf="@id/tvId" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/statusBooking"
-                style="@style/Text12OrangeED970EAnuphan"
+                style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawablePadding="@dimen/size_4"
                 app:drawableStartCompat="@drawable/ic_dot_5_orange"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Vui lòng xác nhận đơn" />
@@ -69,10 +72,12 @@
 
         <TextView
             android:id="@+id/tvName"
-            style="@style/Text17BlackAnuphan"
+            style="@style/AppTheme.TextViewResponsive.Title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_4"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size_14"
             android:textFontWeight="500"
             android:textStyle="bold"
             tools:targetApi="p"
@@ -80,7 +85,7 @@
 
         <TextView
             android:id="@+id/tvPhoneNumber"
-            style="@style/Text14BlackAnuphan"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_8"
@@ -90,7 +95,7 @@
 
         <TextView
             android:id="@+id/tvLocation"
-            style="@style/Text14BlackAnuphan"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
@@ -100,7 +105,7 @@
 
         <TextView
             android:id="@+id/tvDistance"
-            style="@style/Text12BlackAnuphan"
+            style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_15"

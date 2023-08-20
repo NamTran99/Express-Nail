@@ -1,5 +1,5 @@
 <inset xmlns:android="http://schemas.android.com/apk/res/android"
-    android:insetLeft="@dimen/size_10">
+   >
     <vector
         android:width="20dp"
         android:height="20dp"

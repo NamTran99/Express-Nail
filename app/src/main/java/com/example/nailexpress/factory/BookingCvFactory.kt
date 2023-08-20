@@ -43,15 +43,17 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             year_exper = cvDTO.experience_years,
             year_exper_display = textFormatter.displayYearExper(cvDTO.experience_years),
             description = cvDTO.description.safe(),
-            phone = cvDTO.phone.formatPhoneUSCustom(),
+            isShowDes = cvDTO.description.isNullOrBlank().not(),
+            phone = cvDTO.phone,
             listSkill = createListSkill(cvDTO.skills ?: listOf()),
             state = cvDTO.state,
-            priceFormat = textFormatter.displaySalary(cvDTO.price.safe(), cvDTO.unit.safe()),
-            isSkillEmpty = cvDTO.skills.safe().isEmpty(),
+            priceFormat = textFormatter.displaySalaryType(cvDTO.salary_type,cvDTO.price.safe(), cvDTO.unit.safe()),
             salaryType = cvDTO.salary_type.safe(),
             price = cvDTO.price,
             unit = cvDTO.unit,
-            address = cvDTO.address
+            address = cvDTO.address,
+            listSkillByService = createListSkill(cvDTO.skills.safe().filter { it.price.safe() > 0.0 } ),
+            listSkillByTime = createListSkill(cvDTO.skills.safe().filter { it.price.safe() <= 0.0 } )
         )
     }
 

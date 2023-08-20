@@ -9,7 +9,8 @@ data class Skill(
     var price: Double = 0.0,
     //custom
     var price_display: String = "",
-    var isService: Boolean = true, override var isCheck: Boolean = false,
+    var isService: Boolean = true,
+    override var isCheck: Boolean = false,
 ):ISelector<Skill>{
     override fun setIsCheck(cur: Skill): ISelector<Skill> {
         return this

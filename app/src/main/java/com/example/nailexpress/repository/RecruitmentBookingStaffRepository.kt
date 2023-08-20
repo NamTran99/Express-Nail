@@ -46,11 +46,11 @@ class RecruitmentBookingStaffRepository(
     }
 
     suspend fun bookingStaff(form: BookingStaffForm) = flow {
+        form.handleData()
         emit(
             api.bookStaff(form).await().id
         )
     }
-
 
     suspend fun createRecruitment(form: RecruitmentForm, salon: Salon, isShowSalon: Boolean): Int? {
         form.validate()
