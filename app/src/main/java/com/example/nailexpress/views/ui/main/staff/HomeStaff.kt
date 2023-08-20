@@ -9,10 +9,7 @@ import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
 import com.example.nailexpress.databinding.FragmentHomeStaffBinding
-import com.example.nailexpress.extension.bind
-import com.example.nailexpress.extension.drawableClickRight
 import com.example.nailexpress.extension.launch
-import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.KEY_ID_POST_DETAIL
 import com.example.nailexpress.views.ui.main.customer.IActionTabChange
@@ -110,7 +107,7 @@ class HomeStaffViewModel @Inject constructor(
     private fun getAllRecruitment(page: Int = 1) {
         launch(loading = refreshLoading) {
             recruitmentRepository.getAllRecruitment(page).onEach {
-                adapterPost.submit(it,page)
+                adapterPost.addAll(it,page)
             }.collect()
         }
     }
@@ -118,7 +115,7 @@ class HomeStaffViewModel @Inject constructor(
     private fun getListRecruitmentMyApply(page: Int = 1) {
         launch(loading = refreshLoading) {
             recruitmentRepository.getListRecruitmentMyApply(page).onEach { e ->
-                adapterCv.submit(e,page)
+                adapterCv.addAll(e,page)
             }.collect()
         }
     }

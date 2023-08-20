@@ -14,7 +14,7 @@ class GeneralFactory(val textFormatter: TextFormatter) {
         return Skill(
             id = serviceDTO.id.safe(),
             name = serviceDTO.name.safe(),
-            isSKill = serviceDTO.type.safe() == SKillType.SKill, //NOTE 1
+            isService = serviceDTO.type.safe() == SKillType.SKill, //NOTE 1
             price_display = serviceDTO.price.safe().formatPrice()
         )
     }

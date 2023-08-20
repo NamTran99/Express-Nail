@@ -1,6 +1,5 @@
 package com.example.nailexpress.factory
 
-import com.example.nailexpress.extension.formatPhoneUS
 import com.example.nailexpress.extension.formatPhoneUSCustom
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.response.ImageDTO
@@ -24,7 +23,7 @@ class SalonFactory(val textFormatter: TextFormatter) {
             longitude = salon.longitude.safe(),
             city = salon.city.safe(),
             state = salon.state.safe(),
-            zipcode = salon.zipcode.safe().toIntOrNull().safe(),
+            zipcode = salon.zipcode.safe(),
             skinColorDisplay = textFormatter.customerSkinColorFormat(salon.customer_skin_color.safe()),
             experience_years_display = textFormatter.displayYearExper(salon.experience_years.safe()),
             display_have_car = textFormatter.displayYesNo(salon.have_car.safe()),

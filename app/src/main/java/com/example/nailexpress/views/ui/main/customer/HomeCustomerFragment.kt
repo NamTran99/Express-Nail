@@ -154,14 +154,14 @@ class HomeCustomerVM @Inject constructor(
     private fun getListStaffNail(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             cvRepository.getListCv(page = page).onEach {
-                adapter.submit(it, page)
+                adapter.addAll(it, page)
             }.collect()
         }
 
     private fun getListCVBooking(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             bookingStaffRepository.getListBookingStaff(page = page).onEach {
-                bookingAdapter.submit(it, page)
+                bookingAdapter.addAll(it, page)
             }.collect()
         }
 }

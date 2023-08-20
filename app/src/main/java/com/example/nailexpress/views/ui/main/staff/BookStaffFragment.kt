@@ -6,6 +6,7 @@ import android.support.core.flow.stateFlowOf
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
+import android.util.Log
 import androidx.core.os.bundleOf
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
@@ -34,15 +35,12 @@ import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
-import com.example.nailexpress.views.ui.main.staff.adapter.BookServiceAdapter
+import com.example.nailexpress.views.ui.main.staff.adapter.BookSelectServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.IBookServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.ISelectServiceAdapter
-import com.example.nailexpress.views.ui.main.staff.adapter.SelectServiceAdapter
-import com.example.nailexpress.views.ui.main.staff.dialogs.BookStaffServiceDialog
 import com.google.android.libraries.places.api.model.Place
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.drop
 import kotlinx.coroutines.flow.launchIn
@@ -56,8 +54,6 @@ class BookStaffFragment() :
 
     override val viewModel: BookNowStaffVM by activityViewModels()
     private val selectDateDialog by lazy { DatePickerDialog(appActivity) }
-
-    private val selectServiceDialog: BookStaffServiceDialog by lazy { BookStaffServiceDialog() }
 
     private val form get() = viewModel.form
 
@@ -74,10 +70,6 @@ class BookStaffFragment() :
                     arguments?.getBoolean(Constant.IS_BOOK_NOW)?.let { updateTitle(it) }
                     selectedServiceDialog.bind {
                     }
-                }
-
-                showDialogSelectService.bind {
-                    selectServiceDialog.show(childFragmentManager, selectServiceDialog.TAG)
                 }
 
                 etAddress.onClick {
@@ -143,7 +135,10 @@ class BookNowStaffVM @Inject constructor(
     val form = MutableLiveData(BookingStaffForm())
     val staffCV = MutableLiveData<Cv>()
     val isHaveSalon = MutableLiveData(false)
-    val serviceAdapter = BookServiceAdapter(this)
+    val serviceAdapter : BookSelectServiceAdapter by lazy {  BookSelectServiceAdapter() }
+
+    private var listSkillService = listOf<Skill>()
+    private var listSkillTime = listOf<Skill>()
 
 //    val onSelectTimeType: ((Int) -> Unit) = {
 //        form.changeValue {
@@ -196,18 +191,18 @@ class BookNowStaffVM @Inject constructor(
     }
 
     fun onClickBySKill() {
-
+        Log.d(TAG, "onClickBySKill: NamTD8 1")
+        serviceAdapter.submit(listSkillService)
     }
 
     fun onClickByTime() {
-
+        Log.d(TAG, "onClickBySKill: NamTD8 2")
+        serviceAdapter.submit(listSkillTime)
     }
 
     fun onClickCreateSalon() {
         navigateToDestination(R.id.action_bookNowStaffFragment_to_createSalonFragment)
     }
-
-    val showDialogSelectService = SingleLiveEvent<Any>()
 
     fun onClickSubmit() = launch {
         form.changeValue {
@@ -247,34 +242,34 @@ class BookNowStaffVM @Inject constructor(
         selectedServiceDialog.value = service
         dissmiss.value = Any()
     }
-    val adapter: SelectServiceAdapter by lazy { SelectServiceAdapter(this) }
-    val listSkill = mutableListOf<Skill>()
-    val isEmptyData = MutableStateFlow(false)
-
     private fun getCVByID() = launch {
         form.value?.apply {
             cvRepository.getCvDetail(curriculum_vitae_id).onEach {
+                listSkillService = it.listSkill.filter {
+                    it.isService
+                }
+
+                listSkillTime = it.listSkill.filter {
+                    !it.isService
+                }
                 staffCV.value = it
-                listSkill.clear()
-                listSkill.addAll(it.listSkill)
-                adapter.submit(it.listSkill)
             }.collect()
         }
     }
 
-    fun filterTextSearch() {
-        form.changeValue {
-            adapter.submit(listSkill.filter { it.name.contains(textSearch) && it.isSKill == isSelectBookingService })
-            isEmptyData.value = adapter.itemCount == 0
-        }
-    }
+//    fun filterTextSearch() {
+//        form.changeValue {
+//            adapter.addAll(listSkill.filter { it.name.contains(textSearch) && it.isSKill == isSelectBookingService })
+//            isEmptyData.value = adapter.itemCount == 0
+//        }
+//    }
 
     override val onLoadMoreListener: ((Int, Int) -> Unit) = { page: Int, _ ->
         // bo qua
     }
 
-    val onSearchChange: ((text: String) -> Unit) = {
-        textSearch = it
-        filterTextSearch()
-    }
+//    val onSearchChange: ((text: String) -> Unit) = {
+//        textSearch = it
+//        filterTextSearch()
+//    }
 }

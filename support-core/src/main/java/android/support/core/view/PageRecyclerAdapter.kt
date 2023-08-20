@@ -52,13 +52,19 @@ abstract class PageRecyclerAdapter<T, VB: ViewDataBinding>(
         }
 
     @MainThread
-    open fun submit(items: List<T>?) {
+    open fun addAll(items: List<T>?) {
 //        clear()
         if (items != null) mItems.addAll(items)
     }
 
     @MainThread
-    open fun submit(items: List<T>?, pageNumber: Int = 1) {
+    open fun submitAll(items: List<T>?) {
+        clear()
+        if (items != null) mItems.addAll(items)
+    }
+
+    @MainThread
+    open fun addAll(items: List<T>?, pageNumber: Int = 1) {
         Log.d("TAG", "submit: $pageNumber")
         if(pageNumber ==1) clear()
         if (items != null) mItems.addAll(items)

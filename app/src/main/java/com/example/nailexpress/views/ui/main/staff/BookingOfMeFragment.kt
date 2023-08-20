@@ -57,7 +57,7 @@ class BookingOfMeViewModel @Inject constructor(
     private fun getListBookingOfMe(page: Int = 1) {
         launch(loading = refreshLoading) {
             repository.getListBookingOfMe(page).onEach {
-                adapter.submit(it, page)
+                adapter.addAll(it, page)
             }.collect()
         }
     }

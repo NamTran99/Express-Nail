@@ -49,7 +49,7 @@ open class NotificationStaffViewModel @Inject constructor(
     private fun loadDataMyNotification(page: Int = 1) {
         launch(loading = refreshLoading) {
             notifyRepository.getListMyNotificationStaff(page).onEach {
-                adapter.submit(it, page)
+                adapter.addAll(it, page)
                 val size = it.filter { it.isRead == false }.size
                 EventBus.getDefault().postSticky(NumberNotification((size > 0) or1 size.toString() or2 ""))
             }.collect()

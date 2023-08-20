@@ -7,6 +7,10 @@ import com.example.nailexpress.datasource.local.SharePrefKey
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.datasource.remote.RecruitmentBookingStaffApi
 import com.example.nailexpress.extension.buildMultipart
+import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.filterRemoteImage
+import com.example.nailexpress.extension.safe
+import com.example.nailexpress.extension.toArrayPart
 import com.example.nailexpress.extension.toScaleImagePart
 import com.example.nailexpress.factory.BookingCvFactory
 import com.example.nailexpress.helper.RequestBodyBuilder
@@ -53,6 +57,9 @@ class RecruitmentBookingStaffRepository(
         if(form.isShowSalon){
             salon.validate()
         }
+        val salonImagesPart =
+            salon.localImage.filterRemoteImage().toArrayPart("salon_images[]")
+
         val imageParts =
             form.avatar.toScaleImagePart("image")
         return api.createRecruitment(
@@ -72,9 +79,20 @@ class RecruitmentBookingStaffRepository(
                 .put("salary_time_values", form.salary_time_values)
                 .put("contact_name", form.contact_name)
                 .put("contact_phone", form.contact_phone)
-                .put("salon_id", form.salon_id)
+                .putIf(isShowSalon,"salon_name", salon.name)
+                .putIf(isShowSalon,"salon_phone", salon.phoneDisplay.convertPhoneToNormalFormat())
+                .putIf(isShowSalon,"salon_experience_years", salon.experience_years)
+                .putIf(isShowSalon,"salon_address", salon.address)
+                .putIf(isShowSalon,"salon_latitude", salon.latitude)
+                .putIf(isShowSalon,"salon_longitude", salon.longitude)
+                .putIf(isShowSalon,"salon_zipcode", salon.zipcode.safe())
+                .putIf(isShowSalon,"salon_state", salon.state)
+                .putIf(isShowSalon,"salon_city", salon.city)
+                .putIf(isShowSalon,"salon_have_place", salon.have_place)
+                .putIf(isShowSalon,"salon_have_car", salon.have_car)
+                .putIf(isShowSalon,"salon_customer_skin_color",salon.customer_skin_color )
                 .putIf(form.zipcode.isNotEmpty(), "zipcode", form.zipcode)
-                .buildMultipart(), imageParts
+                .buildMultipart(), imageParts, salonImagesPart
         ).await().id
     }
 

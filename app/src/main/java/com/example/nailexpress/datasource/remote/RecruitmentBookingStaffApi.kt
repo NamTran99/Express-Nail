@@ -40,6 +40,7 @@ interface RecruitmentBookingStaffApi {
     fun createRecruitment(
         @PartMap buildMultipart: Map<String, @JvmSuppressWildcards RequestBody>,
         @Part images: MultipartBody.Part?,
+        @Part salonImages: Array<MultipartBody.Part?>,
     ): ApiAsync<RecruitmentDataDTO>
 
     @GET("recruitment/my-recruitment")

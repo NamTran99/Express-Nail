@@ -7,15 +7,12 @@ import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.base.BaseRefreshViewModel
-import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.FragmentMyPostBinding
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.utils.Constant
-import com.example.nailexpress.utils.ViewModelHandleUtils
 import com.example.nailexpress.views.ui.main.customer.adapter.IMyPostAction
 import com.example.nailexpress.views.ui.main.customer.adapter.MyPostAdapter
-import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavDashBoardDirections
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.collect
@@ -47,7 +44,7 @@ class MyPostViewModel @Inject constructor(
         launch(loading = refreshLoading) {
             recruitmentRepository.getAllMyRecruitment(page).onEach {
                 Log.d(TAG, "getListMyRecruitment: $it")
-                adapter.submit(it, page)
+                adapter.addAll(it, page)
             }.collect()
         }
     }

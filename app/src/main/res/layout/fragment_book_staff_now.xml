@@ -33,8 +33,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/size_15"
                 android:layout_marginTop="@dimen/size_20"
-                android:orientation="vertical"
                 android:background="@drawable/bg_white_radius"
+                android:orientation="vertical"
                 android:padding="@dimen/size_10">
 
                 <TextView
@@ -129,25 +129,25 @@
                         android:layout_width="0dp"
                         android:layout_height="@dimen/size_40"
                         android:layout_weight="1"
-                        app:visibility = "@{action.staffCV.salaryType != 2}"
                         android:backgroundTint="@{action.form.selectBookingService?@color/color_primary:@color/white}"
                         android:drawableStart="@{action.form.selectBookingService?@drawable/ic_tick_2:null}"
                         android:onClick="@{() -> action.onClickBySKill()}"
                         android:text="@string/book_type_1"
                         android:textAllCaps="false"
-                        android:textColor="@{action.form.selectBookingService?@color/white:@color/black}" />
+                        android:textColor="@{action.form.selectBookingService?@color/white:@color/black}"
+                        app:visibility="@{action.staffCV.salaryType != 2}" />
 
                     <androidx.appcompat.widget.LinearLayoutCompat
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="@dimen/size_10"
                         android:layout_weight="1"
-                        app:visibility = "@{action.staffCV.salaryType != 1}"
-                        android:background="@{action.form.selectBookingService?@drawable/bg_white_5:@drawable/bg_button_white_5}"
+                        android:background="@{action.form.selectBookingService?@drawable/bg_gray_f7f7f7_corner_5:@drawable/bg_button_primary_5}"
                         android:drawableStart="@drawable/ic_tick_2"
                         android:gravity="center"
                         android:onClick="@{() -> action.onClickByTime()}"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:visibility="@{action.staffCV.salaryType != 1}">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -183,32 +183,30 @@
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
                 <androidx.appcompat.widget.AppCompatEditText
+                    style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    style="@style/AppTheme.EditText"
-                    android:drawableStart="@drawable/ic_clock"
-                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:layout_marginTop="10dp"
-                    android:hint="Nhập số giờ bạn muốn thuê"/>
+                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:hint="Nhập số giờ bạn muốn thuê" />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
-                    android:text="@string/book_des_3"
-                    app:visibility="@{action.form.visibleRecycler}" />
+                    android:text="@string/book_des_3" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
                     android:adapter="@{action.serviceAdapter}"
-                    android:background="@drawable/bg_white_radius"
+                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:orientation="vertical"
                     android:paddingTop="@dimen/size_10"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:visibility="@{action.form.visibleRecycler}"
                     tools:listitem="@layout/item_select_service" />
 
                 <TextView
@@ -223,16 +221,16 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_10"
+                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:hint="@string/hint_des_book"
                     android:minLines="7"
-                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:text="@={action.form.description}" />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
+                    android:layout_marginTop="@dimen/size_15"
                     android:text="@string/book_des_5"
                     android:textSize="@dimen/text_size_14" />
 
@@ -247,8 +245,8 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/size_10"
-                    android:hint="@string/hint_name"
                     android:background="@drawable/bg_gray_f7f7f7_corner_5"
+                    android:hint="@string/hint_name"
                     android:text="@={action.form.contact_name}" />
 
                 <TextView
@@ -262,9 +260,9 @@
                     style="@style/AppTheme.EditText"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/size_10"
+                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:hint="@string/hint_phone"
                     android:text="@={action.form.contact_phone}"
-                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     app:isPhoneUS="@{true}" />
 
                 <TextView
@@ -280,9 +278,9 @@
                     style="@style/AppTheme.EditText.MultiLine"
                     android:layout_width="match_parent"
                     android:layout_marginTop="@dimen/size_10"
+                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:focusable="false"
                     android:hint="@string/hint_address"
-                    android:background="@drawable/bg_gray_f7f7f7_corner_5"
                     android:minLines="1"
                     app:visibility="@{!action.isHaveSalon}" />
 

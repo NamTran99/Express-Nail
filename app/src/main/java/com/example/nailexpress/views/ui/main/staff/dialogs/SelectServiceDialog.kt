@@ -5,7 +5,6 @@ import android.support.core.livedata.LoadingLiveData
 import android.support.core.livedata.SingleLiveEvent
 import android.support.core.livedata.changeValue
 import android.support.core.livedata.refresh
-import android.util.Log
 import android.view.Gravity
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
@@ -110,8 +109,8 @@ class ServiceVM @Inject constructor(
                 if (page == 1) { // NOTE 1
                     adapter.clear()
                 }
-                adapter.submit(it.map {item ->
-                    item.isSKill = true
+                adapter.addAll(it.map { item ->
+                    item.isService = true
                     item
                 })
 //                isEmptyData.value = adapter.itemCount == 0

@@ -19,7 +19,11 @@ import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentCreateSalonBinding
-import com.example.nailexpress.extension.*
+import com.example.nailexpress.extension.convertToRequest
+import com.example.nailexpress.extension.convertToResult
+import com.example.nailexpress.extension.launch
+import com.example.nailexpress.extension.onClick
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.AppImage
 import com.example.nailexpress.models.ui.main.Salon
 import com.example.nailexpress.repository.CvRepository
@@ -124,7 +128,7 @@ class CreateSalonVM @Inject constructor(
                 listAddress[0]!!.apply {
                     state = this.adminArea ?: state
                     city = this.locality ?: this.subAdminArea ?: city
-                    zipcode = this.postalCode?.toIntOrNull() ?: zipcode
+                    zipcode = this.postalCode ?: zipcode
                 }
             }
         }

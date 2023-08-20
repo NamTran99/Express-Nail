@@ -19,7 +19,8 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             name = skillDTO.name?.let { it.ifEmpty { skillDTO.custom_skill } }.safe(),
             id = skillDTO.id.safe(),
             price = skillDTO.price.safe(),
-            price_display = skillDTO.price.safe().formatPrice()
+            price_display = skillDTO.price.safe().formatPrice(),
+            isService = skillDTO.price != 0.0
         )
     }
 
@@ -72,7 +73,10 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
             listSkill = createListSkill(booking.skills.safe()),
             bookingStatus = booking.status,
             appRole = role,
-            displayTimeOrder = textFormatter.displayBookingTime(booking.booking_time, appRole = role),
+            displayTimeOrder = textFormatter.displayBookingTime(
+                booking.booking_time,
+                appRole = role
+            ),
             workTime = booking.work_time,
             price = booking.price,
             unit = booking.unit,
@@ -84,6 +88,6 @@ class BookingCvFactory(val textFormatter: TextFormatter) {
     }
 
     fun createListBooking(booking: List<BookingDTO>): List<Booking> {
-        return booking.map{createBooking(it, AppConfig.AppRole.Customer)}
+        return booking.map { createBooking(it, AppConfig.AppRole.Customer) }
     }
 }

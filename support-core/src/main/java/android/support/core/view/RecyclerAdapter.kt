@@ -1,7 +1,6 @@
 package android.support.core.view
 
 import android.annotation.SuppressLint
-import android.util.Log
 import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.GridLayoutManager
@@ -32,8 +31,9 @@ abstract class RecyclerAdapter<T : Any, VB : ViewDataBinding> :
     @SuppressLint("NotifyDataSetChanged")
     @Suppress("unchecked_cast")
     open fun submit(newItems: List<T>) {
+        asynList.submitList(null)
         asynList.submitList(
-            newItems.toList()
+            newItems
         )
     }
 

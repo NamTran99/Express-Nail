@@ -408,6 +408,7 @@
                     app:visibility="@{action.isShowSalon}" />
 
                 <include
+                    android:id="@+id/salonView"
                     layout="@layout/layout_create_salon"
                     app:action="@{action}"
                     app:visibility="@{action.isShowSalon}" />

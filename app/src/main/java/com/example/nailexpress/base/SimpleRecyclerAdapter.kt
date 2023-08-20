@@ -3,6 +3,7 @@ package com.example.nailexpress.base
 import android.support.core.view.BaseViewHolder
 import android.support.core.view.RecyclerAdapter
 import android.support.core.view.dataBindingInflateOf
+import android.util.Log
 import android.view.ViewGroup
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
@@ -24,6 +25,7 @@ abstract class SimpleRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<VB>, position: Int) {
+        Log.d(TAG, "onBindViewHolder: NamTD8 vao day 11")
         val cur = getItem(position)!!
         onBindHolder(cur, holder.binding, position)
     }
@@ -31,7 +33,7 @@ abstract class SimpleRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
     protected abstract fun onBindHolder(item: T, binding: VB, adapterPosition: Int)
 }
 
-abstract class SimpleSelectorRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
+abstract class SimpleSelectorRecyclerAdapter<T : Any, VB : ViewDataBinding> :
     SimpleRecyclerAdapter<T, VB>() {
 
     fun selectOne(item: T) {

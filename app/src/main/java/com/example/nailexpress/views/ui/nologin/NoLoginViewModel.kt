@@ -45,7 +45,7 @@ class NoLoginViewModel @Inject constructor(
     private fun getListStaffNail(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             cvRepository.getListCv(page = page).onEach {
-                adapterNailStaff.submit(it, page)
+                adapterNailStaff.addAll(it, page)
             }.collect()
         }
 
@@ -60,7 +60,7 @@ class NoLoginViewModel @Inject constructor(
     private fun getAllRecruitment(page: Int = 1) {
         launch(loading = refreshLoading) {
             recruitmentRepository.getAllRecruitment(page).onEach {
-                adapterPost.submit(it, page)
+                adapterPost.addAll(it, page)
             }.collect()
         }
     }

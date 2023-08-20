@@ -90,7 +90,6 @@
                     app:iubw_title="@string/info_user_book_worker" />
 
                 <View
-                    android:id="@+id/view1"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/size_1"
                     android:layout_marginHorizontal="@dimen/size_12"
@@ -107,7 +106,17 @@
                     android:layout_marginTop="@dimen/size_16"
                     app:si_title="@string/shop_info" />
 
-                <com.example.nailexpress.views.widgets.ItemInfo2LineView
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/size_1"
+                    android:layout_marginHorizontal="@dimen/size_12"
+                    android:layout_marginTop="@dimen/size_16"
+                    android:background="@color/gray"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+w                <com.example.nailexpress.views.widgets.ItemInfo2LineView
                     android:id="@+id/itemInfoSalonActive"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

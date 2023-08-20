@@ -21,6 +21,8 @@ import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentCreateRecruitmentBinding
 import com.example.nailexpress.datasource.AppEvent2
+import com.example.nailexpress.extension.convertToRequest
+import com.example.nailexpress.extension.convertToResult
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.extension.onClick
 import com.example.nailexpress.extension.safe
@@ -33,6 +35,7 @@ import com.example.nailexpress.repository.SalonRepository
 import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.dialog.picker.DatePickerDialog
 import com.example.nailexpress.views.dialog.picker.TimePickerCustomDialogOwner
+import com.example.nailexpress.views.ui.main.customer.salon.CreateSalonFragment
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.BookServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.IBookServiceAdapter
@@ -57,6 +60,7 @@ class CreateRecruitmentFragment :
     private val selectServiceDialog: SelectServiceDialog by lazy { SelectServiceDialog() }
 
     private val form get() = viewModel.recruitmentForm
+    private val localImage get() = viewModel.salonForm.value?.localImage ?: mutableListOf()
 
     private val imageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -70,6 +74,21 @@ class CreateRecruitmentFragment :
                 }
             }
         }
+
+    private val moreImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+            if (it.resultCode == AppCompatActivity.RESULT_OK) {
+                val pathImage =
+                    it.data?.getParcelableArrayListExtra(FishBun.INTENT_PATH) ?: arrayListOf<Uri>()
+                localImage.clear()
+                localImage.addAll(
+                    pathImage.convertToResult().toMutableList()
+                )
+                viewModel.salonImageAdapter.submit(localImage)
+            }
+        }
+
+
     override val viewModel: CreateRecruitmentVM by viewModels()
     override fun initView() {
         binding.apply {
@@ -79,6 +98,23 @@ class CreateRecruitmentFragment :
                     selectServiceDialog.show(childFragmentManager, selectServiceDialog.TAG)
                 }
             }
+
+            salonView.btLoadImage.onClick{
+                FishBun.with(this@CreateRecruitmentFragment)
+                    .setImageAdapter(GlideAdapter())
+                    .setMaxCount(CreateSalonFragment.MAX_SELECTED_IMAGE)
+                    .setMinCount(1)
+                    .setSelectedImages(localImage.convertToRequest())
+                    .setActionBarColor(
+                        ContextCompat.getColor(requireContext(), R.color.color_primary),
+                        ContextCompat.getColor(requireContext(), R.color.color_primary),
+                        true
+                    )
+                    .setActionBarTitleColor(Color.parseColor("#ffffff"))
+                    .startAlbumWithActivityResultCallback(moreImageResult)
+            }
+
+
             imgImage.onClick {
                 FishBun.with(self)
                     .setImageAdapter(GlideAdapter())
@@ -93,7 +129,11 @@ class CreateRecruitmentFragment :
             }
 
             etAddress.onClick {
-                appSettings.openPlaceAutoComplete("", viewModel::onPlaceSelected)
+                appSettings.openPlaceAutoComplete("", viewModel::onRecruitmentPlaceSelected)
+            }
+
+            salonView.etSalonAddress.onClick{
+                appSettings.openPlaceAutoComplete("", viewModel::onSalonPlaceSelected)
             }
 
             selectDateDialog.apply {
@@ -222,13 +262,30 @@ class CreateRecruitmentVM @Inject constructor(
         showDialogSelectService.refresh()
     }
 
-    fun onPlaceSelected(place: Place) = launch {
+    fun onRecruitmentPlaceSelected(place: Place) = launch {
         val geocoder = Geocoder(getApplication())
         val listAddress = geocoder.getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)
         recruitmentForm.refresh {
             address = place.address.safe()
             latitude = place.latLng?.latitude.safe().toString()
             longitude = place.latLng?.longitude.safe().toString()
+            if (listAddress!!.isNotEmpty()) {
+                listAddress[0]!!.apply {
+                    state = this.adminArea ?: state
+                    city = this.locality ?: this.subAdminArea ?: city
+                    zipcode = this.postalCode ?: zipcode
+                }
+            }
+        }
+    }
+
+    fun onSalonPlaceSelected(place: Place) = launch {
+        val geocoder = Geocoder(getApplication())
+        val listAddress = geocoder.getFromLocation(place.latLng.latitude, place.latLng.longitude, 1)
+        salonForm.refresh {
+            address = place.address.safe()
+            latitude = place.latLng?.latitude.safe()
+            longitude = place.latLng?.longitude.safe()
             if (listAddress!!.isNotEmpty()) {
                 listAddress[0]!!.apply {
                     state = this.adminArea ?: state

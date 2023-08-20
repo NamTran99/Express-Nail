@@ -2,7 +2,6 @@ package com.example.nailexpress.models.ui.main
 
 import com.example.nailexpress.R
 import com.example.nailexpress.models.ui.AppImage
-import com.example.nailexpress.utils.Validator
 import com.example.nailexpress.utils.Validator.checkEmpty
 import com.example.nailexpress.utils.Validator.checkPhone
 
@@ -17,7 +16,7 @@ data class Salon(
     var longitude: Double = 0.0,
     var city: String = "",
     var state: String = "",
-    var zipcode: Int? = null,
+    var zipcode: String? = "",
     var experience_years: String = "-1",
     var salonID: Int = 0,
     // custom

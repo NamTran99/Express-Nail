@@ -1,8 +1,6 @@
 package com.example.nailexpress.views.ui.main.staff.adapter
 
 import android.support.core.view.ILoadMoreAction
-import android.support.core.view.bindingOf
-import android.view.ViewGroup
 import com.example.nailexpress.R
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.ItemSelectServiceBinding
@@ -24,7 +22,7 @@ class SelectServiceAdapter(val action: ISelectServiceAdapter) :
     ) {
         binding.apply {
             tvName.text = item.name
-            tvPrice.show(!item.isSKill)
+            tvPrice.show(!item.isService)
             tvPrice.text = item.price_display //NOTE 1
 
             root.onClick {
