@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks
 import com.example.nailexpress.base.BaseFragment
+import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.views.ui.main.customer.HomeCustomerFragment
 import com.example.nailexpress.views.ui.main.customer.NotificationFragment
 import com.example.nailexpress.views.ui.main.staff.HomeStaff
@@ -15,7 +16,6 @@ import org.greenrobot.eventbus.ThreadMode
 
 class EventNotification : FragmentLifecycleCallbacks() {
     private val TAG = this.javaClass.simpleName
-    private var fragmentNotifi: NotificationStaff? = null
     private var homeFragment: Fragment? = null
     private var fragment: Fragment? = null
 
@@ -30,10 +30,6 @@ class EventNotification : FragmentLifecycleCallbacks() {
         super.onFragmentCreated(fm, f, savedInstanceState)
         fragment = f
 
-        if (f is NotificationStaff) {
-            fragmentNotifi = f
-        }
-
         if (f is HomeCustomerFragment || f is HomeStaff) {
             homeFragment = f
         }
@@ -47,8 +43,10 @@ class EventNotification : FragmentLifecycleCallbacks() {
                     it.viewModel.loadDataScreen()
                 }
             }
+            (it as? BaseRefreshFragment<*,*>)?.let {
+                it.viewModel.onSwipeRefreshData()
+            }
         }
-        fragmentNotifi?.viewModel?.onSwipeRefreshData()
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
