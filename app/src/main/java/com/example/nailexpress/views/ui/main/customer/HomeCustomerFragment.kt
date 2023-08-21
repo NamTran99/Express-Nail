@@ -47,6 +47,10 @@ class HomeCustomerFragment :
         viewModel.callbackOpenCall = {
             DriverUtils.message(requireActivity(), it)
         }
+
+        viewModel.openCallDialog = {
+            DriverUtils.call(requireActivity(), it)
+        }
     }
 
     override fun onTextChange(string: String) {
@@ -82,6 +86,7 @@ class HomeCustomerVM @Inject constructor(
     val bookingAdapter = BookingCVAdapter(this)
     var searchText = ""
     var tabSelect = MutableLiveData(TAB_STAFF)
+    var openCallDialog: ((String)->Unit)? = null
 
     init {
         title.value = getString(R.string.home_des_1)
@@ -109,7 +114,7 @@ class HomeCustomerVM @Inject constructor(
     }
 
     override fun clickOpenCall(phone: String) {
-        DriverUtils.call(getApplication(), phone)
+        openCallDialog?.invoke(phone)
     }
 
     override val onClickViewDetail: (Int) -> Unit = {

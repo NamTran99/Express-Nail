@@ -6,10 +6,13 @@ import android.view.View
 import android.widget.EditText
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseActivity
+import com.example.nailexpress.datasource.local.SharePrefKey
+import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.extension.safe
 import com.example.nailexpress.extension.scrollToViewABitTop
 import com.example.nailexpress.extension.showKeyboard
 import com.example.nailexpress.models.ui.base.DialogData
+import com.example.nailexpress.utils.Constant
 import java.net.UnknownHostException
 
 interface ErrorHandler {
@@ -54,6 +57,7 @@ class ErrorHandlerImpl : ErrorHandler {
                 activity.commonDialog.show(
                     DialogData().buildError(error.message.toString())
                         .setCallBack {
+                            SharePrefs.getInstance(activity).remove(SharePrefKey.TOKEN)
                             navigateToDestination(R.id.nav_main, inclusive = true, popUpToDes = R.id.nav_main)
                         })
             }
