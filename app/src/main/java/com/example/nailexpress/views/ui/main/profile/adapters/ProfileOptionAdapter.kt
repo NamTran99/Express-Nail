@@ -16,8 +16,6 @@ import com.example.nailexpress.models.ui.main.Cv
 class ProfileOptionAdapter() :
     SimpleRecyclerAdapter<AccountOption, ItemProfileOptionBinding>() {
 
-
-
     override fun onBindHolder(item: AccountOption, binding: ItemProfileOptionBinding, adapterPosition: Int) {
         binding.apply {
             tvTitle.setText(item.title)

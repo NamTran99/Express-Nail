@@ -10,11 +10,14 @@ import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.base.IActionTopBar
 import com.example.nailexpress.databinding.FragmentProfileBinding
+import com.example.nailexpress.datasource.local.SharePrefKey
+import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.extension.or1
 import com.example.nailexpress.models.ui.main.User
 import com.example.nailexpress.repository.AuthRepository
 import com.example.nailexpress.repository.ProfileRepository
+import com.example.nailexpress.utils.Constant
 import com.example.nailexpress.views.ui.main.profile.adapters.AccountOption
 import com.example.nailexpress.views.ui.main.profile.adapters.ProfileOptionAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,7 +41,8 @@ class ProfileFragment :
 @HiltViewModel
 class ProfileVM @Inject constructor(
     app: Application, private val profileRepository: ProfileRepository,
-    private val authRepository: AuthRepository
+    private val authRepository: AuthRepository,
+    private val sharePrefs: SharePrefs
 ) :
     BaseViewModel(app), IActionTopBar by ActionTopBarImpl() {
 
@@ -59,8 +63,9 @@ class ProfileVM @Inject constructor(
         AccountOption(R.string.title_account_profile) {
             navigateToDestination(R.id.action_global_accountInforFragment)
         },
+
         AccountOption(R.string.my_salon) {
-            navigateToDestination(R.id.action_navDashBoard_to_mySalonFragment)
+            navigateToDestination(if(sharePrefs.get<AppConfig.AppRole>(SharePrefKey.APP_ROLE) == AppConfig.AppRole.Customer)  R.id.action_navDashBoard_to_mySalonFragment else R.id.mySalonFragment)
         },
         AccountOption(R.string.change_pass) {
             navigateToDestination(R.id.action_global_changePassFragment)
