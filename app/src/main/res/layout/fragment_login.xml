@@ -26,7 +26,6 @@
             android:paddingHorizontal="@dimen/size_20"
             tools:context=".views.ui.authentication.LoginFragment">
 
-            <!-- TODO: Update blank fragment layout -->
             <ImageView
                 android:layout_width="@dimen/size_100"
                 android:layout_height="@dimen/size_50"
@@ -121,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/size_10"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
@@ -134,8 +133,8 @@
                     style="@style/AppTheme.TextViewResponsive"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_5"
-                    android:background="@drawable/bg_button_text"
+                    android:layout_marginTop="@dimen/size_3"
+                    android:background="?selectableItemBackground"
                     android:onClick="@{() -> action.register()}"
                     android:text="@string/click_here_to_signup"
                     android:textColor="@color/color_primary" />
@@ -150,7 +149,7 @@
             android:layout_marginBottom="@dimen/size_20"
             android:gravity="center"
             android:layout_alignParentBottom="true"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 style="@style/AppTheme.TextViewResponsive"
@@ -163,8 +162,8 @@
                 style="@style/AppTheme.TextViewResponsive"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/size_5"
-                android:background="@drawable/bg_button_text"
+                android:layout_marginTop="@dimen/size_5"
+                android:background="?selectableItemBackground"
                 android:text="@string/login_des_1"
                 android:textColor="@color/color_primary" />
         </LinearLayout>

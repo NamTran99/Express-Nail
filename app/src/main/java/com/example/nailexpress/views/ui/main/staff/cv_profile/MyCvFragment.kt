@@ -19,7 +19,7 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
             findNavController().popBackStack()
         }
         binding.btnUpdateCv.setOnClickListener {
-            navigateToDestination(R.id.nav_main, inclusive = true, popUpToDes = R.id.nav_main)
+            navigateToDestinationWithAnim(R.id.nav_main, inclusive = true, popUpToDes = R.id.nav_main)
         }
         viewModel.myCvLiveData.observe(viewLifecycleOwner) {
             setUi(it)
@@ -57,7 +57,7 @@ class MyCvFragment : BaseFragment<FragmentMyCvBinding, MyCvViewModel>(R.layout.f
                 }
             } else {
                 btnCreateCv.setOnClickListener {
-                    navigateToDestination(com.example.nailexpress.R.id.action_myCvFragment_to_createCvFragment)
+                    navigateToDestinationWithAnim(com.example.nailexpress.R.id.action_myCvFragment_to_createCvFragment)
                 }
             }
         }

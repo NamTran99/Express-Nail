@@ -9,7 +9,7 @@ fun AppConfig.AppRole?.safe() = this ?: AppConfig.AppRole.Customer
 object AppConfig {
     val endpoint: String get() = "https://dev.api.nails-express.kendemo.com/api/v1/"
 
-    const val otpTimeout = 5
+    const val otpTimeout = 60
     const val perPage = 10
     const val timeSearch = 500L //ms
 

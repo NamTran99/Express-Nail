@@ -80,13 +80,13 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         jobEventReceiver = lifecycleScope.launch {
             viewModel.eventReceiver.collectLatest {
                 when (it) {
-                    is AppEvent.OnNavigation -> navigateToDestination(
+                    is AppEvent.OnNavigation -> navigateToDestinationWithAnim(
                         it.destination,
                         bundle = it.bundle,
                         popUpToDes = it.popUpTo,
                         inclusive = it.isInclusive
                     )
-                    is AppEvent.OnNavigationNav -> navigateToDestination(
+                    is AppEvent.OnNavigationNav -> navigateToDestinationWithAnim(
                         it.nav,
                         popUpToDes = it.popUpTo,
                         inclusive = it.isInclusive
@@ -107,7 +107,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     abstract fun initView()
     open fun loadData() {}
 
-    open fun navigateToDestination(
+    open fun navigateToDestinationWithAnim(
         destination: Int,
         bundle: Bundle? = null,
         inclusive: Boolean = false,
@@ -132,7 +132,7 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
         }
     }
 
-    open fun navigateToDestination(
+    open fun navigateToDestinationWithAnim(
         nav: NavDirections, inclusive: Boolean = false,
         popUpToDes: Int? = null
     ) {

@@ -24,6 +24,7 @@ class AuthRepository(
     }
 
     suspend fun verifyPhone(verifyPhone: VerifyForm) {
+        verifyPhone.validateStepOne()
         authApi.verifyPhone(verifyPhone).await()
     }
 

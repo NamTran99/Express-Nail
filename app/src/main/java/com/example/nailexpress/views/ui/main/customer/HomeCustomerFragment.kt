@@ -61,7 +61,7 @@ class HomeCustomerFragment :
     }
 
     override fun onClickFilter() {
-        navigateToDestination(R.id.fragmentFilterCustomer)
+        navigateToDestinationWithAnim(R.id.fragmentFilterCustomer)
     }
 
     fun updateTextNotification(str: String){

@@ -100,22 +100,23 @@
                     android:text="@{data.description}"
                     tools:text="Beauty Nails Salon" />
 
+                <TextView
+                    style="@style/AppTheme.Content"
+                    android:drawablePadding="@dimen/size_7"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:text='@{data.city +", "+ data.state}'
+                    app:drawableStartCompat="@drawable/ic_location"
+                    app:layout_constraintStart_toEndOf="@+id/ivLogo"
+                    app:layout_constraintTop_toTopOf="@id/ivLogo"
+                    tools:text="New Jersey" />
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_5"
+                    android:layout_marginStart="@dimen/size_2"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/AppTheme.Content"
-                        android:drawablePadding="@dimen/size_7"
-                        android:text='@{data.city +", "+ data.state}'
-                        app:drawableStartCompat="@drawable/ic_location"
-                        app:layout_constraintStart_toEndOf="@+id/ivLogo"
-                        app:layout_constraintTop_toTopOf="@id/ivLogo"
-                        tools:text="New Jersey" />
-
                     <com.makeramen.roundedimageview.RoundedImageView
                         android:layout_width="@dimen/size_3"
                         android:layout_height="@dimen/size_3"

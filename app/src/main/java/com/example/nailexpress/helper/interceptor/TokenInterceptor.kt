@@ -17,7 +17,7 @@ class TokenInterceptor(private val userLocalSource: SharePrefs) : Interceptor {
             ?.getAnnotation(NoTokenRequired::class.java) != null
         if (isNoTokenRequired) return chain.proceed(originRequest)
 
-        var request = originRequest
+        var request = originRequest.newBuilder().addHeader("Content-Language", "vi").build()
         val token = userLocalSource.get<String>(SharePrefKey.TOKEN)
         if (!token.isNullOrEmpty()) {
             val bearer = "Bearer $token"

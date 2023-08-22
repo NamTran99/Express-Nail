@@ -88,8 +88,6 @@ class NoLoginViewModel @Inject constructor(
     fun startNavLogin() {
         navigateToDestination(
             R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
         )
     }
 
@@ -98,8 +96,6 @@ class NoLoginViewModel @Inject constructor(
         override val onClickDetail: (cvID: Int) -> Unit = {
             navigateToDestination(
                 R.id.action_fragmentNoLogin_to_authGraph,
-                inclusive = true,
-                popUpToDes = R.id.fragmentNoLogin
             )
         }
 
@@ -110,8 +106,6 @@ class NoLoginViewModel @Inject constructor(
         override fun onClickApply() {
             navigateToDestination(
                 R.id.action_fragmentNoLogin_to_authGraph,
-                inclusive = true,
-                popUpToDes = R.id.fragmentNoLogin
             )
         }
     }
@@ -119,22 +113,16 @@ class NoLoginViewModel @Inject constructor(
     override val onClickBookStaff: (cvID: Int) -> Unit = {
         navigateToDestination(
             R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
         )
     }
     override val onClickViewDetail: (id: Int) -> Unit = {
         navigateToDestination(
             R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
         )
     }
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
         navigateToDestination(
             R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
         )
     }
 }

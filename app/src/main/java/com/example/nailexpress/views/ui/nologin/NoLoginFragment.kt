@@ -49,11 +49,9 @@ class NoLoginFragment :
     }
 
     override fun onTextChange(string: String) {
-        navigateToDestination(
-            R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
-        )
+//        navigateToDestinationWithAnim(
+//            R.id.action_fragmentNoLogin_to_authGraph,
+//        )
     }
 
     override fun onClickNotification() {
@@ -61,10 +59,8 @@ class NoLoginFragment :
     }
 
     override fun onClickFilter() {
-        navigateToDestination(
+        navigateToDestinationWithAnim(
             R.id.action_fragmentNoLogin_to_authGraph,
-            inclusive = true,
-            popUpToDes = R.id.fragmentNoLogin
         )
     }
 

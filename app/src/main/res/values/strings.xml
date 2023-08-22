@@ -343,7 +343,7 @@
     <string name="salon_des_1">Nhập mô tả Salon</string>
     <string name="create_cv_find_job">Tạo cv tìm việc</string>
     <string name="lbl_register_or_login_display_all_func">Đăng ký / đăng nhập để hiển thị tất cả chức năng</string>
-    <string name="create_a_worker_route">create a worker route</string>
+    <string name="create_a_worker_route">Tạo tin tuyển thợ</string>
     <string name="default_notification_channel_id">0</string>
     <string name="lbl_notification">Thông báo</string>
     <string name="lbl_need_worker_now">Cần thợ ngay</string>

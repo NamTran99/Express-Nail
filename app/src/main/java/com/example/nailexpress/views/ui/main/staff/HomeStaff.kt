@@ -67,7 +67,7 @@ class HomeStaff :
     }
 
     override fun onClickFilter() {
-        navigateToDestination(R.id.filterFragment)
+        navigateToDestinationWithAnim(R.id.filterFragment)
     }
 
     fun updateTextNotification(str: String){
