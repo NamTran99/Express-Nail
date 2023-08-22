@@ -253,6 +253,12 @@
             app:destination="@id/staffGraph" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/mySalonFragment"
+        android:name="com.example.nailexpress.views.ui.main.mysalon.MySalonFragment"
+        android:label="MySalonFragment" />
+
     <fragment
         android:id="@+id/accountInforFragment"
         android:name="com.example.nailexpress.views.ui.main.profile.AccountInforFragment"
