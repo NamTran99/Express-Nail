@@ -1,6 +1,8 @@
 package com.example.nailexpress.views.ui.nologin
 
 import android.app.Application
+import android.support.core.livedata.SingleLiveEvent
+import android.support.core.livedata.changeValue
 import androidx.lifecycle.MutableLiveData
 import com.example.nailexpress.R
 import com.example.nailexpress.app.AppConfig
@@ -9,6 +11,7 @@ import com.example.nailexpress.datasource.local.SharePrefKey
 import com.example.nailexpress.datasource.local.SharePrefs
 import com.example.nailexpress.extension.launch
 import com.example.nailexpress.extension.safe
+import com.example.nailexpress.models.ui.base.DialogData
 import com.example.nailexpress.repository.CvRepository
 import com.example.nailexpress.repository.RecruitmentBookingStaffRepository
 import com.example.nailexpress.views.ui.main.customer.IActionTabChange
@@ -33,6 +36,10 @@ class NoLoginViewModel @Inject constructor(
     val adapterPost by lazy { PostAdapter(loadMorePost) }
     val adapterNailStaff = NailStaffAdapter(this)
 
+    val isShowEmpty = SingleLiveEvent<Boolean>()
+    var isShowEmptyRecruitment =false
+    var isShowEmptyStaff =false
+
     init {
         getAllRecruitment()
         getListStaffNail()
@@ -45,25 +52,47 @@ class NoLoginViewModel @Inject constructor(
     private fun getListStaffNail(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             cvRepository.getListCv(page = page).onEach {
+                if(page == 1){
+                    isShowEmptyStaff = it.isEmpty()
+                    checkEmptyData()
+                }
+
                 adapterNailStaff.addAll(it, page)
             }.collect()
         }
 
+    private fun checkEmptyData(){
+        isTabPost.changeValue {
+            if(this){
+                isShowEmpty.value = isShowEmptyRecruitment
+            }else{
+                isShowEmpty.value = isShowEmptyStaff
+            }
+        }
+    }
+
+    private fun getAllRecruitment(page: Int = 1) {
+        launch(loading = refreshLoading) {
+            recruitmentRepository.getAllRecruitment(page).onEach {
+                if(page == 1){
+                    isShowEmptyRecruitment = it.isEmpty()
+                    checkEmptyData()
+                }
+                adapterPost.addAll(it, page)
+            }.collect()
+        }
+    }
+
+
     override fun onTabChangeListener(index: Int) {
         isTabPost.value = index == HomeStaffViewModel.TAB_POST
+        checkEmptyData()
     }
 
     override fun onSwipeRefreshData() {
         getAllRecruitment()
     }
 
-    private fun getAllRecruitment(page: Int = 1) {
-        launch(loading = refreshLoading) {
-            recruitmentRepository.getAllRecruitment(page).onEach {
-                adapterPost.addAll(it, page)
-            }.collect()
-        }
-    }
 
     fun checkIsLogin() {
         if (sharePrefs.get<String>(SharePrefKey.TOKEN).safe().isNotBlank()) {
@@ -94,9 +123,7 @@ class NoLoginViewModel @Inject constructor(
     //load more Post
     private val loadMorePost = object : IPostAction {
         override val onClickDetail: (cvID: Int) -> Unit = {
-            navigateToDestination(
-                R.id.action_fragmentNoLogin_to_authGraph,
-            )
+            showDialogToNavigateToAuthScreen()
         }
 
         override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
@@ -104,25 +131,25 @@ class NoLoginViewModel @Inject constructor(
         }
 
         override fun onClickApply() {
-            navigateToDestination(
-                R.id.action_fragmentNoLogin_to_authGraph,
-            )
+            showDialogToNavigateToAuthScreen()
         }
     }
 
     override val onClickBookStaff: (cvID: Int) -> Unit = {
-        navigateToDestination(
-            R.id.action_fragmentNoLogin_to_authGraph,
-        )
+        showDialogToNavigateToAuthScreen()
     }
     override val onClickViewDetail: (id: Int) -> Unit = {
-        navigateToDestination(
-            R.id.action_fragmentNoLogin_to_authGraph,
-        )
+        showDialogToNavigateToAuthScreen()
     }
     override val onLoadMoreListener: (nextPage: Int, pageSize: Int) -> Unit = { page, _ ->
-        navigateToDestination(
-            R.id.action_fragmentNoLogin_to_authGraph,
-        )
+        showDialogToNavigateToAuthScreen()
+    }
+
+    private fun showDialogToNavigateToAuthScreen(){
+        showDialogConfirm(DialogData(messageID = R.string.dialog_require_login_content, isVisibleCancel = true, callback = {
+            navigateToDestination(
+                R.id.action_fragmentNoLogin_to_authGraph,
+            )
+        }))
     }
 }

@@ -350,4 +350,6 @@
     <string name="lbl_time_oder">Thời gian đặt</string>
     <string name="lbl_pending_customer">Đang đợi thợ chấp nhận</string>
     <string name="lbl_master_refused">Thợ đã từ chối</string>
+    <string name="label_empty_data">Không có dữ liệu!</string>
+    <string name="dialog_require_login_content">Vui lòng đăng nhập để tiếp tục!</string>
 </resources>

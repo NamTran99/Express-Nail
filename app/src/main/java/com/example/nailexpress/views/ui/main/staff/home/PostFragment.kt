@@ -8,7 +8,6 @@ import androidx.fragment.app.Fragment
 import com.example.nailexpress.base.PageRecyclerAdapter
 import com.example.nailexpress.databinding.FragmentPostBinding
 import com.example.nailexpress.views.ui.main.staff.HomeStaff
-import com.example.nailexpress.views.ui.main.staff.adapter.PostAdapter
 
 open class PostFragment(val adapter:  PageRecyclerAdapter<*,*>? = null) : Fragment() {
     lateinit var binding: FragmentPostBinding

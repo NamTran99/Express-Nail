@@ -129,7 +129,11 @@
         <attr name="isVisibleIcNotify" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="UserBookedInfoView"></declare-styleable>
+    <declare-styleable name="LayoutEmptyView">
+        <attr name="custom_text" format="string" />
+    </declare-styleable>
+
+    <declare-styleable name="UserBookedInfoView" />
 
     <declare-styleable name="JobInfoStaffView">
         <attr name="jis_title" format="string" />

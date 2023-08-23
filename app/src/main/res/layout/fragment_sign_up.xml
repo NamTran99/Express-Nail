@@ -54,7 +54,7 @@
                 android:layout_marginTop="@dimen/size_10"
                 android:drawableStart="@drawable/ic_person_2"
                 android:drawableTint="@color/black"
-                android:background="@drawable/bg_edittext_circle"
+                android:background="@drawable/bg_edittext_circle_white"
                 android:hint="@string/hint_name" />
 
             <TextView
@@ -69,7 +69,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/size_40"
                 android:layout_marginTop="@dimen/size_10"
-                android:background="@drawable/bg_edittext_circle"
+                android:background="@drawable/bg_edittext_circle_white"
                 app:drawableStart="@drawable/ic_pass"
                 app:text= "@={action.verifyForm.password}"
                 app:hint="@string/hint_pass" />

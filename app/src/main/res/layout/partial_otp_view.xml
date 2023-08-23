@@ -82,7 +82,7 @@
             android:layout_height="0dp"
             android:layout_marginStart="@dimen/size_4"
             android:text="@string/auth_otp_loading"
-            android:textColor="@color/white_700"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintBottom_toBottomOf="@+id/pgpLoading"
             app:layout_constraintStart_toEndOf="@+id/pgpLoading"
             app:layout_constraintTop_toTopOf="@+id/pgpLoading" />

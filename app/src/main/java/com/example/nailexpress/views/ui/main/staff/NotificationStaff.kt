@@ -33,7 +33,10 @@ open class NotificationStaff :
 }
 
 @HiltViewModel
-open class NotificationStaffViewModel @Inject constructor(
+open class
+
+
+NotificationStaffViewModel @Inject constructor(
     application: Application,
     private val notifyRepository: NotificationRepository
 ) : BaseRefreshViewModel(application), IActionNotification {

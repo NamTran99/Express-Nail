@@ -114,4 +114,7 @@ dependencies {
     implementation "androidx.core:core-splashscreen:1.0.0-alpha01"
     //event bus
     implementation 'org.greenrobot:eventbus:3.2.0'
+
+    def lottieVersion = "3.4.0"
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

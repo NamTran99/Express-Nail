@@ -73,6 +73,8 @@
                     android:id="@+id/edtPhone"
                     style="@style/AppTheme.EditText"
                     android:layout_width="0dp"
+                    android:background="@drawable/bg_circle_right_side_purple_6"
+                    android:backgroundTint="@color/white"
                     android:layout_weight="1"
                     android:inputType="phone"
                     android:text="@={action.verifyForm.phone}"

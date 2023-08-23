@@ -5,6 +5,7 @@ import androidx.fragment.app.viewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseRefreshFragment
 import com.example.nailexpress.databinding.FragmentNoLoginBinding
+import com.example.nailexpress.extension.show
 import com.example.nailexpress.views.ui.main.customer.nav_doash_board.NavAdapter
 import com.example.nailexpress.views.ui.main.staff.home.PostFragment
 import com.example.nailexpress.views.widgets.CustomHeaderHome
@@ -44,6 +45,15 @@ class NoLoginFragment :
             with(header) {
                 updateAction(this@NoLoginFragment)
                 updateTextNotification("")
+            }
+        }
+    }
+
+    override fun initListener() {
+        binding.apply {
+            viewModel.isShowEmpty.bind{
+                lvEmpty.setShowView(it)
+                vpMain.show(!it)
             }
         }
     }

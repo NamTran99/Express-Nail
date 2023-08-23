@@ -1,11 +1,12 @@
 package com.example.nailexpress.views.ui.authentication.verifyPhone
 
-import android.os.Bundle
-import android.view.View
+import android.text.SpannableStringBuilder
+import androidx.core.text.color
 import androidx.fragment.app.activityViewModels
 import com.example.nailexpress.R
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.databinding.FragmentVerifyStepTwoBinding
+import com.example.nailexpress.extension.formatPhoneUSCustom
 import com.example.nailexpress.extension.lockTvButton
 import com.example.nailexpress.views.ui.authentication.verifyPhone.adapter.ResendOTPAdapter
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,6 +34,17 @@ class VerifyPhoneStepTwoFragment :
                         verifyCode(viewOTP.otp)
                     }
                 }
+
+                val desPhone = SpannableStringBuilder().apply {
+                    append(getString(R.string.verify_des_3))
+                    append("\n\"")
+                    color(requireContext().getColor(R.color.black)){
+                        append(viewModel.getVerifyPhone().formatPhoneUSCustom())
+                    }
+                    append(""""""")
+                }
+
+                tvDesPhone.text = desPhone
 
                 countToRequestResend()
             }

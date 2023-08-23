@@ -6,7 +6,7 @@ import com.example.nailexpress.extension.Callback
 data class DialogData(
     var type: DialogType = DialogType.CONFIRM,
     var titleID: Int = R.string.btn_confirm,
-    var messageID: Int = 0,
+    var messageID: Int = -1,
     var message: String = "",
     val isVisibleCancel: Boolean = false,
     val txtCancelId: Int = R.string.btn_cancel,

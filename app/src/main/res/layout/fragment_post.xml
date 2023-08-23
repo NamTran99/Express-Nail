@@ -15,4 +15,14 @@
         tools:itemCount="5"
         tools:listitem="@layout/it_rv_post_staff" />
 
+    <com.example.nailexpress.views.widgets.LayoutEmptyView
+        android:id="@+id/lvEmpty"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/size_15"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

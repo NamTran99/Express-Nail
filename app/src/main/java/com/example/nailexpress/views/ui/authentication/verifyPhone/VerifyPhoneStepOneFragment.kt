@@ -1,13 +1,11 @@
 package com.example.nailexpress.views.ui.authentication.verifyPhone
 
 import android.app.Application
-import android.os.Bundle
 import android.support.core.event.ErrorEvent
 import android.support.core.event.LoadingEvent
 import android.support.core.livedata.ErrorLiveData
 import android.support.core.livedata.LoadingLiveData
 import android.support.core.livedata.post
-import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,7 +14,11 @@ import com.example.nailexpress.app.AppConfig
 import com.example.nailexpress.base.BaseFragment
 import com.example.nailexpress.base.BaseViewModel
 import com.example.nailexpress.databinding.FragmentVerifyStepOneBinding
-import com.example.nailexpress.extension.*
+import com.example.nailexpress.extension.configSpinner
+import com.example.nailexpress.extension.convertPhoneToNormalFormat
+import com.example.nailexpress.extension.inputTypePhoneUS
+import com.example.nailexpress.extension.launch
+import com.example.nailexpress.extension.safe
 import com.example.nailexpress.models.ui.auth.VerifyForm
 import com.example.nailexpress.repository.AuthRepository
 import dagger.hilt.android.AndroidEntryPoint
@@ -64,6 +66,8 @@ class VerifyPhoneVM @Inject constructor(app: Application, private val authReposi
             this.value?.phone_code = if (it == SPIN_EN) SPIN_EN_CODE else SPIN_VN_CODE
         }
     }
+
+    fun getVerifyPhone() = verifyForm.value?.phone.safe()
 
     fun setResending() = launch {
         val phoneNumber = verifyForm.value?.phone?.convertPhoneToNormalFormat()

@@ -73,6 +73,8 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView()
+        initListener()
+        initObserver()
         appActivity.reloadData = {
             viewModel.loadDataScreen()
         }
@@ -105,6 +107,8 @@ abstract class BaseFragment<T : ViewDataBinding, VM : BaseViewModel>(val layoutI
     }
 
     abstract fun initView()
+    open fun initListener() {}
+    open fun initObserver() {}
     open fun loadData() {}
 
     open fun navigateToDestinationWithAnim(

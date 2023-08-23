@@ -34,7 +34,13 @@ class CommonDialog(context: Context) : BaseDialog(context) {
                     }
                 }
                 txtTitle.setText(data.titleID)
-                txtBody.setText(data.message)
+                if(data.message.isNotEmpty()){
+                    txtBody.text = data.message
+                }
+                if(data.messageID != -1){
+                    txtBody.setText(data.messageID)
+                }
+
                 btYes.onClick{
                     dismiss()
                     callback?.invoke()
