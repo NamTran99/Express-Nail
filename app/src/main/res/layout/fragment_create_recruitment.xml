@@ -65,13 +65,13 @@
                     android:layout_marginTop="@dimen/size_20"
                     android:text="Tiêu đề thợ" />
 
-                    <EditText
-                        android:id="@+id/etTitle"
-                        style="@style/AppTheme.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:hint="Nhập yêu cầu tìm kiếm thợ"
-                        android:text="@={action.recruitmentForm.title}" />
+                <EditText
+                    android:id="@+id/etTitle"
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:hint="Nhập yêu cầu tìm kiếm thợ"
+                    android:text="@={action.recruitmentForm.title}" />
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
@@ -191,131 +191,28 @@
 
                 <TextView
                     style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_15"
-                    android:text="Cách trả lương" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_20"
-                    android:orientation="horizontal">
-
-                    <include
-                        android:id="@+id/fdfg"
-                        layout="@layout/layout_it_btn_state"
-                        android:layout_width="@dimen/size_0"
-                        android:layout_height="@dimen/size_40"
-                        android:layout_weight="1"
-                        android:onClick="@{() -> action.onClickBySKill()}"
-                        app:color="@{action.getTextBtnSelectBooking(action.recruitmentForm.selectBookingService,action.recruitmentForm.skillEmpty)}"
-                        app:drawable="@{action.getBgBtnSelectBooking(action.recruitmentForm.selectBookingService,action.recruitmentForm.skillEmpty)}"
-                        app:colorTint="@{@color/white}"
-                        app:icTint="@{action.recruitmentForm.skillEmpty ? null : @drawable/ic_tick_2}"
-                        app:title="@{@string/book_type_1}" />
-
-                    <include
-                        android:id="@+id/fdfgdsfds"
-                        layout="@layout/layout_it_btn_state"
-                        android:layout_width="@dimen/size_0"
-                        android:layout_height="@dimen/size_40"
-                        android:layout_weight="1"
-                        android:onClick="@{() -> action.onClickByTime()}"
-                        app:color="@{action.getTextBtnSelectBooking(!action.recruitmentForm.selectBookingService,action.recruitmentForm.timeSkillEmpty)}"
-                        app:drawable="@{action.getBgBtnSelectBooking(!action.recruitmentForm.selectBookingService,action.recruitmentForm.timeSkillEmpty)}"
-                        app:colorTint="@{@color/white}"
-                        app:icTint="@{action.recruitmentForm.timeSkillEmpty?null:@drawable/ic_tick_2}"
-                        app:title="@{@string/book_type_2}" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-
-                <EditText
-                    style="@style/AppTheme.EditText"
-                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/size_10"
-                    android:focusable="false"
-                    android:hint="@string/hint_select_service"
-                    android:onClick="@{() -> action.onClickSelectService()}"
-                    android:text="@={action.selectService.skill_name}" />
-
-                <androidx.appcompat.widget.LinearLayoutCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10">
-
-                    <com.example.nailexpress.views.widgets.CustomEditText
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/size_40"
-                        android:layout_weight="1"
-                        android:hint="@string/hint_price"
-                        app:custom_start_text="$"
-                        app:input_type="decimal"
-                        app:text="@={action.selectService.price}" />
-
-                    <androidx.appcompat.widget.AppCompatSpinner
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_weight="1"
-                        android:background="@drawable/bg_white_radius"
-                        app:items="@{@stringArray/arr_time_type}"
-                        app:onItemSelected="@{action.onSelectTimeType}"
-                        app:visibility="@{!action.recruitmentForm.selectBookingService}" />
-
-                    <com.google.android.material.button.MaterialButton
-                        style="@style/AppTheme.Button"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/size_40"
-                        android:layout_marginStart="@dimen/size_10"
-                        android:layout_weight="1"
-                        android:onClick="@{() -> action.onClickAddService()}"
-                        android:text="@string/add"
-                        android:textAllCaps="false"
-                        app:visibility="@{action.recruitmentForm.selectBookingService}" />
-
-                </androidx.appcompat.widget.LinearLayoutCompat>
-
-                <com.google.android.material.button.MaterialButton
-                    style="@style/AppTheme.Button"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/size_40"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:layout_weight="1"
-                    android:onClick="@{() -> action.onClickAddService()}"
-                    android:text="@string/add"
-                    android:textAllCaps="false"
-                    app:visibility="@{!action.recruitmentForm.selectBookingService}" />
+                    android:gravity="center"
+                    android:text="@string/lv_create_cv_1" />
 
                 <TextView
-                    style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:text="@string/list_services"
-                    app:visibility="@{action.recruitmentForm.visibleRecycler}" />
-
-                <androidx.recyclerview.widget.RecyclerView
+                    style="@style/AppTheme.TextViewResponsive.Hint"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:adapter="@{action.serviceAdapter}"
-                    android:background="@drawable/bg_white_radius"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/size_10"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:visibility="@{action.recruitmentForm.visibleRecycler}"
-                    tools:listitem="@layout/item_select_service" />
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="@dimen/size_5"
+                    android:gravity="center"
+                    android:text="@string/lv_create_cv_2"
+                    android:textSize="@dimen/text_size_10" />
 
-                <TextView
-                    style="@style/AppTheme.TextViewResponsive"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_10"
-                    android:text="Mô tả chi tiết công việc" />
+                <include layout="@layout/layout_create_skill_by_service_create_recruitment"
+                    app:action="@{action}" />
 
-                <EditText
+                <include layout="@layout/layout_create_skill_by_time_create_recruitment"
+                    app:action="@{action}" />
+
+                <androidx.appcompat.widget.AppCompatEditText
                     style="@style/AppTheme.EditText.MultiLine"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -340,21 +237,21 @@
                     android:layout_marginTop="@dimen/size_10"
                     android:text="@string/booker_name" />
 
-                    <EditText
-                        android:id="@+id/etCustomerName"
-                        style="@style/AppTheme.EditText"
-                        android:layout_width="match_parent"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:hint="@string/hint_name"
-                        android:text="@={action.recruitmentForm.contact_name}" />
+                <EditText
+                    android:id="@+id/etCustomerName"
+                    style="@style/AppTheme.EditText"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:hint="@string/hint_name"
+                    android:text="@={action.recruitmentForm.contact_name}" />
 
-                    <TextView
-                        android:id="@+id/etCustomerPhone"
-                        style="@style/AppTheme.TextViewResponsive"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_10"
-                        android:text="@string/phone" />
+                <TextView
+                    android:id="@+id/etCustomerPhone"
+                    style="@style/AppTheme.TextViewResponsive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_10"
+                    android:text="@string/phone" />
 
                 <androidx.appcompat.widget.AppCompatEditText
                     style="@style/AppTheme.EditText"
@@ -390,6 +287,7 @@
                     android:onClick="@{() -> action.onClickShowSalon()}"
                     android:text="Thêm thông tin salon"
                     android:textColor="@color/color_primary"
+                    app:cornerRadius="@dimen/radius_40"
                     app:icon="@drawable/ic_plus"
                     app:iconTint="@color/color_primary"
                     app:visibility="@{!action.isShowSalon}" />
@@ -403,6 +301,7 @@
                     android:onClick="@{() -> action.onClickHideSalon()}"
                     android:text="Ẩn thông tin salon"
                     android:textColor="@color/color_primary"
+                    app:cornerRadius="@dimen/radius_40"
                     app:icon="@drawable/ic_arrow_up"
                     app:iconTint="@color/color_primary"
                     app:visibility="@{action.isShowSalon}" />

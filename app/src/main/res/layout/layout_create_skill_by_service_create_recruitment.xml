@@ -7,7 +7,7 @@
 
         <variable
             name="action"
-            type="com.example.nailexpress.views.ui.main.staff.cv_profile.CreateCvVM" />
+            type="com.example.nailexpress.views.ui.main.customer.recruitment.CreateRecruitmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -42,7 +42,7 @@
             style="@style/AppTheme.Line.Horizontal"
             android:layout_marginTop="@dimen/size_20"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:visibility="@{action.cvForm.skillByService}"
+            app:visibility="@{action.recruitmentForm.selectBookingService}"
             tools:ignore="MissingConstraints"
             tools:layout_editor_absoluteX="10dp" />
 
@@ -55,7 +55,7 @@
             android:text="@string/skill"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/view"
-            app:visibility="@{action.cvForm.skillByService}" />
+            app:visibility="@{action.recruitmentForm.selectBookingService}" />
 
         <EditText
             android:id="@+id/editText"
@@ -70,7 +70,7 @@
             android:onClick="@{() ->action.onClickSelectService(action.inputSKillByService.skill_name, 0)}"
             android:text="@={action.inputSKillByService.skill_name}"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:visibility="@{action.cvForm.skillByService}"
+            app:visibility="@{action.recruitmentForm.selectBookingService}"
             tools:layout_editor_absoluteX="10dp" />
 
         <androidx.appcompat.widget.LinearLayoutCompat
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText"
-            app:visibility="@{action.cvForm.skillByService}">
+            app:visibility="@{action.recruitmentForm.selectBookingService}">
 
             <com.example.nailexpress.views.widgets.CustomEditText
                 android:layout_width="0dp"
@@ -92,7 +92,7 @@
                 app:custom_start_text="$"
                 app:input_type="decimal"
                 app:text="@={action.inputSKillByService.price}"
-                app:visibility="@{action.cvForm.skillByService}" />
+                app:visibility="@{action.recruitmentForm.selectBookingService}" />
 
             <com.google.android.material.button.MaterialButton
                 style="@style/AppTheme.Button"
@@ -103,7 +103,7 @@
                 android:onClick="@{()->action.onClickAddSkillByService()}"
                 android:text="@string/add"
                 android:textAllCaps="false"
-                app:visibility="@{action.cvForm.skillByService}" />
+                app:visibility="@{action.recruitmentForm.selectBookingService}" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -117,7 +117,7 @@
             android:text="@string/list_service"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-            app:visibility="@{action.cvForm.skillByService}" />
+            app:visibility="@{action.recruitmentForm.selectBookingService}" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
@@ -129,7 +129,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:visibility="@{action.cvForm.skillByService}"
+            app:visibility="@{action.recruitmentForm.selectBookingService}"
             tools:listitem="@layout/item_book_service" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

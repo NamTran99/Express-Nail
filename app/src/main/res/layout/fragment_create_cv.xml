@@ -194,7 +194,6 @@
 
                     <TextView
                         android:id="@+id/txtCity"
-
                         style="@style/AppTheme.TextViewResponsive"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"

@@ -51,6 +51,7 @@
 
                 <com.example.nailexpress.views.widgets.LayoutEmptyView
                     android:id="@+id/lvEmpty"
+                    android:paddingHorizontal="@dimen/size_16"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"/>
             </androidx.appcompat.widget.LinearLayoutCompat>

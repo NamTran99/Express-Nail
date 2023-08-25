@@ -7,7 +7,7 @@
 
         <variable
             name="action"
-            type="com.example.nailexpress.views.ui.main.staff.cv_profile.CreateCvVM" />
+            type="com.example.nailexpress.views.ui.main.customer.recruitment.CreateRecruitmentVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -22,7 +22,7 @@
             style="@style/AppTheme.TextViewResponsive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/salary_by_service"
+            android:text="@string/price_by_time"
             app:layout_constraintBottom_toBottomOf="@+id/switchCompat"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +34,7 @@
             android:thumb="@drawable/ic_thumb"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:onChangeValue="@{action.onEnableSkillBySkill}"
+            app:onChangeValue="@{action.onEnableSkillByTime}"
             app:track="@drawable/track_selector_switch" />
 
         <View
@@ -42,9 +42,9 @@
             style="@style/AppTheme.Line.Horizontal"
             android:layout_marginTop="@dimen/size_20"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            app:visibility="@{action.cvForm.skillByService}"
             tools:ignore="MissingConstraints"
-            tools:layout_editor_absoluteX="10dp" />
+            tools:layout_editor_absoluteX="10dp"
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
         <TextView
             android:id="@+id/textView3"
@@ -55,7 +55,7 @@
             android:text="@string/skill"
             app:layout_constraintStart_toStartOf="@+id/textView2"
             app:layout_constraintTop_toBottomOf="@+id/view"
-            app:visibility="@{action.cvForm.skillByService}" />
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
         <EditText
             android:id="@+id/editText"
@@ -66,12 +66,12 @@
             android:backgroundTint="@color/color_f8f3f0"
             android:drawableEnd="@drawable/ic_arrow_right"
             android:focusable="false"
+            android:onClick="@{() ->action.onClickSelectService(action.inputSKillByService.skill_name, 1)}"
+            android:text="@={action.inputSKillByTime.skill_name}"
             android:hint="@string/hint_select_service"
-            android:onClick="@{() ->action.onClickSelectService(action.inputSKillByService.skill_name, 0)}"
-            android:text="@={action.inputSKillByService.skill_name}"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:visibility="@{action.cvForm.skillByService}"
-            tools:layout_editor_absoluteX="10dp" />
+            tools:layout_editor_absoluteX="10dp"
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/linearLayoutCompat"
@@ -81,7 +81,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editText"
-            app:visibility="@{action.cvForm.skillByService}">
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}">
 
             <com.example.nailexpress.views.widgets.CustomEditText
                 android:layout_width="0dp"
@@ -89,23 +89,37 @@
                 android:layout_weight="1"
                 android:hint="@string/hint_price"
                 app:backgroundTint="@color/color_f8f3f0"
+                app:text="@={action.recruitmentForm.salaryTimeValue.price}"
                 app:custom_start_text="$"
                 app:input_type="decimal"
-                app:text="@={action.inputSKillByService.price}"
-                app:visibility="@{action.cvForm.skillByService}" />
+                app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
-            <com.google.android.material.button.MaterialButton
-                style="@style/AppTheme.Button"
+            <androidx.appcompat.widget.AppCompatSpinner
                 android:layout_width="0dp"
-                android:layout_height="@dimen/size_40"
+                android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/size_10"
                 android:layout_weight="1"
-                android:onClick="@{()->action.onClickAddSkillByService()}"
-                android:text="@string/add"
-                android:textAllCaps="false"
-                app:visibility="@{action.cvForm.skillByService}" />
+                android:background="@drawable/bg_white_radius"
+                android:backgroundTint="@color/color_f8f3f0"
+                app:onItemSelected="@{action.onSelectTimeType}"
+                app:items="@{@stringArray/arr_time_type}"
+                app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/size_40"
+            android:layout_weight="1"
+            android:layout_marginTop="@dimen/size_10"
+            android:onClick="@{() -> action.onClickAddSkillByTime()}"
+            android:text="@string/add"
+            android:textAllCaps="false"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
+            tools:layout_editor_absoluteX="10dp"
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -116,21 +130,23 @@
             android:layout_marginEnd="@dimen/size_10"
             android:text="@string/list_service"
             app:layout_constraintStart_toStartOf="@+id/textView2"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayoutCompat"
-            app:visibility="@{action.cvForm.skillByService}" />
+            app:layout_constraintTop_toBottomOf="@+id/materialButton"
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
+
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/size_10"
-            android:adapter="@{action.adapterSkillByService}"
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:visibility="@{action.cvForm.skillByService}"
-            tools:listitem="@layout/item_book_service" />
+            tools:listitem="@layout/item_book_service"
+            android:adapter="@{action.adapterSkillByTime}"
+            app:visibility = "@{action.recruitmentForm.selectBookingTime}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

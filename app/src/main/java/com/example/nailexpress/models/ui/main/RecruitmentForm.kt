@@ -29,8 +29,8 @@ class RecruitmentForm(
     var contact_name: String = "",
     var contact_phone: String = "",
     var salon_id: Int? = null,
-    var salary_by_skill: String? = null,
-    var salary_by_time: String? = null,
+//    var salary_by_skill: String? = null,
+//    var salary_by_time: String? = null,
     var booking_time: String? = null,
     var salary_time_values: String? = null,
     var image_url: String? = null,
@@ -42,6 +42,9 @@ class RecruitmentForm(
     var id: Int? = null,
 
     //custom
+    @Transient var isSelectBookingService: Boolean = false,
+    @Transient var isSelectBookingTime: Boolean = false,
+
     @Transient
     var date: String = getDateCurrent(FORMAT_DATE),
     @Transient
@@ -50,7 +53,6 @@ class RecruitmentForm(
     var listBookTime: MutableList<BookServiceForm> = mutableListOf(),
     @Transient
     var listBookSkill: MutableList<BookServiceForm> = mutableListOf(),
-    @Transient var isSelectBookingService: Boolean = true,
     var isVisibleRecycler: Boolean = false,
     @Transient
     var salaryTimeValue: BookingTime = BookingTime(),
@@ -119,16 +121,8 @@ class RecruitmentForm(
 
     override fun handleData() {
         handleBookingTime()
-
-        salary_time_values = if (!isTimeSkillEmpty) {
-            salaryTimeValue.handleData()
-            salaryTimeValue.toString()
-        } else {
-            null
-        }
-
-        salary_by_skill = if (listBookSkill.isNotEmpty()) listBookSkill.toString() else null
-        salary_by_time = if (listBookTime.isNotEmpty()) listBookTime.toString() else null
+//        salary_by_skill = if (listBookSkill.isNotEmpty()) listBookSkill.toString() else null
+//        salary_by_time = if (listBookTime.isNotEmpty()) listBookTime.toString() else null
         contact_phone = contact_phone.convertPhoneToNormalFormat()
     }
 }

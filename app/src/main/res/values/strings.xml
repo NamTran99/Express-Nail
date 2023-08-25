@@ -352,4 +352,5 @@
     <string name="lbl_master_refused">Thợ đã từ chối</string>
     <string name="label_empty_data">Không có dữ liệu!</string>
     <string name="dialog_require_login_content">Vui lòng đăng nhập để tiếp tục!</string>
+    <string name="hint_select_service_1">Nhập mới hoặc chọn từ danh sách</string>
 </resources>

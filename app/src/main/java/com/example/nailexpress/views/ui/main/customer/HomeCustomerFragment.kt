@@ -1,6 +1,8 @@
 package com.example.nailexpress.views.ui.main.customer
 
 import android.app.Application
+import android.support.core.livedata.SingleLiveEvent
+import android.support.core.livedata.changeValue
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
@@ -51,6 +53,10 @@ class HomeCustomerFragment :
         viewModel.openCallDialog = {
             DriverUtils.call(requireActivity(), it)
         }
+
+        viewModel.isShowEmptyData.bind {
+            binding.lvEmpty.setShowView(it)
+        }
     }
 
     override fun onTextChange(string: String) {
@@ -88,6 +94,12 @@ class HomeCustomerVM @Inject constructor(
     var tabSelect = MutableLiveData(TAB_STAFF)
     var openCallDialog: ((String)->Unit)? = null
 
+    var isShowEmptyListStaff =false
+    var isShowEmptyListCV =false
+
+    val isShowEmptyData = SingleLiveEvent<Boolean>()
+
+
     init {
         title.value = getString(R.string.home_des_1)
     }
@@ -95,6 +107,7 @@ class HomeCustomerVM @Inject constructor(
     override fun loadDataScreen() {
         loadData(1)
     }
+
 
     override val onClickBookStaff: (Int) -> Unit = { cvID ->
         navigateToDestination(
@@ -156,9 +169,23 @@ class HomeCustomerVM @Inject constructor(
         loadData(1)
     }
 
+    private fun checkShowEmptyLayout(){
+        tabSelect.changeValue {
+            if(this == TAB_STAFF){
+                isShowEmptyData.value = isShowEmptyListStaff
+            }else{
+                isShowEmptyData.value = isShowEmptyListCV
+            }
+        }
+    }
+
     private fun getListStaffNail(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             cvRepository.getListCv(page = page).onEach {
+                if(page == 1){
+                    isShowEmptyListStaff = it.isEmpty()
+                    checkShowEmptyLayout()
+                }
                 adapter.addAll(it, page)
             }.collect()
         }
@@ -166,6 +193,10 @@ class HomeCustomerVM @Inject constructor(
     private fun getListCVBooking(page: Int = 1, search: String = "") =
         launch(loading = refreshLoading) {
             bookingStaffRepository.getListBookingStaff(page = page).onEach {
+                if(page == 1){
+                    isShowEmptyListCV = it.isEmpty()
+                    checkShowEmptyLayout()
+                }
                 bookingAdapter.addAll(it, page)
             }.collect()
         }

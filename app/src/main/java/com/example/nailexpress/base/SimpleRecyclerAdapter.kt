@@ -25,7 +25,6 @@ abstract class SimpleRecyclerAdapter<T : Any, VB : ViewDataBinding>() :
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder<VB>, position: Int) {
-        Log.d(TAG, "onBindViewHolder: NamTD8 vao day 11")
         val cur = getItem(position)!!
         onBindHolder(cur, holder.binding, position)
     }

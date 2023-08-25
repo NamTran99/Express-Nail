@@ -232,7 +232,7 @@ class CreateCvVM @Inject constructor(
     fun onClickAddSkillByTime() {
         cvForm.refresh {
             inputSKillByTime.refresh {
-                saveItem(handleAddItem(false))
+                saveItem(handleAddItem(true))
                 adapterSkillByTime.addData(this)
                 bookTime.price = price
             }

@@ -37,6 +37,13 @@
                 app:text1="@{@string/home_customer_tab_1}"
                 app:text2="@{@string/home_customer_tab_2}" />
 
+            <com.example.nailexpress.views.widgets.LayoutEmptyView
+                android:id="@+id/lvEmpty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/size_15"
+                />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvCV"
                 android:layout_width="match_parent"

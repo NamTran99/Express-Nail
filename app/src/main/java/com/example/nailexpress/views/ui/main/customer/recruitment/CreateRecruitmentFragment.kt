@@ -39,6 +39,7 @@ import com.example.nailexpress.views.ui.main.customer.salon.CreateSalonFragment
 import com.example.nailexpress.views.ui.main.customer.salon.adapter.ImageLocalAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.BookServiceAdapter
 import com.example.nailexpress.views.ui.main.staff.adapter.IBookServiceAdapter
+import com.example.nailexpress.views.ui.main.staff.cv_profile.CreateCvVM
 import com.example.nailexpress.views.ui.main.staff.dialogs.SelectServiceDialog
 import com.google.android.libraries.places.api.model.Place
 import com.sangcomz.fishbun.FishBun
@@ -182,12 +183,33 @@ class CreateRecruitmentVM @Inject constructor(
     IBookServiceAdapter {
 
     override val title = MutableLiveData(getString(R.string.title_create_recruitment))
+    val recruitmentForm = MutableLiveData(RecruitmentForm())
     override val salonForm = MutableLiveData(Salon())
     override val salonImageAdapter = ImageLocalAdapter()
-    val serviceAdapter = BookServiceAdapter(this)
-    var selectService = MutableLiveData(BookServiceForm())
 
-    val recruitmentForm = MutableLiveData(RecruitmentForm())
+    var inputSKillByService = MutableLiveData(BookServiceForm())
+    var inputSKillByTime = MutableLiveData(BookServiceForm())
+
+    val adapterSkillByTime: BookServiceAdapter by lazy { BookServiceAdapter(this) }
+    val adapterSkillByService: BookServiceAdapter by lazy {
+        BookServiceAdapter(
+            callbackSkillByService
+        )
+    }
+
+    var selectServiceType = CreateCvVM.SelectServiceType
+
+    val callbackSkillByService = object : IBookServiceAdapter {
+        override val onClickRemoveService: (BookServiceForm) -> Unit = {
+            recruitmentForm.changeValue {
+                listBookSkill.remove(it)
+            }
+        }
+        override val onVisibleRecycler: (Boolean) -> Unit = {
+
+        }
+    }
+
     val isShowSalon = MutableLiveData(false)
     private var isLoadSalonData = false
 
@@ -198,9 +220,22 @@ class CreateRecruitmentVM @Inject constructor(
 
     val onSelectTimeType: ((Int) -> Unit) = {
         recruitmentForm.changeValue {
-            salaryTimeValue.unitIndex = it
+            salaryTimeValue.unit = it.toString()
         }
     }
+
+    val onEnableSkillBySkill: ((Boolean) -> Unit) = { it ->
+        recruitmentForm.refresh {
+            isSelectBookingService = it
+        }
+    }
+
+    val onEnableSkillByTime: ((Boolean) -> Unit) = { it ->
+        recruitmentForm.refresh {
+            isSelectBookingTime = it
+        }
+    }
+
 
     override val onItemColorSelected: (pos: Int) -> Unit = {
         salonForm.changeValue {
@@ -217,49 +252,42 @@ class CreateRecruitmentVM @Inject constructor(
 
     private fun collectSelectedService() {
         appEvent2.selectedService.drop(1).onEach {
-            selectService.value = BookServiceForm(it)
+            if (selectServiceType == CreateCvVM.SelectServiceType) {
+                inputSKillByService.value = BookServiceForm(it)
+            } else {
+                inputSKillByTime.value = BookServiceForm(it)
+            }
         }.launchIn(viewModelScope)
     }
 
-    fun onClickBySKill() {
+    fun onClickAddSkillByService() {
         recruitmentForm.refresh {
-            if (!isSelectBookingService) {
-                serviceAdapter.submit(listBookSkill)
-                isSelectBookingService = true
+            inputSKillByService.refresh {
+                saveItem(handleAddItem(false))
+                adapterSkillByService.addData(this)
             }
+        }
+        inputSKillByService.value = BookServiceForm()
+    }
+
+    fun onClickAddSkillByTime() {
+        recruitmentForm.refresh {
+            inputSKillByTime.refresh {
+                saveItem(handleAddItem(true))
+                adapterSkillByTime.addData(this)
+//                salaryTimeValue.price = price
+            }
+            inputSKillByTime.value = BookServiceForm()
         }
     }
 
-    fun onClickByTime() {
-        recruitmentForm.refresh {
-            if (isSelectBookingService) {
-                serviceAdapter.submit(listBookTime)
-                isSelectBookingService = false
-            }
-        }
-    }
 
-    fun onClickAddService() {
-        recruitmentForm.refresh {
-            selectService.refresh {
-                this.handleAddItem(!isSelectBookingService)
-                saveItem(this)
-                serviceAdapter.addData(this)
-                if (isSelectBookingService) {
-                    selectService.value = BookServiceForm()
-                } else {
-                    salaryTimeValue.unit = unit
-                    salaryTimeValue.price = price
-                    selectService.value = BookServiceForm(price = price)
-                }
-            }
-        }
-    }
 
     val showDialogSelectService = SingleLiveEvent<Any>()
 
-    fun onClickSelectService() {
-        showDialogSelectService.refresh()
+    fun onClickSelectService(content: String, serviceType: Int) {
+        selectServiceType = serviceType
+        showDialogSelectService.value = content
     }
 
     fun onRecruitmentPlaceSelected(place: Place) = launch {
